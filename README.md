@@ -42,6 +42,12 @@ git pull
 
 Those commands will cover 90% what you ever do with git.
 
+## Initial commit and its contents
+
+Currently the repository holds a quickly made skeleton with basic input and output. Some comments are provided to explain basic things. A package called "maths" is provided locally to demonstrate how it's done.
+
+All content of the initial commit can and should be modified eventually. Nothing is in its final state.
+
 ## Learn Flutter
 
 Mess around with this repository, create your own Flutter playground, watch videos.
