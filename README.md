@@ -29,6 +29,19 @@ Android Studio is not (yet) needed, so don't bother with it.
 
 If you have access to this page, you can clone the repository. If git is not yet familiar, it is highly encouraged to spend some time on learning it.
 
+Along with overall theory, the most important commands to study are:
+
+```shell
+git status
+git checkout
+git add
+git commit
+git push
+git pull
+```
+
+Those commands will cover 90% what you ever do with git.
+
 ## Learn Flutter
 
 Mess around with this repository, create your own Flutter playground, watch videos.
