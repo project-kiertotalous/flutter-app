@@ -128,13 +128,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.11.1"
-  maths:
-    dependency: "direct main"
-    description:
-      path: maths
-      relative: true
-    source: path
-    version: "0.0.1"
   meta:
     dependency: transitive
     description:
