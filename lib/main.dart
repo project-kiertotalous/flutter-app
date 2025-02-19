@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/example_view.dart';
+import 'package:flutter_app/src/home_view.dart';
+import 'package:flutter_app/src/large_buildings_view.dart';
+import 'package:flutter_app/src/smaller_builds_view.dart';
 
 void main() async {
   runApp(MyApp());
@@ -18,15 +20,16 @@ class MyApp extends StatelessWidget {
     // The ListenableBuilder Widget listens to the SettingsController for changes.
     // Whenever the user updates their settings, the MaterialApp is rebuilt.
     return MaterialApp(
-      // Providing a restorationScopeId allows the Navigator built by the
-      // MaterialApp to restore the navigation stack when a user leaves and
-      // returns to the app after it has been killed while running in the
-      // background.
-      restorationScopeId: 'app',
-
       // The appTitle is defined in .arb files found in the localization
       // directory.
       title: 'Placeholder title',
+
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeView(),
+        '/large_buildings': (context) => LargeBuildingsView(),
+        '/smaller_buildings': (context) => SmallerBuildingsView(),
+      },
       // onGenerateTitle: (BuildContext context) =>
       //     AppLocalizations.of(context)!.appTitle,
 
@@ -37,7 +40,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // darkTheme: ThemeData.dark(),
-      home: const ExampleView(),
     );
   }
 }
