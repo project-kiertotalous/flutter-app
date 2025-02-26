@@ -50,6 +50,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         },
         child: Scaffold(
           appBar: AppBar(
+            title: Text('Suuret rakennukset'),
             bottom: TabBar(
               // controller: _tabController,
               tabs: tabs,
