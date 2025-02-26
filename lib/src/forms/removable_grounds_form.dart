@@ -15,8 +15,6 @@ class RemovableGroundsForm extends StatefulWidget {
 }
 
 class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
-  PlutoGridStateManager? stateManager;
-
   List<PlutoColumn> columns = [
     PlutoColumn(
       title: 'Poistettavat',
@@ -124,7 +122,6 @@ class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
           print(event);
         },
         onLoaded: (PlutoGridOnLoadedEvent event) {
-          stateManager = event.stateManager;
           // ignore: avoid_print
           print(event);
         },
