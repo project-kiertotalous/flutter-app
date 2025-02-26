@@ -9,9 +9,9 @@ class OuterSheathView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
+    return ListView(
+      // crossAxisAlignment: CrossAxisAlignment.start,
+      // mainAxisSize: MainAxisSize.min,
       children: [
         Row(
           children: [
@@ -25,7 +25,10 @@ class OuterSheathView extends StatelessWidget {
             Text("Purkukohteen tiedot ja materiaalit"),
           ],
         ),
-        RemovableGroundsForm(data: removableGroundsData),
+        Align(
+          alignment: Alignment.topLeft,
+          child: RemovableGroundsForm(data: removableGroundsData),
+        ),
       ],
     );
   }
