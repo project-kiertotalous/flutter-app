@@ -117,7 +117,7 @@ class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
         columns: columns,
         rows: rows,
         onChanged: (PlutoGridOnChangedEvent event) {
-          widget.data.updateValue(event.columnIdx, event.rowIdx, event.value);
+          widget.data.updateValue(event);
           // ignore: avoid_print
           print(event);
         },

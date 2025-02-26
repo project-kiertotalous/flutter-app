@@ -1,4 +1,7 @@
-class RemovableGroundsData {
+import 'package:flutter_app/src/data/form_data_container.dart';
+import 'package:pluto_grid/pluto_grid.dart';
+
+class RemovableGroundsData implements FormDataContainer {
   /// Poistettavan alueen pinta-ala (m2)
   double groundSurfaceArea = 0;
 
@@ -29,29 +32,31 @@ class RemovableGroundsData {
   /// Asfaltti (m3)
   double asphaltCubicMeters = 0;
 
-  void updateValue(int column, int row, dynamic value) {
-    final pair = [column, row];
+  @override
+  void updateValue(PlutoGridOnChangedEvent event) {
+    final pair = [event.columnIdx, event.rowIdx];
+    final newValue = event.value;
     switch (pair) {
       case [1, 0]:
-        groundSurfaceArea = value;
+        groundSurfaceArea = newValue;
       case [1, 1]:
-        groundDepth = value;
+        groundDepth = newValue;
       case [1, 2]:
-        removableAmount = value;
+        removableAmount = newValue;
       case [1, 3]:
-        removableCleanGroundShare = value;
+        removableCleanGroundShare = newValue;
       case [1, 4]:
-        cleanGroundTons = value;
+        cleanGroundTons = newValue;
       case [1, 5]:
-        contaminatedGroundTons = value;
+        contaminatedGroundTons = newValue;
       case [1, 6]:
-        contaminatedGroundCubicMeters = value;
+        contaminatedGroundCubicMeters = newValue;
       case [1, 7]:
-        asphaltSurfaceArea = value;
+        asphaltSurfaceArea = newValue;
       case [1, 8]:
-        asphaltTons = value;
+        asphaltTons = newValue;
       case [1, 9]:
-        asphaltCubicMeters = value;
+        asphaltCubicMeters = newValue;
     }
   }
 }
