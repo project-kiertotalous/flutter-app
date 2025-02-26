@@ -26,6 +26,7 @@ class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
       enableContextMenu: false,
     ),
     PlutoColumn(
+      width: 100,
       title: 'Määrä',
       field: 'number_field',
       type: PlutoColumnType.number(
@@ -110,10 +111,15 @@ class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
-      width: 600,
+      height: 570,
+      width: 570,
       padding: const EdgeInsets.all(30),
       child: PlutoGrid(
+        configuration: PlutoGridConfiguration(
+          columnSize: PlutoGridColumnSizeConfig(
+            autoSizeMode: PlutoAutoSizeMode.scale,
+          ),
+        ),
         columns: columns,
         rows: rows,
         onChanged: (PlutoGridOnChangedEvent event) {
