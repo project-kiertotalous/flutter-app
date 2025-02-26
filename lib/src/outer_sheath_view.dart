@@ -13,18 +13,6 @@ class OuterSheathView extends StatelessWidget {
       // crossAxisAlignment: CrossAxisAlignment.start,
       // mainAxisSize: MainAxisSize.min,
       children: [
-        Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.arrow_back),
-            ),
-            // information and material of the target of demolition
-            Text("Purkukohteen tiedot ja materiaalit"),
-          ],
-        ),
         Align(
           alignment: Alignment.topLeft,
           child: RemovableGroundsForm(data: removableGroundsData),
