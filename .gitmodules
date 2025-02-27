@@ -1,0 +1,3 @@
+[submodule "calculation"]
+	path = calculation
+	url = git@github.com:project-kiertotalous/bl-demolition-materials.git
