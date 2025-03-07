@@ -101,20 +101,28 @@ class FoundationTypeAndFloorsData {
   }
 
   /// Perustuksen pinta-ala (m2) - Koko rakennus yhteensä
-  double? buildingTotalSurfaceArea;
+  double buildingTotalSurfaceArea = 0;
 
-  void setBuildingTotalSurfaceArea(double value) {
-    buildingTotalSurfaceArea = value;
+  /// Calculates sum from input values
+  void setBuildingTotalSurfaceArea() {
+    buildingTotalSurfaceArea = (fakePlinthSurfaceArea ?? 0) +
+        (baseFloorSurfaceArea ?? 0) +
+        (shallowFoundationSurfaceArea ?? 0) +
+        (pillarFoundationSurfaceArea ?? 0) +
+        (cavitySlabSurfaceArea ?? 0);
   }
 
   /// Perustuksen kehämitta (jm) - Koko rakennus yhteensä
-  double? circumferenceTotal;
+  double circumferenceTotal = 0;
 
-  void setCircumferenceTotal(double value) {
-    circumferenceTotal = value;
+  /// Calculates sum from input values
+  void setCircumferenceTotal() {
+    circumferenceTotal = (fakePlinthCircumference ?? 0) +
+        (baseFloorCircumference ?? 0) +
+        (shallowFoundationCircumference ?? 0) +
+        (pillarFoundationCircumference ?? 0) +
+        (cavitySlabCircumference ?? 0);
   }
-
-  // TODO: add update function
 }
 
 /// User for menu options in [FoundationTypeAndFloorsData]
