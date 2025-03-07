@@ -102,9 +102,6 @@ class RemovableGroundsForm extends StatelessWidget {
       ],
       rowSizes: [50.px, 50.px],
       children: createCells(),
-      // children: [
-      //   for (final cell in cells()) cell,
-      // ],
     );
   }
 }
