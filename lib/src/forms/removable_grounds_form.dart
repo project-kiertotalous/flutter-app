@@ -13,15 +13,6 @@ class RemovableGroundsForm extends StatefulWidget {
 }
 
 class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
-  /// returns a list of 18 [Cell] widgets
-  List<Cell> cells() {
-    var cells = [];
-    for (int i = 0; i < 18; i++) {
-      cells.add(Cell());
-    }
-    return List.from(cells);
-  }
-
   List<Cell> cells2() {
     final cells = [
       Cell(
