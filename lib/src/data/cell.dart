@@ -17,11 +17,35 @@ class _CellState extends State<Cell> {
   late dynamic value = widget.initialValue ?? "hei";
   TextEditingController? _controller;
 
+  String periodToComma(dynamic text) {
+    return text.toString().replaceFirst('.', ',');
+  }
+
+  void handleChange(String value) {
+    print('Controller value: ${_controller?.text}');
+    var formattedValue = '0';
+    // replace comma with period
+    if (value.isNotEmpty) {
+      formattedValue = value.replaceFirst(RegExp(','), '.');
+      // add a trailing zero if it is missing
+      if (formattedValue[formattedValue.length - 1] == '.') {
+        formattedValue = '${formattedValue}0';
+      }
+    }
+    // cast to double
+    var castedValue = double.parse(formattedValue);
+    if (widget.setter != null) {
+      // set new value to form
+      widget.setter!(castedValue);
+    }
+    print(castedValue);
+  }
+
   @override
   void initState() {
     super.initState();
     if (widget.type == CellType.input) {
-      final text = widget.initialValue.toString().replaceFirst(',', '.');
+      final text = periodToComma(widget.initialValue);
       _controller = TextEditingController(
         text: text,
       );
@@ -80,31 +104,11 @@ class _CellState extends State<Cell> {
           ),
           child: Center(
             child: TextField(
-              onChanged: (value) {
-                var formattedValue = '0';
-                // replace comma with period
-                if (value.isNotEmpty) {
-                  formattedValue = value.replaceFirst(RegExp(','), '.');
-                  // add a trailing zero if it is missing
-                  if (formattedValue[formattedValue.length - 1] == '.') {
-                    formattedValue = '${formattedValue}0';
-                  }
-                }
-                // cast to double
-                var castedValue = double.parse(formattedValue);
-                if (widget.setter != null) {
-                  widget.setter!(castedValue);
-                }
-                print(castedValue);
-              },
+              onChanged: (value) => handleChange(value),
               controller: _controller,
               inputFormatters: [
-                // TODO: needs fixing - currently replaces the whole line with
-                // an empty string when disallowed characters are entered.
-                // this is unwanted behavior - instead disallowed characters
-                // should simply not be appended to the string
                 FilteringTextInputFormatter.allow(
-                  RegExp(r'^([0-9]+([,][0-9]*)?|[,][0-9]+)$'),
+                  RegExp(r'([0-9]+([,][0-9]*)?|[,][0-9]+)'),
                 )
               ],
             ),
