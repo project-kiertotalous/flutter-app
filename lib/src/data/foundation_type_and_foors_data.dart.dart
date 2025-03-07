@@ -33,6 +33,7 @@ class FoundationTypeAndFloorsData {
 
   void setFakePlinthSurfaceArea(double value) {
     fakePlinthSurfaceArea = value;
+    calculateSurfaceAreaTotal();
   }
 
   /// Perustuksen kehämitta (jm) - Valesokkeli
@@ -42,6 +43,7 @@ class FoundationTypeAndFloorsData {
 
   void setfakePlinthCircumference(double value) {
     fakePlinthCircumference = value;
+    calculateCircumferenceTotal();
   }
 
   /// Perustuksen pinta-ala (m2) - Rossipohja
@@ -49,6 +51,7 @@ class FoundationTypeAndFloorsData {
 
   void setBaseFloorSurfaceArea(double value) {
     baseFloorSurfaceArea = value;
+    calculateSurfaceAreaTotal();
   }
 
   /// Perustuksen kehämitta (jm) - Rossipohja
@@ -56,6 +59,7 @@ class FoundationTypeAndFloorsData {
 
   void setBaseFloorCircumference(double value) {
     baseFloorCircumference = value;
+    calculateCircumferenceTotal();
   }
 
   /// Perustuksen pinta-ala (m2) - Matalaperustus
@@ -63,6 +67,7 @@ class FoundationTypeAndFloorsData {
 
   void setShallowFoundationSurfaceArea(double value) {
     shallowFoundationSurfaceArea = value;
+    calculateSurfaceAreaTotal();
   }
 
   /// Perustuksen kehämitta (jm) - Matalaperustus
@@ -70,6 +75,7 @@ class FoundationTypeAndFloorsData {
 
   void setShallowFoundationCircumference(double value) {
     shallowFoundationCircumference = value;
+    calculateCircumferenceTotal();
   }
 
   /// Perustuksen pinta-ala (m2) - Pilariperustus
@@ -77,6 +83,7 @@ class FoundationTypeAndFloorsData {
 
   void setPillarFoundationSurfaceArea(double value) {
     pillarFoundationSurfaceArea = value;
+    calculateSurfaceAreaTotal();
   }
 
   /// Perustuksen kehämitta (jm) - Pilariperustus
@@ -84,6 +91,7 @@ class FoundationTypeAndFloorsData {
 
   void setPillarFoundationCircumference(double value) {
     pillarFoundationCircumference = value;
+    calculateCircumferenceTotal();
   }
 
   /// Perustuksen pinta-ala (m2) - Ontelolaattaperustus
@@ -91,6 +99,7 @@ class FoundationTypeAndFloorsData {
 
   void setCavitySlabSurfaceArea(double value) {
     cavitySlabSurfaceArea = value;
+    calculateSurfaceAreaTotal();
   }
 
   /// Perustuksen kehämitta (jm) - Ontelolaattaperustus
@@ -98,14 +107,15 @@ class FoundationTypeAndFloorsData {
 
   void setCavitySlabCircumference(double value) {
     cavitySlabCircumference = value;
+    calculateCircumferenceTotal();
   }
 
   /// Perustuksen pinta-ala (m2) - Koko rakennus yhteensä
-  double buildingTotalSurfaceArea = 0;
+  double buildingSurfaceAreaTotal = 0;
 
   /// Calculates sum from input values
-  void setBuildingTotalSurfaceArea() {
-    buildingTotalSurfaceArea = (fakePlinthSurfaceArea ?? 0) +
+  void calculateSurfaceAreaTotal() {
+    buildingSurfaceAreaTotal = (fakePlinthSurfaceArea ?? 0) +
         (baseFloorSurfaceArea ?? 0) +
         (shallowFoundationSurfaceArea ?? 0) +
         (pillarFoundationSurfaceArea ?? 0) +
@@ -116,7 +126,7 @@ class FoundationTypeAndFloorsData {
   double circumferenceTotal = 0;
 
   /// Calculates sum from input values
-  void setCircumferenceTotal() {
+  void calculateCircumferenceTotal() {
     circumferenceTotal = (fakePlinthCircumference ?? 0) +
         (baseFloorCircumference ?? 0) +
         (shallowFoundationCircumference ?? 0) +
