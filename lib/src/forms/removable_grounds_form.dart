@@ -4,15 +4,20 @@ import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/removable_grounds_data.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
-class RemovableGroundsForm extends StatefulWidget {
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
+
+class RemovableGroundsForm extends StatelessWidget {
   const RemovableGroundsForm({super.key, required this.data});
 
   final RemovableGroundsData data;
-  @override
-  State<RemovableGroundsForm> createState() => _RemovableGroundsFormState();
-}
 
-class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
   List<Cell> createCells() {
     final cells = [
       Cell(
@@ -38,53 +43,47 @@ class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
       Cell(type: CellType.empty),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.groundSurfaceArea,
-        setter: widget.data.setGroundSurfaceArea,
+        initialValue: data.groundSurfaceArea,
+        setter: data.setGroundSurfaceArea,
       ),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.groundDepth,
-        setter: widget.data.setGroundDepth,
+        initialValue: data.groundDepth,
+        setter: data.setGroundDepth,
       ),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.removableAmount,
-        setter: widget.data.setRemovableAmount,
+        initialValue: data.removableAmount,
+        setter: data.setRemovableAmount,
       ),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.removableGroundTons,
-        setter: widget.data.setRemovableGroundTons,
+        initialValue: data.removableGroundTons,
+        setter: data.setRemovableGroundTons,
       ),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.removableCleanGroundShare,
-        setter: widget.data.setRemovableCleanGroundShare,
+        initialValue: data.removableCleanGroundShare,
+        setter: data.setRemovableCleanGroundShare,
       ),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.contaminatedGroundShare,
-        setter: widget.data.setContaminatedGroundShare,
+        initialValue: data.contaminatedGroundShare,
+        setter: data.setContaminatedGroundShare,
       ),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.asphaltSurfaceArea,
-        setter: widget.data.setAsphaltSurfaceArea,
+        initialValue: data.asphaltSurfaceArea,
+        setter: data.setAsphaltSurfaceArea,
       ),
       Cell(
         type: CellType.input,
-        initialValue: widget.data.asphaltTons,
-        setter: widget.data.setAsphaltTons,
+        initialValue: data.asphaltTons,
+        setter: data.setAsphaltTons,
       ),
     ];
 
     return cells;
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    print('Hello, World! t. RemovableGroundsForm2');
   }
 
   @override
