@@ -10,12 +10,12 @@ class OuterSheathView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      // crossAxisAlignment: CrossAxisAlignment.start,
-      // mainAxisSize: MainAxisSize.min,
       children: [
         Align(
           alignment: Alignment.topLeft,
-          child: RemovableGroundsForm(data: removableGroundsData),
+          child: RemovableGroundsForm(
+            data: removableGroundsData,
+          ),
         ),
       ],
     );
