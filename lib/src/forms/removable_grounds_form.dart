@@ -13,7 +13,7 @@ class RemovableGroundsForm extends StatefulWidget {
 }
 
 class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
-  List<Cell> cells2() {
+  List<Cell> createCells() {
     final cells = [
       Cell(
           type: CellType.header,
@@ -102,7 +102,7 @@ class _RemovableGroundsFormState extends State<RemovableGroundsForm> {
         120.px,
       ],
       rowSizes: [50.px, 50.px],
-      children: cells2(),
+      children: createCells(),
       // children: [
       //   for (final cell in cells()) cell,
       // ],
