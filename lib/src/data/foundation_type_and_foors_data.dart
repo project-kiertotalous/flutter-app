@@ -1,32 +1,35 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_app/log.dart';
 import 'package:stream_mixin/stream_mixin.dart';
 
 class FoundationTypeAndFloorsData with StreamMixin<double> {
   /// Valesokkelin tyyppi
-  FoundationAndFloorType? fakePlinthType;
+  FoundationAndFloorType fakePlinthType = FoundationAndFloorType.choose;
 
   // this can still be set to null
-  void setFakePlinthType(FoundationAndFloorType? type) {
+  void setFakePlinthType(FoundationAndFloorType type) {
     fakePlinthType = type;
+    logger.d('fakePlinthType set to ${fakePlinthType}');
   }
 
   /// Rossipohjan tyyppi
-  FoundationAndFloorType? baseFloorType;
+  FoundationAndFloorType baseFloorType = FoundationAndFloorType.choose;
 
-  void setBaseFloorType(FoundationAndFloorType? type) {
+  void setBaseFloorType(FoundationAndFloorType type) {
     baseFloorType = type;
   }
 
   /// Pilariperustuksen tyyppi
-  FoundationAndFloorType? pillarFoundationType;
+  FoundationAndFloorType pillarFoundationType = FoundationAndFloorType.choose;
 
-  void setPillarFoundationType(FoundationAndFloorType? type) {
+  void setPillarFoundationType(FoundationAndFloorType type) {
     pillarFoundationType = type;
   }
 
   /// Ontelolaattoperustuksen tyyppi
-  FoundationAndFloorType? cavitySlabType;
+  FoundationAndFloorType cavitySlabType = FoundationAndFloorType.choose;
 
-  void setCavitySlabType(FoundationAndFloorType? type) {
+  void setCavitySlabType(FoundationAndFloorType type) {
     cavitySlabType = type;
   }
 
@@ -151,10 +154,45 @@ class FoundationTypeAndFloorsData with StreamMixin<double> {
   }
 }
 
+abstract class FormEnum {
+  static List<DropdownMenuItem> toList() {
+    return [];
+  }
+}
+
 /// User for menu options in [FoundationTypeAndFloorsData]
-enum FoundationAndFloorType {
+enum FoundationAndFloorType implements FormEnum {
+  // Valitse
+  choose,
   // Betonivalu
   concreteCasting,
   // Harkko
-  ingot,
+  ingot;
+
+  static List<DropdownMenuItem> toList() {
+    List<DropdownMenuItem<FoundationAndFloorType>> list = [];
+    for (final type in FoundationAndFloorType.values) {
+      list.add(
+        DropdownMenuItem<FoundationAndFloorType>(
+          value: type,
+          child: Text(
+            type.toString(),
+          ),
+        ),
+      );
+    }
+    return list;
+  }
+
+  @override
+  String toString() {
+    switch (this) {
+      case choose:
+        return "Valitse";
+      case concreteCasting:
+        return "Betonivalu";
+      case ingot:
+        return "Harkko";
+    }
+  }
 }

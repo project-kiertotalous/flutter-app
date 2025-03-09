@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/foundation_type_and_foors_data.dart';
+import 'package:flutter_app/src/data/menu_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -23,6 +24,31 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
       Cell(type: CellType.column, initialValue: 'Pilariperustus'),
       Cell(type: CellType.column, initialValue: 'Ontelolaattaperustus'),
       Cell(type: CellType.column, initialValue: 'Koko rakennus yht.'),
+      Cell(type: CellType.header, initialValue: 'Monivalinta'),
+      MenuCell(
+        setter: data.setFakePlinthType,
+        initialValue: data.fakePlinthType,
+      ),
+      MenuCell(
+        setter: data.setBaseFloorType,
+        initialValue: data.baseFloorType,
+      ),
+      Cell(
+        type: CellType.empty,
+        // initialValue: data.shallowFoundationSurfaceArea,
+        // setter: data.setShallowFoundationSurfaceArea,
+      ),
+      MenuCell(
+        setter: data.setPillarFoundationType,
+        initialValue: data.pillarFoundationType,
+      ),
+      MenuCell(
+        setter: data.setCavitySlabType,
+        initialValue: data.cavitySlabType,
+      ),
+      Cell(
+        type: CellType.empty,
+      ),
       Cell(type: CellType.header, initialValue: 'Perustuksen pinta-ala (m2)'),
       Cell(
         type: CellType.input,
@@ -100,7 +126,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
         120.px,
         120.px,
       ],
-      rowSizes: [50.px, 50.px, 50.px],
+      rowSizes: [50.px, 50.px, 50.px, 50.px],
       children: createCells(),
     );
   }
