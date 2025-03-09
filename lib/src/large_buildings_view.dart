@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/removable_grounds_data.dart';
 import 'package:flutter_app/src/outer_sheath_view.dart';
 import 'package:flutter_app/src/partitions_and_windows_view.dart';
+import 'package:flutter_app/log.dart';
 
 /// This view is for estimating large buildings.
 class LargeBuildingsView extends StatefulWidget {
@@ -32,6 +33,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
       length: tabs.length,
       vsync: this,
     );
+    logger.d('LargeBuildingsView built');
   }
 
   @override
