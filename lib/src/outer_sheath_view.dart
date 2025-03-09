@@ -10,11 +10,23 @@ class OuterSheathView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      // this allows for horizontal scrolling
+      scrollDirection: Axis.horizontal,
       children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: RemovableGroundsForm(
-            data: removableGroundsData,
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          // this width should match width of widest widget
+          width: 1200,
+          // this ListView allows for vertical scrolling by default
+          child: ListView(
+            children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: RemovableGroundsForm(
+                  data: removableGroundsData,
+                ),
+              ),
+            ],
           ),
         ),
       ],
