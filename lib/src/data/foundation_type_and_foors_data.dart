@@ -1,4 +1,6 @@
-class FoundationTypeAndFloorsData {
+import 'package:stream_mixin/stream_mixin.dart';
+
+class FoundationTypeAndFloorsData with StreamMixin<double> {
   /// Valesokkelin tyyppi
   FoundationAndFloorType? fakePlinthType;
 
@@ -29,85 +31,95 @@ class FoundationTypeAndFloorsData {
   }
 
   /// Perustuksen pinta-ala (m2) - Valesokkeli
-  double? fakePlinthSurfaceArea;
+  double fakePlinthSurfaceArea = 0;
 
   void setFakePlinthSurfaceArea(double value) {
     fakePlinthSurfaceArea = value;
     calculateSurfaceAreaTotal();
+    update(buildingSurfaceAreaTotal);
   }
 
   /// Perustuksen kehämitta (jm) - Valesokkeli
   ///
   /// jm refers to "Juoksumetri"
-  double? fakePlinthCircumference;
+  double fakePlinthCircumference = 0;
 
   void setfakePlinthCircumference(double value) {
     fakePlinthCircumference = value;
     calculateCircumferenceTotal();
+    update(circumferenceTotal);
   }
 
   /// Perustuksen pinta-ala (m2) - Rossipohja
-  double? baseFloorSurfaceArea;
+  double baseFloorSurfaceArea = 0;
 
   void setBaseFloorSurfaceArea(double value) {
     baseFloorSurfaceArea = value;
     calculateSurfaceAreaTotal();
+    update(buildingSurfaceAreaTotal);
   }
 
   /// Perustuksen kehämitta (jm) - Rossipohja
-  double? baseFloorCircumference;
+  double baseFloorCircumference = 0;
 
   void setBaseFloorCircumference(double value) {
     baseFloorCircumference = value;
     calculateCircumferenceTotal();
+    update(circumferenceTotal);
   }
 
   /// Perustuksen pinta-ala (m2) - Matalaperustus
-  double? shallowFoundationSurfaceArea;
+  double shallowFoundationSurfaceArea = 0;
 
   void setShallowFoundationSurfaceArea(double value) {
     shallowFoundationSurfaceArea = value;
     calculateSurfaceAreaTotal();
+    update(buildingSurfaceAreaTotal);
   }
 
   /// Perustuksen kehämitta (jm) - Matalaperustus
-  double? shallowFoundationCircumference;
+  double shallowFoundationCircumference = 0;
 
   void setShallowFoundationCircumference(double value) {
     shallowFoundationCircumference = value;
     calculateCircumferenceTotal();
+    update(circumferenceTotal);
   }
 
   /// Perustuksen pinta-ala (m2) - Pilariperustus
-  double? pillarFoundationSurfaceArea;
+  double pillarFoundationSurfaceArea = 0;
 
   void setPillarFoundationSurfaceArea(double value) {
     pillarFoundationSurfaceArea = value;
     calculateSurfaceAreaTotal();
+    update(buildingSurfaceAreaTotal);
   }
 
   /// Perustuksen kehämitta (jm) - Pilariperustus
-  double? pillarFoundationCircumference;
+  double pillarFoundationCircumference = 0;
 
   void setPillarFoundationCircumference(double value) {
     pillarFoundationCircumference = value;
     calculateCircumferenceTotal();
+    update(circumferenceTotal);
   }
 
   /// Perustuksen pinta-ala (m2) - Ontelolaattaperustus
-  double? cavitySlabSurfaceArea;
+  double cavitySlabSurfaceArea = 0;
 
   void setCavitySlabSurfaceArea(double value) {
     cavitySlabSurfaceArea = value;
     calculateSurfaceAreaTotal();
+    update(buildingSurfaceAreaTotal);
   }
 
   /// Perustuksen kehämitta (jm) - Ontelolaattaperustus
-  double? cavitySlabCircumference;
+  double cavitySlabCircumference = 0;
 
   void setCavitySlabCircumference(double value) {
     cavitySlabCircumference = value;
     calculateCircumferenceTotal();
+    update(circumferenceTotal);
   }
 
   /// Perustuksen pinta-ala (m2) - Koko rakennus yhteensä
@@ -115,11 +127,11 @@ class FoundationTypeAndFloorsData {
 
   /// Calculates sum from input values
   void calculateSurfaceAreaTotal() {
-    buildingSurfaceAreaTotal = (fakePlinthSurfaceArea ?? 0) +
-        (baseFloorSurfaceArea ?? 0) +
-        (shallowFoundationSurfaceArea ?? 0) +
-        (pillarFoundationSurfaceArea ?? 0) +
-        (cavitySlabSurfaceArea ?? 0);
+    buildingSurfaceAreaTotal = fakePlinthSurfaceArea +
+        baseFloorSurfaceArea +
+        shallowFoundationSurfaceArea +
+        pillarFoundationSurfaceArea +
+        cavitySlabSurfaceArea;
   }
 
   /// Perustuksen kehämitta (jm) - Koko rakennus yhteensä
@@ -127,11 +139,11 @@ class FoundationTypeAndFloorsData {
 
   /// Calculates sum from input values
   void calculateCircumferenceTotal() {
-    circumferenceTotal = (fakePlinthCircumference ?? 0) +
-        (baseFloorCircumference ?? 0) +
-        (shallowFoundationCircumference ?? 0) +
-        (pillarFoundationCircumference ?? 0) +
-        (cavitySlabCircumference ?? 0);
+    circumferenceTotal = fakePlinthCircumference +
+        baseFloorCircumference +
+        shallowFoundationCircumference +
+        pillarFoundationCircumference +
+        cavitySlabCircumference;
   }
 }
 
