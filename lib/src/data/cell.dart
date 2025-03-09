@@ -139,9 +139,17 @@ class _CellState extends State<Cell> {
   }
 }
 
+// TODO: move to its own file
 class OutputCell extends StatefulWidget {
-  const OutputCell({super.key, required this.data});
+  const OutputCell({
+    super.key,
+    required this.data,
+    required this.getter,
+  });
 
+  final Function getter;
+
+  // TODO: make this a lot more generic
   final FoundationTypeAndFloorsData data;
 
   @override
@@ -165,7 +173,7 @@ class _OutputCellState extends State<OutputCell> {
             builder: (context, snapshot) {
               return Text(
                 // TODO: fix initial null value
-                snapshot.data.toString(),
+                widget.getter().toString(),
               );
             }),
       ),

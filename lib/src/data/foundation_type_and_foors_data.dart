@@ -125,6 +125,8 @@ class FoundationTypeAndFloorsData with StreamMixin<double> {
   /// Perustuksen pinta-ala (m2) - Koko rakennus yhteensä
   double buildingSurfaceAreaTotal = 0;
 
+  double getSurfaceAreaTotal() => buildingSurfaceAreaTotal;
+
   /// Calculates sum from input values
   void calculateSurfaceAreaTotal() {
     buildingSurfaceAreaTotal = fakePlinthSurfaceArea +
@@ -136,6 +138,8 @@ class FoundationTypeAndFloorsData with StreamMixin<double> {
 
   /// Perustuksen kehämitta (jm) - Koko rakennus yhteensä
   double circumferenceTotal = 0;
+
+  double getCircumferenceTotal() => circumferenceTotal;
 
   /// Calculates sum from input values
   void calculateCircumferenceTotal() {

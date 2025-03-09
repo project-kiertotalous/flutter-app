@@ -50,6 +50,37 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
       ),
       OutputCell(
         data: data,
+        getter: data.getSurfaceAreaTotal,
+      ),
+      Cell(type: CellType.header, initialValue: 'Perustuksen pinta-ala (m2)'),
+      Cell(
+        type: CellType.input,
+        initialValue: data.fakePlinthCircumference,
+        setter: data.setfakePlinthCircumference,
+      ),
+      Cell(
+        type: CellType.input,
+        initialValue: data.baseFloorCircumference,
+        setter: data.setBaseFloorCircumference,
+      ),
+      Cell(
+        type: CellType.input,
+        initialValue: data.shallowFoundationCircumference,
+        setter: data.setShallowFoundationCircumference,
+      ),
+      Cell(
+        type: CellType.input,
+        initialValue: data.pillarFoundationCircumference,
+        setter: data.setPillarFoundationCircumference,
+      ),
+      Cell(
+        type: CellType.input,
+        initialValue: data.cavitySlabCircumference,
+        setter: data.setCavitySlabCircumference,
+      ),
+      OutputCell(
+        data: data,
+        getter: data.getCircumferenceTotal,
       ),
     ];
 
@@ -68,7 +99,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
         120.px,
         120.px,
       ],
-      rowSizes: [50.px, 50.px],
+      rowSizes: [50.px, 50.px, 50.px],
       children: createCells(),
     );
   }
