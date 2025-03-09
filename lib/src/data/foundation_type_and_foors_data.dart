@@ -154,14 +154,8 @@ class FoundationTypeAndFloorsData with StreamMixin<double> {
   }
 }
 
-abstract class FormEnum {
-  static List<DropdownMenuItem> toList() {
-    return [];
-  }
-}
-
 /// User for menu options in [FoundationTypeAndFloorsData]
-enum FoundationAndFloorType implements FormEnum {
+enum FoundationAndFloorType {
   // Valitse
   choose,
   // Betonivalu
