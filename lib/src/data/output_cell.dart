@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/foundation_type_and_foors_data.dart';
+import 'package:flutter_app/src/data/foundation_type_and_floors_data.dart';
 
 class OutputCell extends StatefulWidget {
   const OutputCell({
