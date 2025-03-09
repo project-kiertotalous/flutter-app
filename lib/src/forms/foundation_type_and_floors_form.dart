@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/foundation_type_and_foors_data.dart';
+import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 /// Perustyyppi ja lattiat
