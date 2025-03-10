@@ -18,6 +18,8 @@ dependencies:
   logger: ^2.5.0
   pluto_grid: ^8.0.0
   stream_mixin: ^3.0.4
+  bl_demolition_materials:
+    path: calculation/
 
 dev_dependencies:
   flutter_test:
