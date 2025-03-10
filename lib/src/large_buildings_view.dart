@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/basic_information_data.dart';
 import 'package:flutter_app/src/data/foundation_type_and_floors_data.dart';
 import 'package:flutter_app/src/data/removable_grounds_data.dart';
 import 'package:flutter_app/src/outer_sheath_view.dart';
@@ -15,6 +16,7 @@ class LargeBuildingsView extends StatefulWidget {
 
 class _LargeBuildingsViewState extends State<LargeBuildingsView>
     with TickerProviderStateMixin {
+  BasicInformationData basicInformationData = BasicInformationData();
   RemovableGroundsData removableGroundsData = RemovableGroundsData();
   FoundationTypeAndFloorsData foundationTypeAndFloorsData =
       FoundationTypeAndFloorsData();
@@ -66,6 +68,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
             OuterSheathView(
               removableGroundsData: removableGroundsData,
               foundationTypeAndFloorsData: foundationTypeAndFloorsData,
+              basicInformationData: basicInformationData,
             ),
             PartitionsAndWindowsView(),
           ]),
