@@ -5,6 +5,57 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoundationsBloc extends Bloc<FoundationsEvent, Foundations> {
   FoundationsBloc() : super(Foundations()) {
+    // materials
+    on<FalsePlinthMaterialChanged>((event, emit) {
+      logger.d("FalsePlinthMaterialChanged fired");
+      emit(
+        state.copyWith(
+          falsePlinth: FalsePlinthFoundation(
+            material: event.material,
+            area: state.falsePlinth?.area,
+            circumference: state.falsePlinth?.circumference,
+          ),
+        ),
+      );
+    });
+    on<CrawlSpaceMaterialChanged>((event, emit) {
+      logger.d("CrawlSpaceMaterialChanged fired");
+      emit(
+        state.copyWith(
+          crawlSpace: CrawlSpaceFoundation(
+            material: event.material,
+            area: state.crawlSpace?.area,
+            circumference: state.crawlSpace?.circumference,
+          ),
+        ),
+      );
+    });
+    on<PillarMaterialChanged>((event, emit) {
+      logger.d("PillarMaterialChanged fired");
+      emit(
+        state.copyWith(
+          pillar: PillarFoundation(
+            material: event.material,
+            area: state.pillar?.area,
+            circumference: state.pillar?.circumference,
+          ),
+        ),
+      );
+    });
+    on<HollowCoreSlabMaterialChanged>((event, emit) {
+      logger.d("HollowCoreSlabMaterialChanged fired");
+      emit(
+        state.copyWith(
+          hollowCoreSlab: HollowCoreSlabFoundation(
+            material: event.material,
+            area: state.hollowCoreSlab?.area,
+            circumference: state.hollowCoreSlab?.circumference,
+          ),
+        ),
+      );
+    });
+
+    // areas
     on<FalsePlinthAreaChanged>((event, emit) {
       logger.d("FalsePlinthAreaChanged fired");
       // TODO: change copies to deep copies once nested classes are @freezed
@@ -66,6 +117,7 @@ class FoundationsBloc extends Bloc<FoundationsEvent, Foundations> {
       );
     });
 
+    // circumferences
     on<FalsePlinthCircumferenceChanged>((event, emit) {
       logger.d("FalsePlinthCircumferenceChanged fired");
       emit(
