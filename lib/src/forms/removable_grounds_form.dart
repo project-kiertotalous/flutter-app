@@ -4,15 +4,6 @@ import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/removable_grounds_data.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
 class RemovableGroundsForm extends StatelessWidget {
   const RemovableGroundsForm({super.key, required this.data});
 
