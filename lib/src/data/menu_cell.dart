@@ -1,22 +1,24 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/foundation_type_and_floors_data.dart';
 
 class MenuCell extends StatefulWidget {
   const MenuCell({
     super.key,
     required this.setter,
     required this.initialValue,
+    required this.items,
   });
 
+  final List<DropdownMenuItem<dynamic>> items;
   final Function setter;
-  final Enum initialValue;
+  final FoundationMaterial? initialValue;
 
   @override
   State<MenuCell> createState() => _MenuCellState();
 }
 
 class _MenuCellState extends State<MenuCell> {
-  late Enum currentValue = widget.initialValue;
+  late FoundationMaterial? currentValue = widget.initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _MenuCellState extends State<MenuCell> {
       ),
       child: DropdownButton(
         value: currentValue,
-        items: FoundationAndFloorType.toList(),
+        items: widget.items,
         onChanged: (value) {
           widget.setter(value);
           setState(() => currentValue = value);
