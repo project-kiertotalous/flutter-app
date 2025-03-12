@@ -1,4 +1,6 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
@@ -29,9 +31,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeView(),
-        // TODO: make this MultiBlocProvider once more bloc classes are added
-        '/large_buildings': (context) => BlocProvider(
-              create: (context) => FoundationsBloc(),
+        '/large_buildings': (context) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                    create: (BuildContext context) => FoundationsBloc()),
+                BlocProvider(
+                    create: (BuildContext context) => ExcavationAreaBloc()),
+              ],
               child: LargeBuildingsView(),
             ),
         '/smaller_buildings': (context) => SmallerBuildingsView(),
