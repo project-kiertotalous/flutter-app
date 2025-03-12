@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_builds_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   runApp(MyApp());
@@ -27,7 +29,11 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeView(),
-        '/large_buildings': (context) => LargeBuildingsView(),
+        // TODO: make this MultiBlocProvider once more bloc classes are added
+        '/large_buildings': (context) => BlocProvider(
+              create: (context) => FoundationsBloc(),
+              child: LargeBuildingsView(),
+            ),
         '/smaller_buildings': (context) => SmallerBuildingsView(),
       },
       // onGenerateTitle: (BuildContext context) =>
