@@ -312,27 +312,6 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
               type: CellType.row,
               initialValue: "Lasi- ja mineraalieristevilla (m3)"),
           OutputCell(
-            getter: () => state.falsePlinth?.concreteVolume,
-          ),
-          OutputCell(
-            getter: () => state.crawlSpace?.concreteVolume,
-          ),
-          OutputCell(
-            getter: () => state.shallow?.concreteVolume,
-          ),
-          OutputCell(
-            getter: () => state.pillar?.concreteVolume,
-          ),
-          OutputCell(
-            getter: () => state.hollowCoreSlab?.concreteVolume,
-          ),
-          OutputCell(
-            getter: () => state.concreteVolume,
-          ),
-          Cell(
-              type: CellType.row,
-              initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
-          OutputCell(
             getter: () => state.falsePlinth?.mineralWoolVolume,
           ),
           OutputCell(
@@ -352,7 +331,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           ),
           Cell(
               type: CellType.row,
-              initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
+              initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.mineralWoolTons,
           ),
@@ -373,7 +352,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           ),
           Cell(
               type: CellType.row,
-              initialValue: "Muovijäte, styrox, kosteuseriste yms. (tonnia)"),
+              initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.plasticWasteVolume,
           ),
@@ -394,7 +373,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           ),
           Cell(
               type: CellType.row,
-              initialValue: "Kutterinpuru yms. polttokelpoinen puujäte (m3)"),
+              initialValue: "Muovijäte, styrox, kosteuseriste yms. (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.plasticWasteTons,
           ),
@@ -415,8 +394,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           ),
           Cell(
               type: CellType.row,
-              initialValue:
-                  "Kutterinpuru yms. polttokelpoinen puujäte (tonnia)"),
+              initialValue: "Kutterinpuru yms. polttokelpoinen puujäte (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.woodShavingsVolume,
           ),
@@ -434,6 +412,28 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           ),
           OutputCell(
             getter: () => state.woodShavingsVolume,
+          ),
+          Cell(
+              type: CellType.row,
+              initialValue:
+                  "Kutterinpuru yms. polttokelpoinen puujäte (tonnia)"),
+          OutputCell(
+            getter: () => state.falsePlinth?.woodShavingsTons,
+          ),
+          OutputCell(
+            getter: () => state.crawlSpace?.woodShavingsTons,
+          ),
+          OutputCell(
+            getter: () => state.shallow?.woodShavingsTons,
+          ),
+          OutputCell(
+            getter: () => state.pillar?.woodShavingsTons,
+          ),
+          OutputCell(
+            getter: () => state.hollowCoreSlab?.woodShavingsTons,
+          ),
+          OutputCell(
+            getter: () => state.woodShavingsTons,
           ),
           Cell(
               type: CellType.row,
