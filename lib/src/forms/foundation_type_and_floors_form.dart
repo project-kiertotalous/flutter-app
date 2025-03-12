@@ -160,7 +160,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           ),
           Cell(
               type: CellType.header,
-              initialValue: 'Perustuksen pinta-ala (m2)'),
+              initialValue: 'Perustuksen kehämitta (jm)'),
           Cell(
             type: CellType.input,
             initialValue: state.falsePlinth?.circumference,
