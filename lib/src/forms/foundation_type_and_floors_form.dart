@@ -106,70 +106,70 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
               initialValue: 'Perustuksen pinta-ala (m2)'),
           Cell(
             type: CellType.input,
-            initialValue: state.falsePlinth?.area ?? 0.0,
+            initialValue: state.falsePlinth?.area,
             setter: (value) =>
                 foundationsBloc.add(FalsePlinthAreaChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.crawlSpace?.area ?? 0.0,
+            initialValue: state.crawlSpace?.area,
             setter: (value) =>
                 foundationsBloc.add(CrawlSpaceAreaChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.shallow?.area ?? 0.0,
+            initialValue: state.shallow?.area,
             setter: (value) => foundationsBloc.add(ShallowAreaChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.pillar?.area ?? 0.0,
+            initialValue: state.pillar?.area,
             setter: (value) => foundationsBloc.add(PillarAreaChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.hollowCoreSlab?.area ?? 0.0,
+            initialValue: state.hollowCoreSlab?.area,
             setter: (value) =>
                 foundationsBloc.add(HollowCoreSlabAreaChanged(value)),
           ),
           OutputCell(
-            getter: () => state.area ?? 0.0,
+            getter: () => state.area,
           ),
           Cell(
               type: CellType.header,
               initialValue: 'Perustuksen pinta-ala (m2)'),
           Cell(
             type: CellType.input,
-            initialValue: state.falsePlinth?.circumference ?? 0.0,
+            initialValue: state.falsePlinth?.circumference,
             setter: (value) =>
                 foundationsBloc.add(FalsePlinthCircumferenceChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.crawlSpace?.circumference ?? 0.0,
+            initialValue: state.crawlSpace?.circumference,
             setter: (value) =>
                 foundationsBloc.add(CrawlSpaceCircumferenceChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.shallow?.circumference ?? 0.0,
+            initialValue: state.shallow?.circumference,
             setter: (value) =>
                 foundationsBloc.add(ShallowCircumferenceChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.pillar?.circumference ?? 0.0,
+            initialValue: state.pillar?.circumference,
             setter: (value) =>
                 foundationsBloc.add(PillarCircumferenceChanged(value)),
           ),
           Cell(
             type: CellType.input,
-            initialValue: state.hollowCoreSlab?.circumference ?? 0.0,
+            initialValue: state.hollowCoreSlab?.circumference,
             setter: (value) =>
                 foundationsBloc.add(HollowCoreSlabCircumferenceChanged(value)),
           ),
           OutputCell(
-            getter: () => state.circumference ?? 0.0,
+            getter: () => state.circumference,
           ),
         ],
       );
