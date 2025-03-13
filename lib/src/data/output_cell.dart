@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/foundation_type_and_floors_data.dart';
 
-class OutputCell extends StatefulWidget {
+class OutputCell extends StatelessWidget {
   const OutputCell({
     super.key,
-    required this.data,
     required this.getter,
   });
 
   final Function getter;
 
-  // TODO: make this a lot more generic
-  final FoundationTypeAndFloorsData data;
-
-  @override
-  State<OutputCell> createState() => _OutputCellState();
-}
-
-class _OutputCellState extends State<OutputCell> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,13 +20,9 @@ class _OutputCellState extends State<OutputCell> {
         ),
       ),
       child: Center(
-        child: StreamBuilder<double>(
-            stream: widget.data.onChange,
-            builder: (context, snapshot) {
-              return Text(
-                widget.getter().toString(),
-              );
-            }),
+        child: Text(
+          getter().toString(),
+        ),
       ),
     );
   }

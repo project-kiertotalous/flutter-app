@@ -1,133 +1,178 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/foundations_bloc.dart';
+import 'package:flutter_app/src/bloc/foundations_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
-import 'package:flutter_app/src/data/foundation_type_and_floors_data.dart';
 import 'package:flutter_app/src/data/menu_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 /// Perustyyppi ja lattiat
 class FoundationTypeAndFloorsForm extends StatelessWidget {
-  const FoundationTypeAndFloorsForm({super.key, required this.data});
+  const FoundationTypeAndFloorsForm({super.key});
 
-  final FoundationTypeAndFloorsData data;
+  List<DropdownMenuItem> toList() {
+    List<DropdownMenuItem<FoundationMaterial?>> list = [];
+    list.add(
+      DropdownMenuItem<FoundationMaterial?>(
+        value: null,
+        child: Text('Valitse'),
+      ),
+    );
+    for (final type in FoundationMaterial.values) {
+      list.add(
+        DropdownMenuItem<FoundationMaterial>(
+          value: type,
+          child: Text(
+            typeToString(type),
+          ),
+        ),
+      );
+    }
+    return list;
+  }
 
-  List<Widget> createCells() {
-    final cells = [
-      Cell(type: CellType.header, initialValue: 'Perustyyppi ja lattiat'),
-      Cell(
-        type: CellType.column,
-        initialValue: 'Valesokkeli',
-      ),
-      Cell(type: CellType.column, initialValue: 'Rossipohja'),
-      Cell(type: CellType.column, initialValue: 'Matalaperustus'),
-      Cell(type: CellType.column, initialValue: 'Pilariperustus'),
-      Cell(type: CellType.column, initialValue: 'Ontelolaattaperustus'),
-      Cell(type: CellType.column, initialValue: 'Koko rakennus yht.'),
-      Cell(type: CellType.header, initialValue: 'Monivalinta'),
-      MenuCell(
-        setter: data.setFakePlinthType,
-        initialValue: data.fakePlinthType,
-      ),
-      MenuCell(
-        setter: data.setBaseFloorType,
-        initialValue: data.baseFloorType,
-      ),
-      Cell(
-        type: CellType.empty,
-        // initialValue: data.shallowFoundationSurfaceArea,
-        // setter: data.setShallowFoundationSurfaceArea,
-      ),
-      MenuCell(
-        setter: data.setPillarFoundationType,
-        initialValue: data.pillarFoundationType,
-      ),
-      MenuCell(
-        setter: data.setCavitySlabType,
-        initialValue: data.cavitySlabType,
-      ),
-      Cell(
-        type: CellType.empty,
-      ),
-      Cell(type: CellType.header, initialValue: 'Perustuksen pinta-ala (m2)'),
-      Cell(
-        type: CellType.input,
-        initialValue: data.fakePlinthSurfaceArea,
-        setter: data.setFakePlinthSurfaceArea,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.baseFloorSurfaceArea,
-        setter: data.setBaseFloorSurfaceArea,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.shallowFoundationSurfaceArea,
-        setter: data.setShallowFoundationSurfaceArea,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.pillarFoundationSurfaceArea,
-        setter: data.setPillarFoundationSurfaceArea,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.cavitySlabSurfaceArea,
-        setter: data.setCavitySlabSurfaceArea,
-      ),
-      OutputCell(
-        data: data,
-        getter: data.getSurfaceAreaTotal,
-      ),
-      Cell(type: CellType.header, initialValue: 'Perustuksen pinta-ala (m2)'),
-      Cell(
-        type: CellType.input,
-        initialValue: data.fakePlinthCircumference,
-        setter: data.setfakePlinthCircumference,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.baseFloorCircumference,
-        setter: data.setBaseFloorCircumference,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.shallowFoundationCircumference,
-        setter: data.setShallowFoundationCircumference,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.pillarFoundationCircumference,
-        setter: data.setPillarFoundationCircumference,
-      ),
-      Cell(
-        type: CellType.input,
-        initialValue: data.cavitySlabCircumference,
-        setter: data.setCavitySlabCircumference,
-      ),
-      OutputCell(
-        data: data,
-        getter: data.getCircumferenceTotal,
-      ),
-    ];
-
-    return cells;
+  String typeToString(FoundationMaterial type) {
+    switch (type) {
+      case FoundationMaterial.concreteCasting:
+        return "Betonivalu";
+      case FoundationMaterial.concreteBlock:
+        return "Harkko";
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return LayoutGrid(
-      columnSizes: [
-        150.px,
-        120.px,
-        120.px,
-        120.px,
-        120.px,
-        120.px,
-        120.px,
-      ],
-      rowSizes: [50.px, 50.px, 50.px, 50.px],
-      children: createCells(),
-    );
+    final foundationsBloc = context.read<FoundationsBloc>();
+
+    return BlocBuilder<FoundationsBloc, Foundations>(builder: (context, state) {
+      return LayoutGrid(
+        columnSizes: [
+          150.px,
+          120.px,
+          120.px,
+          120.px,
+          120.px,
+          120.px,
+          120.px,
+        ],
+        rowSizes: [50.px, 50.px, 50.px, 50.px],
+        children: [
+          Cell(type: CellType.header, initialValue: 'Perustyyppi ja lattiat'),
+          Cell(
+            type: CellType.column,
+            initialValue: 'Valesokkeli',
+          ),
+          Cell(type: CellType.column, initialValue: 'Rossipohja'),
+          Cell(type: CellType.column, initialValue: 'Matalaperustus'),
+          Cell(type: CellType.column, initialValue: 'Pilariperustus'),
+          Cell(type: CellType.column, initialValue: 'Ontelolaattaperustus'),
+          Cell(type: CellType.column, initialValue: 'Koko rakennus yht.'),
+          Cell(type: CellType.header, initialValue: 'Monivalinta'),
+          MenuCell(
+            setter: (value) =>
+                foundationsBloc.add(FalsePlinthMaterialChanged(value)),
+            initialValue: state.falsePlinth?.material,
+            items: toList(),
+          ),
+          MenuCell(
+            setter: (value) =>
+                foundationsBloc.add(CrawlSpaceMaterialChanged(value)),
+            initialValue: state.crawlSpace?.material,
+            items: toList(),
+          ),
+          Cell(
+            type: CellType.empty,
+          ),
+          MenuCell(
+            setter: (value) =>
+                foundationsBloc.add(PillarMaterialChanged(value)),
+            initialValue: state.pillar?.material,
+            items: toList(),
+          ),
+          MenuCell(
+            setter: (value) =>
+                foundationsBloc.add(HollowCoreSlabMaterialChanged(value)),
+            initialValue: state.hollowCoreSlab?.material,
+            items: toList(),
+          ),
+          Cell(
+            type: CellType.empty,
+          ),
+          Cell(
+              type: CellType.header,
+              initialValue: 'Perustuksen pinta-ala (m2)'),
+          Cell(
+            type: CellType.input,
+            initialValue: state.falsePlinth?.area,
+            setter: (value) =>
+                foundationsBloc.add(FalsePlinthAreaChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.crawlSpace?.area,
+            setter: (value) =>
+                foundationsBloc.add(CrawlSpaceAreaChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.shallow?.area,
+            setter: (value) => foundationsBloc.add(ShallowAreaChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.pillar?.area,
+            setter: (value) => foundationsBloc.add(PillarAreaChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.hollowCoreSlab?.area,
+            setter: (value) =>
+                foundationsBloc.add(HollowCoreSlabAreaChanged(value)),
+          ),
+          OutputCell(
+            getter: () => state.area,
+          ),
+          Cell(
+              type: CellType.header,
+              initialValue: 'Perustuksen pinta-ala (m2)'),
+          Cell(
+            type: CellType.input,
+            initialValue: state.falsePlinth?.circumference,
+            setter: (value) =>
+                foundationsBloc.add(FalsePlinthCircumferenceChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.crawlSpace?.circumference,
+            setter: (value) =>
+                foundationsBloc.add(CrawlSpaceCircumferenceChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.shallow?.circumference,
+            setter: (value) =>
+                foundationsBloc.add(ShallowCircumferenceChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.pillar?.circumference,
+            setter: (value) =>
+                foundationsBloc.add(PillarCircumferenceChanged(value)),
+          ),
+          Cell(
+            type: CellType.input,
+            initialValue: state.hollowCoreSlab?.circumference,
+            setter: (value) =>
+                foundationsBloc.add(HollowCoreSlabCircumferenceChanged(value)),
+          ),
+          OutputCell(
+            getter: () => state.circumference,
+          ),
+        ],
+      );
+    });
   }
 }
