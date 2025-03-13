@@ -14,7 +14,7 @@ class OuterSheathView extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height,
           // this width should match width of widest widget
-          width: 1200,
+          width: 2200,
           // this ListView allows for vertical scrolling by default
           child: ListView(
             children: [
@@ -25,7 +25,7 @@ class OuterSheathView extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: FoundationTypeAndFloorsForm(),
-              )
+              ),
             ],
           ),
         ),
