@@ -5,6 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoundationsBloc extends Bloc<FoundationsEvent, Foundations> {
   FoundationsBloc() : super(Foundations()) {
+    on<BituminousWaterProofingChanged>((event, emit) {
+      logger.d("BituminousWaterProofingChanged fired");
+      emit(state.copyWith(bituminousWaterProofing: event.value));
+    });
+
     // materials
     on<FalsePlinthMaterialChanged>((event, emit) {
       logger.d("FalsePlinthMaterialChanged fired");
@@ -31,7 +36,7 @@ class FoundationsBloc extends Bloc<FoundationsEvent, Foundations> {
       );
     });
     on<PillarMaterialChanged>((event, emit) {
-      logger.d("PillarMaterialChanged fired");
+      logger.d("PillarMaterialChanged to ${event.material}");
       emit(
         state.copyWith(
           pillar: PillarFoundation(
