@@ -21,7 +21,7 @@ class OutputCell extends StatelessWidget {
       ),
       child: Center(
         child: Text(
-          getter().toString(),
+          getter()?.toString() ?? "0.0"
         ),
       ),
     );
