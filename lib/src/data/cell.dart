@@ -3,11 +3,29 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
 
 class Cell extends StatefulWidget {
-  const Cell({super.key, this.type, this.initialValue, this.setter});
+  const Cell({
+    super.key,
+    this.type,
+    this.initialValue,
+    this.setter,
+    this.checkbox = false,
+    this.checkboxTitle,
+    this.checkboxSetter,
+    this.checkboxValue,
+  }) : assert(!checkbox ||
+            checkbox &&
+                checkboxTitle != null &&
+                checkboxSetter != null &&
+                checkboxValue != null &&
+                type == CellType.row);
 
   final CellType? type;
   final dynamic initialValue;
   final Function? setter;
+  final bool checkbox;
+  final String? checkboxTitle;
+  final Function? checkboxSetter;
+  final bool? checkboxValue;
 
   @override
   State<Cell> createState() => _CellState();
@@ -114,7 +132,7 @@ class _CellState extends State<Cell> {
             ),
           ),
         );
-
+      case CellType.row:
       default:
         return Container(
           width: double.infinity,
@@ -126,7 +144,18 @@ class _CellState extends State<Cell> {
             // borderRadius: BorderRadius.circular(6),
           ),
           child: Center(
-            child: Text(value),
+            child: widget.checkbox
+                ? Row(
+                    children: [
+                      Text(value),
+                      Checkbox(
+                        value: widget.checkboxValue,
+                        onChanged: (value) => widget.checkboxSetter!(value),
+                      ),
+                      Text(widget.checkboxTitle!)
+                    ],
+                  )
+                : Text(value),
           ),
         );
     }
