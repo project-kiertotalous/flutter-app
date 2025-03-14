@@ -8,36 +8,60 @@ class BasicInformationForm extends StatefulWidget {
 
 class _BasicInformationFormState extends State<BasicInformationForm> {
   final _formKey = GlobalKey<FormState>();
-  final _kohteenNimiController = TextEditingController();
-  final _rakennustyyppiController = TextEditingController();
-  final _osoiteController = TextEditingController();
-  final _kuntaController = TextEditingController();
+  final _buildingNameController = TextEditingController();
+  final _buildingTypeController = TextEditingController();
+  final _buildingAddressController = TextEditingController();
+  final _buildingMunicipalityController = TextEditingController();
+  final _calculationCreatorController = TextEditingController();
+  final _calculationDateController = TextEditingController();
+  final _calculationVersionController = TextEditingController();
+  final _buildingInformationController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _kohteenNimiController.text = BasicInformationData.kohteenNimi;
-    _rakennustyyppiController.text = BasicInformationData.rakennustyyppi;
-    _osoiteController.text = BasicInformationData.osoite;
-    _kuntaController.text = BasicInformationData.kunta;
+    _buildingNameController.text = BasicInformationData.buildingName;
+    _buildingTypeController.text = BasicInformationData.buildingType;
+    _buildingAddressController.text = BasicInformationData.buildingAddress;
+    _buildingMunicipalityController.text =
+        BasicInformationData.buildingMunicipality;
+    _calculationCreatorController.text =
+        BasicInformationData.calculationCreator;
+    _calculationDateController.text = BasicInformationData.calculationDate;
+    _calculationVersionController.text =
+        BasicInformationData.calculationVersion;
+    _buildingInformationController.text =
+        BasicInformationData.buildingInformation;
   }
 
   @override
   void dispose() {
-    _kohteenNimiController.dispose();
-    _rakennustyyppiController.dispose();
-    _osoiteController.dispose();
-    _kuntaController.dispose();
+    _buildingNameController.dispose();
+    _buildingTypeController.dispose();
+    _buildingAddressController.dispose();
+    _buildingMunicipalityController.dispose();
+    _calculationCreatorController.dispose();
+    _calculationDateController.dispose();
+    _calculationVersionController.dispose();
+    _buildingInformationController.dispose();
     super.dispose();
   }
 
   void _saveForm() {
     if (_formKey.currentState!.validate()) {
       setState(() {
-        BasicInformationData.kohteenNimi = _kohteenNimiController.text;
-        BasicInformationData.rakennustyyppi = _rakennustyyppiController.text;
-        BasicInformationData.osoite = _osoiteController.text;
-        BasicInformationData.kunta = _kuntaController.text;
+        BasicInformationData.buildingName = _buildingNameController.text;
+        BasicInformationData.buildingType = _buildingTypeController.text;
+        BasicInformationData.buildingAddress = _buildingAddressController.text;
+        BasicInformationData.buildingMunicipality =
+            _buildingMunicipalityController.text;
+        BasicInformationData.calculationCreator =
+            _calculationCreatorController.text;
+        BasicInformationData.calculationDate = _calculationDateController.text;
+        BasicInformationData.calculationVersion =
+            _calculationVersionController.text;
+        BasicInformationData.buildingInformation =
+            _buildingInformationController.text;
       });
     }
   }
@@ -45,26 +69,32 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
   Widget _buildTextField({
     required String label,
     required TextEditingController controller,
+    double? width, // Add width parameter
   }) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: TextFormField(
-        controller: controller,
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(),
+      child: SizedBox(
+        width: width, // Set width if provided
+        child: TextFormField(
+          controller: controller,
+          decoration: InputDecoration(
+            labelText: label,
+            border: OutlineInputBorder(),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Täytä kenttä";
+            }
+            return null;
+          },
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Täytä kenttä";
-          }
-          return null;
-        },
       ),
     );
   }
 
   @override
+
+  /// Build a form for basic information about the building being calculated.
   Widget build(BuildContext context) {
     return Card(
       elevation: 4,
@@ -81,10 +111,63 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              _buildTextField(label: "Kohteen nimi", controller: _kohteenNimiController),
-              _buildTextField(label: "Rakennustyyppi", controller: _rakennustyyppiController),
-              _buildTextField(label: "Osoite", controller: _osoiteController),
-              _buildTextField(label: "Kunta", controller: _kuntaController),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start, // Aligns to top
+                children: [
+                  // Left column with fixed width
+                  SizedBox(
+                    width: 320, // Ensure enough space for input fields
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment
+                          .start, // Aligns text fields to left
+                      children: [
+                        _buildTextField(
+                            label: "Kohteen nimi",
+                            controller: _buildingNameController,
+                            width: 300),
+                        _buildTextField(
+                            label: "Rakennustyyppi",
+                            controller: _buildingTypeController,
+                            width: 300),
+                        _buildTextField(
+                            label: "Osoite",
+                            controller: _buildingAddressController,
+                            width: 300),
+                        _buildTextField(
+                            label: "Kunta",
+                            controller: _buildingMunicipalityController,
+                            width: 300),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 16), // Spacing between columns
+                  // Right column expands to fill remaining space
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment
+                          .start, // Aligns text fields to left
+                      children: [
+                        _buildTextField(
+                            label: "Laskelman laatija",
+                            controller: _calculationCreatorController,
+                            width: 300),
+                        _buildTextField(
+                            label: "Päivämäärä",
+                            controller: _calculationDateController,
+                            width: 300),
+                        _buildTextField(
+                            label: "Versio",
+                            controller: _calculationVersionController,
+                            width: 300),
+                        _buildTextField(
+                            label: "Rakennuksen tiedot",
+                            controller: _buildingInformationController,
+                            width: 300),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
               SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _saveForm,
