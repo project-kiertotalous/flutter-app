@@ -1,3 +1,6 @@
 class BasicInformationData {
-  static String buildingName = '';
+  static String kohteenNimi = '';
+  static String rakennustyyppi = '';
+  static String osoite = '';
+  static String kunta = '';
 }
