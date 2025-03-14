@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
+import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 
 class OuterSheathView extends StatelessWidget {
   const OuterSheathView({super.key});
@@ -18,6 +19,10 @@ class OuterSheathView extends StatelessWidget {
           // this ListView allows for vertical scrolling by default
           child: ListView(
             children: [
+              Align(
+                alignment: Alignment.topLeft,
+                child: TotalBuildingDimensionsForm(),
+              ),
               Align(
                 alignment: Alignment.topLeft,
                 child: RemovableGroundsForm(),
