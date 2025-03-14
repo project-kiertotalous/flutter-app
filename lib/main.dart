@@ -35,6 +35,8 @@ class MyApp extends StatelessWidget {
                     create: (BuildContext context) => FoundationsBloc()),
                 BlocProvider(
                     create: (BuildContext context) => ExcavationAreaBloc()),
+                  BlocProvider(
+                    create: (BuildContext context) => CellarBloc()),
               ],
               child: LargeBuildingsView(),
             ),
