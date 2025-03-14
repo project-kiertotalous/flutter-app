@@ -60,7 +60,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             ),
           ),
           OutputCell(
-            // TODO: maybe incorrect getter
+            // supposed to be empty for now (14.3.25)
             getter: () => state.calculatedGrossFloorArea,
           ),
           Cell(
@@ -92,8 +92,9 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             ),
             integer: true,
           ),
+          // this is supposed to be empty for now (14.3.25)
           OutputCell(
-            getter: () => state.floorCountExcludingBasements,
+            getter: () {},
           ),
           Cell(
             type: CellType.row,
@@ -111,7 +112,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             ),
           ),
           OutputCell(
-            getter: () => state.averageArea,
+            getter: () => state.calculatedAreaPerFloor,
           ),
           Cell(
             type: CellType.row,
@@ -126,8 +127,8 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             getter: () => state.grossFloorAreaExcludingCellars,
           ),
           OutputCell(
-            // TODO: maybe incorrect getter
-            getter: () => state.calculatedAreaPerFloor,
+            // supposed to be empty for now (14.3.25)
+            getter: () {},
           ),
         ],
       );
