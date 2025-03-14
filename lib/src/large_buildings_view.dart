@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/basic_information_data.dart';
-import 'package:flutter_app/src/data/removable_grounds_data.dart';
 import 'package:flutter_app/src/outer_sheath_view.dart';
 import 'package:flutter_app/src/partitions_and_windows_view.dart';
 import 'package:flutter_app/log.dart';
@@ -15,9 +13,6 @@ class LargeBuildingsView extends StatefulWidget {
 
 class _LargeBuildingsViewState extends State<LargeBuildingsView>
     with TickerProviderStateMixin {
-  BasicInformationData basicInformationData = BasicInformationData();
-  RemovableGroundsData removableGroundsData = RemovableGroundsData();
-
   late TabController _tabController;
 
   static const List<Tab> tabs = [
@@ -63,10 +58,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
           ),
           // body: RemovableGroundsForm(data: removableGroundsData),
           body: TabBarView(children: [
-            OuterSheathView(
-              removableGroundsData: removableGroundsData,
-              foundationTypeAndFloorsData: foundationTypeAndFloorsData,
-            ),
+            OuterSheathView(),
             PartitionsAndWindowsView(),
           ]),
         ),

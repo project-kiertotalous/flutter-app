@@ -2,6 +2,11 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
 abstract class FoundationsEvent {}
 
+class BituminousWaterProofingChanged extends FoundationsEvent {
+  final bool value;
+  BituminousWaterProofingChanged(this.value);
+}
+
 // materials
 class FalsePlinthMaterialChanged extends FoundationsEvent {
   final FoundationMaterial? material;
