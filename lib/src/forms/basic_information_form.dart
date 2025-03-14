@@ -8,6 +8,8 @@ class BasicInformationForm extends StatefulWidget {
 
 class _BasicInformationFormState extends State<BasicInformationForm> {
   final _formKey = GlobalKey<FormState>();
+
+  //Controllers for text fields
   final _buildingNameController = TextEditingController();
   final _buildingTypeController = TextEditingController();
   final _buildingAddressController = TextEditingController();
@@ -16,6 +18,16 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
   final _calculationDateController = TextEditingController();
   final _calculationVersionController = TextEditingController();
   final _buildingInformationController = TextEditingController();
+
+  // Focusnodes for auto-jumping
+  final _buildingNameFocus = FocusNode();
+  final _buildingTypeFocus = FocusNode();
+  final _buildingAddressFocus = FocusNode();
+  final _buildingMunicipalityFocus = FocusNode();
+  final _calculationCreatorFocus = FocusNode();
+  final _calculationDateFocus = FocusNode();
+  final _calculationVersionFocus = FocusNode();
+  final _buildingInformationFocus = FocusNode();
 
   @override
   void initState() {
@@ -36,6 +48,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
 
   @override
   void dispose() {
+    // Dispose controllers
     _buildingNameController.dispose();
     _buildingTypeController.dispose();
     _buildingAddressController.dispose();
@@ -44,6 +57,17 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
     _calculationDateController.dispose();
     _calculationVersionController.dispose();
     _buildingInformationController.dispose();
+
+    // Dispose FocusNodes
+    _buildingNameFocus.dispose();
+    _buildingTypeFocus.dispose();
+    _buildingAddressFocus.dispose();
+    _buildingMunicipalityFocus.dispose();
+    _calculationCreatorFocus.dispose();
+    _calculationDateFocus.dispose();
+    _calculationVersionFocus.dispose();
+    _buildingInformationFocus.dispose();
+
     super.dispose();
   }
 
@@ -71,6 +95,8 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
     required TextEditingController controller,
     double? width, // Add width parameter
     required void Function(String) onSaved, // Callback function for saving data
+    required FocusNode currentFocus, // Current field's focus node
+    FocusNode? nextFocus, // Add nextFocusNode parameter
   }) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -78,6 +104,9 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
         width: width, // Set width if provided
         child: TextFormField(
           controller: controller,
+          focusNode: currentFocus,
+          textInputAction:
+              nextFocus != null ? TextInputAction.next : TextInputAction.done,
           decoration: InputDecoration(
             labelText: label,
             border: OutlineInputBorder(),
@@ -89,8 +118,12 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
             return null;
           },
           onFieldSubmitted: (value) {
-          onSaved(value); // Save value when pressing Enter
-        },
+            onSaved(value); // Save value when pressing Enter
+            if (nextFocus != null) {
+              FocusScope.of(context)
+                  .requestFocus(nextFocus); // Move to next field
+            }
+          },
         ),
       ),
     );
@@ -124,27 +157,39 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                       crossAxisAlignment: CrossAxisAlignment
                           .start, // Aligns text fields to left
                       children: [
-                      _buildTextField(
-                          label: "Kohteen nimi",
-                          controller: _buildingNameController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.buildingName = value),
-                      _buildTextField(
-                          label: "Rakennustyyppi",
-                          controller: _buildingTypeController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.buildingType = value),
-                      _buildTextField(
-                          label: "Osoite",
-                          controller: _buildingAddressController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.buildingAddress = value),
-                      _buildTextField(
-                          label: "Kunta",
-                          controller: _buildingMunicipalityController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.buildingMunicipality = value),
-                    ],
+                        _buildTextField(
+                            label: "Kohteen nimi",
+                            controller: _buildingNameController,
+                            currentFocus: _buildingNameFocus,
+                            nextFocus: _buildingTypeFocus,
+                            width: 300,
+                            onSaved: (value) =>
+                                BasicInformationData.buildingName = value),
+                        _buildTextField(
+                            label: "Rakennustyyppi",
+                            controller: _buildingTypeController,
+                            currentFocus: _buildingTypeFocus,
+                            nextFocus: _buildingAddressFocus,
+                            width: 300,
+                            onSaved: (value) =>
+                                BasicInformationData.buildingType = value),
+                        _buildTextField(
+                            label: "Osoite",
+                            controller: _buildingAddressController,
+                            currentFocus: _buildingAddressFocus,
+                            nextFocus: _buildingMunicipalityFocus,
+                            width: 300,
+                            onSaved: (value) =>
+                                BasicInformationData.buildingAddress = value),
+                        _buildTextField(
+                            label: "Kunta",
+                            controller: _buildingMunicipalityController,
+                            currentFocus: _buildingMunicipalityFocus,
+                            nextFocus: _calculationCreatorFocus,
+                            width: 300,
+                            onSaved: (value) => BasicInformationData
+                                .buildingMunicipality = value),
+                      ],
                     ),
                   ),
                   SizedBox(width: 16), // Spacing between columns
@@ -154,27 +199,38 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                       crossAxisAlignment: CrossAxisAlignment
                           .start, // Aligns text fields to left
                       children: [
-                      _buildTextField(
-                          label: "Laskelman laatija",
-                          controller: _calculationCreatorController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.calculationCreator = value),
-                      _buildTextField(
-                          label: "Päivämäärä",
-                          controller: _calculationDateController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.calculationDate = value),
-                      _buildTextField(
-                          label: "Versio",
-                          controller: _calculationVersionController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.calculationVersion = value),
-                      _buildTextField(
-                          label: "Rakennuksen tiedot",
-                          controller: _buildingInformationController,
-                          width: 400,
-                          onSaved: (value) => BasicInformationData.buildingInformation = value),
-                    ],
+                        _buildTextField(
+                            label: "Laskelman laatija",
+                            controller: _calculationCreatorController,
+                            currentFocus: _calculationCreatorFocus,
+                            nextFocus: _calculationDateFocus,
+                            width: 300,
+                            onSaved: (value) => BasicInformationData
+                                .calculationCreator = value),
+                        _buildTextField(
+                            label: "Päivämäärä",
+                            controller: _calculationDateController,
+                            currentFocus: _calculationDateFocus,
+                            nextFocus: _calculationVersionFocus,
+                            width: 300,
+                            onSaved: (value) =>
+                                BasicInformationData.calculationDate = value),
+                        _buildTextField(
+                            label: "Versio",
+                            controller: _calculationVersionController,
+                            currentFocus: _calculationVersionFocus,
+                            nextFocus: _buildingInformationFocus,
+                            width: 300,
+                            onSaved: (value) => BasicInformationData
+                                .calculationVersion = value),
+                        _buildTextField(
+                            label: "Rakennuksen tiedot",
+                            controller: _buildingInformationController,
+                            currentFocus: _buildingInformationFocus,
+                            width: 300,
+                            onSaved: (value) => BasicInformationData
+                                .buildingInformation = value),
+                      ],
                     ),
                   ),
                 ],
