@@ -49,8 +49,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             type: CellType.row,
             initialValue: 'Rakennuksen kerrospinta-ala (bruttoala) (m2)',
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.buildingDimensions?.grossFloorArea,
             setter: (value) => totalBuildingDimensionsBloc.add(
               GrossFloorAreaChanged(value),
@@ -64,8 +63,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             type: CellType.row,
             initialValue: 'Rakennuksen tilavuus (m3)',
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.buildingDimensions?.volume,
             setter: (value) => totalBuildingDimensionsBloc.add(
               VolumeChanged(value),
@@ -92,8 +90,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             type: CellType.row,
             initialValue: 'Keskimääräinen pinta-ala (m2)',
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.buildingDimensions?.averageArea,
             setter: (value) => totalBuildingDimensionsBloc.add(
               AverageAreaChanged(value),
