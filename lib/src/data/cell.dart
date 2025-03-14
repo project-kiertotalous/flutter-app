@@ -9,6 +9,7 @@ class Cell extends StatefulWidget {
     this.type,
     this.initialValue,
     this.setter,
+    this.iconButton,
     this.checkbox = false,
     this.checkboxTitle,
     this.checkboxSetter,
@@ -23,6 +24,7 @@ class Cell extends StatefulWidget {
   final CellType? type;
   final dynamic initialValue;
   final Function? setter;
+  final IconButton? iconButton;
   final bool checkbox;
   final String? checkboxTitle;
   final Function? checkboxSetter;
@@ -58,6 +60,32 @@ class _CellState extends State<Cell> {
       widget.setter!(castedValue);
     }
     print(castedValue);
+  }
+
+  Widget cellContent() {
+    // if more content than text
+    if (widget.checkbox || widget.iconButton != null) {
+      List<Widget> list = [];
+      list.add(Text(widget.initialValue));
+      if (widget.checkbox) {
+        list.add(
+          Checkbox(
+            value: widget.checkboxValue,
+            onChanged: (value) => widget.checkboxSetter!(value),
+          ),
+        );
+        list.add(Text(widget.checkboxTitle!));
+      }
+      if (widget.iconButton != null) {
+        list.add(widget.iconButton!);
+      }
+      return Row(
+        children: list,
+      );
+    }
+    // if only text
+    return Align(
+        alignment: Alignment.centerLeft, child: Text(widget.initialValue));
   }
 
   @override
@@ -144,20 +172,7 @@ class _CellState extends State<Cell> {
             ),
             // borderRadius: BorderRadius.circular(6),
           ),
-          child: Center(
-            child: widget.checkbox
-                ? Row(
-                    children: [
-                      Text(value),
-                      Checkbox(
-                        value: widget.checkboxValue,
-                        onChanged: (value) => widget.checkboxSetter!(value),
-                      ),
-                      Text(widget.checkboxTitle!)
-                    ],
-                  )
-                : Text(value),
-          ),
+          child: cellContent(),
         );
     }
   }

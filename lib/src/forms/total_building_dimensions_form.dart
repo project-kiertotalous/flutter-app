@@ -36,7 +36,6 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
         children: [
           Cell(
             type: CellType.empty,
-            initialValue: 'Poistettavan alueen pinta-ala (m2)',
           ),
           Cell(
             type: CellType.column,
@@ -48,6 +47,11 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Rakennuksen kerrospinta-ala (bruttoala) (m2)',
+            iconButton: IconButton(
+              icon: const Icon(Icons.info),
+              tooltip: "lorem impsum",
+              onPressed: () {},
+            ),
           ),
           InputCell(
             initialValue: state.buildingDimensions?.grossFloorArea,
@@ -62,6 +66,11 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Rakennuksen tilavuus (m3)',
+            iconButton: IconButton(
+              icon: const Icon(Icons.info),
+              tooltip: "lorem impsum",
+              onPressed: () {},
+            ),
           ),
           InputCell(
             initialValue: state.buildingDimensions?.volume,
@@ -89,6 +98,11 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Keskimääräinen pinta-ala (m2)',
+            iconButton: IconButton(
+              icon: const Icon(Icons.info),
+              tooltip: "lorem impsum",
+              onPressed: () {},
+            ),
           ),
           InputCell(
             initialValue: state.buildingDimensions?.averageArea,
@@ -102,6 +116,11 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Kerrospinta-ala yhteensä (ei kellaritiloja) (m2)',
+            iconButton: IconButton(
+              icon: const Icon(Icons.info),
+              tooltip: "lorem impsum",
+              onPressed: () {},
+            ),
           ),
           OutputCell(
             getter: () => state.grossFloorAreaExcludingCellars,
