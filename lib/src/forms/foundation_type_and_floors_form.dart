@@ -91,14 +91,14 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           Cell(type: CellType.column, initialValue: 'Ontelolaattaperustus'),
           Cell(type: CellType.column, initialValue: 'Koko rakennus yht.'),
           Cell(type: CellType.header, initialValue: 'Monivalinta'),
-          MenuCell(
-            setter: (value) =>
+          MenuCell<FoundationMaterial>(
+            setter: (FoundationMaterial? value) =>
                 foundationsBloc.add(FalsePlinthMaterialChanged(value)),
             initialValue: state.falsePlinth?.material,
             items: toList(),
           ),
-          MenuCell(
-            setter: (value) =>
+          MenuCell<FoundationMaterial>(
+            setter: (FoundationMaterial? value) =>
                 foundationsBloc.add(CrawlSpaceMaterialChanged(value)),
             initialValue: state.crawlSpace?.material,
             items: toList(),

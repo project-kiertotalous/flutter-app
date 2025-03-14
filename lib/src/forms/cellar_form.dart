@@ -14,8 +14,8 @@ class CellarForm extends StatelessWidget {
   const CellarForm({super.key});
 
   /// Converts CellarExteriorMaterial enum values to display names
-  /// inside the form and returns them as a list of DropdownMenuItems.
-  List<DropdownMenuItem<CellarExteriorMaterial?>> toList() {
+/// and returns them as a list of DropdownMenuItems.
+List<DropdownMenuItem<CellarExteriorMaterial?>> toList() {
   return [
     DropdownMenuItem<CellarExteriorMaterial?>(
       value: null,
@@ -30,7 +30,6 @@ class CellarForm extends StatelessWidget {
   ];
 }
 
-
 String typeToString(CellarExteriorMaterial type) {
   switch (type) {
     case CellarExteriorMaterial.concreteCasting:
@@ -42,57 +41,97 @@ String typeToString(CellarExteriorMaterial type) {
   }
 }
 
+
+
   @override
   Widget build(BuildContext context) {
     final cellarBloc = context.read<CellarBloc>();
 
     return BlocBuilder<CellarBloc, Cellar>(
       builder: (context, state) {
-        return LayoutGrid(
-          columnSizes: [
-            150.px,
-            120.px,
-            120.px,
-          ],
-          rowSizes: [50.px, 50.px, 50.px, 50.px],
+        return Column(
           children: [
-            Cell(type: CellType.header, initialValue: 'Kellari'),
-            Cell(type: CellType.empty,),
-            Cell(type: CellType.empty,),
+            // Existing grid for cellar details
+            LayoutGrid(
+              columnSizes: [150.px, 120.px, 120.px],
+              rowSizes: [50.px, 50.px, 50.px, 50.px],
+              children: [
+                Cell(type: CellType.header, initialValue: 'Kellari'),
+                Cell(type: CellType.empty),
+                Cell(type: CellType.empty),
 
-            Cell(type: CellType.row, initialValue: 'Kellarin lattia-ala (m²)'),
-            Cell(
-              type: CellType.input,
-              initialValue: state.floorArea,
-              setter: (value) => cellarBloc.add(CellarFloorAreaChanged(value)),
+                Cell(type: CellType.row, initialValue: 'Kellarin lattia-ala (m²)'),
+                Cell(
+                  type: CellType.input,
+                  initialValue: state.floorArea,
+                  setter: (value) => cellarBloc.add(CellarFloorAreaChanged(value)),
+                ),
+                Cell(type: CellType.empty),
+
+                Cell(type: CellType.row, initialValue: 'Kellarin ulkoseinien kehämitta (jm)'),
+                Cell(
+                  type: CellType.input,
+                  initialValue: state.exteriorWallsPerimeter,
+                  setter: (value) => cellarBloc.add(CellarPerimeterChanged(value)),
+                    ),
+                MenuCell<CellarExteriorMaterial?>(
+                setter: (value) =>
+                  cellarBloc.add(CellarMaterialChanged(value)),
+                  initialValue: state.exteriorWallsMaterial,
+                  items: toList(),
+                  ),
+                Cell(type: CellType.row, initialValue: 'Kellarin seinän korkeus (m)'),
+                Cell(
+                  type: CellType.input,
+                  initialValue: state.wallHeight,
+                  setter: (value) => cellarBloc.add(CellarWallHeightChanged(value)),
+                ),
+                Cell(type: CellType.empty),
+              ],
             ),
-            Cell(type: CellType.empty,),
 
-            
-            Cell(type: CellType.row, initialValue: 'Kellarin ulkoseinien kehämitta (jm)'),
-            Cell(
-              type: CellType.input,
-              initialValue: state.exteriorWallsPerimeter,
-              setter: (value) => cellarBloc.add(CellarPerimeterChanged(value)),
+            SizedBox(height: 20), // Space before next grid
+
+            // New grid for demolition materials
+            LayoutGrid(
+              columnSizes: [150.px, 120.px, 120.px], // Adjusted column widths
+              rowSizes: List.filled(9, 50.px), // 1 header row + 8 material rows
+              children: [
+                Cell(
+                    type: CellType.header,
+                    initialValue: "Kellarin lattian ja ulkoseinien purkumateriaalimäärät"),
+                Cell(type: CellType.header, initialValue: "Tonnia"),
+                Cell(type: CellType.header, initialValue: "m³"),
+
+                Cell(type: CellType.row, initialValue: "Betonia"),
+                OutputCell(getter: () => state.concreteDemolitionTons),
+                OutputCell(getter: () => state.concreteDemolitionVolume),
+
+                Cell(type: CellType.row, initialValue: "Betoniterästä"),
+                OutputCell(getter: () => state.rebarTons),
+                OutputCell(getter: () => ''),
+
+                Cell(type: CellType.row, initialValue: "Tiiliä"),
+                OutputCell(getter: () => state.brickTons),
+                OutputCell(getter: () => state.brickVolume),
+
+                Cell(type: CellType.row, initialValue: "Harkkoja"),
+                OutputCell(getter: () => state.blockTons),
+                OutputCell(getter: () => state.blockVolume),
+
+                Cell(type: CellType.row, initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
+                OutputCell(getter: () => state.glassAndMineralWoolInsulationTons),
+                OutputCell(getter: () => state.glassAndMineralWoolInsulationVolume),
+
+                Cell(type: CellType.row, initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
+                OutputCell(getter: () => state.plasticWasteTons),
+                OutputCell(getter: () => state.plasticWasteVolume),
+
+                Cell(type: CellType.row, initialValue: "Kuumabitumisively"),
+                OutputCell(getter: () => state.hotBitumenCoatingTons),
+                OutputCell(getter: () => state.hotBitumenCoatingVolume),
+              ],
             ),
-            MenuCell<CellarExteriorMaterial?>(
-            setter: (value) {
-              print(value); // This can now be null if "Valitse" is selected
-            },
-            initialValue: null, // Start with "Valitse" as default
-            items: toList(), // Uses updated toList() method
-            ),
-
-
-
-
-            Cell(type: CellType.row, initialValue: 'Kellarin seinän korkeus (m)'),
-            Cell(
-              type: CellType.input,
-              initialValue: state.wallHeight,
-              setter: (value) => cellarBloc.add(CellarWallHeightChanged(value)),
-            ),
-            Cell(type: CellType.empty,),
           ],
         );
       },
