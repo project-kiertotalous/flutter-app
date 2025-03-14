@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
 
+// TODO: eventually content of this class should be eliminated and different types moved to their own files
 class Cell extends StatefulWidget {
   const Cell({
     super.key,
