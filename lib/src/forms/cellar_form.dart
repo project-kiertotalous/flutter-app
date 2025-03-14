@@ -100,8 +100,8 @@ String typeToString(CellarExteriorMaterial type) {
                 Cell(
                     type: CellType.header,
                     initialValue: "Kellarin lattian ja ulkoseinien purkumateriaalimäärät"),
-                Cell(type: CellType.header, initialValue: "Tonnia"),
-                Cell(type: CellType.header, initialValue: "m³"),
+                Cell(type: CellType.row, initialValue: "Tonnia"),
+                Cell(type: CellType.row, initialValue: "m³"),
 
                 Cell(type: CellType.row, initialValue: "Betonia"),
                 OutputCell(getter: () => state.concreteDemolitionTons),
