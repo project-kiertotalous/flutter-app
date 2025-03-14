@@ -70,6 +70,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
     required String label,
     required TextEditingController controller,
     double? width, // Add width parameter
+    required void Function(String) onSaved, // Callback function for saving data
   }) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 8.0),
@@ -87,6 +88,9 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
             }
             return null;
           },
+          onFieldSubmitted: (value) {
+          onSaved(value); // Save value when pressing Enter
+        },
         ),
       ),
     );
@@ -116,28 +120,31 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                 children: [
                   // Left column with fixed width
                   SizedBox(
-                    width: 320, // Ensure enough space for input fields
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment
                           .start, // Aligns text fields to left
                       children: [
-                        _buildTextField(
-                            label: "Kohteen nimi",
-                            controller: _buildingNameController,
-                            width: 300),
-                        _buildTextField(
-                            label: "Rakennustyyppi",
-                            controller: _buildingTypeController,
-                            width: 300),
-                        _buildTextField(
-                            label: "Osoite",
-                            controller: _buildingAddressController,
-                            width: 300),
-                        _buildTextField(
-                            label: "Kunta",
-                            controller: _buildingMunicipalityController,
-                            width: 300),
-                      ],
+                      _buildTextField(
+                          label: "Kohteen nimi",
+                          controller: _buildingNameController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.buildingName = value),
+                      _buildTextField(
+                          label: "Rakennustyyppi",
+                          controller: _buildingTypeController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.buildingType = value),
+                      _buildTextField(
+                          label: "Osoite",
+                          controller: _buildingAddressController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.buildingAddress = value),
+                      _buildTextField(
+                          label: "Kunta",
+                          controller: _buildingMunicipalityController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.buildingMunicipality = value),
+                    ],
                     ),
                   ),
                   SizedBox(width: 16), // Spacing between columns
@@ -147,31 +154,30 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                       crossAxisAlignment: CrossAxisAlignment
                           .start, // Aligns text fields to left
                       children: [
-                        _buildTextField(
-                            label: "Laskelman laatija",
-                            controller: _calculationCreatorController,
-                            width: 300),
-                        _buildTextField(
-                            label: "Päivämäärä",
-                            controller: _calculationDateController,
-                            width: 300),
-                        _buildTextField(
-                            label: "Versio",
-                            controller: _calculationVersionController,
-                            width: 300),
-                        _buildTextField(
-                            label: "Rakennuksen tiedot",
-                            controller: _buildingInformationController,
-                            width: 300),
-                      ],
+                      _buildTextField(
+                          label: "Laskelman laatija",
+                          controller: _calculationCreatorController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.calculationCreator = value),
+                      _buildTextField(
+                          label: "Päivämäärä",
+                          controller: _calculationDateController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.calculationDate = value),
+                      _buildTextField(
+                          label: "Versio",
+                          controller: _calculationVersionController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.calculationVersion = value),
+                      _buildTextField(
+                          label: "Rakennuksen tiedot",
+                          controller: _buildingInformationController,
+                          width: 400,
+                          onSaved: (value) => BasicInformationData.buildingInformation = value),
+                    ],
                     ),
                   ),
                 ],
-              ),
-              SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: _saveForm,
-                child: Text("Tallenna"),
               ),
             ],
           ),
