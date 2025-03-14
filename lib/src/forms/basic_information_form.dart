@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/basic_information_data.dart';
 
 class BasicInformationForm extends StatefulWidget {
+   const BasicInformationForm({super.key});
+
   @override
-  _BasicInformationFormState createState() => _BasicInformationFormState();
+  BasicInformationFormState createState() => BasicInformationFormState();
 }
 
-class _BasicInformationFormState extends State<BasicInformationForm> {
+class BasicInformationFormState extends State<BasicInformationForm> {
   final _formKey = GlobalKey<FormState>();
 
   //Controllers for text fields
@@ -71,64 +73,45 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
     super.dispose();
   }
 
-  void _saveForm() {
-    if (_formKey.currentState!.validate()) {
-      setState(() {
-        BasicInformationData.buildingName = _buildingNameController.text;
-        BasicInformationData.buildingType = _buildingTypeController.text;
-        BasicInformationData.buildingAddress = _buildingAddressController.text;
-        BasicInformationData.buildingMunicipality =
-            _buildingMunicipalityController.text;
-        BasicInformationData.calculationCreator =
-            _calculationCreatorController.text;
-        BasicInformationData.calculationDate = _calculationDateController.text;
-        BasicInformationData.calculationVersion =
-            _calculationVersionController.text;
-        BasicInformationData.buildingInformation =
-            _buildingInformationController.text;
-      });
-    }
-  }
-
   Widget _buildTextField({
-    required String label,
-    required TextEditingController controller,
-    double? width, // Add width parameter
-    required void Function(String) onSaved, // Callback function for saving data
-    required FocusNode currentFocus, // Current field's focus node
-    FocusNode? nextFocus, // Add nextFocusNode parameter
-  }) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: SizedBox(
-        width: width, // Set width if provided
-        child: TextFormField(
-          controller: controller,
-          focusNode: currentFocus,
-          textInputAction:
-              nextFocus != null ? TextInputAction.next : TextInputAction.done,
-          decoration: InputDecoration(
-            labelText: label,
-            border: OutlineInputBorder(),
-          ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Täytä kenttä";
-            }
-            return null;
-          },
-          onFieldSubmitted: (value) {
-            onSaved(value); // Save value when pressing Enter
-            if (nextFocus != null) {
-              FocusScope.of(context)
-                  .requestFocus(nextFocus); // Move to next field
-            }
-          },
+  required String label,
+  required TextEditingController controller,
+  double? width,
+  required void Function(String) onSaved,
+  required FocusNode currentFocus,
+  FocusNode? nextFocus,
+}) {
+  return Padding(
+    padding: EdgeInsets.symmetric(vertical: 8.0),
+    child: SizedBox(
+      width: width,
+      child: TextFormField(
+        controller: controller,
+        focusNode: currentFocus,
+        textInputAction: nextFocus != null ? TextInputAction.next : TextInputAction.done,
+        decoration: InputDecoration(
+          labelText: label,
+          border: OutlineInputBorder(),
         ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Täytä kenttä";
+          }
+          return null;
+        },
+        onChanged: (value) => onSaved(value), // Save as user types
+        onFieldSubmitted: (value) {
+          onSaved(value);
+          if (nextFocus != null) {
+            FocusScope.of(context).requestFocus(nextFocus);
+          } else {
+            FocusScope.of(context).unfocus();
+          }
+        },
       ),
-    );
-  }
-
+    ),
+  );
+}
   @override
 
   /// Build a form for basic information about the building being calculated.
@@ -162,7 +145,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                             controller: _buildingNameController,
                             currentFocus: _buildingNameFocus,
                             nextFocus: _buildingTypeFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) =>
                                 BasicInformationData.buildingName = value),
                         _buildTextField(
@@ -170,7 +153,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                             controller: _buildingTypeController,
                             currentFocus: _buildingTypeFocus,
                             nextFocus: _buildingAddressFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) =>
                                 BasicInformationData.buildingType = value),
                         _buildTextField(
@@ -178,7 +161,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                             controller: _buildingAddressController,
                             currentFocus: _buildingAddressFocus,
                             nextFocus: _buildingMunicipalityFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) =>
                                 BasicInformationData.buildingAddress = value),
                         _buildTextField(
@@ -186,7 +169,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                             controller: _buildingMunicipalityController,
                             currentFocus: _buildingMunicipalityFocus,
                             nextFocus: _calculationCreatorFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) => BasicInformationData
                                 .buildingMunicipality = value),
                       ],
@@ -204,7 +187,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                             controller: _calculationCreatorController,
                             currentFocus: _calculationCreatorFocus,
                             nextFocus: _calculationDateFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) => BasicInformationData
                                 .calculationCreator = value),
                         _buildTextField(
@@ -212,7 +195,7 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                             controller: _calculationDateController,
                             currentFocus: _calculationDateFocus,
                             nextFocus: _calculationVersionFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) =>
                                 BasicInformationData.calculationDate = value),
                         _buildTextField(
@@ -220,14 +203,14 @@ class _BasicInformationFormState extends State<BasicInformationForm> {
                             controller: _calculationVersionController,
                             currentFocus: _calculationVersionFocus,
                             nextFocus: _buildingInformationFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) => BasicInformationData
                                 .calculationVersion = value),
                         _buildTextField(
                             label: "Rakennuksen tiedot",
                             controller: _buildingInformationController,
                             currentFocus: _buildingInformationFocus,
-                            width: 300,
+                            width: 400,
                             onSaved: (value) => BasicInformationData
                                 .buildingInformation = value),
                       ],
