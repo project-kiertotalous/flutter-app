@@ -92,7 +92,7 @@ class _CellState extends State<Cell> {
   void initState() {
     super.initState();
     if (widget.type == CellType.input) {
-      final text = periodToComma(widget.initialValue);
+      final text = periodToComma(widget.initialValue ?? 0.0 );
       _controller = TextEditingController(
         text: text,
       );
@@ -119,7 +119,7 @@ class _CellState extends State<Cell> {
             ),
           ),
           child: Center(
-            child: Text(value),
+            child: Text(value?.toString() ?? "0.0"),
           ),
         );
       case CellType.column:
@@ -133,7 +133,7 @@ class _CellState extends State<Cell> {
             ),
           ),
           child: Center(
-            child: Text(value),
+            child: Text(value?.toString() ?? "0.0"),
           ),
         );
       case CellType.empty:
