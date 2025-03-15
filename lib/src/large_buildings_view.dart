@@ -20,7 +20,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
       text: "Ulkovaippa",
     ),
     Tab(
-      text: "Muu",
+      text: "Väliseinät ja ikkunat",
     ),
   ];
 
