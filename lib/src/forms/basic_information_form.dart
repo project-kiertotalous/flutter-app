@@ -116,109 +116,112 @@ class BasicInformationFormState extends State<BasicInformationForm> {
 
   /// Build a form for basic information about the building being calculated.
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      margin: EdgeInsets.all(16),
-      child: Padding(
-        padding: EdgeInsets.all(16),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Kohteen tiedot",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start, // Aligns to top
-                children: [
-                  // Left column with fixed width
-                  SizedBox(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment
-                          .start, // Aligns text fields to left
-                      children: [
-                        _buildTextField(
-                            label: "Kohteen nimi",
-                            controller: _buildingNameController,
-                            currentFocus: _buildingNameFocus,
-                            nextFocus: _buildingTypeFocus,
-                            width: 400,
-                            onSaved: (value) =>
-                                BasicInformationData.buildingName = value),
-                        _buildTextField(
-                            label: "Rakennustyyppi",
-                            controller: _buildingTypeController,
-                            currentFocus: _buildingTypeFocus,
-                            nextFocus: _buildingAddressFocus,
-                            width: 400,
-                            onSaved: (value) =>
-                                BasicInformationData.buildingType = value),
-                        _buildTextField(
-                            label: "Osoite",
-                            controller: _buildingAddressController,
-                            currentFocus: _buildingAddressFocus,
-                            nextFocus: _buildingMunicipalityFocus,
-                            width: 400,
-                            onSaved: (value) =>
-                                BasicInformationData.buildingAddress = value),
-                        _buildTextField(
-                            label: "Kunta",
-                            controller: _buildingMunicipalityController,
-                            currentFocus: _buildingMunicipalityFocus,
-                            nextFocus: _calculationCreatorFocus,
-                            width: 400,
-                            onSaved: (value) => BasicInformationData
-                                .buildingMunicipality = value),
-                      ],
+    return SizedBox(
+      width: 900,
+      child: Card(
+        elevation: 4,
+        margin: EdgeInsets.all(16),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Kohteen tiedot",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start, // Aligns to top
+                  children: [
+                    // Left column with fixed width
+                    SizedBox(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment
+                            .start, // Aligns text fields to left
+                        children: [
+                          _buildTextField(
+                              label: "Kohteen nimi",
+                              controller: _buildingNameController,
+                              currentFocus: _buildingNameFocus,
+                              nextFocus: _buildingTypeFocus,
+                              width: 400,
+                              onSaved: (value) =>
+                                  BasicInformationData.buildingName = value),
+                          _buildTextField(
+                              label: "Rakennustyyppi",
+                              controller: _buildingTypeController,
+                              currentFocus: _buildingTypeFocus,
+                              nextFocus: _buildingAddressFocus,
+                              width: 400,
+                              onSaved: (value) =>
+                                  BasicInformationData.buildingType = value),
+                          _buildTextField(
+                              label: "Osoite",
+                              controller: _buildingAddressController,
+                              currentFocus: _buildingAddressFocus,
+                              nextFocus: _buildingMunicipalityFocus,
+                              width: 400,
+                              onSaved: (value) =>
+                                  BasicInformationData.buildingAddress = value),
+                          _buildTextField(
+                              label: "Kunta",
+                              controller: _buildingMunicipalityController,
+                              currentFocus: _buildingMunicipalityFocus,
+                              nextFocus: _calculationCreatorFocus,
+                              width: 400,
+                              onSaved: (value) => BasicInformationData
+                                  .buildingMunicipality = value),
+                        ],
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 16), // Spacing between columns
-                  // Right column expands to fill remaining space
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment
-                          .start, // Aligns text fields to left
-                      children: [
-                        _buildTextField(
-                            label: "Laskelman laatija",
-                            controller: _calculationCreatorController,
-                            currentFocus: _calculationCreatorFocus,
-                            nextFocus: _calculationDateFocus,
-                            width: 400,
-                            onSaved: (value) => BasicInformationData
-                                .calculationCreator = value),
-                        _buildTextField(
-                            label: "Päivämäärä",
-                            controller: _calculationDateController,
-                            currentFocus: _calculationDateFocus,
-                            nextFocus: _calculationVersionFocus,
-                            width: 400,
-                            onSaved: (value) =>
-                                BasicInformationData.calculationDate = value),
-                        _buildTextField(
-                            label: "Versio",
-                            controller: _calculationVersionController,
-                            currentFocus: _calculationVersionFocus,
-                            nextFocus: _buildingInformationFocus,
-                            width: 400,
-                            onSaved: (value) => BasicInformationData
-                                .calculationVersion = value),
-                        _buildTextField(
-                            label: "Rakennuksen tiedot",
-                            controller: _buildingInformationController,
-                            currentFocus: _buildingInformationFocus,
-                            width: 400,
-                            onSaved: (value) => BasicInformationData
-                                .buildingInformation = value),
-                      ],
+                    SizedBox(width: 16), // Spacing between columns
+                    // Right column expands to fill remaining space
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment
+                            .start, // Aligns text fields to left
+                        children: [
+                          _buildTextField(
+                              label: "Laskelman laatija",
+                              controller: _calculationCreatorController,
+                              currentFocus: _calculationCreatorFocus,
+                              nextFocus: _calculationDateFocus,
+                              width: 400,
+                              onSaved: (value) => BasicInformationData
+                                  .calculationCreator = value),
+                          _buildTextField(
+                              label: "Päivämäärä",
+                              controller: _calculationDateController,
+                              currentFocus: _calculationDateFocus,
+                              nextFocus: _calculationVersionFocus,
+                              width: 400,
+                              onSaved: (value) =>
+                                  BasicInformationData.calculationDate = value),
+                          _buildTextField(
+                              label: "Versio",
+                              controller: _calculationVersionController,
+                              currentFocus: _calculationVersionFocus,
+                              nextFocus: _buildingInformationFocus,
+                              width: 400,
+                              onSaved: (value) => BasicInformationData
+                                  .calculationVersion = value),
+                          _buildTextField(
+                              label: "Rakennuksen tiedot",
+                              controller: _buildingInformationController,
+                              currentFocus: _buildingInformationFocus,
+                              width: 400,
+                              onSaved: (value) => BasicInformationData
+                                  .buildingInformation = value),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
