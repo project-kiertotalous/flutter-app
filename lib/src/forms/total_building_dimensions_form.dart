@@ -93,8 +93,8 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             integer: true,
           ),
           // this is supposed to be empty for now (14.3.25)
-          OutputCell(
-            getter: () {},
+          Cell(
+            type: CellType.empty,
           ),
           Cell(
             type: CellType.row,
@@ -126,9 +126,9 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.grossFloorAreaExcludingCellars,
           ),
-          OutputCell(
+          Cell(
             // supposed to be empty for now (14.3.25)
-            getter: () {},
+            type: CellType.empty,
           ),
         ],
       );
