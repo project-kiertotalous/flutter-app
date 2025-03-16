@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 
 // TODO: eventually content of this class should be eliminated and different types moved to their own files
 class Cell extends StatefulWidget {
@@ -24,7 +25,7 @@ class Cell extends StatefulWidget {
   final CellType? type;
   final dynamic initialValue;
   final Function? setter;
-  final IconButton? iconButton;
+  final InfoButton? iconButton;
   final bool checkbox;
   final String? checkboxTitle;
   final Function? checkboxSetter;
@@ -92,7 +93,7 @@ class _CellState extends State<Cell> {
   void initState() {
     super.initState();
     if (widget.type == CellType.input) {
-      final text = periodToComma(widget.initialValue ?? 0.0 );
+      final text = periodToComma(widget.initialValue ?? 0.0);
       _controller = TextEditingController(
         text: text,
       );
