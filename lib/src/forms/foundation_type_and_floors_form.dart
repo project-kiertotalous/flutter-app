@@ -13,27 +13,24 @@ import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 class FoundationTypeAndFloorsForm extends StatelessWidget {
   const FoundationTypeAndFloorsForm({super.key});
 
-  List<DropdownMenuItem> toList() {
-    List<DropdownMenuItem<FoundationMaterial?>> list = [];
-    list.add(
+  /// Converts FoundationMaterial enum values to display names
+  /// and returns them as a list of DropdownMenuItems.
+  List<DropdownMenuItem<FoundationMaterial?>> toList() {
+    return [
       DropdownMenuItem<FoundationMaterial?>(
         value: null,
         child: Text('Valitse'),
       ),
-    );
-    for (final type in FoundationMaterial.values) {
-      list.add(
-        DropdownMenuItem<FoundationMaterial>(
+      ...FoundationMaterial.values.map((type) {
+        return DropdownMenuItem<FoundationMaterial?>(
           value: type,
-          child: Text(
-            typeToString(type),
-          ),
-        ),
-      );
-    }
-    return list;
+          child: Text(typeToString(type)),
+        );
+      }),
+    ];
   }
 
+  /// Converts FoundationMaterial enum to a user-friendly display name.
   String typeToString(FoundationMaterial type) {
     switch (type) {
       case FoundationMaterial.concreteCasting:
@@ -94,14 +91,14 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           Cell(type: CellType.column, initialValue: 'Ontelolaattaperustus'),
           Cell(type: CellType.column, initialValue: 'Koko rakennus yht.'),
           Cell(type: CellType.header, initialValue: 'Monivalinta'),
-          MenuCell(
-            setter: (value) =>
+          MenuCell<FoundationMaterial>(
+            setter: (FoundationMaterial? value) =>
                 foundationsBloc.add(FalsePlinthMaterialChanged(value)),
             initialValue: state.falsePlinth?.material,
             items: toList(),
           ),
-          MenuCell(
-            setter: (value) =>
+          MenuCell<FoundationMaterial>(
+            setter: (FoundationMaterial? value) =>
                 foundationsBloc.add(CrawlSpaceMaterialChanged(value)),
             initialValue: state.crawlSpace?.material,
             items: toList(),
@@ -109,18 +106,18 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           Cell(
             type: CellType.empty,
           ),
-          MenuCell(
-            setter: (value) =>
-                foundationsBloc.add(PillarMaterialChanged(value)),
-            initialValue: state.pillar?.material,
-            items: toList(),
-          ),
-          MenuCell(
-            setter: (value) =>
-                foundationsBloc.add(HollowCoreSlabMaterialChanged(value)),
-            initialValue: state.hollowCoreSlab?.material,
-            items: toList(),
-          ),
+          MenuCell<FoundationMaterial?>(
+              setter: (FoundationMaterial? value) =>
+                  foundationsBloc.add(PillarMaterialChanged(value)),
+              initialValue: state.pillar?.material,
+              items: toList(),
+            ),
+            MenuCell<FoundationMaterial?>(
+              setter: (FoundationMaterial? value) =>
+                  foundationsBloc.add(HollowCoreSlabMaterialChanged(value)),
+              initialValue: state.hollowCoreSlab?.material,
+              items: toList(),
+            ),
           Cell(
             type: CellType.empty,
           ),
