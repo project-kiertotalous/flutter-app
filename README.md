@@ -73,6 +73,35 @@ Android Studio is not (yet) needed, so don't bother with it.
 
 If you have access to this page, you can clone the repository. If git is not yet familiar, it is highly encouraged to spend some time on learning it.
 
+## Formatting settings
+
+We use [dart default formatting](https://dart.dev/tools/dart-format) across the repository and its submodules. Your editor may have its own opinions about that, but they should be taken care of one way or another.
+
+In case you're a VSCode enjoyer, dart formatting can be applied any time you save the file you're working on.
+
+In VSCode, press `ctrl+shift+P` and open `Preferences: Open User Settings (JSON)`. In there, apply the "[dart]" settings like so:
+
+```JSON
+# start of JSON file
+{
+  ...
+  "[dart]": {
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [80],
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  ...
+}
+```
+
+In case that doesn't work, or you use a different editor, you can manually apply formatting with `dart format .` in the root directory before pushing code to repository.
+
 ## Learn Flutter
 
 Mess around with this repository, create your own Flutter playground, watch videos.
