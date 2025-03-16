@@ -4,6 +4,7 @@ import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,11 +48,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Rakennuksen kerrospinta-ala (bruttoala) (m2)',
-            iconButton: IconButton(
-              icon: const Icon(Icons.info),
-              tooltip: "lorem impsum",
-              onPressed: () {},
-            ),
+            iconButton: InfoButton(),
           ),
           InputCell(
             initialValue: state.buildingDimensions?.grossFloorArea,
@@ -66,11 +63,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Rakennuksen tilavuus (m3)',
-            iconButton: IconButton(
-              icon: const Icon(Icons.info),
-              tooltip: "lorem impsum",
-              onPressed: () {},
-            ),
+            iconButton: InfoButton(),
           ),
           InputCell(
             initialValue: state.buildingDimensions?.volume,
@@ -99,11 +92,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Keskimääräinen pinta-ala (m2)',
-            iconButton: IconButton(
-              icon: const Icon(Icons.info),
-              tooltip: "lorem impsum",
-              onPressed: () {},
-            ),
+            iconButton: InfoButton(),
           ),
           InputCell(
             initialValue: state.buildingDimensions?.averageArea,
@@ -117,11 +106,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           Cell(
             type: CellType.row,
             initialValue: 'Kerrospinta-ala yhteensä (ei kellaritiloja) (m2)',
-            iconButton: IconButton(
-              icon: const Icon(Icons.info),
-              tooltip: "lorem impsum",
-              onPressed: () {},
-            ),
+            iconButton: InfoButton(),
           ),
           OutputCell(
             getter: () => state.grossFloorAreaExcludingCellars,
