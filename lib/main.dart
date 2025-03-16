@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
+import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
                     create: (BuildContext context) => FoundationsBloc()),
                 BlocProvider(
                     create: (BuildContext context) => ExcavationAreaBloc()),
+                BlocProvider(
+                    create: (BuildContext context) => FloorStructuresBloc()),
               ],
               child: LargeBuildingsView(),
             ),
