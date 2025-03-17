@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/basic_information_form.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
+import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/cellar_form.dart';
+
 class OuterSheathView extends StatelessWidget {
   const OuterSheathView({
     super.key,
@@ -27,13 +29,17 @@ class OuterSheathView extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.topLeft,
+                child: TotalBuildingDimensionsForm(),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
                 child: RemovableGroundsForm(),
               ),
               Align(
                 alignment: Alignment.topLeft,
                 child: FoundationTypeAndFloorsForm(),
               ),
-               Align(
+              Align(
                 alignment: Alignment.topLeft,
                 child: CellarForm(),
               )
