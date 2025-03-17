@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 
+// TODO: eventually content of this class should be eliminated and different types moved to their own files
 class Cell extends StatefulWidget {
   const Cell({
     super.key,
     this.type,
     this.initialValue,
     this.setter,
+    this.iconButton,
     this.checkbox = false,
     this.checkboxTitle,
     this.checkboxSetter,
@@ -22,6 +25,7 @@ class Cell extends StatefulWidget {
   final CellType? type;
   final dynamic initialValue;
   final Function? setter;
+  final InfoButton? iconButton;
   final bool checkbox;
   final String? checkboxTitle;
   final Function? checkboxSetter;
@@ -59,11 +63,37 @@ class _CellState extends State<Cell> {
     print(castedValue);
   }
 
+  Widget cellContent() {
+    // if more content than text
+    if (widget.checkbox || widget.iconButton != null) {
+      List<Widget> list = [];
+      list.add(Text(widget.initialValue));
+      if (widget.checkbox) {
+        list.add(
+          Checkbox(
+            value: widget.checkboxValue,
+            onChanged: (value) => widget.checkboxSetter!(value),
+          ),
+        );
+        list.add(Text(widget.checkboxTitle!));
+      }
+      if (widget.iconButton != null) {
+        list.add(widget.iconButton!);
+      }
+      return Row(
+        children: list,
+      );
+    }
+    // if only text
+    return Align(
+        alignment: Alignment.centerLeft, child: Text(widget.initialValue));
+  }
+
   @override
   void initState() {
     super.initState();
     if (widget.type == CellType.input) {
-      final text = periodToComma(widget.initialValue ?? 0.0 );
+      final text = periodToComma(widget.initialValue ?? 0.0);
       _controller = TextEditingController(
         text: text,
       );
@@ -143,20 +173,7 @@ class _CellState extends State<Cell> {
             ),
             // borderRadius: BorderRadius.circular(6),
           ),
-          child: Center(
-            child: widget.checkbox
-                ? Row(
-                    children: [
-                      Text(value),
-                      Checkbox(
-                        value: widget.checkboxValue,
-                        onChanged: (value) => widget.checkboxSetter!(value),
-                      ),
-                      Text(widget.checkboxTitle!)
-                    ],
-                  )
-                : Text(value),
-          ),
+          child: cellContent(),
         );
     }
   }

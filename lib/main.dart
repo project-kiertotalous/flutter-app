@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
 import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
+import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_builds_view.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main() async {
+void main() {
   runApp(MyApp());
 }
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
-  const MyApp({
-    super.key,
-  });
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,11 +34,24 @@ class MyApp extends StatelessWidget {
         '/large_buildings': (context) => MultiBlocProvider(
               providers: [
                 BlocProvider(
-                    create: (BuildContext context) => FoundationsBloc()),
+                  create: (BuildContext context) =>
+                      TotalBuildingDimensionsBloc(),
+                ),
                 BlocProvider(
-                    create: (BuildContext context) => ExcavationAreaBloc()),
+                  create: (BuildContext context) => ExcavationAreaBloc(),
+                ),
                 BlocProvider(
-                    create: (BuildContext context) => FloorStructuresBloc()),
+                  create: (BuildContext context) => FloorStructuresBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => FoundationsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => ExcavationAreaBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => CellarBloc(),
+                ),
               ],
               child: LargeBuildingsView(),
             ),
@@ -53,7 +66,6 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // darkTheme: ThemeData.dark(),
     );
   }
 }
