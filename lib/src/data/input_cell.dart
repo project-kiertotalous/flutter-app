@@ -93,6 +93,9 @@ class _InputCellState extends State<InputCell> {
       ),
       child: Center(
         child: TextField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+          ),
           onChanged: (value) =>
               widget.integer ? setIntValue(value) : setDoubleValue(value),
           controller: _controller,
