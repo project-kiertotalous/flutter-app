@@ -1,7 +1,6 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 
-class MenuCell extends StatefulWidget {
+class MenuCell<T> extends StatefulWidget {
   const MenuCell({
     super.key,
     required this.setter,
@@ -9,16 +8,16 @@ class MenuCell extends StatefulWidget {
     required this.items,
   });
 
-  final List<DropdownMenuItem<dynamic>> items;
-  final Function setter;
-  final FoundationMaterial? initialValue;
+  final List<DropdownMenuItem<T?>> items;
+  final Function(T?) setter;
+  final T? initialValue;
 
   @override
-  State<MenuCell> createState() => _MenuCellState();
+  State<MenuCell<T>> createState() => _MenuCellState<T>();
 }
 
-class _MenuCellState extends State<MenuCell> {
-  late FoundationMaterial? currentValue = widget.initialValue;
+class _MenuCellState<T> extends State<MenuCell<T>> {
+  late T? currentValue = widget.initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -26,15 +25,13 @@ class _MenuCellState extends State<MenuCell> {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: Color(0xFFEAEAEA),
-        border: Border.all(
-          width: 1,
-        ),
+        color: const Color(0xFFEAEAEA),
+        border: Border.all(width: 1),
       ),
-      child: DropdownButton(
+      child: DropdownButton<T?>(
         value: currentValue,
         items: widget.items,
-        onChanged: (value) {
+        onChanged: (T? value) {
           widget.setter(value);
           setState(() => currentValue = value);
         },
