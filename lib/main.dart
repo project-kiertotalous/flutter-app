@@ -7,7 +7,6 @@ import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_builds_view.dart';
 import 'package:flutter_app/src/partitions_and_windows_view.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
   runApp(MyApp());
