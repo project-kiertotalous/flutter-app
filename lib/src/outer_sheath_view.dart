@@ -25,7 +25,7 @@ class OuterSheathView extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: BasicInformationForm(), // Add this form
+                child: BasicInformationForm(),
               ),
               Align(
                 alignment: Alignment.topLeft,

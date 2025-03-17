@@ -6,7 +6,6 @@ import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_builds_view.dart';
-import 'package:flutter_app/src/partitions_and_windows_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,15 +29,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeView(),
-        '/partitions_and_windows': (context) => const PartitionsAndWindowsView(),
         '/large_buildings': (context) => MultiBlocProvider(
               providers: [
                 BlocProvider(
                     create: (BuildContext context) => FoundationsBloc()),
                 BlocProvider(
                     create: (BuildContext context) => ExcavationAreaBloc()),
-                  BlocProvider(
-                    create: (BuildContext context) => CellarBloc()),
+                BlocProvider(create: (BuildContext context) => CellarBloc()),
               ],
               child: LargeBuildingsView(),
             ),
