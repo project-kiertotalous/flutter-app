@@ -63,23 +63,35 @@ class _CellState extends State<Cell> {
     print(castedValue);
   }
 
+  // TODO: please refactor, it's terrible
   Widget cellContent() {
     // if more content than text
     if (widget.checkbox || widget.iconButton != null) {
       List<Widget> list = [];
-      list.add(Text(widget.initialValue));
+      list.add(
+        // this is probably better as something else than SizedBox
+        SizedBox(
+          width: 150,
+          child: Text(widget.initialValue),
+        ),
+      );
+      List<Widget> nestedList = [];
       if (widget.checkbox) {
-        list.add(
+        nestedList.add(
           Checkbox(
             value: widget.checkboxValue,
             onChanged: (value) => widget.checkboxSetter!(value),
           ),
         );
-        list.add(Text(widget.checkboxTitle!));
+        nestedList.add(Text(widget.checkboxTitle!));
       }
       if (widget.iconButton != null) {
         list.add(widget.iconButton!);
       }
+      Row nestedRow = Row(
+        children: nestedList,
+      );
+      list.add(nestedRow);
       return Row(
         children: list,
       );
