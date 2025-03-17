@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/basic_information_form.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
+import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
-import 'package:flutter_app/main.dart';
 import 'package:flutter_app/src/partitions_and_windows_view.dart';
 
 class OuterSheathView extends StatelessWidget {
@@ -38,25 +38,24 @@ class OuterSheathView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // Navigation buttons are part of the scrollable content
-              Align(
+                // Navigation buttons are part of the scrollable content
+                Align(
                 alignment: Alignment.bottomCenter,
                 child: NavigationButtons(
-                  isFirstTab: true, // This is the first tab
                   onPrevious: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const StartView()),
-                    );
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeView()),
+                  );
                   },
                   onNext: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const PartitionsAndWindowsView()),
-                    );
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PartitionsAndWindowsView()),
+                  );
                   },
                 ),
-              ),
+                ),
 
               // Extra spacing at the bottom to prevent buttons from sticking
               const SizedBox(height: 30),

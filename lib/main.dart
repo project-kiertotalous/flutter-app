@@ -4,6 +4,7 @@ import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_builds_view.dart';
+import 'package:flutter_app/src/partitions_and_windows_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomeView(),
+        '/partitions_and_windows': (context) => const PartitionsAndWindowsView(),
         '/large_buildings': (context) => MultiBlocProvider(
               providers: [
                 BlocProvider(
