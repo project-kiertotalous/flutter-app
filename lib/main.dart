@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
@@ -32,10 +33,18 @@ class MyApp extends StatelessWidget {
         '/large_buildings': (context) => MultiBlocProvider(
               providers: [
                 BlocProvider(
-                    create: (BuildContext context) => FoundationsBloc()),
+                  create: (BuildContext context) =>
+                      TotalBuildingDimensionsBloc(),
+                ),
                 BlocProvider(
-                    create: (BuildContext context) => ExcavationAreaBloc()),
-                BlocProvider(create: (BuildContext context) => CellarBloc()),
+                  create: (BuildContext context) => FoundationsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => ExcavationAreaBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => CellarBloc(),
+                ),
               ],
               child: LargeBuildingsView(),
             ),
