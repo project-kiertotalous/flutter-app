@@ -11,7 +11,6 @@ class NavigationButtons extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16.0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, // Center buttons
         children: [
           // "Edellinen" button - Goes back or to HomeView if first tab
           ElevatedButton(
