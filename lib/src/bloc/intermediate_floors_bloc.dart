@@ -1,68 +1,81 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app/src/bloc/intermediate_floors_event.dart';
 import 'package:flutter_app/log.dart';
+import 'package:flutter_app/src/bloc/intermediate_floors_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class IntermediateFloorsBloc
-    extends Bloc<IntermediateFloorsEvent, IntermediateFloors> {
-  IntermediateFloorsBloc()
-      : super(const IntermediateFloors(
-          woodFramePercentageFraction: 0,
-          concreteCastingPercentageFraction: 0,
-          hollowCoreSlabPercentageFraction: 0,
-          glulamBeamPercentageFraction: 0,
-          hollowCoreSlabsAndGlulamBeamRecyclable: false,
-        )) {
-    on<WoodFrameAreaChanged>((event, emit) {
-      logger.d("WoodFrameAreaChanged fired");
-      _updateState(emit, woodFrame: event.value);
+    extends Bloc<IntermediateFloorsEvent, TotalIntermediateFloors> {
+  IntermediateFloorsBloc() : super(TotalIntermediateFloors()) {
+    on<WoodFramePercentageChanged>((event, emit) {
+      logger.d("WoodFramePercentageChanged ${event.value}");
+
+      final updatedIntermediateFloors =
+          (state.intermediateFloors ?? IntermediateFloors()).copyWith(
+        woodFramePercentageFraction: event.value,
+      );
+
+      final newState =
+          state.copyWith(intermediateFloors: updatedIntermediateFloors);
+
+      emit(newState);
     });
 
-    on<ConcreteCastingAreaChanged>((event, emit) {
-      logger.d("ConcreteCastingAreaChanged fired");
-      _updateState(emit, concreteCasting: event.value);
+    on<ConcreteCastingPercentageChanged>((event, emit) {
+      logger.d("ConcreteCastingPercentageChanged ${event.value}");
+
+      final updatedIntermediateFloors =
+          (state.intermediateFloors ?? IntermediateFloors()).copyWith(
+        concreteCastingPercentageFraction: event.value,
+      );
+
+      final newState =
+          state.copyWith(intermediateFloors: updatedIntermediateFloors);
+
+      emit(newState);
     });
 
-    on<HollowCoreSlabAreaChanged>((event, emit) {
-      logger.d("HollowCoreSlabAreaChanged fired");
-      _updateState(emit, hollowCoreSlab: event.value);
+    on<HollowCoreSlabPercentageChanged>((event, emit) {
+      logger.d("HollowCoreSlabPercentageChanged ${event.value}");
+
+      final updatedIntermediateFloors =
+          (state.intermediateFloors ?? IntermediateFloors()).copyWith(
+        hollowCoreSlabPercentageFraction: event.value,
+      );
+
+      final newState =
+          state.copyWith(intermediateFloors: updatedIntermediateFloors);
+
+      emit(newState);
     });
 
-    on<GlulamBeamAreaChanged>((event, emit) {
-      logger.d("GlulamBeamAreaChanged fired");
-      _updateState(emit, glulamBeam: event.value);
+    on<GlulamBeamPercentageChanged>((event, emit) {
+      logger.d("GlulamBeamPercentageChanged ${event.value}");
+
+      final updatedIntermediateFloors =
+          (state.intermediateFloors ?? IntermediateFloors()).copyWith(
+        glulamBeamPercentageFraction: event.value,
+      );
+
+      final newState =
+          state.copyWith(intermediateFloors: updatedIntermediateFloors);
+
+      emit(newState);
     });
 
-    on<TotalFloorAreaPercentageChanged>((event, emit) {
-      logger.d("TotalFloorAreaPercentageChanged fired");
-      _updateState(emit, totalPercentage: event.value);
+    on<TotalBuildingDimensionsChanged>((event, emit) {
+      logger.d("TotalBuildingDimensionsChanged ${event.value}");
+
+      final newState = state.copyWith(totalBuildingDimensions: event.value);
+
+      emit(newState);
     });
-  }
 
-  void _updateState(
-    Emitter<IntermediateFloors> emit, {
-    num? woodFrame,
-    num? concreteCasting,
-    num? hollowCoreSlab,
-    num? glulamBeam,
-    num? totalPercentage,
-  }) {
-    final newState = state.copyWith(
-      woodFramePercentageFraction:
-          woodFrame ?? state.woodFramePercentageFraction,
-      concreteCastingPercentageFraction:
-          concreteCasting ?? state.concreteCastingPercentageFraction,
-      hollowCoreSlabPercentageFraction:
-          hollowCoreSlab ?? state.hollowCoreSlabPercentageFraction,
-      glulamBeamPercentageFraction:
-          glulamBeam ?? state.glulamBeamPercentageFraction,
-    );
+    on<TotalFoundationChanged>((event, emit) {
+      logger.d("TotalFoundationChanged ${event.value}");
 
-    if (newState.totalFraction > 1) {
-      logger.e("Total percentage cannot exceed 100%");
-      return;
-    }
+      final newState = state.copyWith(totalFoundation: event.value);
 
-    emit(newState);
+      emit(newState);
+    });
   }
 }

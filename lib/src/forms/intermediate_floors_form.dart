@@ -15,7 +15,7 @@ class IntermediateFloorsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final intermediateFloorsBloc = context.read<IntermediateFloorsBloc>();
 
-    return BlocBuilder<IntermediateFloorsBloc, IntermediateFloors>(
+    return BlocBuilder<IntermediateFloorsBloc, TotalIntermediateFloors>(
       builder: (context, state) {
         return Align(
           // Aligns everything to the left
@@ -55,35 +55,44 @@ class IntermediateFloorsForm extends StatelessWidget {
                     ),
                     Cell(type: CellType.row, initialValue: "Puurunko (m²)"),
                     Cell(
-                        type: CellType.input,
-                        initialValue: state.woodFramePercentageFraction),
-                    OutputCell(getter: () => null),
+                      type: CellType.input,
+                      initialValue: state.woodFramePercentageFraction,
+                      setter: (value) => intermediateFloorsBloc
+                          .add(WoodFramePercentageChanged(value)),
+                    ),
+                    OutputCell(getter: () => state.woodFrameFloorArea),
                     Cell(
                         type: CellType.row,
                         initialValue: "Betonivalu, oletuspaksuus 200 mm (m²)"),
                     Cell(
                         type: CellType.input,
-                        initialValue: state.concreteCastingPercentageFraction),
-                    OutputCell(getter: () => null),
+                        initialValue: state.concreteCastingPercentageFraction,
+                        setter: (value) => intermediateFloorsBloc
+                            .add(ConcreteCastingPercentageChanged(value))),
+                    OutputCell(getter: () => state.concreteCastingFloorArea),
                     Cell(type: CellType.row, initialValue: "Ontelolaatta (m²)"),
                     Cell(
                         type: CellType.input,
-                        initialValue: state.hollowCoreSlabPercentageFraction),
-                    OutputCell(getter: () => null),
+                        initialValue: state.hollowCoreSlabPercentageFraction,
+                        setter: (value) => intermediateFloorsBloc
+                            .add(HollowCoreSlabPercentageChanged(value))),
+                    OutputCell(getter: () => state.hollowCoreSlabFloorArea),
                     Cell(
                         type: CellType.row,
                         initialValue:
                             "Liimapalkki, oletusmäärä 0,4 jm/m² (m²)"),
                     Cell(
                         type: CellType.input,
-                        initialValue: state.glulamBeamPercentageFraction),
-                    OutputCell(getter: () => null),
+                        initialValue: state.glulamBeamPercentageFraction,
+                        setter: (value) => intermediateFloorsBloc
+                            .add(GlulamBeamPercentageChanged(value))),
+                    OutputCell(getter: () => state.glulamBeamFloorArea),
                     Cell(
                         type: CellType.row,
                         initialValue:
                             "Välipohjien lattiapinta-alat yhteensä (% / kerrosala yhteensä m²)"),
-                    OutputCell(getter: () => null),
-                    OutputCell(getter: () => null),
+                    OutputCell(getter: () => state.totalFraction),
+                    OutputCell(getter: () => state.totalFloorArea),
                   ],
                 ),
 
@@ -111,26 +120,28 @@ class IntermediateFloorsForm extends StatelessWidget {
                         type: CellType.column,
                         initialValue: 'Betoniteräs (tonnia)'),
                     Cell(type: CellType.row, initialValue: 'Puurunko'),
-                    Cell(type: CellType.empty),
-                    Cell(type: CellType.empty),
+                    OutputCell(getter: () => state.woodFrameWoodVolume),
+                    OutputCell(getter: () => state.woodFrameWoodTons),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.row, initialValue: 'Betonivalu'),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
-                    Cell(type: CellType.empty),
-                    Cell(type: CellType.empty),
-                    Cell(type: CellType.empty),
+                    OutputCell(
+                        getter: () => state.concreteCastingConcreteVolume),
+                    OutputCell(getter: () => state.concreteCastingConcreteTons),
+                    OutputCell(getter: () => state.concreteCastingSteelTons),
                     Cell(type: CellType.row, initialValue: 'Ontelolaatta'),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
-                    Cell(type: CellType.empty),
-                    Cell(type: CellType.empty),
+                    OutputCell(
+                        getter: () => state.hollowCoreSlabConcreteVolume),
+                    OutputCell(getter: () => state.hollowCoreSlabConcreteTons),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.row, initialValue: 'Liimapalkki'),
-                    Cell(type: CellType.empty),
-                    Cell(type: CellType.empty),
+                    OutputCell(getter: () => state.glulamBeamWoodVolume),
+                    OutputCell(getter: () => state.glulamBeamWoodTons),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
