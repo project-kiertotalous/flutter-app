@@ -120,9 +120,9 @@ class BasicInformationFormState extends State<BasicInformationForm> {
       width: 900,
       child: Card(
         elevation: 4,
-        margin: EdgeInsets.all(16),
+        margin: EdgeInsets.only(left: 40, right: 16, top: 16, bottom: 100),
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: EdgeInsets.only(left: 32, right: 16, top: 16, bottom: 16),
           child: Form(
             key: _formKey,
             child: Column(
