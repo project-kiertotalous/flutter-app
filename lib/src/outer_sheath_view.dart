@@ -35,10 +35,6 @@ class OuterSheathView extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.topLeft,
-                child: TotalBuildingDimensionsForm(),
-              ),
-              Align(
-                alignment: Alignment.topLeft,
                 child: RemovableGroundsForm(),
               ),
               Align(
