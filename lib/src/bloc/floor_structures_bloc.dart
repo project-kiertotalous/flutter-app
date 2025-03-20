@@ -14,6 +14,7 @@ class FloorStructuresBloc extends Bloc<FloorStructuresEvent, FloorStructures> {
             teachingAndTreatmentSpaces: FloorStructure(),
             storageAndWorkspaces: FloorStructure(),
             otherSpaces: FloorStructure(),
+            surfaceMaterialCoatingContainsAsbestos: false,
           ),
         ) {
     on<OfficeSpacesChanged>((event, emit) {
@@ -44,6 +45,12 @@ class FloorStructuresBloc extends Bloc<FloorStructuresEvent, FloorStructures> {
     on<OtherSpacesChanged>((event, emit) {
       logger.d("OtherSpacesChanged to ${event.floorStructure}");
       emit(state.copyWith(otherSpaces: event.floorStructure));
+    });
+    on<SurfaceMaterialCoatingContainsAsbestosChanged>((event, emit) {
+      logger.d(
+          "SurfaceMaterialCoatingContainsAsbestosChanged to ${event.asbestos}");
+      emit(state.copyWith(
+          surfaceMaterialCoatingContainsAsbestos: event.asbestos));
     });
   }
 }

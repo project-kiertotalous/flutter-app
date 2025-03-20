@@ -28,7 +28,7 @@ class FloorStructuresForm extends StatelessWidget {
           ),
           LayoutGrid(
             columnSizes: [
-              200.px,
+              220.px,
               140.px,
               140.px,
               140.px,
@@ -50,8 +50,13 @@ class FloorStructuresForm extends StatelessWidget {
             children: [
               Cell(
                 type: CellType.row,
-                // TODO: add InfoButton once it is available after merge
-                initialValue: 'Pinnoite sisältää asbestia',
+                initialValue: "",
+                checkbox: true,
+                checkboxValue: state.surfaceMaterialCoatingContainsAsbestos,
+                checkboxTitle: "Pinnoite sisältää asbestia",
+                checkboxSetter: (value) => floorStructuresBloc.add(
+                  SurfaceMaterialCoatingContainsAsbestosChanged(value),
+                ),
               ),
               Cell(
                 type: CellType.column,
