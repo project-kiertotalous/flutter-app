@@ -8,14 +8,17 @@ import 'package:flutter_app/src/bloc/foundations_bloc.dart'; // Import Foundatio
 class IntermediateFloorsBloc
     extends Bloc<IntermediateFloorsEvent, TotalIntermediateFloors> {
   final TotalBuildingDimensionsBloc totalBuildingDimensionsBloc;
-  final FoundationsBloc foundationsBloc; // Add the FoundationsBloc
+  final FoundationsBloc foundationsBloc;
 
   IntermediateFloorsBloc(
     this.totalBuildingDimensionsBloc,
-    this.foundationsBloc, // Inject FoundationsBloc
+    this.foundationsBloc,
   ) : super(TotalIntermediateFloors().copyWith(
           totalBuildingDimensions: totalBuildingDimensionsBloc.state,
           foundations: foundationsBloc.state,
+          intermediateFloors: IntermediateFloors(
+            hollowCoreSlabsAndGlulamBeamRecyclable: false,
+          ),
         )) {
     on<TotalBuildingDimensionsChanged>((event, emit) {
       logger.d("TotalBuildingDimensionsChanged ${event.value}");
@@ -77,6 +80,20 @@ class IntermediateFloorsBloc
       final updatedIntermediateFloors =
           (state.intermediateFloors ?? IntermediateFloors()).copyWith(
         glulamBeamPercentageFraction: event.value,
+      );
+
+      final newState =
+          state.copyWith(intermediateFloors: updatedIntermediateFloors);
+
+      emit(newState);
+    });
+
+    on<HollowCoreSlabsAndGlulamBeamRecyclableChanged>((event, emit) {
+      logger.d("HollowCoreSlabsAndGlulamBeamRecyclableChanged ${event.value}");
+
+      final updatedIntermediateFloors =
+          (state.intermediateFloors ?? IntermediateFloors()).copyWith(
+        hollowCoreSlabsAndGlulamBeamRecyclable: event.value,
       );
 
       final newState =

@@ -32,3 +32,9 @@ class TotalFoundationChanged extends IntermediateFloorsEvent {
   final Foundations value;
   TotalFoundationChanged(this.value);
 }
+
+class HollowCoreSlabsAndGlulamBeamRecyclableChanged
+    extends IntermediateFloorsEvent {
+  final bool value;
+  HollowCoreSlabsAndGlulamBeamRecyclableChanged(this.value);
+}

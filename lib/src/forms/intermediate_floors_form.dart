@@ -29,7 +29,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                 // First LayoutGrid
                 LayoutGrid(
                   columnSizes: [
-                    150.px,
+                    320.px,
                     120.px,
                     120.px,
                   ],
@@ -42,9 +42,17 @@ class IntermediateFloorsForm extends StatelessWidget {
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
                     Cell(
-                        type: CellType.column,
-                        initialValue:
-                            "Ontelolaatat ja liimapalkit ovat kierrätettäviä"),
+                      type: CellType.row,
+                      initialValue: "",
+                      checkbox: true,
+                      checkboxValue:
+                          state.hollowCoreSlabsAndGlulamBeamRecyclable,
+                      checkboxTitle:
+                          "Ontelolaatat ja liimapalkit ovat kierrätettäviä",
+                      checkboxSetter: (value) => intermediateFloorsBloc.add(
+                        HollowCoreSlabsAndGlulamBeamRecyclableChanged(value),
+                      ),
+                    ),
                     Cell(
                       type: CellType.column,
                       initialValue: "Rakenteen osuus koko kerrosalasta (%)",
