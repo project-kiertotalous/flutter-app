@@ -14,7 +14,7 @@ class InputCell extends StatefulWidget {
   final Function setter;
 
   /// Set this as true if you want the input field to only accept and set integer values.
-  /// By default the values are doubles.
+  /// By default, the values are doubles.
   final bool integer;
 
   @override
@@ -30,54 +30,49 @@ class _InputCellState extends State<InputCell> {
   }
 
   void setIntValue(String value) {
-    widget.setter(int.parse(value));
+    widget.setter(value.isEmpty ? 0 : int.parse(value)); // Default to 0 if empty
   }
 
   void setDoubleValue(String value) {
     logger.d('Controller value: ${_controller?.text}');
-    var formattedValue = '0';
-    // replace comma with period
-    if (value.isNotEmpty) {
-      formattedValue = value.replaceFirst(RegExp(','), '.');
-      // add a trailing zero if it is missing
-      if (formattedValue[formattedValue.length - 1] == '.') {
-        formattedValue = '${formattedValue}0';
-      }
+    var formattedValue = value.replaceFirst(RegExp(','), '.');
+
+    if (formattedValue.isEmpty) {
+      widget.setter(0); // Default to 0 if empty
+      return;
     }
 
-    // cast to double
+    if (formattedValue.endsWith('.')) {
+      formattedValue = '${formattedValue}0';
+    }
+
     num castedValue = double.parse(formattedValue);
-    // set new value to form
     widget.setter(castedValue);
     logger.d(castedValue);
   }
 
-  List<FilteringTextInputFormatter> formatters() {
+  List<TextInputFormatter> formatters() {
     if (widget.integer) {
-      return List.from([FilteringTextInputFormatter.digitsOnly]);
+      return [FilteringTextInputFormatter.digitsOnly];
     }
-    return List.from(
-      [
-        FilteringTextInputFormatter.allow(
-          RegExp(r'([0-9]+([,][0-9]*)?|[,][0-9]+)'),
-        )
-      ],
-    );
+    return [
+      FilteringTextInputFormatter.allow(
+        RegExp(r'([0-9]+([,][0-9]*)?|[,][0-9]+)'),
+      )
+    ];
   }
 
   @override
   void initState() {
     super.initState();
-    final text = periodToComma(widget.initialValue);
-    _controller = TextEditingController(
-      text: text,
-    );
+    final text = widget.initialValue != null ? periodToComma(widget.initialValue) : '0';
+    _controller = TextEditingController(text: text);
   }
 
   @override
   void dispose() {
-    super.dispose();
     _controller?.dispose();
+    super.dispose();
   }
 
   @override
@@ -86,15 +81,11 @@ class _InputCellState extends State<InputCell> {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-        ),
-        // borderRadius: BorderRadius.circular(6),
+        border: Border.all(width: 1),
       ),
       child: Center(
         child: TextField(
-          onChanged: (value) =>
-              widget.integer ? setIntValue(value) : setDoubleValue(value),
+          onChanged: (value) => widget.integer ? setIntValue(value) : setDoubleValue(value),
           controller: _controller,
           inputFormatters: formatters(),
         ),
