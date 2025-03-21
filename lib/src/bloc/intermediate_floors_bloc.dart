@@ -9,8 +9,9 @@ class IntermediateFloorsBloc
   final TotalBuildingDimensionsBloc totalBuildingDimensionsBloc;
 
   IntermediateFloorsBloc(this.totalBuildingDimensionsBloc)
-      : super(TotalIntermediateFloors()) {
-    
+      : super(TotalIntermediateFloors().copyWith(
+          totalBuildingDimensions: totalBuildingDimensionsBloc.state,
+        )) {
     on<TotalBuildingDimensionsChanged>((event, emit) {
       logger.d("TotalBuildingDimensionsChanged ${event.value}");
       final newState = state.copyWith(totalBuildingDimensions: event.value);
@@ -18,19 +19,18 @@ class IntermediateFloorsBloc
     });
 
     on<WoodFramePercentageChanged>((event, emit) {
-  logger.d("WoodFramePercentageChanged ${event.value}");
+      logger.d("WoodFramePercentageChanged ${event.value}");
 
-  final updatedIntermediateFloors =
-      (state.intermediateFloors ?? IntermediateFloors()).copyWith(
-    woodFramePercentageFraction: event.value,
-  );
+      final updatedIntermediateFloors =
+          (state.intermediateFloors ?? IntermediateFloors()).copyWith(
+        woodFramePercentageFraction: event.value,
+      );
 
-  final newState =
-      state.copyWith(intermediateFloors: updatedIntermediateFloors);
+      final newState =
+          state.copyWith(intermediateFloors: updatedIntermediateFloors);
 
-  emit(newState);
-});
-
+      emit(newState);
+    });
 
     on<ConcreteCastingPercentageChanged>((event, emit) {
       logger.d("ConcreteCastingPercentageChanged ${event.value}");
@@ -73,21 +73,11 @@ class IntermediateFloorsBloc
 
       emit(newState);
     });
-
-    on<TotalFoundationChanged>((event, emit) {
-      logger.d("TotalFoundationChanged ${event.value}");
-
-      final newState = state.copyWith(totalFoundation: event.value);
-
-      emit(newState);
-    });
-
     // Listen to changes from TotalBuildingDimensionsBloc
     totalBuildingDimensionsBloc.stream.listen((totalDimensionsState) {
-  if (totalDimensionsState != null) {
-    logger.d("Received update from TotalBuildingDimensionsBloc: $totalDimensionsState");
-    add(TotalBuildingDimensionsChanged(totalDimensionsState));
-  }
-});
+      logger.d(
+          "Received update from TotalBuildingDimensionsBloc: $totalDimensionsState");
+      add(TotalBuildingDimensionsChanged(totalDimensionsState));
+    });
   }
 }

@@ -131,7 +131,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     OutputCell(
                         getter: () => state.concreteCastingConcreteVolume),
                     OutputCell(getter: () => state.concreteCastingConcreteTons),
-                    OutputCell(getter: () => state.concreteCastingSteelTons),
+                    OutputCell(getter: () => state.concreteCastingRebarTons),
                     Cell(type: CellType.row, initialValue: 'Ontelolaatta'),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),

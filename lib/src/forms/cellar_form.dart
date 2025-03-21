@@ -14,34 +14,32 @@ class CellarForm extends StatelessWidget {
   const CellarForm({super.key});
 
   /// Converts CellarExteriorMaterial enum values to display names
-/// and returns them as a list of DropdownMenuItems.
-List<DropdownMenuItem<CellarExteriorMaterial?>> toList() {
-  return [
-    DropdownMenuItem<CellarExteriorMaterial?>(
-      value: null,
-      child: Text('Valitse'),
-    ),
-    ...CellarExteriorMaterial.values.map((type) {
-      return DropdownMenuItem<CellarExteriorMaterial?>(
-        value: type,
-        child: Text(typeToString(type)),
-      );
-    }),
-  ];
-}
-
-String typeToString(CellarExteriorMaterial type) {
-  switch (type) {
-    case CellarExteriorMaterial.concreteCasting:
-      return "Betonivalu";
-    case CellarExteriorMaterial.brick:
-      return "Tiiliseinä";
-    case CellarExteriorMaterial.concreteBlock:
-      return "Harkkoseinä";
+  /// and returns them as a list of DropdownMenuItems.
+  List<DropdownMenuItem<CellarExteriorMaterial?>> toList() {
+    return [
+      DropdownMenuItem<CellarExteriorMaterial?>(
+        value: null,
+        child: Text('Valitse'),
+      ),
+      ...CellarExteriorMaterial.values.map((type) {
+        return DropdownMenuItem<CellarExteriorMaterial?>(
+          value: type,
+          child: Text(typeToString(type)),
+        );
+      }),
+    ];
   }
-}
 
-
+  String typeToString(CellarExteriorMaterial type) {
+    switch (type) {
+      case CellarExteriorMaterial.concreteCasting:
+        return "Betonivalu";
+      case CellarExteriorMaterial.brick:
+        return "Tiiliseinä";
+      case CellarExteriorMaterial.concreteBlock:
+        return "Harkkoseinä";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,32 +57,39 @@ String typeToString(CellarExteriorMaterial type) {
                 Cell(type: CellType.header, initialValue: 'Kellari'),
                 Cell(type: CellType.empty),
                 Cell(type: CellType.empty),
-
-                Cell(type: CellType.row, initialValue: 'Kellarin lattia-ala (m²)'),
+                Cell(
+                    type: CellType.row,
+                    initialValue: 'Kellarin lattia-ala (m²)'),
                 Cell(
                   type: CellType.input,
                   initialValue: state.floorArea,
-                  setter: (value) => cellarBloc.add(CellarFloorAreaChanged(value)),
+                  setter: (value) =>
+                      cellarBloc.add(CellarFloorAreaChanged(value)),
                 ),
                 Cell(type: CellType.empty),
-
-                Cell(type: CellType.row, initialValue: 'Kellarin ulkoseinien kehämitta (jm)'),
+                Cell(
+                    type: CellType.row,
+                    initialValue: 'Kellarin ulkoseinien kehämitta (jm)'),
                 Cell(
                   type: CellType.input,
                   initialValue: state.exteriorWallsPerimeter,
-                  setter: (value) => cellarBloc.add(CellarPerimeterChanged(value)),
-                    ),
+                  setter: (value) =>
+                      cellarBloc.add(CellarPerimeterChanged(value)),
+                ),
                 MenuCell<CellarExteriorMaterial?>(
-                setter: (value) =>
-                  cellarBloc.add(CellarMaterialChanged(value)),
+                  setter: (value) =>
+                      cellarBloc.add(CellarMaterialChanged(value)),
                   initialValue: state.exteriorWallsMaterial,
                   items: toList(),
-                  ),
-                Cell(type: CellType.row, initialValue: 'Kellarin seinän korkeus (m)'),
+                ),
+                Cell(
+                    type: CellType.row,
+                    initialValue: 'Kellarin seinän korkeus (m)'),
                 Cell(
                   type: CellType.input,
                   initialValue: state.wallHeight,
-                  setter: (value) => cellarBloc.add(CellarWallHeightChanged(value)),
+                  setter: (value) =>
+                      cellarBloc.add(CellarWallHeightChanged(value)),
                 ),
                 Cell(type: CellType.empty),
               ],
@@ -99,34 +104,34 @@ String typeToString(CellarExteriorMaterial type) {
               children: [
                 Cell(
                     type: CellType.header,
-                    initialValue: "Kellarin lattian ja ulkoseinien purkumateriaalimäärät"),
+                    initialValue:
+                        "Kellarin lattian ja ulkoseinien purkumateriaalimäärät"),
                 Cell(type: CellType.row, initialValue: "Tonnia"),
                 Cell(type: CellType.row, initialValue: "m³"),
-
                 Cell(type: CellType.row, initialValue: "Betonia"),
-                OutputCell(getter: () => state.concreteDemolitionTons),
-                OutputCell(getter: () => state.concreteDemolitionVolume),
-
+                OutputCell(getter: () => state.concreteTons),
+                OutputCell(getter: () => state.concreteVolume),
                 Cell(type: CellType.row, initialValue: "Betoniterästä"),
                 OutputCell(getter: () => state.rebarTons),
                 OutputCell(getter: () => ''),
-
                 Cell(type: CellType.row, initialValue: "Tiiliä"),
                 OutputCell(getter: () => state.brickTons),
                 OutputCell(getter: () => state.brickVolume),
-
                 Cell(type: CellType.row, initialValue: "Harkkoja"),
                 OutputCell(getter: () => state.blockTons),
                 OutputCell(getter: () => state.blockVolume),
-
-                Cell(type: CellType.row, initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
-                OutputCell(getter: () => state.glassAndMineralWoolInsulationTons),
-                OutputCell(getter: () => state.glassAndMineralWoolInsulationVolume),
-
-                Cell(type: CellType.row, initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
+                Cell(
+                    type: CellType.row,
+                    initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
+                OutputCell(
+                    getter: () => state.glassAndMineralWoolInsulationTons),
+                OutputCell(
+                    getter: () => state.glassAndMineralWoolInsulationVolume),
+                Cell(
+                    type: CellType.row,
+                    initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
                 OutputCell(getter: () => state.plasticWasteTons),
                 OutputCell(getter: () => state.plasticWasteVolume),
-
                 Cell(type: CellType.row, initialValue: "Kuumabitumisively"),
                 OutputCell(getter: () => state.hotBitumenCoatingTons),
                 OutputCell(getter: () => state.hotBitumenCoatingVolume),
