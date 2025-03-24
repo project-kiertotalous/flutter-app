@@ -98,6 +98,7 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.officeSpaces?.floorPanelFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
@@ -111,6 +112,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.lobbiesAndOtherCommonAreas?.floorPanelFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
@@ -124,6 +126,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.restroomsAndWashingFacilities?.floorPanelFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
@@ -136,6 +139,7 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.kitchens?.floorPanelFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
@@ -148,6 +152,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.teachingAndTreatmentSpaces?.floorPanelFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
@@ -161,6 +166,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.storageAndWorkspaces?.floorPanelFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
@@ -173,6 +179,7 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.otherSpaces?.floorPanelFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
@@ -195,6 +202,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.officeSpaces?.plasticCarpetOrPlasticTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
@@ -208,6 +216,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue: state.lobbiesAndOtherCommonAreas
                     ?.plasticCarpetOrPlasticTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
@@ -221,6 +230,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue: state.restroomsAndWashingFacilities
                     ?.plasticCarpetOrPlasticTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
@@ -234,6 +244,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.kitchens?.plasticCarpetOrPlasticTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
@@ -247,6 +258,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue: state.teachingAndTreatmentSpaces
                     ?.plasticCarpetOrPlasticTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
@@ -260,6 +272,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue: state.storageAndWorkspaces
                     ?.plasticCarpetOrPlasticTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
@@ -273,6 +286,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.otherSpaces?.plasticCarpetOrPlasticTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
@@ -292,6 +306,7 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.officeSpaces?.parquetFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
@@ -304,6 +319,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.lobbiesAndOtherCommonAreas?.parquetFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
@@ -317,6 +333,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.restroomsAndWashingFacilities?.parquetFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
@@ -329,6 +346,7 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.kitchens?.parquetFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
@@ -341,6 +359,7 @@ class FloorStructuresForm extends StatelessWidget {
                 type: CellType.input,
                 initialValue:
                     state.teachingAndTreatmentSpaces?.parquetFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
@@ -353,6 +372,7 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.storageAndWorkspaces?.parquetFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
@@ -365,6 +385,7 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.otherSpaces?.parquetFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
@@ -382,63 +403,13 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(type: CellType.row, initialValue: 'Kaakelilaatta'),
               Cell(
                 type: CellType.input,
-                initialValue: state.officeSpaces?.gypsumBoardingMidsolePortion,
+                initialValue: state.officeSpaces?.ceramicTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
                       state.officeSpaces!
-                          .copyWith(gypsumBoardingMidsolePortion: value),
-                    ),
-                  );
-                },
-              ),
-              Cell(
-                type: CellType.input,
-                initialValue: state
-                    .lobbiesAndOtherCommonAreas?.gypsumBoardingMidsolePortion,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    LobbiesAndOtherCommonAreasChanged(
-                      state.lobbiesAndOtherCommonAreas!
-                          .copyWith(gypsumBoardingMidsolePortion: value),
-                    ),
-                  );
-                },
-              ),
-              Cell(
-                type: CellType.input,
-                initialValue: state.restroomsAndWashingFacilities
-                    ?.gypsumBoardingMidsolePortion,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    RestRoomsAndWashingFacilitiesChanged(
-                      state.restroomsAndWashingFacilities!
-                          .copyWith(gypsumBoardingMidsolePortion: value),
-                    ),
-                  );
-                },
-              ),
-              Cell(
-                type: CellType.input,
-                initialValue: state.kitchens?.gypsumBoardingMidsolePortion,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    KitchensChanged(
-                      state.kitchens!
-                          .copyWith(gypsumBoardingMidsolePortion: value),
-                    ),
-                  );
-                },
-              ),
-              Cell(
-                type: CellType.input,
-                initialValue: state
-                    .teachingAndTreatmentSpaces?.gypsumBoardingMidsolePortion,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    TeachingAndTreatmentSpacesChanged(
-                      state.teachingAndTreatmentSpaces!
-                          .copyWith(gypsumBoardingMidsolePortion: value),
+                          .copyWith(ceramicTileFloorPortion: value),
                     ),
                   );
                 },
@@ -446,33 +417,89 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue:
-                    state.storageAndWorkspaces?.gypsumBoardingMidsolePortion,
+                    state.lobbiesAndOtherCommonAreas?.ceramicTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
-                    StorageAndWorkspacesChanged(
-                      state.storageAndWorkspaces!
-                          .copyWith(gypsumBoardingMidsolePortion: value),
+                    LobbiesAndOtherCommonAreasChanged(
+                      state.lobbiesAndOtherCommonAreas!
+                          .copyWith(ceramicTileFloorPortion: value),
                     ),
                   );
                 },
               ),
               Cell(
                 type: CellType.input,
-                initialValue: state.otherSpaces?.gypsumBoardingMidsolePortion,
+                initialValue: state
+                    .restroomsAndWashingFacilities?.ceramicTileFloorPortion,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    RestRoomsAndWashingFacilitiesChanged(
+                      state.restroomsAndWashingFacilities!
+                          .copyWith(ceramicTileFloorPortion: value),
+                    ),
+                  );
+                },
+              ),
+              Cell(
+                type: CellType.input,
+                initialValue: state.kitchens?.ceramicTileFloorPortion,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    KitchensChanged(
+                      state.kitchens!.copyWith(ceramicTileFloorPortion: value),
+                    ),
+                  );
+                },
+              ),
+              Cell(
+                type: CellType.input,
+                initialValue:
+                    state.teachingAndTreatmentSpaces?.ceramicTileFloorPortion,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    TeachingAndTreatmentSpacesChanged(
+                      state.teachingAndTreatmentSpaces!
+                          .copyWith(ceramicTileFloorPortion: value),
+                    ),
+                  );
+                },
+              ),
+              Cell(
+                type: CellType.input,
+                initialValue:
+                    state.storageAndWorkspaces?.ceramicTileFloorPortion,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    StorageAndWorkspacesChanged(
+                      state.storageAndWorkspaces!
+                          .copyWith(ceramicTileFloorPortion: value),
+                    ),
+                  );
+                },
+              ),
+              Cell(
+                type: CellType.input,
+                initialValue: state.otherSpaces?.ceramicTileFloorPortion,
+                percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
                       state.otherSpaces!
-                          .copyWith(gypsumBoardingMidsolePortion: value),
+                          .copyWith(ceramicTileFloorPortion: value),
                     ),
                   );
                 },
               ),
               OutputCell(
-                getter: () => state.gypsumBoardingMidsoleVolume,
+                getter: () => state.ceramicTileFloorVolume,
               ),
               OutputCell(
-                getter: () => state.gypsumBoardingMidsoleTons,
+                getter: () => state.ceramicTileFloorTons,
               ),
               Cell(
                 type: CellType.row,
@@ -480,27 +507,34 @@ class FloorStructuresForm extends StatelessWidget {
               ),
               OutputCell(
                 getter: () => state.officeSpaces?.floorPortionTotal,
+                percentage: true,
               ),
               OutputCell(
                 getter: () =>
                     state.lobbiesAndOtherCommonAreas?.floorPortionTotal,
+                percentage: true,
               ),
               OutputCell(
                 getter: () =>
                     state.restroomsAndWashingFacilities?.floorPortionTotal,
+                percentage: true,
               ),
               OutputCell(
                 getter: () => state.kitchens?.floorPortionTotal,
+                percentage: true,
               ),
               OutputCell(
                 getter: () =>
                     state.teachingAndTreatmentSpaces?.floorPortionTotal,
+                percentage: true,
               ),
               OutputCell(
                 getter: () => state.storageAndWorkspaces?.floorPortionTotal,
+                percentage: true,
               ),
               OutputCell(
                 getter: () => state.otherSpaces?.floorPortionTotal,
+                percentage: true,
               ),
               Cell(
                 type: CellType.empty,
