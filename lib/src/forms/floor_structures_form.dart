@@ -194,12 +194,12 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue:
-                    state.officeSpaces?.vinylFlooringOrTileFloorPortion,
+                    state.officeSpaces?.plasticCarpetOrPlasticTileFloorPortion,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
-                      state.officeSpaces!
-                          .copyWith(vinylFlooringOrTileFloorPortion: value),
+                      state.officeSpaces!.copyWith(
+                          plasticCarpetOrPlasticTileFloorPortion: value),
                     ),
                   );
                 },
@@ -207,12 +207,12 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.lobbiesAndOtherCommonAreas
-                    ?.vinylFlooringOrTileFloorPortion,
+                    ?.plasticCarpetOrPlasticTileFloorPortion,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
-                      state.lobbiesAndOtherCommonAreas!
-                          .copyWith(vinylFlooringOrTileFloorPortion: value),
+                      state.lobbiesAndOtherCommonAreas!.copyWith(
+                          plasticCarpetOrPlasticTileFloorPortion: value),
                     ),
                   );
                 },
@@ -220,24 +220,25 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.restroomsAndWashingFacilities
-                    ?.vinylFlooringOrTileFloorPortion,
+                    ?.plasticCarpetOrPlasticTileFloorPortion,
                 setter: (value) {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
-                      state.restroomsAndWashingFacilities!
-                          .copyWith(vinylFlooringOrTileFloorPortion: value),
+                      state.restroomsAndWashingFacilities!.copyWith(
+                          plasticCarpetOrPlasticTileFloorPortion: value),
                     ),
                   );
                 },
               ),
               Cell(
                 type: CellType.input,
-                initialValue: state.kitchens?.vinylFlooringOrTileFloorPortion,
+                initialValue:
+                    state.kitchens?.plasticCarpetOrPlasticTileFloorPortion,
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
-                      state.kitchens!
-                          .copyWith(vinylFlooringOrTileFloorPortion: value),
+                      state.kitchens!.copyWith(
+                          plasticCarpetOrPlasticTileFloorPortion: value),
                     ),
                   );
                 },
@@ -245,25 +246,25 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue: state.teachingAndTreatmentSpaces
-                    ?.vinylFlooringOrTileFloorPortion,
+                    ?.plasticCarpetOrPlasticTileFloorPortion,
                 setter: (value) {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
-                      state.teachingAndTreatmentSpaces!
-                          .copyWith(vinylFlooringOrTileFloorPortion: value),
+                      state.teachingAndTreatmentSpaces!.copyWith(
+                          plasticCarpetOrPlasticTileFloorPortion: value),
                     ),
                   );
                 },
               ),
               Cell(
                 type: CellType.input,
-                initialValue:
-                    state.storageAndWorkspaces?.vinylFlooringOrTileFloorPortion,
+                initialValue: state.storageAndWorkspaces
+                    ?.plasticCarpetOrPlasticTileFloorPortion,
                 setter: (value) {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
-                      state.storageAndWorkspaces!
-                          .copyWith(vinylFlooringOrTileFloorPortion: value),
+                      state.storageAndWorkspaces!.copyWith(
+                          plasticCarpetOrPlasticTileFloorPortion: value),
                     ),
                   );
                 },
@@ -271,21 +272,21 @@ class FloorStructuresForm extends StatelessWidget {
               Cell(
                 type: CellType.input,
                 initialValue:
-                    state.otherSpaces?.vinylFlooringOrTileFloorPortion,
+                    state.otherSpaces?.plasticCarpetOrPlasticTileFloorPortion,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
-                      state.otherSpaces!
-                          .copyWith(vinylFlooringOrTileFloorPortion: value),
+                      state.otherSpaces!.copyWith(
+                          plasticCarpetOrPlasticTileFloorPortion: value),
                     ),
                   );
                 },
               ),
               OutputCell(
-                getter: () => state.vinylFlooringOrTileFloorVolume,
+                getter: () => state.plasticCarpetOrPlasticTileFloorTons,
               ),
               OutputCell(
-                getter: () => state.vinylFlooringOrTileFloorTons,
+                getter: () => state.plasticCarpetOrPlasticTileFloorTons,
               ),
               Cell(type: CellType.row, initialValue: 'Parketti'),
               Cell(
