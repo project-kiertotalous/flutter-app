@@ -4,6 +4,7 @@ import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -35,10 +36,10 @@ class IntermediateFloorsForm extends StatelessWidget {
                   ],
                   rowSizes: List.filled(7, 50.px),
                   children: [
-                    Cell(
-                        type: CellType.header,
-                        initialValue:
-                            "Välipohjien pinta-alat ja runkorakenteet"),
+                    // Add FormHeader here
+                    FormHeader(
+                      text: 'Välipohjien pinta-alat ja runkorakenteet',
+                    ),
                     Cell(type: CellType.empty),
                     Cell(type: CellType.empty),
                     Cell(
@@ -65,6 +66,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     Cell(
                       type: CellType.input,
                       initialValue: state.woodFramePercentageFraction,
+                      percentage: true,
                       setter: (value) => intermediateFloorsBloc
                           .add(WoodFramePercentageChanged(value)),
                     ),
@@ -75,6 +77,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     Cell(
                         type: CellType.input,
                         initialValue: state.concreteCastingPercentageFraction,
+                        percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(ConcreteCastingPercentageChanged(value))),
                     OutputCell(getter: () => state.concreteCastingFloorArea),
@@ -82,6 +85,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     Cell(
                         type: CellType.input,
                         initialValue: state.hollowCoreSlabPercentageFraction,
+                        percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(HollowCoreSlabPercentageChanged(value))),
                     OutputCell(getter: () => state.hollowCoreSlabFloorArea),
@@ -92,6 +96,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     Cell(
                         type: CellType.input,
                         initialValue: state.glulamBeamPercentageFraction,
+                        percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(GlulamBeamPercentageChanged(value))),
                     OutputCell(getter: () => state.glulamBeamFloorArea),
