@@ -55,9 +55,8 @@ class PartitionWallFramesAndSurfaceMaterialsForm extends StatelessWidget {
               Cell(
                   type: CellType.row,
                   initialValue: 'Sisäseinien kokonaispinta-ala (m2)'),
-              Cell(
-                type: CellType.output,
-                initialValue: state.totalArea,
+              OutputCell(
+                getter: () =>state.totalArea,
               ),
             ],
           ),
