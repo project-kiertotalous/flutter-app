@@ -67,7 +67,9 @@ class RemovableGroundsForm extends StatelessWidget {
                   type: CellType.row,
                   initialValue: 'Poistettavan puhtaan maan osuus (%)'),
               OutputCell(
-                  getter: () => state.cleanSoilPortionPercentageFraction),
+                getter: () => state.cleanSoilPortionPercentageFraction,
+                percentage: true,
+              ),
               Cell(type: CellType.row, initialValue: 'Puhdas maa (tonnia)'),
               OutputCell(getter: () => state.cleanLandTons),
               Cell(type: CellType.row, initialValue: 'Saastunut maa (tonnia)'),
