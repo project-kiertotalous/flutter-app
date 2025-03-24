@@ -18,7 +18,7 @@ class PartitionsAndWindowsView extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.topLeft,
-                child: PartitionWallFramesAndSurfaceMaterials(),
+                child: PartitionWallFramesAndSurfaceMaterialsForm(),
               ),
               const SizedBox(height: 20),
               Align(
