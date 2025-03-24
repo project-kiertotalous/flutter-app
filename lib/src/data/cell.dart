@@ -41,10 +41,16 @@ class _CellState extends State<Cell> {
   late dynamic value = widget.initialValue;
   TextEditingController? _controller;
 
-  String periodToComma(dynamic text) {
-    return text.toString().replaceFirst('.', ',');
+  // Convert value to a percentage string (e.g., 0.2 -> 20%)
+  String formatValueForDisplay(dynamic value) {
+    if (widget.percentage && value is num) {
+      return "${(value * 100).toInt()}%"; // Convert to integer percentage for display
+    } else {
+      return value?.toString() ?? "0.0";
+    }
   }
 
+  // Convert the input to a decimal value for storage (e.g., 20% -> 0.2)
   void handleChange(String value) {
     print('Controller value: ${_controller?.text}');
     var formattedValue = '0';
@@ -78,7 +84,8 @@ class _CellState extends State<Cell> {
   void initState() {
     super.initState();
     if (widget.type == CellType.input) {
-      final text = periodToComma(widget.initialValue ?? 0.0);
+      // Initialize the controller with the formatted initial value for percentage display
+      final text = formatValueForDisplay(widget.initialValue ?? 0.0);
       _controller = TextEditingController(text: text);
     }
   }
@@ -89,6 +96,7 @@ class _CellState extends State<Cell> {
     _controller?.dispose();
   }
 
+  // Returns a widget depending on the type of the cell
   Widget type() {
     switch (widget.type) {
       case CellType.input:
