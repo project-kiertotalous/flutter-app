@@ -99,7 +99,10 @@ class IntermediateFloorsForm extends StatelessWidget {
                         type: CellType.row,
                         initialValue:
                             "Välipohjien lattiapinta-alat yhteensä (% / kerrosala yhteensä m²)"),
-                    OutputCell(getter: () => state.totalFraction),
+                    OutputCell(
+                      getter: () => state.totalFraction,
+                      percentage: true,
+                    ),
                     OutputCell(getter: () => state.totalFloorArea),
                   ],
                 ),

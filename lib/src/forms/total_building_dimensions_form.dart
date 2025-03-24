@@ -4,6 +4,8 @@ import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
@@ -20,7 +22,11 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
 
     return BlocBuilder<TotalBuildingDimensionsBloc, TotalBuildingDimensions>(
         builder: (context, state) {
-      return LayoutGrid(
+          return Column(
+        children: [
+          FormHeader(
+              text: 'Rakennuksen pinta-ala'),
+      LayoutGrid(
         columnSizes: [
           400.px,
           160.px,
@@ -39,12 +45,9 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             type: CellType.empty,
           ),
           Cell(
-            type: CellType.column,
-            initialValue: 'Todellinen pinta-ala (m2)',
+            type: CellType.empty,
           ),
-          Cell(
-              type: CellType.column,
-              initialValue: 'Laskennallinen pinta-ala (m2)'),
+          Cell(type: CellType.column, initialValue: 'Laskennallinen arvo'),
           Cell(
             type: CellType.row,
             initialValue: 'Rakennuksen kerrospinta-ala (bruttoala) (m2)',
@@ -86,8 +89,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
             integer: true,
           ),
           // this is supposed to be empty for now (14.3.25)
-          Cell(
-            type: CellType.empty,
+          GreyCell(
           ),
           Cell(
             type: CellType.row,
@@ -111,12 +113,12 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.grossFloorAreaExcludingCellars,
           ),
-          Cell(
-            // supposed to be empty for now (14.3.25)
-            type: CellType.empty,
+          GreyCell(
           ),
         ],
-      );
-    });
+      ),
+    ],
+  );
+});
   }
 }
