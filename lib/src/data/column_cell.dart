@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/cell_type.dart';
 
 class ColumnCell extends StatelessWidget {
   const ColumnCell({

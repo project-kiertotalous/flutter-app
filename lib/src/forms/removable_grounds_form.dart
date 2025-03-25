@@ -2,7 +2,6 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_event.dart';
-import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
