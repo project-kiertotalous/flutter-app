@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
-import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
+import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
@@ -41,13 +42,17 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => FoundationsBloc(),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => ExcavationAreaBloc(),
+                    create: (BuildContext context) => ExcavationAreaBloc()),
+                BlocProvider(create: (BuildContext context) => CellarBloc()),
+                BlocProvider(
+                  create: (BuildContext context) => IntermediateFloorsBloc(
+                    context.read<TotalBuildingDimensionsBloc>(),
+                    context.read<FoundationsBloc>(),
+                  ),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => CellarBloc(),
-                ),
-                                BlocProvider(
-                  create: (BuildContext context) => InternalWallFramesAndSurfaceMaterialBloc(),
+                  create: (BuildContext context) =>
+                      InternalWallFramesAndSurfaceMaterialBloc(),
                 ),
               ],
               child: LargeBuildingsView(),
