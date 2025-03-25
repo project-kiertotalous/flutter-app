@@ -2,10 +2,14 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_event.dart';
-import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/column_cell.dart';
+import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/menu_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -80,17 +84,16 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           50.px,
         ],
         children: [
-          Cell(type: CellType.header, initialValue: 'Perustyyppi ja lattiat'),
-          Cell(
-            type: CellType.column,
+          FormHeader(text: 'Perustyyppi ja lattiat'),
+          ColumnCell(
             initialValue: 'Valesokkeli',
           ),
-          Cell(type: CellType.column, initialValue: 'Rossipohja'),
-          Cell(type: CellType.column, initialValue: 'Matalaperustus'),
-          Cell(type: CellType.column, initialValue: 'Pilariperustus'),
-          Cell(type: CellType.column, initialValue: 'Ontelolaattaperustus'),
-          Cell(type: CellType.column, initialValue: 'Koko rakennus yht.'),
-          Cell(type: CellType.header, initialValue: 'Monivalinta'),
+          ColumnCell(initialValue: 'Rossipohja'),
+          ColumnCell(initialValue: 'Matalaperustus'),
+          ColumnCell(initialValue: 'Pilariperustus'),
+          ColumnCell(initialValue: 'Ontelolaattaperustus'),
+          ColumnCell(initialValue: 'Koko rakennus yht.'),
+          ColumnCell(initialValue: 'Monivalinta'),
           MenuCell<FoundationMaterial>(
             setter: (FoundationMaterial? value) =>
                 foundationsBloc.add(FalsePlinthMaterialChanged(value)),
@@ -103,51 +106,40 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
             initialValue: state.crawlSpace?.material,
             items: toList(),
           ),
-          Cell(
-            type: CellType.empty,
+          EmptyCell(),
+          MenuCell<FoundationMaterial?>(
+            setter: (FoundationMaterial? value) =>
+                foundationsBloc.add(PillarMaterialChanged(value)),
+            initialValue: state.pillar?.material,
+            items: toList(),
           ),
           MenuCell<FoundationMaterial?>(
-              setter: (FoundationMaterial? value) =>
-                  foundationsBloc.add(PillarMaterialChanged(value)),
-              initialValue: state.pillar?.material,
-              items: toList(),
-            ),
-            MenuCell<FoundationMaterial?>(
-              setter: (FoundationMaterial? value) =>
-                  foundationsBloc.add(HollowCoreSlabMaterialChanged(value)),
-              initialValue: state.hollowCoreSlab?.material,
-              items: toList(),
-            ),
-          Cell(
-            type: CellType.empty,
+            setter: (FoundationMaterial? value) =>
+                foundationsBloc.add(HollowCoreSlabMaterialChanged(value)),
+            initialValue: state.hollowCoreSlab?.material,
+            items: toList(),
           ),
-          Cell(
-              type: CellType.header,
-              initialValue: 'Perustuksen pinta-ala (m2)'),
-          Cell(
-            type: CellType.input,
+          EmptyCell(),
+          RowCell(initialValue: 'Perustuksen pinta-ala (m2)'),
+          InputCell(
             initialValue: state.falsePlinth?.area,
             setter: (value) =>
                 foundationsBloc.add(FalsePlinthAreaChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.crawlSpace?.area,
             setter: (value) =>
                 foundationsBloc.add(CrawlSpaceAreaChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.shallow?.area,
             setter: (value) => foundationsBloc.add(ShallowAreaChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.pillar?.area,
             setter: (value) => foundationsBloc.add(PillarAreaChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.hollowCoreSlab?.area,
             setter: (value) =>
                 foundationsBloc.add(HollowCoreSlabAreaChanged(value)),
@@ -155,35 +147,28 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.area,
           ),
-          Cell(
-              type: CellType.header,
-              initialValue: 'Perustuksen kehämitta (jm)'),
-          Cell(
-            type: CellType.input,
+          RowCell(initialValue: 'Perustuksen kehämitta (jm)'),
+          InputCell(
             initialValue: state.falsePlinth?.circumference,
             setter: (value) =>
                 foundationsBloc.add(FalsePlinthCircumferenceChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.crawlSpace?.circumference,
             setter: (value) =>
                 foundationsBloc.add(CrawlSpaceCircumferenceChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.shallow?.circumference,
             setter: (value) =>
                 foundationsBloc.add(ShallowCircumferenceChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.pillar?.circumference,
             setter: (value) =>
                 foundationsBloc.add(PillarCircumferenceChanged(value)),
           ),
-          Cell(
-            type: CellType.input,
+          InputCell(
             initialValue: state.hollowCoreSlab?.circumference,
             setter: (value) =>
                 foundationsBloc.add(HollowCoreSlabCircumferenceChanged(value)),
@@ -191,18 +176,15 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.circumference,
           ),
-          Cell(
-              type: CellType.header,
-              initialValue: "Perustusten purkumateriaalimäärät"),
-          Cell(type: CellType.empty),
-          Cell(type: CellType.empty),
-          Cell(type: CellType.empty),
-          Cell(type: CellType.empty),
-          Cell(type: CellType.empty),
-          Cell(type: CellType.empty),
+          FormHeader(text: "Perustusten purkumateriaalimäärät"),
+          EmptyCell(),
+          EmptyCell(),
+          EmptyCell(),
+          EmptyCell(),
+          EmptyCell(),
+          EmptyCell(),
           // TODO: needs check button!
-          Cell(
-            type: CellType.row,
+          RowCell(
             initialValue: "Betonia (m3)",
             checkbox: true,
             checkboxValue: state.bituminousWaterProofing,
@@ -229,7 +211,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.concreteVolume,
           ),
-          Cell(type: CellType.row, initialValue: "Betonia (tonnia)"),
+          RowCell(initialValue: "Betonia (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.concreteTons,
           ),
@@ -248,7 +230,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.concreteTons,
           ),
-          Cell(type: CellType.row, initialValue: "Betoniterästä (tonnia)"),
+          RowCell(initialValue: "Betoniterästä (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.rebarTons,
           ),
@@ -267,7 +249,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.rebarTons,
           ),
-          Cell(type: CellType.row, initialValue: "Betoniharkot (m3)"),
+          RowCell(initialValue: "Betoniharkot (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.concreteBlockVolume,
           ),
@@ -286,7 +268,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.concreteBlockVolume,
           ),
-          Cell(type: CellType.row, initialValue: "Betoniharkot (tonnia)"),
+          RowCell(initialValue: "Betoniharkot (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.concreteBlockTons,
           ),
@@ -305,9 +287,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.concreteBlockTons,
           ),
-          Cell(
-              type: CellType.row,
-              initialValue: "Lasi- ja mineraalieristevilla (m3)"),
+          RowCell(initialValue: "Lasi- ja mineraalieristevilla (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.mineralWoolVolume,
           ),
@@ -326,9 +306,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.mineralWoolVolume,
           ),
-          Cell(
-              type: CellType.row,
-              initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
+          RowCell(initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.mineralWoolTons,
           ),
@@ -347,9 +325,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.mineralWoolTons,
           ),
-          Cell(
-              type: CellType.row,
-              initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
+          RowCell(initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.plasticWasteVolume,
           ),
@@ -368,8 +344,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.plasticWasteVolume,
           ),
-          Cell(
-              type: CellType.row,
+          RowCell(
               initialValue: "Muovijäte, styrox, kosteuseriste yms. (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.plasticWasteTons,
@@ -389,8 +364,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.plasticWasteTons,
           ),
-          Cell(
-              type: CellType.row,
+          RowCell(
               initialValue: "Kutterinpuru yms. polttokelpoinen puujäte (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.woodShavingsVolume,
@@ -410,8 +384,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.woodShavingsVolume,
           ),
-          Cell(
-              type: CellType.row,
+          RowCell(
               initialValue:
                   "Kutterinpuru yms. polttokelpoinen puujäte (tonnia)"),
           OutputCell(
@@ -432,9 +405,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.woodShavingsTons,
           ),
-          Cell(
-              type: CellType.row,
-              initialValue: "Runkopuu ja umpilaudoitus (m3)"),
+          RowCell(initialValue: "Runkopuu ja umpilaudoitus (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.solidBoardingAndWoodFrameVolume,
           ),
@@ -453,9 +424,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.solidBoardingAndWoodFrameVolume,
           ),
-          Cell(
-              type: CellType.row,
-              initialValue: "Runkopuu ja umpilaudoitus (tonnia)"),
+          RowCell(initialValue: "Runkopuu ja umpilaudoitus (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.solidBoardingAndWoodFrameTons,
           ),
@@ -474,8 +443,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.solidBoardingAndWoodFrameTons,
           ),
-          Cell(
-              type: CellType.row,
+          RowCell(
               initialValue:
                   "Polttokelpoinen jäte, tervapaperi, rakennuspahvi yms. (m3)"),
           OutputCell(
@@ -496,8 +464,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.combustibleWasteVolume,
           ),
-          Cell(
-              type: CellType.row,
+          RowCell(
               initialValue:
                   "Polttokelpoinen jäte, tervapaperi, rakennuspahvi yms. (tonnia)"),
           OutputCell(
@@ -518,7 +485,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.combustibleWasteTons,
           ),
-          Cell(type: CellType.row, initialValue: "Kuumabitumisively (m3)"),
+          RowCell(initialValue: "Kuumabitumisively (m3)"),
           OutputCell(
             getter: () => state.falsePlinth?.hotBitumenCoatingVolume,
           ),
@@ -537,7 +504,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           OutputCell(
             getter: () => state.hotBitumenCoatingVolume,
           ),
-          Cell(type: CellType.row, initialValue: "Kuumabitumisively (tonnia)"),
+          RowCell(initialValue: "Kuumabitumisively (tonnia)"),
           OutputCell(
             getter: () => state.falsePlinth?.hotBitumenCoatingTons,
           ),

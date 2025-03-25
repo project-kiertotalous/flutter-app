@@ -2,10 +2,11 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_event.dart';
-import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -40,53 +41,45 @@ class RemovableGroundsForm extends StatelessWidget {
               50.px,
             ],
             children: [
-              Cell(
-                type: CellType.row,
+              RowCell(
                 initialValue: 'Poistettavan alueen pinta-ala (m2)',
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.areaToRemoveSize,
                 setter: (value) => excavationAreaBloc.add(
                   AreaToRemoveSizeChanged(value),
                 ),
               ),
-              Cell(
-                  type: CellType.row,
-                  initialValue: 'Poistettavan alueen syvyys (m)'),
-              Cell(
-                type: CellType.input,
+              RowCell(initialValue: 'Poistettavan alueen syvyys (m)'),
+              InputCell(
                 initialValue: state.areaToRemoveDepth,
                 setter: (value) => excavationAreaBloc.add(
                   AreaToRemoveDepthChanged(value),
                 ),
               ),
-              Cell(type: CellType.row, initialValue: 'Poistettava määrä (m3)'),
+              RowCell(initialValue: 'Poistettava määrä (m3)'),
               OutputCell(getter: () => state.volumeToRemove),
-              Cell(
-                  type: CellType.row,
-                  initialValue: 'Poistettavan puhtaan maan osuus (%)'),
+              RowCell(initialValue: 'Poistettavan puhtaan maan osuus (%)'),
               OutputCell(
                 getter: () => state.cleanSoilPortionPercentageFraction,
                 percentage: true,
               ),
-              Cell(type: CellType.row, initialValue: 'Puhdas maa (tonnia)'),
+              RowCell(initialValue: 'Puhdas maa (tonnia)'),
               OutputCell(getter: () => state.cleanLandTons),
-              Cell(type: CellType.row, initialValue: 'Saastunut maa (tonnia)'),
+              RowCell(initialValue: 'Saastunut maa (tonnia)'),
               OutputCell(getter: () => state.contaminatedLandTons),
-              Cell(type: CellType.row, initialValue: 'Saastunut maa (m3)'),
+              RowCell(initialValue: 'Saastunut maa (m3)'),
               OutputCell(getter: () => state.contaminatedSoil),
-              Cell(type: CellType.row, initialValue: 'Asfaltti alue (m2)'),
-              Cell(
-                type: CellType.input,
+              RowCell(initialValue: 'Asfaltti alue (m2)'),
+              InputCell(
                 initialValue: state.asphaltArea,
                 setter: (value) => excavationAreaBloc.add(
                   AsphaltAreaChanged(value),
                 ),
               ),
-              Cell(type: CellType.row, initialValue: 'Asfaltti (tonnia)'),
+              RowCell(initialValue: 'Asfaltti (tonnia)'),
               OutputCell(getter: () => state.asphaltTons),
-              Cell(type: CellType.row, initialValue: 'Asfaltti (m3)'),
+              RowCell(initialValue: 'Asfaltti (m3)'),
               OutputCell(getter: () => state.asphaltVolume),
             ],
           ),
