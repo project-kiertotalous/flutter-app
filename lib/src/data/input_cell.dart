@@ -22,16 +22,14 @@ class InputCell extends StatefulWidget {
 
 class _InputCellState extends State<InputCell> {
   late TextEditingController _controller;
-
-  String periodToComma(String text) {
-    return text.replaceFirst('.', ',');
-  }
+  late FocusNode _focusNode;
 
   void setValue(String value) {
     logger.d('Controller value: ${_controller.text}');
 
+    // Remove % for parsing
     var formattedValue =
-        value.replaceFirst(RegExp(','), '.').replaceAll('%', '').trim();
+        value.replaceAll('%', '').replaceFirst(',', '.').trim();
 
     if (formattedValue.isEmpty) {
       widget.setter(0);
@@ -61,22 +59,48 @@ class _InputCellState extends State<InputCell> {
     }
     return [
       FilteringTextInputFormatter.allow(RegExp(widget.percentage
-          ? r'([0-9]+([,][0-9]*)?[%]?)'
+          ? r'([0-9]+([,][0-9]*)?)'
           : r'([0-9]+([,][0-9]*)?|[,][0-9]+)')),
     ];
+  }
+
+  String formatDisplayedValue() {
+    if (widget.initialValue == null || widget.initialValue == 0) {
+      return widget.percentage ? '0%' : '0';
+    }
+    if (widget.percentage) {
+      return '${(widget.initialValue! * 100).toStringAsFixed(0)}%';
+    }
+    return widget.initialValue!.toString().replaceFirst('.', ',');
+  }
+
+  void _setTextSafely(String newText) {
+    final cursorPosition = _controller.selection.baseOffset;
+    _controller.text = newText;
+    _controller.selection = TextSelection.collapsed(
+      offset: newText.length < cursorPosition ? newText.length : cursorPosition,
+    );
   }
 
   @override
   void initState() {
     super.initState();
-    String text = widget.initialValue != null
-        ? periodToComma(widget.initialValue.toString())
-        : '0';
-    _controller = TextEditingController(text: text);
+    _focusNode = FocusNode();
+    _controller = TextEditingController(text: formatDisplayedValue());
+  }
+
+  @override
+  void didUpdateWidget(covariant InputCell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.initialValue != oldWidget.initialValue) {
+      _setTextSafely(formatDisplayedValue());
+    }
   }
 
   @override
   void dispose() {
+    _focusNode.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -92,6 +116,7 @@ class _InputCellState extends State<InputCell> {
           onChanged: setValue,
           controller: _controller,
           inputFormatters: formatters(),
+          focusNode: _focusNode,
         ),
       ),
     );
