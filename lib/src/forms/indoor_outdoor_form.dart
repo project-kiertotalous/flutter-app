@@ -41,7 +41,6 @@ class IndoorOutdoorForm extends StatelessWidget {
                   50.px,
                   50.px,
                   50.px,
-                  50.px
                 ],
                 children: [
                   RowCell(
@@ -135,10 +134,9 @@ class IndoorOutdoorForm extends StatelessWidget {
                   OutputCell(getter: () => state.outerDoors.totalAluminiumTons),
                 ],
               ),
-              SizedBox(height: 20),
-              FormHeader(text: 'Sisäovet'),
+              SizedBox(height: 30),
               LayoutGrid(
-                columnSizes: [100.px, 100.px, 100.px, 100.px],
+                columnSizes: [350.px, 100.px, 100.px, 100.px],
                 rowSizes: [
                   50.px,
                   50.px,
@@ -151,41 +149,75 @@ class IndoorOutdoorForm extends StatelessWidget {
                   50.px
                 ],
                 children: [
+                  RowCell(
+                    initialValue: "Sisäovet",
+                    checkbox: true,
+                    checkboxValue: state.innerDoors.areDoorsRecyclable,
+                    checkboxTitle: "Sisäovet ovat kierrätyskelpoisia",
+                    checkboxSetter: (value) => doorBloc.add(
+                      InnerDoorRecyclableChanged(value),
+                    ),
+                  ),
+                  ColumnCell(initialValue: "Levyovet (kpl)"),
+                  ColumnCell(initialValue: "Puuovet (kpl)"),
+                  ColumnCell(initialValue: "Palo-ovet (kpl)"),
+                  RowCell(initialValue: "Umpiovia"),
+                  InputCell(
+                    initialValue: state.innerDoors.panelDoors?.shutDoors,
+                    integer: true,
+                    setter: (value) =>
+                        doorBloc.add(InnerDoorPanelShutDoorsChanged(value)),
+                  ),
+                  InputCell(
+                    initialValue: state.innerDoors.woodenDoors?.shutDoors,
+                    integer: true,
+                    setter: (value) =>
+                        doorBloc.add(InnerDoorWoodenShutDoorsChanged(value)),
+                  ),
+                  InputCell(
+                    initialValue: state.innerDoors.fireDoors?.shutDoors,
+                    integer: true,
+                    setter: (value) =>
+                        doorBloc.add(InnerDoorFireShutDoorsChanged(value)),
+                  ),
+                  RowCell(initialValue: "Lasiovia"),
+                  InputCell(
+                    initialValue: state.innerDoors.panelDoors?.glassDoors,
+                    integer: true,
+                    setter: (value) =>
+                        doorBloc.add(InnerDoorPanelGlassDoorsChanged(value)),
+                  ),
+                  InputCell(
+                    initialValue: state.innerDoors.woodenDoors?.glassDoors,
+                    integer: true,
+                    setter: (value) =>
+                        doorBloc.add(InnerDoorWoodenGlassDoorsChanged(value)),
+                  ),
                   EmptyCell(),
+                  RowCell(initialValue: "Yhteensä (kpl)"),
+                  OutputCell(
+                      getter: () =>
+                          state.innerDoors.panelDoors?.overallOuterDoors),
+                  OutputCell(
+                      getter: () =>
+                          state.innerDoors.woodenDoors?.overallOuterDoors),
                   EmptyCell(),
+                  ColumnCell(
+                      initialValue: "Sisäovien materiaalimäärät yhteensä"),
+                  ColumnCell(initialValue: "m3"),
+                  ColumnCell(initialValue: "tonnia"),
                   EmptyCell(),
+                  RowCell(initialValue: "Puu"),
+                  OutputCell(getter: () => state.innerDoors.totalWoodVolume),
+                  OutputCell(getter: () => state.innerDoors.totalWoodTons),
                   EmptyCell(),
+                  RowCell(initialValue: "Lasi"),
+                  OutputCell(getter: () => state.innerDoors.totalGlassVolume),
+                  OutputCell(getter: () => state.innerDoors.totalGlassTons),
                   EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
-                  EmptyCell(),
+                  RowCell(initialValue: "Teräs"),
+                  GreyCell(),
+                  OutputCell(getter: () => state.innerDoors.totalSteelTons),
                   EmptyCell(),
                 ],
               ),

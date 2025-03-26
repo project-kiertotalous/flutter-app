@@ -75,3 +75,53 @@ class OuterDoorAccessAndLoadingDoorsChanged extends DoorsEvent {
   final int value;
   OuterDoorAccessAndLoadingDoorsChanged(this.value);
 }
+
+// Event for changing the number of shut doors for panel doors
+class InnerDoorPanelShutDoorsChanged extends DoorsEvent {
+  final int value;
+
+  InnerDoorPanelShutDoorsChanged(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// Event for changing the number of shut doors for wooden doors
+class InnerDoorWoodenShutDoorsChanged extends DoorsEvent {
+  final int value;
+
+  InnerDoorWoodenShutDoorsChanged(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// Event for changing the number of shut doors for fire doors
+class InnerDoorFireShutDoorsChanged extends DoorsEvent {
+  final int value;
+
+  InnerDoorFireShutDoorsChanged(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// Event for changing the number of glass doors for panel doors
+class InnerDoorPanelGlassDoorsChanged extends DoorsEvent {
+  final int value;
+
+  InnerDoorPanelGlassDoorsChanged(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}
+
+// Event for changing the number of glass doors for wooden doors
+class InnerDoorWoodenGlassDoorsChanged extends DoorsEvent {
+  final int value;
+
+  InnerDoorWoodenGlassDoorsChanged(this.value);
+
+  @override
+  List<Object?> get props => [value];
+}

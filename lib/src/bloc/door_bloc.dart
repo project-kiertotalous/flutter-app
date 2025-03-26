@@ -28,6 +28,66 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       ));
     });
 
+    // Handle changes to the number of shut panel doors
+    on<InnerDoorPanelShutDoorsChanged>((event, emit) {
+      final updatedPanelDoors = state.innerDoors.panelDoors?.copyWith(
+            shutDoors: event.value, // Update only shutDoors
+          ) ??
+          InnerDoor(shutDoors: event.value); // Create a new InnerDoor if null
+
+      emit(state.copyWith(
+        innerDoors: state.innerDoors.copyWith(panelDoors: updatedPanelDoors),
+      ));
+    });
+
+    // Handle changes to the number of shut wooden doors
+    on<InnerDoorWoodenShutDoorsChanged>((event, emit) {
+      final updatedWoodenDoors = state.innerDoors.woodenDoors?.copyWith(
+            shutDoors: event.value, // Update only shutDoors
+          ) ??
+          InnerDoor(shutDoors: event.value); // Create a new InnerDoor if null
+
+      emit(state.copyWith(
+        innerDoors: state.innerDoors.copyWith(woodenDoors: updatedWoodenDoors),
+      ));
+    });
+
+    // Handle changes to the number of shut fire doors
+    on<InnerDoorFireShutDoorsChanged>((event, emit) {
+      final updatedFireDoors = state.innerDoors.fireDoors?.copyWith(
+            shutDoors: event.value, // Update only shutDoors
+          ) ??
+          InnerDoor(shutDoors: event.value); // Create a new InnerDoor if null
+
+      emit(state.copyWith(
+        innerDoors: state.innerDoors.copyWith(fireDoors: updatedFireDoors),
+      ));
+    });
+
+    // Handle changes to the number of glass panel doors
+    on<InnerDoorPanelGlassDoorsChanged>((event, emit) {
+      final updatedPanelDoors = state.innerDoors.panelDoors?.copyWith(
+            glassDoors: event.value, // Update only glassDoors
+          ) ??
+          InnerDoor(glassDoors: event.value); // Create a new InnerDoor if null
+
+      emit(state.copyWith(
+        innerDoors: state.innerDoors.copyWith(panelDoors: updatedPanelDoors),
+      ));
+    });
+
+    // Handle changes to the number of glass wooden doors
+    on<InnerDoorWoodenGlassDoorsChanged>((event, emit) {
+      final updatedWoodenDoors = state.innerDoors.woodenDoors?.copyWith(
+            glassDoors: event.value, // Update only glassDoors
+          ) ??
+          InnerDoor(glassDoors: event.value); // Create a new InnerDoor if null
+
+      emit(state.copyWith(
+        innerDoors: state.innerDoors.copyWith(woodenDoors: updatedWoodenDoors),
+      ));
+    });
+
     // Handle the change of recyclability of outer doors
     on<OuterDoorRecyclableChanged>((event, emit) {
       logger.d("OuterDoorRecyclableChanged: ${event.value}");
