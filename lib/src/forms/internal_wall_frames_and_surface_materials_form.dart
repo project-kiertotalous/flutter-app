@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
@@ -31,32 +31,25 @@ class InternalWallFramesAndSurfaceMaterialsForm extends StatelessWidget {
             ],
             rowSizes: [50.px, 50.px, 50.px],
             children: [
-              Cell(
-                  type: CellType.row,
+              RowCell(
                   initialValue:
                       'Sisäseinien kokonaispituus, kaikki kerrokset (jm)'),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.overallLengthOfInternalWallsAllFloors,
                 setter: (value) => internalWallFramesAndSurfaceMaterialBloc.add(
                   OverallLengthOfInternalWallsAllFloorsChanged(value),
                 ),
               ),
-              Cell(
-                  type: CellType.row,
-                  initialValue: 'Sisäseinien keskikorkeus (m)'),
-              Cell(
-                type: CellType.input,
+              RowCell(initialValue: 'Sisäseinien keskikorkeus (m)'),
+              InputCell(
                 initialValue: state.averageHeightOfInternalWalls,
                 setter: (value) => internalWallFramesAndSurfaceMaterialBloc.add(
                   AverageHeightOfInternalWallsChanged(value),
                 ),
               ),
-              Cell(
-                  type: CellType.row,
-                  initialValue: 'Sisäseinien kokonaispinta-ala (m2)'),
+              RowCell(initialValue: 'Sisäseinien kokonaispinta-ala (m2)'),
               OutputCell(
-                getter: () =>state.totalArea,
+                getter: () => state.totalArea,
               ),
             ],
           ),
