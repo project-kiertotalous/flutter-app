@@ -2,10 +2,12 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/bloc/cellar_event.dart';
-import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/menu_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -54,24 +56,18 @@ class CellarForm extends StatelessWidget {
               columnSizes: [150.px, 120.px, 120.px],
               rowSizes: [50.px, 50.px, 50.px, 50.px],
               children: [
-                Cell(type: CellType.header, initialValue: 'Kellari'),
-                Cell(type: CellType.empty),
-                Cell(type: CellType.empty),
-                Cell(
-                    type: CellType.row,
-                    initialValue: 'Kellarin lattia-ala (m²)'),
-                Cell(
-                  type: CellType.input,
+                FormHeader(text: 'Kellari'),
+                EmptyCell(),
+                EmptyCell(),
+                RowCell(initialValue: 'Kellarin lattia-ala (m²)'),
+                InputCell(
                   initialValue: state.floorArea,
                   setter: (value) =>
                       cellarBloc.add(CellarFloorAreaChanged(value)),
                 ),
-                Cell(type: CellType.empty),
-                Cell(
-                    type: CellType.row,
-                    initialValue: 'Kellarin ulkoseinien kehämitta (jm)'),
-                Cell(
-                  type: CellType.input,
+                EmptyCell(),
+                RowCell(initialValue: 'Kellarin ulkoseinien kehämitta (jm)'),
+                InputCell(
                   initialValue: state.exteriorWallsPerimeter,
                   setter: (value) =>
                       cellarBloc.add(CellarPerimeterChanged(value)),
@@ -82,16 +78,13 @@ class CellarForm extends StatelessWidget {
                   initialValue: state.exteriorWallsMaterial,
                   items: toList(),
                 ),
-                Cell(
-                    type: CellType.row,
-                    initialValue: 'Kellarin seinän korkeus (m)'),
-                Cell(
-                  type: CellType.input,
+                RowCell(initialValue: 'Kellarin seinän korkeus (m)'),
+                InputCell(
                   initialValue: state.wallHeight,
                   setter: (value) =>
                       cellarBloc.add(CellarWallHeightChanged(value)),
                 ),
-                Cell(type: CellType.empty),
+                EmptyCell(),
               ],
             ),
 
@@ -102,37 +95,33 @@ class CellarForm extends StatelessWidget {
               columnSizes: [150.px, 120.px, 120.px], // Adjusted column widths
               rowSizes: List.filled(9, 50.px), // 1 header row + 8 material rows
               children: [
-                Cell(
-                    type: CellType.header,
-                    initialValue:
+                FormHeader(
+                    text:
                         "Kellarin lattian ja ulkoseinien purkumateriaalimäärät"),
-                Cell(type: CellType.row, initialValue: "Tonnia"),
-                Cell(type: CellType.row, initialValue: "m³"),
-                Cell(type: CellType.row, initialValue: "Betonia"),
+                RowCell(initialValue: "Tonnia"),
+                RowCell(initialValue: "m³"),
+                RowCell(initialValue: "Betonia"),
                 OutputCell(getter: () => state.concreteTons),
                 OutputCell(getter: () => state.concreteVolume),
-                Cell(type: CellType.row, initialValue: "Betoniterästä"),
+                RowCell(initialValue: "Betoniterästä"),
                 OutputCell(getter: () => state.rebarTons),
                 OutputCell(getter: () => ''),
-                Cell(type: CellType.row, initialValue: "Tiiliä"),
+                RowCell(initialValue: "Tiiliä"),
                 OutputCell(getter: () => state.brickTons),
                 OutputCell(getter: () => state.brickVolume),
-                Cell(type: CellType.row, initialValue: "Harkkoja"),
+                RowCell(initialValue: "Harkkoja"),
                 OutputCell(getter: () => state.blockTons),
                 OutputCell(getter: () => state.blockVolume),
-                Cell(
-                    type: CellType.row,
-                    initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
+                RowCell(initialValue: "Lasi- ja mineraalieristevilla (tonnia)"),
                 OutputCell(
                     getter: () => state.glassAndMineralWoolInsulationTons),
                 OutputCell(
                     getter: () => state.glassAndMineralWoolInsulationVolume),
-                Cell(
-                    type: CellType.row,
+                RowCell(
                     initialValue: "Muovijäte, styrox, kosteuseriste yms. (m3)"),
                 OutputCell(getter: () => state.plasticWasteTons),
                 OutputCell(getter: () => state.plasticWasteVolume),
-                Cell(type: CellType.row, initialValue: "Kuumabitumisively"),
+                RowCell(initialValue: "Kuumabitumisively"),
                 OutputCell(getter: () => state.hotBitumenCoatingTons),
                 OutputCell(getter: () => state.hotBitumenCoatingVolume),
               ],

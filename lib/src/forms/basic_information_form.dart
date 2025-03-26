@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/basic_information_data.dart';
 
 class BasicInformationForm extends StatefulWidget {
-   const BasicInformationForm({super.key});
+  const BasicInformationForm({super.key});
 
   @override
   BasicInformationFormState createState() => BasicInformationFormState();
@@ -74,44 +74,46 @@ class BasicInformationFormState extends State<BasicInformationForm> {
   }
 
   Widget _buildTextField({
-  required String label,
-  required TextEditingController controller,
-  double? width,
-  required void Function(String) onSaved,
-  required FocusNode currentFocus,
-  FocusNode? nextFocus,
-}) {
-  return Padding(
-    padding: EdgeInsets.symmetric(vertical: 8.0),
-    child: SizedBox(
-      width: width,
-      child: TextFormField(
-        controller: controller,
-        focusNode: currentFocus,
-        textInputAction: nextFocus != null ? TextInputAction.next : TextInputAction.done,
-        decoration: InputDecoration(
-          labelText: label,
-          border: OutlineInputBorder(),
+    required String label,
+    required TextEditingController controller,
+    double? width,
+    required void Function(String) onSaved,
+    required FocusNode currentFocus,
+    FocusNode? nextFocus,
+  }) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8.0),
+      child: SizedBox(
+        width: width,
+        child: TextFormField(
+          controller: controller,
+          focusNode: currentFocus,
+          textInputAction:
+              nextFocus != null ? TextInputAction.next : TextInputAction.done,
+          decoration: InputDecoration(
+            labelText: label,
+            border: OutlineInputBorder(),
+          ),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Täytä kenttä";
+            }
+            return null;
+          },
+          onChanged: (value) => onSaved(value), // Save as user types
+          onFieldSubmitted: (value) {
+            onSaved(value);
+            if (nextFocus != null) {
+              FocusScope.of(context).requestFocus(nextFocus);
+            } else {
+              FocusScope.of(context).unfocus();
+            }
+          },
         ),
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return "Täytä kenttä";
-          }
-          return null;
-        },
-        onChanged: (value) => onSaved(value), // Save as user types
-        onFieldSubmitted: (value) {
-          onSaved(value);
-          if (nextFocus != null) {
-            FocusScope.of(context).requestFocus(nextFocus);
-          } else {
-            FocusScope.of(context).unfocus();
-          }
-        },
       ),
-    ),
-  );
-}
+    );
+  }
+
   @override
 
   /// Build a form for basic information about the building being calculated.
