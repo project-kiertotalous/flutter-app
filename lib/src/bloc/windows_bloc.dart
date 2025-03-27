@@ -4,17 +4,31 @@ import 'package:flutter_app/src/bloc/windows_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WindowsBloc extends Bloc<WindowsEvent, Windows> {
-  WindowsBloc() : super(Windows(
-            // Add other fields here as needed
-            )) {
+  WindowsBloc()
+      : super(const Windows(
+          windowsPcs: null,
+          windowsArea: null,
+          glassWallArea: null,
+          areWindowsRecyclable: false,
+        )) {
+    on<WindowsPcsChanged>((event, emit) {
+      logger.d("WindowsPcsChanged fired");
+      emit(state.copyWith(windowsPcs: event.value));
+    });
+
     on<WindowsAreaChanged>((event, emit) {
       logger.d("WindowsAreaChanged fired");
+      emit(state.copyWith(windowsArea: event.value));
     });
 
-    on<WindowsHeightChanged>((event, emit) {
-      logger.d("WindowsHeightChanged fired");
+    on<GlassWallAreaChanged>((event, emit) {
+      logger.d("GlassWallAreaChanged fired");
+      emit(state.copyWith(glassWallArea: event.value));
     });
 
-    // Add more event handlers here as needed
+    on<WindowsRecyclabilityChanged>((event, emit) {
+      logger.d("WindowsRecyclabilityChanged fired");
+      emit(state.copyWith(areWindowsRecyclable: event.isRecyclable));
+    });
   }
 }

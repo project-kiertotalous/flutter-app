@@ -1,15 +1,25 @@
 abstract class WindowsEvent {}
 
+// Changing number of windows
+class WindowsPcsChanged extends WindowsEvent {
+  final num value;
+  WindowsPcsChanged(this.value);
+}
+
+// Changing window area
 class WindowsAreaChanged extends WindowsEvent {
-  final double windowArea;
-
-  WindowsAreaChanged(this.windowArea);
+  final num value;
+  WindowsAreaChanged(this.value);
 }
 
-class WindowsHeightChanged extends WindowsEvent {
-  final double windowHeight;
-
-  WindowsHeightChanged(this.windowHeight);
+// Changing glass wall area
+class GlassWallAreaChanged extends WindowsEvent {
+  final num value;
+  GlassWallAreaChanged(this.value);
 }
 
-// You can add more events here as needed (e.g., for materials, window types, etc.)
+// Changing recyclability status
+class WindowsRecyclabilityChanged extends WindowsEvent {
+  final bool isRecyclable;
+  WindowsRecyclabilityChanged(this.isRecyclable);
+}
