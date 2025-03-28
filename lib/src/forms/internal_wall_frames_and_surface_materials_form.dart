@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_event.dart';
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/partition_walls_demolition_materials.dart';
 
 class InternalWallFramesAndSurfaceMaterialsForm extends StatelessWidget {
   const InternalWallFramesAndSurfaceMaterialsForm({super.key});

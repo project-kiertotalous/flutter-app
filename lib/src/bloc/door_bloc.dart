@@ -2,6 +2,10 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
 import 'door_event.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/inner_doors.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/outer_doors.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/inner_door.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/outer_door.dart';
 
 class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
   DoorBloc()
