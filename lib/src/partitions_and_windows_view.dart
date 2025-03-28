@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
 import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
+import 'package:flutter_app/src/forms/windows_form.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
 
 class PartitionsAndWindowsView extends StatelessWidget {
@@ -20,6 +21,10 @@ class PartitionsAndWindowsView extends StatelessWidget {
               Align(
                 alignment: Alignment.topLeft,
                 child: InternalWallFramesAndSurfaceMaterialsForm(),
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: WindowsForm(),
               ),
               Align(
                 alignment: Alignment.topLeft,
