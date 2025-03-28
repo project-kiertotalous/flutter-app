@@ -8,45 +8,41 @@ class InputCell extends StatefulWidget {
     required this.initialValue,
     required this.setter,
     this.integer = false,
+    this.percentage = false,
   });
 
   final num? initialValue;
   final Function setter;
-
-  /// Set this as true if you want the input field to only accept and set integer values.
-  /// By default, the values are doubles.
   final bool integer;
+  final bool percentage;
 
   @override
   State<InputCell> createState() => _InputCellState();
 }
 
 class _InputCellState extends State<InputCell> {
-  late num? value = widget.initialValue;
-  TextEditingController? _controller;
-
-  String periodToComma(dynamic text) {
-    return text.toString().replaceFirst('.', ',');
-  }
+  late TextEditingController _controller;
+  late FocusNode _focusNode;
 
   void setIntValue(String value) {
-    widget.setter(value.isEmpty ? 0 : int.parse(value)); // Default to 0 if empty
+    widget.setter(int.parse(value));
   }
 
   void setDoubleValue(String value) {
     logger.d('Controller value: ${_controller?.text}');
-    var formattedValue = value.replaceFirst(RegExp(','), '.');
-
-    if (formattedValue.isEmpty) {
-      widget.setter(0); // Default to 0 if empty
-      return;
+    var formattedValue = '0';
+    // replace comma with period
+    if (value.isNotEmpty) {
+      formattedValue = value.replaceFirst(RegExp(','), '.');
+      // add a trailing zero if it is missing
+      if (formattedValue[formattedValue.length - 1] == '.') {
+        formattedValue = '${formattedValue}0';
+      }
     }
 
-    if (formattedValue.endsWith('.')) {
-      formattedValue = '${formattedValue}0';
-    }
-
+    // cast to double
     num castedValue = double.parse(formattedValue);
+    // set new value to form
     widget.setter(castedValue);
     logger.d(castedValue);
   }
@@ -56,22 +52,50 @@ class _InputCellState extends State<InputCell> {
       return [FilteringTextInputFormatter.digitsOnly];
     }
     return [
-      FilteringTextInputFormatter.allow(
-        RegExp(r'([0-9]+([,][0-9]*)?|[,][0-9]+)'),
-      )
+      FilteringTextInputFormatter.allow(RegExp(widget.percentage
+          ? r'([0-9]+([,][0-9]*)?)'
+          : r'([0-9]+([,][0-9]*)?|[,][0-9]+)')),
     ];
+  }
+
+  String formatDisplayedValue() {
+    if (widget.initialValue == null || widget.initialValue == 0) {
+      return widget.percentage ? '0%' : '0';
+    }
+    if (widget.percentage) {
+      return '${(widget.initialValue! * 100).toStringAsFixed(0)}%';
+    }
+    return widget.initialValue!.toString().replaceFirst('.', ',');
+  }
+
+  void _setTextSafely(String newText) {
+    final cursorPosition = _controller.selection.baseOffset;
+    _controller.text = newText;
+    _controller.selection = TextSelection.collapsed(
+      offset: newText.length < cursorPosition ? newText.length : cursorPosition,
+    );
   }
 
   @override
   void initState() {
     super.initState();
-    final text = widget.initialValue != null ? periodToComma(widget.initialValue) : '0';
-    _controller = TextEditingController(text: text);
+    _focusNode = FocusNode();
+    _controller = TextEditingController(text: formatDisplayedValue());
+  }
+
+  @override
+  void didUpdateWidget(covariant InputCell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.initialValue != oldWidget.initialValue) {
+      _setTextSafely(formatDisplayedValue());
+    }
   }
 
   @override
   void dispose() {
-    _controller?.dispose();
+    _focusNode.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -80,14 +104,17 @@ class _InputCellState extends State<InputCell> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(width: 1),
-      ),
+      decoration: BoxDecoration(border: Border.all(width: 1)),
       child: Center(
         child: TextField(
-          onChanged: (value) => widget.integer ? setIntValue(value) : setDoubleValue(value),
+          decoration: InputDecoration(
+            border: InputBorder.none,
+          ),
+          onChanged: (value) =>
+              widget.integer ? setIntValue(value) : setDoubleValue(value),
           controller: _controller,
           inputFormatters: formatters(),
+          focusNode: _focusNode,
         ),
       ),
     );
