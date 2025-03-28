@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'internal_wall_frames_and_surface_material_event.dart';
 import 'package:flutter_app/log.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/partition_walls_demolition_materials.dart';
 
 class InternalWallFramesAndSurfaceMaterialBloc extends Bloc<
     InternalWallFramesAndSurfaceMaterialEvent,

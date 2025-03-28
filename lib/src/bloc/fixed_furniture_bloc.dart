@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/fixed_furniture_event.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/fixed_furniture.dart';
 
 class FixedFurnitureBloc extends Bloc<FixedFurnitureEvent, FixedFurniture> {
   FixedFurnitureBloc() : super(const FixedFurniture()) {
