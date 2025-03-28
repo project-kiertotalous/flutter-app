@@ -6,5 +6,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TotalBuildingFrameBloc
     extends Bloc<TotalBuildingFrameEvent, TotalBuildingFrame> {
-  TotalBuildingFrameBloc() : super(TotalBuildingFrame()) {}
+  TotalBuildingFrameBloc()
+      : super(TotalBuildingFrame(
+          totalFoundations: Foundations(),
+          buildingFrame: BuildingFrame(),
+        )) {
+    on<FoundationsChanged>((event, emit) {
+      logger.d('FoundationsChanged in TotalBuildingFrameBloc');
+      emit(state.copyWith(totalFoundations: event.foundations));
+    });
+    on<BuildingFrameChanged>((event, emit) {
+      emit(state.copyWith(buildingFrame: event.buildingFrame));
+    });
+  }
 }
