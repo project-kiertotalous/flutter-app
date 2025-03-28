@@ -346,8 +346,8 @@ class RoomSpaceForm extends StatelessWidget {
                       state.otherSpaces?.overallWallLengthLinearMeters,
                 ),
                 OutputCell(
-                  getter: () =>
-                      state.otherSpaces?.overallWallLengthLinearMeters, //fix
+                  getter: () => state
+                      .totalSpacesWallLengthInSquareMeters, //this is actually linear meters
                 ),
                 GreyCell(),
                 GreyCell(),
@@ -379,7 +379,7 @@ class RoomSpaceForm extends StatelessWidget {
                   getter: () => state.otherSpaces?.overallWallArea,
                 ),
                 OutputCell(
-                  getter: () => state.otherSpaces?.overallWallArea, //fix
+                  getter: () => state.totalSpacesWallArea,
                 ),
                 GreyCell(),
                 GreyCell(),
@@ -440,10 +440,12 @@ class RoomSpaceForm extends StatelessWidget {
                 EmptyCell(),
                 EmptyCell(),
                 EmptyCell(),
-                RowCell(checkbox: true,
-                checkboxTitle: 'Pinnoite sisältää asbestia',
-                checkboxValue: state.surfaceMaterialCoatingContainsAsbestos,
-                checkboxSetter: (value) => roomSpaceBloc.add(SurfaceMaterialCoatingChanged(value)),
+                RowCell(
+                  checkbox: true,
+                  checkboxTitle: 'Pinnoite sisältää asbestia',
+                  checkboxValue: state.surfaceMaterialCoatingContainsAsbestos,
+                  checkboxSetter: (value) =>
+                      roomSpaceBloc.add(SurfaceMaterialCoatingChanged(value)),
                 ),
                 ColumnCell(
                   initialValue: 'Toimistotilat',
@@ -479,441 +481,509 @@ class RoomSpaceForm extends StatelessWidget {
                   initialValue: 'Lastulevy',
                 ),
                 InputCell(
-                  initialValue: state.officeSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.officeSpaces?.chipboard,
                   setter: (value) => roomSpaceBloc.add(OfficeSpaceChanged(
                     (state.officeSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      chipboard: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state
-                      .lobbiesAndOtherCommonAreas?.woodFramedWallsLinearMeters,
+                  initialValue: state.lobbiesAndOtherCommonAreas?.chipboard,
                   setter: (value) => roomSpaceBloc.add(LobbiesChanged(
                     (state.lobbiesAndOtherCommonAreas ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      chipboard: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.restroomsAndWashingFacilities
-                      ?.woodFramedWallsLinearMeters,
+                  initialValue: state.restroomsAndWashingFacilities?.chipboard,
                   setter: (value) => roomSpaceBloc.add(RestroomsChanged(
                     (state.restroomsAndWashingFacilities ?? RoomSpace())
                         .copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      chipboard: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.kitchens?.woodFramedWallsLinearMeters,
+                  initialValue: state.kitchens?.chipboard,
                   setter: (value) => roomSpaceBloc.add(KitchensChanged(
                     (state.kitchens ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      chipboard: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state
-                      .teachingAndTreatmentSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.teachingAndTreatmentSpaces?.chipboard,
                   setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
                     (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      chipboard: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue:
-                      state.storageAndWorkspaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.storageAndWorkspaces?.chipboard,
                   setter: (value) => roomSpaceBloc.add(StorageChanged(
                     (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      chipboard: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.otherSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.otherSpaces?.chipboard,
                   setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
                     (state.otherSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      chipboard: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsInSquareMeters,
+                  getter: () => state.totalChipboardArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsVolume,
+                  getter: () => state.totalChipboardVolume,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsTons,
+                  getter: () => state.totalChipboardTons,
                 ),
                 RowCell(
                   initialValue: 'Kipsilevy (Cybroc)',
                 ),
                 InputCell(
-                  initialValue: state.officeSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.officeSpaces?.cybroc,
                   setter: (value) => roomSpaceBloc.add(OfficeSpaceChanged(
                     (state.officeSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      cybroc: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state
-                      .lobbiesAndOtherCommonAreas?.woodFramedWallsLinearMeters,
+                  initialValue: state.lobbiesAndOtherCommonAreas?.cybroc,
                   setter: (value) => roomSpaceBloc.add(LobbiesChanged(
                     (state.lobbiesAndOtherCommonAreas ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      cybroc: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.restroomsAndWashingFacilities
-                      ?.woodFramedWallsLinearMeters,
+                  initialValue: state.restroomsAndWashingFacilities?.cybroc,
                   setter: (value) => roomSpaceBloc.add(RestroomsChanged(
                     (state.restroomsAndWashingFacilities ?? RoomSpace())
                         .copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      cybroc: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.kitchens?.woodFramedWallsLinearMeters,
+                  initialValue: state.kitchens?.cybroc,
                   setter: (value) => roomSpaceBloc.add(KitchensChanged(
                     (state.kitchens ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      cybroc: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state
-                      .teachingAndTreatmentSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.teachingAndTreatmentSpaces?.cybroc,
                   setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
                     (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      cybroc: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue:
-                      state.storageAndWorkspaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.storageAndWorkspaces?.cybroc,
                   setter: (value) => roomSpaceBloc.add(StorageChanged(
                     (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      cybroc: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.otherSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.otherSpaces?.cybroc,
                   setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
                     (state.otherSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      cybroc: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsInSquareMeters,
+                  getter: () => state.totalCybrocArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsVolume,
+                  getter: () => state.totalCybrocVolume,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsTons,
+                  getter: () => state.totalCybrocTons,
                 ),
                 RowCell(
                   initialValue: 'Lautapaneeli',
                 ),
                 InputCell(
-                  initialValue: state.officeSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.officeSpaces?.boardPanel,
                   setter: (value) => roomSpaceBloc.add(OfficeSpaceChanged(
                     (state.officeSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      boardPanel: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state
-                      .lobbiesAndOtherCommonAreas?.woodFramedWallsLinearMeters,
+                  initialValue: state.lobbiesAndOtherCommonAreas?.boardPanel,
                   setter: (value) => roomSpaceBloc.add(LobbiesChanged(
                     (state.lobbiesAndOtherCommonAreas ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      boardPanel: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.restroomsAndWashingFacilities
-                      ?.woodFramedWallsLinearMeters,
+                  initialValue: state.restroomsAndWashingFacilities?.boardPanel,
                   setter: (value) => roomSpaceBloc.add(RestroomsChanged(
                     (state.restroomsAndWashingFacilities ?? RoomSpace())
                         .copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      boardPanel: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.kitchens?.woodFramedWallsLinearMeters,
+                  initialValue: state.kitchens?.boardPanel,
                   setter: (value) => roomSpaceBloc.add(KitchensChanged(
                     (state.kitchens ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      boardPanel: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state
-                      .teachingAndTreatmentSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.teachingAndTreatmentSpaces?.boardPanel,
                   setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
                     (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      boardPanel: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue:
-                      state.storageAndWorkspaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.storageAndWorkspaces?.boardPanel,
                   setter: (value) => roomSpaceBloc.add(StorageChanged(
                     (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      boardPanel: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.otherSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.otherSpaces?.boardPanel,
                   setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
                     (state.otherSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      boardPanel: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsInSquareMeters,
+                  getter: () => state.totalBoardPanelArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsVolume,
+                  getter: () => state.totalBoardPanelVolume,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsTons,
+                  getter: () => state.totalBoardPanelTons,
                 ),
                 RowCell(
                   initialValue: 'Kaakeliseinä',
                 ),
                 InputCell(
-                  initialValue: state.officeSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.officeSpaces?.ceramicTileWalls,
                   setter: (value) => roomSpaceBloc.add(OfficeSpaceChanged(
                     (state.officeSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      ceramicTileWalls: value,
                     ),
                   )),
-                ),
-                InputCell(
-                  initialValue: state
-                      .lobbiesAndOtherCommonAreas?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(LobbiesChanged(
-                    (state.lobbiesAndOtherCommonAreas ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
-                    ),
-                  )),
-                ),
-                InputCell(
-                  initialValue: state.restroomsAndWashingFacilities
-                      ?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(RestroomsChanged(
-                    (state.restroomsAndWashingFacilities ?? RoomSpace())
-                        .copyWith(
-                      woodFramedWallsLinearMeters: value,
-                    ),
-                  )),
-                ),
-                InputCell(
-                  initialValue: state.kitchens?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(KitchensChanged(
-                    (state.kitchens ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
-                    ),
-                  )),
-                ),
-                InputCell(
-                  initialValue: state
-                      .teachingAndTreatmentSpaces?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
-                    (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
-                    ),
-                  )),
+                  percentage: true,
                 ),
                 InputCell(
                   initialValue:
-                      state.storageAndWorkspaces?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(StorageChanged(
-                    (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      state.lobbiesAndOtherCommonAreas?.ceramicTileWalls,
+                  setter: (value) => roomSpaceBloc.add(LobbiesChanged(
+                    (state.lobbiesAndOtherCommonAreas ?? RoomSpace()).copyWith(
+                      ceramicTileWalls: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.otherSpaces?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
-                    (state.otherSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                  initialValue:
+                      state.restroomsAndWashingFacilities?.ceramicTileWalls,
+                  setter: (value) => roomSpaceBloc.add(RestroomsChanged(
+                    (state.restroomsAndWashingFacilities ?? RoomSpace())
+                        .copyWith(
+                      ceramicTileWalls: value,
                     ),
                   )),
+                  percentage: true,
+                ),
+                InputCell(
+                  initialValue: state.kitchens?.ceramicTileWalls,
+                  setter: (value) => roomSpaceBloc.add(KitchensChanged(
+                    (state.kitchens ?? RoomSpace()).copyWith(
+                      ceramicTileWalls: value,
+                    ),
+                  )),
+                  percentage: true,
+                ),
+                InputCell(
+                  initialValue:
+                      state.teachingAndTreatmentSpaces?.ceramicTileWalls,
+                  setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
+                    (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
+                      ceramicTileWalls: value,
+                    ),
+                  )),
+                  percentage: true,
+                ),
+                InputCell(
+                  initialValue: state.storageAndWorkspaces?.ceramicTileWalls,
+                  setter: (value) => roomSpaceBloc.add(StorageChanged(
+                    (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
+                      ceramicTileWalls: value,
+                    ),
+                  )),
+                  percentage: true,
+                ),
+                InputCell(
+                  initialValue: state.otherSpaces?.ceramicTileWalls,
+                  setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
+                    (state.otherSpaces ?? RoomSpace()).copyWith(
+                      ceramicTileWalls: value,
+                    ),
+                  )),
+                  percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsInSquareMeters,
+                  getter: () => state.totalCeramicTileWallsArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsVolume,
+                  getter: () => state.totalCeramicTileWallsVolume,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsTons,
+                  getter: () => state.totalCeramicTileWallsTons,
                 ),
                 RowCell(
                   initialValue: 'Maalattu rapattu tiiliseinä',
                 ),
                 InputCell(
-                  initialValue: state.officeSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.officeSpaces?.paintedPlasteredBrickWall,
                   setter: (value) => roomSpaceBloc.add(OfficeSpaceChanged(
                     (state.officeSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      paintedPlasteredBrickWall: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
                   initialValue: state
-                      .lobbiesAndOtherCommonAreas?.woodFramedWallsLinearMeters,
+                      .lobbiesAndOtherCommonAreas?.paintedPlasteredBrickWall,
                   setter: (value) => roomSpaceBloc.add(LobbiesChanged(
                     (state.lobbiesAndOtherCommonAreas ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      paintedPlasteredBrickWall: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.restroomsAndWashingFacilities
-                      ?.woodFramedWallsLinearMeters,
+                  initialValue: state
+                      .restroomsAndWashingFacilities?.paintedPlasteredBrickWall,
                   setter: (value) => roomSpaceBloc.add(RestroomsChanged(
                     (state.restroomsAndWashingFacilities ?? RoomSpace())
                         .copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      paintedPlasteredBrickWall: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.kitchens?.woodFramedWallsLinearMeters,
+                  initialValue: state.kitchens?.paintedPlasteredBrickWall,
                   setter: (value) => roomSpaceBloc.add(KitchensChanged(
                     (state.kitchens ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      paintedPlasteredBrickWall: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
                   initialValue: state
-                      .teachingAndTreatmentSpaces?.woodFramedWallsLinearMeters,
+                      .teachingAndTreatmentSpaces?.paintedPlasteredBrickWall,
                   setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
                     (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      paintedPlasteredBrickWall: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
                   initialValue:
-                      state.storageAndWorkspaces?.woodFramedWallsLinearMeters,
+                      state.storageAndWorkspaces?.paintedPlasteredBrickWall,
                   setter: (value) => roomSpaceBloc.add(StorageChanged(
                     (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      paintedPlasteredBrickWall: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.otherSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.otherSpaces?.paintedPlasteredBrickWall,
                   setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
                     (state.otherSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      paintedPlasteredBrickWall: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsInSquareMeters,
+                  getter: () => state.totalPaintedPlasteredBrickWallArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsVolume,
+                  getter: () => state.totalPaintedPlasteredBrickWallVolume,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsTons,
+                  getter: () => state.totalBoardPanelTons,
                 ),
                 RowCell(
                   initialValue: 'Muovimatto',
                 ),
                 InputCell(
-                  initialValue: state.officeSpaces?.woodFramedWallsLinearMeters,
+                  initialValue: state.officeSpaces?.plasticCarpet,
                   setter: (value) => roomSpaceBloc.add(OfficeSpaceChanged(
                     (state.officeSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      plasticCarpet: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state
-                      .lobbiesAndOtherCommonAreas?.woodFramedWallsLinearMeters,
+                  initialValue: state.lobbiesAndOtherCommonAreas?.plasticCarpet,
                   setter: (value) => roomSpaceBloc.add(LobbiesChanged(
                     (state.lobbiesAndOtherCommonAreas ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      plasticCarpet: value,
                     ),
                   )),
-                ),
-                InputCell(
-                  initialValue: state.restroomsAndWashingFacilities
-                      ?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(RestroomsChanged(
-                    (state.restroomsAndWashingFacilities ?? RoomSpace())
-                        .copyWith(
-                      woodFramedWallsLinearMeters: value,
-                    ),
-                  )),
-                ),
-                InputCell(
-                  initialValue: state.kitchens?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(KitchensChanged(
-                    (state.kitchens ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
-                    ),
-                  )),
-                ),
-                InputCell(
-                  initialValue: state
-                      .teachingAndTreatmentSpaces?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
-                    (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
-                    ),
-                  )),
+                  percentage: true,
                 ),
                 InputCell(
                   initialValue:
-                      state.storageAndWorkspaces?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(StorageChanged(
-                    (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                      state.restroomsAndWashingFacilities?.plasticCarpet,
+                  setter: (value) => roomSpaceBloc.add(RestroomsChanged(
+                    (state.restroomsAndWashingFacilities ?? RoomSpace())
+                        .copyWith(
+                      plasticCarpet: value,
                     ),
                   )),
+                  percentage: true,
                 ),
                 InputCell(
-                  initialValue: state.otherSpaces?.woodFramedWallsLinearMeters,
-                  setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
-                    (state.otherSpaces ?? RoomSpace()).copyWith(
-                      woodFramedWallsLinearMeters: value,
+                  initialValue: state.kitchens?.plasticCarpet,
+                  setter: (value) => roomSpaceBloc.add(KitchensChanged(
+                    (state.kitchens ?? RoomSpace()).copyWith(
+                      plasticCarpet: value,
                     ),
                   )),
+                  percentage: true,
+                ),
+                InputCell(
+                  initialValue: state.teachingAndTreatmentSpaces?.plasticCarpet,
+                  setter: (value) => roomSpaceBloc.add(TeachingSpacesChanged(
+                    (state.teachingAndTreatmentSpaces ?? RoomSpace()).copyWith(
+                      plasticCarpet: value,
+                    ),
+                  )),
+                  percentage: true,
+                ),
+                InputCell(
+                  initialValue: state.storageAndWorkspaces?.plasticCarpet,
+                  setter: (value) => roomSpaceBloc.add(StorageChanged(
+                    (state.storageAndWorkspaces ?? RoomSpace()).copyWith(
+                      plasticCarpet: value,
+                    ),
+                  )),
+                  percentage: true,
+                ),
+                InputCell(
+                  initialValue: state.otherSpaces?.plasticCarpet,
+                  setter: (value) => roomSpaceBloc.add(OtherSpacesChanged(
+                    (state.otherSpaces ?? RoomSpace()).copyWith(
+                      plasticCarpet: value,
+                    ),
+                  )),
+                  percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsInSquareMeters,
+                  getter: () => state.totalPlasticCarpetArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsVolume,
+                  getter: () => state.totalPlasticCarpetVolume,
                 ),
                 OutputCell(
-                  getter: () => state.totalWoodFramedWallsTons,
+                  getter: () => state.totalPlasticCarpetTons,
                 ),
-                RowCell( initialValue: "Väliseinien rakenteet yhteensä (%)",)
+                RowCell(
+                  initialValue: "Väliseinien rakenteet yhteensä (%)",
+                ),
+                OutputCell(
+                  getter: () => state
+                      .officeSpaces?.overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
+                OutputCell(
+                  getter: () => state
+                      .lobbiesAndOtherCommonAreas?.overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
+                OutputCell(
+                  getter: () => state
+                      .restroomsAndWashingFacilities?.overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
+                OutputCell(
+                  getter: () => state
+                      .kitchens?.overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
+                OutputCell(
+                  getter: () => state
+                      .teachingAndTreatmentSpaces?.overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
+                OutputCell(
+                  getter: () => state
+                      .storageAndWorkspaces?.overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
+                OutputCell(
+                  getter: () => state
+                      .otherSpaces?.overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
+                OutputCell(
+                  getter: () => state
+                      .overallPartitionWallsStructuresInPercents,
+                  percentage: true,
+                ),
               ],
             ),
           ],
