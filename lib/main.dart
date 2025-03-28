@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/fixed_furniture_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
+import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
@@ -53,6 +55,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       InternalWallFramesAndSurfaceMaterialBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => FixedFurnitureBloc(),
                 ),
               ],
               child: LargeBuildingsView(),
