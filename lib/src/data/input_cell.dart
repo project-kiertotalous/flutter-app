@@ -8,26 +8,21 @@ class InputCell extends StatefulWidget {
     required this.initialValue,
     required this.setter,
     this.integer = false,
+    this.percentage = false,
   });
 
   final num? initialValue;
   final Function setter;
-
-  /// Set this as true if you want the input field to only accept and set integer values.
-  /// By default the values are doubles.
   final bool integer;
+  final bool percentage;
 
   @override
   State<InputCell> createState() => _InputCellState();
 }
 
 class _InputCellState extends State<InputCell> {
-  late num? value = widget.initialValue;
-  TextEditingController? _controller;
-
-  String periodToComma(dynamic text) {
-    return text.toString().replaceFirst('.', ',');
-  }
+  late TextEditingController _controller;
+  late FocusNode _focusNode;
 
   void setIntValue(String value) {
     widget.setter(int.parse(value));
@@ -52,32 +47,56 @@ class _InputCellState extends State<InputCell> {
     logger.d(castedValue);
   }
 
-  List<FilteringTextInputFormatter> formatters() {
+  List<TextInputFormatter> formatters() {
     if (widget.integer) {
-      return List.from([FilteringTextInputFormatter.digitsOnly]);
+      return [FilteringTextInputFormatter.digitsOnly];
     }
-    return List.from(
-      [
-        FilteringTextInputFormatter.allow(
-          RegExp(r'([0-9]+([,][0-9]*)?|[,][0-9]+)'),
-        )
-      ],
+    return [
+      FilteringTextInputFormatter.allow(RegExp(widget.percentage
+          ? r'([0-9]+([,][0-9]*)?)'
+          : r'([0-9]+([,][0-9]*)?|[,][0-9]+)')),
+    ];
+  }
+
+  String formatDisplayedValue() {
+    if (widget.initialValue == null || widget.initialValue == 0) {
+      return widget.percentage ? '0%' : '0';
+    }
+    if (widget.percentage) {
+      return '${(widget.initialValue! * 100).toStringAsFixed(0)}%';
+    }
+    return widget.initialValue!.toString().replaceFirst('.', ',');
+  }
+
+  void _setTextSafely(String newText) {
+    final cursorPosition = _controller.selection.baseOffset;
+    _controller.text = newText;
+    _controller.selection = TextSelection.collapsed(
+      offset: newText.length < cursorPosition ? newText.length : cursorPosition,
     );
   }
 
   @override
   void initState() {
     super.initState();
-    final text = periodToComma(widget.initialValue);
-    _controller = TextEditingController(
-      text: text,
-    );
+    _focusNode = FocusNode();
+    _controller = TextEditingController(text: formatDisplayedValue());
+  }
+
+  @override
+  void didUpdateWidget(covariant InputCell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (widget.initialValue != oldWidget.initialValue) {
+      _setTextSafely(formatDisplayedValue());
+    }
   }
 
   @override
   void dispose() {
+    _focusNode.dispose();
+    _controller.dispose();
     super.dispose();
-    _controller?.dispose();
   }
 
   @override
@@ -85,12 +104,7 @@ class _InputCellState extends State<InputCell> {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 1,
-        ),
-        // borderRadius: BorderRadius.circular(6),
-      ),
+      decoration: BoxDecoration(border: Border.all(width: 1)),
       child: Center(
         child: TextField(
           decoration: InputDecoration(
@@ -100,6 +114,7 @@ class _InputCellState extends State<InputCell> {
               widget.integer ? setIntValue(value) : setDoubleValue(value),
           controller: _controller,
           inputFormatters: formatters(),
+          focusNode: _focusNode,
         ),
       ),
     );

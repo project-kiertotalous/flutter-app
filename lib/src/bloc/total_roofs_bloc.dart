@@ -8,7 +8,7 @@ class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
       : super(
           // initialize values as non-null
           TotalRoofs(
-            totalFoundations: Foundations(
+            foundations: Foundations(
               falsePlinth: FalsePlinthFoundation(),
               crawlSpace: CrawlSpaceFoundation(),
               shallow: ShallowFoundation(),
@@ -33,7 +33,7 @@ class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
       logger.d(
           'BituminousWaterProofingChanged to ${event.bituminousWaterProofing}');
       emit(
-        state.copyWith.totalFoundations!.call(
+        state.copyWith.foundations!.call(
           bituminousWaterProofing: event.bituminousWaterProofing,
         ),
       );
