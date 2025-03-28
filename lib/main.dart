@@ -4,6 +4,7 @@ import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/fixed_furniture_bloc.dart';
+import 'package:flutter_app/src/bloc/windows_bloc.dart';
 import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
 import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
@@ -72,6 +73,9 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => DoorBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => WindowsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => FixedFurnitureBloc(),
