@@ -10,7 +10,7 @@ import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/fixed_furniture.dart'
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/fixed_furniture.dart';
 
 /// Fixed Furniture UI Form
 class FixedFurnitureForm extends StatelessWidget {
