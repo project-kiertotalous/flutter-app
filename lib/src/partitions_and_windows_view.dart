@@ -22,8 +22,8 @@ class PartitionsAndWindowsView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               Align(
-               child: NavigationButtons(),
-               ),
+                child: NavigationButtons(),
+              ),
               const SizedBox(height: 30),
             ],
           ),

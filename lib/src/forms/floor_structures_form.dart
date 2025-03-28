@@ -2,10 +2,12 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/floor_structures_event.dart';
-import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/column_cell.dart';
+import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -48,8 +50,7 @@ class FloorStructuresForm extends StatelessWidget {
               50.px,
             ],
             children: [
-              Cell(
-                type: CellType.row,
+              RowCell(
                 initialValue: "",
                 checkbox: true,
                 checkboxValue: state.surfaceMaterialCoatingContainsAsbestos,
@@ -58,45 +59,35 @@ class FloorStructuresForm extends StatelessWidget {
                   SurfaceMaterialCoatingContainsAsbestosChanged(value),
                 ),
               ),
-              Cell(
-                type: CellType.column,
+              RowCell(
                 initialValue: 'Toimistotilat',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'Aulat ja muut yleiset tilat',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'WC ja pesutilat',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'Keittiöt',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'Opetus-/hoitotilat (m2)',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'Varastot ja työtilat',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'Muut tilat',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'Materiaalimäärä yhteensä (m3)',
               ),
-              Cell(
-                type: CellType.column,
+              ColumnCell(
                 initialValue: 'Materiaalimäärä yhteensä (tonnia)',
               ),
-              Cell(type: CellType.row, initialValue: 'Lattiapaneeli'),
-              Cell(
-                type: CellType.input,
+              RowCell(initialValue: 'Lattiapaneeli'),
+              InputCell(
                 initialValue: state.officeSpaces?.floorPanelFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -108,8 +99,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.lobbiesAndOtherCommonAreas?.floorPanelFloorPortion,
                 percentage: true,
@@ -122,8 +112,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.restroomsAndWashingFacilities?.floorPanelFloorPortion,
                 percentage: true,
@@ -136,8 +125,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.kitchens?.floorPanelFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -148,8 +136,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.teachingAndTreatmentSpaces?.floorPanelFloorPortion,
                 percentage: true,
@@ -162,8 +149,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.storageAndWorkspaces?.floorPanelFloorPortion,
                 percentage: true,
@@ -176,8 +162,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.otherSpaces?.floorPanelFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -195,11 +180,8 @@ class FloorStructuresForm extends StatelessWidget {
               OutputCell(
                 getter: () => state.floorPanelFloorTons,
               ),
-              Cell(
-                  type: CellType.row,
-                  initialValue: 'Muovimatto tai muovilaatta'),
-              Cell(
-                type: CellType.input,
+              RowCell(initialValue: 'Muovimatto tai muovilaatta'),
+              InputCell(
                 initialValue:
                     state.officeSpaces?.plasticCarpetOrPlasticTileFloorPortion,
                 percentage: true,
@@ -212,8 +194,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.lobbiesAndOtherCommonAreas
                     ?.plasticCarpetOrPlasticTileFloorPortion,
                 percentage: true,
@@ -226,8 +207,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.restroomsAndWashingFacilities
                     ?.plasticCarpetOrPlasticTileFloorPortion,
                 percentage: true,
@@ -240,8 +220,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.kitchens?.plasticCarpetOrPlasticTileFloorPortion,
                 percentage: true,
@@ -254,8 +233,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.teachingAndTreatmentSpaces
                     ?.plasticCarpetOrPlasticTileFloorPortion,
                 percentage: true,
@@ -268,8 +246,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.storageAndWorkspaces
                     ?.plasticCarpetOrPlasticTileFloorPortion,
                 percentage: true,
@@ -282,8 +259,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.otherSpaces?.plasticCarpetOrPlasticTileFloorPortion,
                 percentage: true,
@@ -302,9 +278,8 @@ class FloorStructuresForm extends StatelessWidget {
               OutputCell(
                 getter: () => state.plasticCarpetOrPlasticTileFloorTons,
               ),
-              Cell(type: CellType.row, initialValue: 'Parketti'),
-              Cell(
-                type: CellType.input,
+              RowCell(initialValue: 'Parketti'),
+              InputCell(
                 initialValue: state.officeSpaces?.parquetFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -315,8 +290,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.lobbiesAndOtherCommonAreas?.parquetFloorPortion,
                 percentage: true,
@@ -329,8 +303,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.restroomsAndWashingFacilities?.parquetFloorPortion,
                 percentage: true,
@@ -343,8 +316,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.kitchens?.parquetFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -355,8 +327,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.teachingAndTreatmentSpaces?.parquetFloorPortion,
                 percentage: true,
@@ -369,8 +340,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.storageAndWorkspaces?.parquetFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -382,8 +352,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.otherSpaces?.parquetFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -400,9 +369,8 @@ class FloorStructuresForm extends StatelessWidget {
               OutputCell(
                 getter: () => state.parquetFloorTons,
               ),
-              Cell(type: CellType.row, initialValue: 'Kaakelilaatta'),
-              Cell(
-                type: CellType.input,
+              RowCell(initialValue: 'Kaakelilaatta'),
+              InputCell(
                 initialValue: state.officeSpaces?.ceramicTileFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -414,8 +382,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.lobbiesAndOtherCommonAreas?.ceramicTileFloorPortion,
                 percentage: true,
@@ -428,8 +395,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state
                     .restroomsAndWashingFacilities?.ceramicTileFloorPortion,
                 percentage: true,
@@ -442,8 +408,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.kitchens?.ceramicTileFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -454,8 +419,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.teachingAndTreatmentSpaces?.ceramicTileFloorPortion,
                 percentage: true,
@@ -468,8 +432,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue:
                     state.storageAndWorkspaces?.ceramicTileFloorPortion,
                 percentage: true,
@@ -482,8 +445,7 @@ class FloorStructuresForm extends StatelessWidget {
                   );
                 },
               ),
-              Cell(
-                type: CellType.input,
+              InputCell(
                 initialValue: state.otherSpaces?.ceramicTileFloorPortion,
                 percentage: true,
                 setter: (value) {
@@ -501,8 +463,7 @@ class FloorStructuresForm extends StatelessWidget {
               OutputCell(
                 getter: () => state.ceramicTileFloorTons,
               ),
-              Cell(
-                type: CellType.row,
+              RowCell(
                 initialValue: 'Pintamateriaalit yhteensä (%)',
               ),
               OutputCell(
@@ -536,12 +497,8 @@ class FloorStructuresForm extends StatelessWidget {
                 getter: () => state.otherSpaces?.floorPortionTotal,
                 percentage: true,
               ),
-              Cell(
-                type: CellType.empty,
-              ),
-              Cell(
-                type: CellType.empty,
-              ),
+              EmptyCell(),
+              EmptyCell(),
             ],
           ),
         ],
