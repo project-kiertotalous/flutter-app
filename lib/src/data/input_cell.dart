@@ -24,33 +24,27 @@ class _InputCellState extends State<InputCell> {
   late TextEditingController _controller;
   late FocusNode _focusNode;
 
-  void setValue(String value) {
-    logger.d('Controller value: ${_controller.text}');
+  void setIntValue(String value) {
+    widget.setter(int.parse(value));
+  }
 
-    // Remove % for parsing
-    var formattedValue =
-        value.replaceAll('%', '').replaceFirst(',', '.').trim();
-
-    if (formattedValue.isEmpty) {
-      widget.setter(0);
-      return;
-    }
-
-    if (formattedValue.endsWith('.')) {
-      formattedValue = '${formattedValue}0';
-    }
-
-    num? parsedValue = widget.integer
-        ? int.tryParse(formattedValue)
-        : double.tryParse(formattedValue);
-
-    if (parsedValue != null) {
-      if (widget.percentage) {
-        parsedValue /= 100;
+  void setDoubleValue(String value) {
+    logger.d('Controller value: ${_controller?.text}');
+    var formattedValue = '0';
+    // replace comma with period
+    if (value.isNotEmpty) {
+      formattedValue = value.replaceFirst(RegExp(','), '.');
+      // add a trailing zero if it is missing
+      if (formattedValue[formattedValue.length - 1] == '.') {
+        formattedValue = '${formattedValue}0';
       }
-      widget.setter(parsedValue);
-      logger.d(parsedValue);
     }
+
+    // cast to double
+    num castedValue = double.parse(formattedValue);
+    // set new value to form
+    widget.setter(castedValue);
+    logger.d(castedValue);
   }
 
   List<TextInputFormatter> formatters() {
@@ -113,7 +107,11 @@ class _InputCellState extends State<InputCell> {
       decoration: BoxDecoration(border: Border.all(width: 1)),
       child: Center(
         child: TextField(
-          onChanged: setValue,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+          ),
+          onChanged: (value) =>
+              widget.integer ? setIntValue(value) : setDoubleValue(value),
           controller: _controller,
           inputFormatters: formatters(),
           focusNode: _focusNode,
