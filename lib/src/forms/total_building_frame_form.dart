@@ -4,12 +4,13 @@ import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_event.dart';
-import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/cell_type.dart';
+import 'package:flutter_app/src/data/column_cell.dart';
+import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -45,8 +46,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 50.px,
               ],
               children: [
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Ulkoseinien kehämitta (jm)',
                   iconButton: InfoButton(),
                   checkbox: true,
@@ -61,17 +61,14 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   initialValue: state.buildingFrame?.externalWallsPerimeter,
                   setter: () {},
                 ),
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Ulkoseinien keskikorkeus (m)',
                 ),
                 InputCell(
                   initialValue: state.buildingFrame?.externalWallsAverageHeight,
                   setter: () {},
                 ),
-                Cell(
-                  type: CellType.empty,
-                ),
+                EmptyCell(),
               ],
             ),
             // empty space between forms
@@ -97,8 +94,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 50.px,
               ],
               children: [
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Rakennemateriaalit',
                   // checkbox: true,
                   // checkboxTitle:
@@ -108,20 +104,16 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   //   print('y');
                   // },
                 ),
-                Cell(
-                  type: CellType.column,
+                ColumnCell(
                   initialValue: 'Osuus (%)',
                 ),
-                Cell(
-                  type: CellType.column,
+                ColumnCell(
                   initialValue: 'm3',
                 ),
-                Cell(
-                  type: CellType.column,
+                ColumnCell(
                   initialValue: 'Tonnia',
                 ),
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Puurunko',
                   iconButton: InfoButton(),
                 ),
@@ -142,8 +134,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(
                   getter: () => state.woodTons,
                 ),
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Liimapalkit',
                   iconButton: InfoButton(),
                 ),
@@ -160,8 +151,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(
                   getter: () {},
                 ),
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Betonipalkit',
                   iconButton: InfoButton(),
                 ),
@@ -176,8 +166,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(
                   getter: () => state.concreteTons,
                 ),
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Teräspalkit',
                   iconButton: InfoButton(),
                 ),
@@ -193,8 +182,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(
                   getter: () => state.steelTons,
                 ),
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Kantavat tiiliseinät',
                   iconButton: InfoButton(),
                 ),
@@ -209,8 +197,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(
                   getter: () => state.brickTons,
                 ),
-                Cell(
-                  type: CellType.row,
+                RowCell(
                   initialValue: 'Betonielementit',
                   iconButton: InfoButton(),
                 ),
@@ -227,24 +214,20 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(
                   getter: () {},
                 ),
-                Cell(
-                  type: CellType.header,
-                  initialValue: 'Yhteenveto',
+                FormHeader(
+                  text: 'Yhteenveto',
                 ),
-                Cell(
-                  type: CellType.column,
+                ColumnCell(
                   initialValue: 'Seinien pinta-alat yhteensä (m2)',
                 ),
-                Cell(
-                  type: CellType.column,
+                ColumnCell(
                   initialValue: 'Kokonaismäärät (m3)',
                 ),
-                Cell(
-                  type: CellType.column,
+                ColumnCell(
                   initialValue: 'Kokonaismäärät (tonnia)',
                 ),
                 // errors should be displayed here
-                Cell(type: CellType.empty),
+                EmptyCell(),
                 OutputCell(
                   getter: () => state.totalStructuralPartsArea,
                 ),
