@@ -21,15 +21,31 @@ class IntermediateFloorsForm extends StatelessWidget {
     return BlocBuilder<IntermediateFloorsBloc, TotalIntermediateFloors>(
       builder: (context, state) {
         return Align(
-          // Aligns everything to the left
           alignment: Alignment.topLeft,
           child: SizedBox(
-            width: 900, // Keeps both grids aligned
+            width: 900,
             child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start, // Left-align content
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // First LayoutGrid
+                const SizedBox(height: 50),
+                LayoutGrid(
+                    columnSizes: List.filled(3, 130.px),
+                    rowSizes: List.filled(2, 50.px),
+                    children: [
+                      FormHeader(text: "Välipohjat"),
+                      ColumnCell(initialValue: "Kerrosala (m2)"),
+                      ColumnCell(initialValue: "Kerroksia (kpl)"),
+                      RowCell(
+                          initialValue:
+                              "Välipohjien laskennassa käytetyt arvot"),
+                      OutputCell(
+                          getter: () =>
+                              state.totalBuildingDimensions?.grossFloorArea),
+                      OutputCell(
+                          getter: () => state.totalBuildingDimensions
+                              ?.floorCountExcludingBasements),
+                    ]),
+                const SizedBox(height: 10),
                 LayoutGrid(
                   columnSizes: [
                     345.px,
@@ -38,7 +54,6 @@ class IntermediateFloorsForm extends StatelessWidget {
                   ],
                   rowSizes: List.filled(7, 50.px),
                   children: [
-                    // Add FormHeader here
                     FormHeader(
                       text: 'Välipohjien pinta-alat ja runkorakenteet',
                     ),
@@ -52,15 +67,11 @@ class IntermediateFloorsForm extends StatelessWidget {
                       checkboxTitle:
                           "Ontelolaatat ja liimapalkit ovat kierrätettäviä",
                       checkboxSetter: (value) => intermediateFloorsBloc.add(
-                        HollowCoreSlabsAndGlulamBeamRecyclableChanged(value),
-                      ),
+                          HollowCoreSlabsAndGlulamBeamRecyclableChanged(value)),
                     ),
                     ColumnCell(
-                      initialValue: "Rakenteen osuus koko kerrosalasta (%)",
-                    ),
-                    ColumnCell(
-                      initialValue: "Lattiapinta-ala (m²)",
-                    ),
+                        initialValue: "Rakenteen osuus koko kerrosalasta (%)"),
+                    ColumnCell(initialValue: "Lattiapinta-ala (m²)"),
                     RowCell(initialValue: "Puurunko (m²)"),
                     InputCell(
                       initialValue: state.woodFramePercentageFraction,
@@ -103,10 +114,13 @@ class IntermediateFloorsForm extends StatelessWidget {
                     OutputCell(getter: () => state.totalFloorArea),
                   ],
                 ),
-
-                const SizedBox(height: 20), // Space between tables
-
-                // Second LayoutGrid
+                const SizedBox(height: 20),
+                LayoutGrid(
+                  columnSizes: List.filled(3, 50.px),
+                  rowSizes: List.filled(3, 50.px),
+                  children: List.generate(9, (index) => EmptyCell()),
+                ),
+                const SizedBox(height: 20),
                 LayoutGrid(
                   columnSizes: [
                     150.px,
