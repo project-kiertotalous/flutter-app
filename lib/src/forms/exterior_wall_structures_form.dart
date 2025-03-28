@@ -1,18 +1,18 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_app/src/data/column_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_app/src/data/form_header.dart';
-import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/cell_type.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 
-class ExteriorWallStructuresForm extends StatelessWidget {
-  const ExteriorWallStructuresForm({super.key});
+class CombinedWallForms extends StatelessWidget {
+  const CombinedWallForms({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Exterior Wall Structures Form
         FormHeader(text: 'Ulkoseinärakenteiden osuus ja pinta-ala'),
         LayoutGrid(
           columnSizes: [150.px, 120.px, 120.px],
@@ -28,113 +28,205 @@ class ExteriorWallStructuresForm extends StatelessWidget {
             50.px
           ],
           children: [
-            Cell(
-              type: CellType.header,
+            ColumnCell(
               initialValue: 'Seinärakenne',
             ),
-            Cell(
-              type: CellType.header,
+            ColumnCell(
               initialValue: "Osuus (%)",
             ),
-            Cell(
-              type: CellType.header,
+            ColumnCell(
               initialValue: "Pinta-ala (m²)",
             ),
-            Cell(
-              type: CellType.row,
+            RowCell(
               initialValue: 'Kaksinkertainen tiiliseinä',
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.row,
+            RowCell(
               initialValue: 'Betonielementtiseinä',
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.row,
+            RowCell(
               initialValue: 'Tiiliverhoiltu seinä',
             ),
-            Cell(
-              type: CellType.input,
-              initialValue: '0%',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.row,
+            RowCell(
               initialValue: 'Lautaseinä',
             ),
-            Cell(
-              type: CellType.input,
-              initialValue: '0%',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.row,
-              initialValue: 'Profiilipelti',
+            RowCell(
+              initialValue: 'Profiiliseinä',
             ),
-            Cell(
-              type: CellType.input,
-              initialValue: '0%',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.row,
+            RowCell(
               initialValue: 'Teräsprofiili sandwich-rakenne',
             ),
-            Cell(
-              type: CellType.input,
-              initialValue: '0%',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.row,
+            RowCell(
               initialValue: 'Mineriitti tai muu kivilevy',
             ),
-            Cell(
-              type: CellType.input,
-              initialValue: '0%',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.row,
-              initialValue: 'YHTEENSÄ',
+            RowCell(
+              initialValue: 'Yhteensä',
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
             ),
-            Cell(
-              type: CellType.output,
-              initialValue: '0',
+            OutputCell(
+              getter: () => null,
+            ),
+          ],
+        ),
+
+        SizedBox(height: 20), // Space before next grid
+
+        // Demolition Material Quantities Form
+        FormHeader(text: 'Purkumateriaalien määrä'),
+        LayoutGrid(
+          columnSizes: [150.px, 120.px, 120.px],
+          rowSizes: List.filled(12, 50.px),
+          children: [
+            ColumnCell(
+              initialValue: 'Materiaali',
+            ),
+            ColumnCell(
+              initialValue: "Tilavuus (m3)",
+            ),
+            ColumnCell(
+              initialValue: "Paino (tonnia)",
+            ),
+            RowCell(
+              initialValue: 'Tuulensuojalevy (bituliitti, tms)',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: 'Mineraalivilla',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: '130 mm kalkki tai punatiili',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: '20m ulkoverhouslauta',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: '11 mm kipsilevy',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: 'Profiilipelti (teräs)',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: 'Puolikova kuitulevy',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: 'Styrox',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: 'Rappaus, sisä -ja ulkoseinät',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: 'Mineriittilevy',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            RowCell(
+              initialValue: 'Yhteensä',
+            ),
+            OutputCell(
+              getter: () => null,
+            ),
+            OutputCell(
+              getter: () => null,
             ),
           ],
         ),
