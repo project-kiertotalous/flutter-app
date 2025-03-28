@@ -1,14 +1,10 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/foundations_event.dart';
-import 'package:flutter_app/src/data/data_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoundationsBloc extends Bloc<FoundationsEvent, Foundations> {
-  // FoundationsBloc() : super(Foundations()) {
-  final DataRepository _dataRepository;
-
-  FoundationsBloc(this._dataRepository) : super(Foundations()) {
+  FoundationsBloc() : super(Foundations()) {
     on<BituminousWaterProofingChanged>((event, emit) {
       logger.d("BituminousWaterProofingChanged fired");
       emit(state.copyWith(bituminousWaterProofing: event.value));
