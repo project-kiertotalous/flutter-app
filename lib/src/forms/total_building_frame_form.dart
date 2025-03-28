@@ -1,7 +1,5 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/bloc/foundations_bloc.dart';
-import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
@@ -22,14 +20,9 @@ class TotalBuildingFrameForm extends StatelessWidget {
     final totalBuildingFrameBloc = context.read<TotalBuildingFrameBloc>();
 
     return BlocBuilder<TotalBuildingFrameBloc, TotalBuildingFrame>(
-        builder: (context, state) {
-      return BlocListener<FoundationsBloc, Foundations>(
-        listener: (context, foundationsState) {
-          // updates TotalBuildingFrame.totalFoundations when
-          // Foundations is changed in FoundationsBloc
-          totalBuildingFrameBloc.add(FoundationsChanged(foundationsState));
-        },
-        child: Column(
+      builder: (context, state) {
+        // return Container();
+        return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormHeader(
@@ -53,28 +46,46 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   checkboxTitle: 'Käytä perustuksen kehämittaa',
                   checkboxValue:
                       state.buildingFrame?.useFoundationCircumference ?? false,
-                  checkboxSetter: (value) => {},
+                  checkboxSetter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        useFoundationCircumference: value,
+                      ),
+                    ),
+                  ),
                 ),
                 // TODO: getter doesn't exist?
-                OutputCell(getter: () {}),
+                OutputCell(
+                  getter: () {},
+                ),
                 InputCell(
                   initialValue: state.buildingFrame?.externalWallsPerimeter,
-                  setter: () {},
+                  setter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        externalWallsPerimeter: value,
+                      ),
+                    ),
+                  ),
                 ),
                 RowCell(
                   initialValue: 'Ulkoseinien keskikorkeus (m)',
                 ),
                 InputCell(
                   initialValue: state.buildingFrame?.externalWallsAverageHeight,
-                  setter: () {},
+                  setter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        externalWallsAverageHeight: value,
+                      ),
+                    ),
+                  ),
                 ),
                 EmptyCell(),
               ],
             ),
             // empty space between forms
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: 16.0),
-            ),
+            SizedBox(height: 32),
             LayoutGrid(
               columnSizes: [
                 400.px,
@@ -141,7 +152,13 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.buildingFrame
                       ?.glulamVerticalColumnsPortionFractionPercentage,
-                  setter: () {},
+                  setter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        glulamVerticalColumnsPortionFractionPercentage: value,
+                      ),
+                    ),
+                  ),
                 ),
                 // TODO: idk this getter
                 OutputCell(
@@ -158,7 +175,13 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.buildingFrame
                       ?.concreteVerticalColumnsPortionFractionPercentage,
-                  setter: () {},
+                  setter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        concreteVerticalColumnsPortionFractionPercentage: value,
+                      ),
+                    ),
+                  ),
                 ),
                 OutputCell(
                   getter: () => state.concreteVolume,
@@ -173,7 +196,13 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.buildingFrame
                       ?.steelVerticalColumnsPortionFractionPercentage,
-                  setter: () {},
+                  setter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        steelVerticalColumnsPortionFractionPercentage: value,
+                      ),
+                    ),
+                  ),
                 ),
                 // TODO: this getter is missing
                 OutputCell(
@@ -189,7 +218,13 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   initialValue: state
                       .buildingFrame?.brickCladWallPortionFractionPercentage,
-                  setter: () {},
+                  setter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        brickCladWallPortionFractionPercentage: value,
+                      ),
+                    ),
+                  ),
                 ),
                 OutputCell(
                   getter: () => state.brickVolume,
@@ -204,7 +239,14 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.buildingFrame
                       ?.concreteElementWallsWithoutFrameworkPortionFractionPercentage,
-                  setter: () {},
+                  setter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        concreteElementWallsWithoutFrameworkPortionFractionPercentage:
+                            value,
+                      ),
+                    ),
+                  ),
                 ),
                 // TODO: missing getter
                 OutputCell(
@@ -242,8 +284,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
               ],
             ),
           ],
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
