@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/basic_information_form.dart';
 import 'package:flutter_app/src/forms/floor_structures_form.dart';
-import 'package:flutter_app/src/forms/outer_walls_form.dart';
+import 'package:flutter_app/src/forms/exterior_wall_structures_form.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
 import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';

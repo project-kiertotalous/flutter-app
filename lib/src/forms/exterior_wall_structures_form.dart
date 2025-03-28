@@ -5,14 +5,16 @@ import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 
-class CombinedWallForms extends StatelessWidget {
-  const CombinedWallForms({super.key});
+class OuterWallsForm extends StatelessWidget {
+  const OuterWallsForm({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         // Exterior Wall Structures Form
+        SizedBox(height: 50), // Space before next grid
+
         FormHeader(text: 'Ulkoseinärakenteiden osuus ja pinta-ala'),
         LayoutGrid(
           columnSizes: [150.px, 120.px, 120.px],
@@ -112,7 +114,7 @@ class CombinedWallForms extends StatelessWidget {
           ],
         ),
 
-        SizedBox(height: 20), // Space before next grid
+        SizedBox(height: 20),
 
         // Demolition Material Quantities Form
         FormHeader(text: 'Purkumateriaalien määrä'),
