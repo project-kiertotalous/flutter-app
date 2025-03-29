@@ -49,7 +49,9 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
           debugPrint('tab changed: $index');
         },
         child: Scaffold(
+          backgroundColor: Colors.white,
           appBar: AppBar(
+            backgroundColor: Colors.white,
             title: Text('Suuret rakennukset'),
             bottom: TabBar(
               // controller: _tabController,
