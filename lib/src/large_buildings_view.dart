@@ -12,7 +12,6 @@ import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
-import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/tab_view.dart';
 
 /// This view is for estimating large buildings.
@@ -25,15 +24,9 @@ class LargeBuildingsView extends StatefulWidget {
 
 class _LargeBuildingsViewState extends State<LargeBuildingsView>
     with TickerProviderStateMixin {
-  late TabController _tabController;
-
   static const List<Tab> tabs = [
-    Tab(
-      text: "Ulkovaippa",
-    ),
-    Tab(
-      text: "Väliseinät ja ikkunat",
-    ),
+    Tab(text: "Ulkovaippa"),
+    Tab(text: "Väliseinät ja ikkunat")
   ];
 
   List<Widget> outerSheathForms() => [
@@ -58,22 +51,6 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         NavigationButtons(),
         const SizedBox(height: 30),
       ];
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: tabs.length,
-      vsync: this,
-    );
-    logger.d('LargeBuildingsView built');
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
