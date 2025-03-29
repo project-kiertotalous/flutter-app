@@ -30,6 +30,7 @@ class TotalBuildingFrameBloc
 
     on<BuildingFrameChanged>(
       (event, emit) {
+        logger.d('BuildingFrameChanged to: ${event.buildingFrame}');
         emit(
           state.copyWith(
             buildingFrame: event.buildingFrame,
