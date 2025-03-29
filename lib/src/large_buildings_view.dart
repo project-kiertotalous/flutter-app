@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/outer_sheath_view.dart';
-import 'package:flutter_app/src/partitions_and_windows_view.dart';
+import 'package:flutter_app/src/forms/basic_information_form.dart';
+import 'package:flutter_app/src/forms/cellar_form.dart';
+import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
+import 'package:flutter_app/src/forms/floor_structures_form.dart';
+import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
+import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
+import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
+import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
+import 'package:flutter_app/src/forms/removable_grounds_form.dart';
+import 'package:flutter_app/src/forms/roofs_form.dart';
+import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
+import 'package:flutter_app/src/forms/windows_form.dart';
+import 'package:flutter_app/src/navigation_buttons.dart';
 import 'package:flutter_app/log.dart';
+import 'package:flutter_app/src/tab_view.dart';
 
 /// This view is for estimating large buildings.
 class LargeBuildingsView extends StatefulWidget {
@@ -23,6 +35,29 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
       text: "Väliseinät ja ikkunat",
     ),
   ];
+
+  List<Widget> outerSheathForms() => [
+        BasicInformationForm(),
+        TotalBuildingDimensionsForm(),
+        RemovableGroundsForm(),
+        FoundationTypeAndFloorsForm(),
+        CellarForm(),
+        RoofsForm(),
+        FloorStructuresForm(),
+        IntermediateFloorsForm(),
+        const SizedBox(height: 20),
+        NavigationButtons(),
+      ];
+
+  List<Widget> partitionsAndWindowsForms() => [
+        InternalWallFramesAndSurfaceMaterialsForm(),
+        IndoorOutdoorForm(),
+        WindowsForm(),
+        FixedFurnitureForm(),
+        const SizedBox(height: 20),
+        NavigationButtons(),
+        const SizedBox(height: 30),
+      ];
 
   @override
   void initState() {
@@ -57,10 +92,15 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
             ),
           ),
           // body: RemovableGroundsForm(data: removableGroundsData),
-          body: TabBarView(children: [
-            OuterSheathView(),
-            PartitionsAndWindowsView(),
-          ]),
+          body: TabBarView(
+            children: [
+              TabView(forms: outerSheathForms),
+              TabView(
+                forms: partitionsAndWindowsForms,
+                width: 1200,
+              ),
+            ],
+          ),
         ),
       ),
     );
