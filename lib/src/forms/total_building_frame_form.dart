@@ -54,9 +54,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                // TODO: getter doesn't exist?
                 OutputCell(
-                  getter: () {},
+                  getter: () => state.externalWallsPerimeter,
                 ),
                 InputCell(
                   initialValue: state.buildingFrame?.externalWallsPerimeter,
