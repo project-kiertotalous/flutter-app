@@ -123,7 +123,7 @@ class RoofsForm extends StatelessWidget {
                       ),
                     ),
                   ),
-                  checkboxTitle: 'Käytä oletusmitoistusta',
+                  checkboxTitle: 'Käytä oletusmitoitusta',
                   checkboxValue: state.roofs?.useDefaultDimensions,
                 ),
                 Cell.input(
