@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
 import 'package:flutter_app/src/bloc/total_roofs_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
@@ -110,8 +111,8 @@ class RoofsForm extends StatelessWidget {
                 50.px,
                 50.px,
               ],
-              children: [
-                RowCell(
+              children: <Cell>[
+                Cell.row(
                   initialValue:
                       'Todellinen, mitatun tai piirustuksen mukainen kattopinta-ala (m2), TAI pohjanalanmukainen oletusmitoitus',
                   checkbox: true,
@@ -125,7 +126,7 @@ class RoofsForm extends StatelessWidget {
                   checkboxTitle: 'Käytä oletusmitoistusta',
                   checkboxValue: state.roofs?.useDefaultDimensions,
                 ),
-                InputCell(
+                Cell.input(
                   initialValue: state.roofs?.ceilingArea,
                   setter: (value) => totalRoofsBloc.add(
                     TotalRoofsChanged(
@@ -135,24 +136,24 @@ class RoofsForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                EmptyCell(),
-                FormHeader(
+                Cell.empty(),
+                Cell.header(
                   text: 'Kattotyyppi',
                 ),
                 // TODO: this column needs an InfoButton
-                ColumnCell(
+                Cell.column(
                   initialValue: 'Pinta-ala (m2)',
                 ),
-                ColumnCell(
+                Cell.column(
                   initialValue: 'Kattotyypin osuus koko kattopinta-alasta (%)',
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Harja-/aumakatto',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.ridgeOrGableRoofArea,
                 ),
-                InputCell(
+                Cell.input(
                   initialValue: state.roofs?.ridgeOrGableRoofPortion,
                   setter: (value) => totalRoofsBloc.add(
                     TotalRoofsChanged(
@@ -162,41 +163,40 @@ class RoofsForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Tasa-/pulpettikatto',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.flatOrMonoPitchedRoofArea,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.roofs?.flatOrMonoPitchedRoofPortion,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Koko kattopinta-ala (m2)',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.calculatedCeilingArea,
                 ),
-                EmptyCell(),
-                FormHeader(
+                Cell.empty(),
+                Cell.header(
                   text: 'Rakenne ja materiaalit',
                 ),
-                MenuCell<RoofType>(
-                  setter: (RoofType? value) => totalRoofsBloc.add(
-                      TotalRoofsChanged(state.copyWith.roofs!
-                          .call(ridgeOrGableRoofType: value))),
+                Cell.menu(
+                  setter: (value) => totalRoofsBloc.add(TotalRoofsChanged(
+                      state.copyWith.roofs!.call(ridgeOrGableRoofType: value))),
                   initialValue: state.roofs?.ridgeOrGableRoofType,
                   items: _roofTypeToList(),
                 ),
-                MenuCell<RoofType>(
-                  setter: (RoofType? value) {
+                Cell.menu(
+                  setter: (value) {
                     totalRoofsBloc.add(TotalRoofsChanged(state.copyWith.roofs!
                         .call(flatOrMonoPitchedRoofType: value)));
                   },
                   initialValue: state.roofs?.flatOrMonoPitchedRoofType,
                   items: _roofTypeToList(),
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Vesikatto',
                   checkbox: true,
                   checkboxSetter: (value) => totalRoofsBloc.add(
@@ -209,8 +209,8 @@ class RoofsForm extends StatelessWidget {
                   checkboxTitle: 'Kattoristikot kierrätettävissä',
                   checkboxValue: state.roofs?.roofTrussesAreRecyclable,
                 ),
-                MenuCell<WaterRoofType>(
-                  setter: (WaterRoofType? value) => totalRoofsBloc.add(
+                Cell.menu(
+                  setter: (value) => totalRoofsBloc.add(
                     TotalRoofsChanged(
                       state.copyWith.roofs!
                           .call(ridgeOrGableWaterRoofType: value),
@@ -219,8 +219,8 @@ class RoofsForm extends StatelessWidget {
                   initialValue: state.roofs?.ridgeOrGableWaterRoofType,
                   items: _waterRoofTypeToList(),
                 ),
-                MenuCell<WaterRoofType>(
-                  setter: (WaterRoofType? value) => totalRoofsBloc.add(
+                Cell.menu(
+                  setter: (value) => totalRoofsBloc.add(
                     TotalRoofsChanged(
                       state.copyWith.roofs!
                           .call(flatOrMonoPitchedWaterRoofType: value),
@@ -229,87 +229,87 @@ class RoofsForm extends StatelessWidget {
                   initialValue: state.roofs?.flatOrMonoPitchedWaterRoofType,
                   items: _waterRoofTypeToList(),
                 ),
-                FormHeader(
+                Cell.header(
                   text: 'Katon purkumateriaalimäärät',
                 ),
-                ColumnCell(
+                Cell.column(
                   initialValue: 'm3',
                 ),
-                ColumnCell(
+                Cell.column(
                   initialValue: 'Tonnia',
                 ),
-                RowCell(
+                Cell.row(
                   initialValue:
                       'Puuta (kattoristikot, aluslaudoitus ja kannattimet)',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.woodVolume,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.woodTons,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Terästä (teräsristikot, kattopellit)',
                 ),
-                OutputCell(
+                Cell.output(
                   // there doesn't seem to be a getter for this in TotalRoofs
                   getter: () {},
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.steelTons,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Betoni',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.concreteVolume,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.concreteTons,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Lasi- ja mineraalieristevilla',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.insulationVolume,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.insulationTons,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Aluskate',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.underlayVolume,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.underlayTons,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Bitumikermikate (kattohuopa)',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.bitumenVolume,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.bitumenTons,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Mineriittikate',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.mineriteVolume,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.mineriteTons,
                 ),
-                RowCell(
+                Cell.row(
                   initialValue: 'Kattotiilet',
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.roofTileVolume,
                 ),
-                OutputCell(
+                Cell.output(
                   getter: () => state.roofTileTons,
                 ),
               ],
