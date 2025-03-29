@@ -33,8 +33,8 @@ class HomeView extends StatelessWidget {
 
               // navigation buttons
               Center(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                child: Wrap(
+                  alignment: WrapAlignment.center,
                   spacing: 40.0,
                   children: [
                     // large buildings button
@@ -89,8 +89,8 @@ class HomeView extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Wrap(
+                    alignment: WrapAlignment.center,
                     spacing: 88.0,
                     children: [
                       Image.asset(
@@ -99,7 +99,7 @@ class HomeView extends StatelessWidget {
                       ),
                       Image.asset(
                         'assets/images/PPL_tunnus_pysty_RGB.png',
-                        scale: 9.1,
+                        scale: 9.4,
                       ),
                     ],
                   ),
