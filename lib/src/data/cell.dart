@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/menu_cell.dart';
@@ -9,7 +10,7 @@ import 'package:flutter_app/src/data/row_cell.dart';
 
 /// This class serves the purpose of being syntactic sugar for creating cells
 /// of different types.
-abstract class Cell {
+abstract class Cell extends Widget {
   factory Cell.empty() {
     return EmptyCell();
   }
@@ -35,12 +36,12 @@ abstract class Cell {
     );
   }
 
-  factory Cell.input(
-    num? initialValue,
-    Function setter,
-    bool integer,
-    bool percentage,
-  ) {
+  factory Cell.input({
+    required num? initialValue,
+    required Function setter,
+    bool integer = false,
+    bool percentage = false,
+  }) {
     return InputCell(
       initialValue: initialValue,
       setter: setter,
@@ -63,7 +64,7 @@ abstract class Cell {
   factory Cell.menu({
     required dynamic initialValue,
     required List<DropdownMenuItem<dynamic>> items,
-    required Function(dynamic) setter,
+    required void Function(dynamic) setter,
   }) {
     return MenuCell<dynamic>(
       setter: setter,
@@ -74,5 +75,10 @@ abstract class Cell {
 
   factory Cell.grey() {
     return GreyCell();
+  }
+
+  // TODO: this should be refactored eventually to use HeaderCell or something similar
+  factory Cell.header({required String text}) {
+    return FormHeader(text: text);
   }
 }

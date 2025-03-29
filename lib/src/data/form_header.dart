@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
 /// Meant to be above a form and its related guidance text or images.
-class FormHeader extends StatelessWidget {
+class FormHeader extends StatelessWidget implements Cell {
   const FormHeader({super.key, required this.text});
 
   final String text;
