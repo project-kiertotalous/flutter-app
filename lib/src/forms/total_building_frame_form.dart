@@ -94,7 +94,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 160.px,
               ],
               rowSizes: [
-                50.px,
+                100.px,
                 50.px,
                 50.px,
                 50.px,
@@ -107,13 +107,18 @@ class TotalBuildingFrameForm extends StatelessWidget {
               children: [
                 RowCell(
                   initialValue: 'Rakennemateriaalit',
-                  // checkbox: true,
-                  // checkboxTitle:
-                  //     'Liima-, betoni-, teräs- ja betonielementit ovat kierrätettäviä',
-                  // checkboxValue: state.buildingFrame?.areMaterialsRecyclable,
-                  // checkboxSetter: () {
-                  //   print('y');
-                  // },
+                  checkbox: true,
+                  checkboxTitle: 'Elementit ovat kierrätettäviä',
+                  // TODO: fix overflow issues and enable longer text
+                  // 'Liima-, betoni-, teräs- ja betonielementit ovat kierrätettäviä',
+                  checkboxValue: state.buildingFrame?.areMaterialsRecyclable,
+                  checkboxSetter: (value) => totalBuildingFrameBloc.add(
+                    BuildingFrameChanged(
+                      state.buildingFrame!.copyWith(
+                        areMaterialsRecyclable: value,
+                      ),
+                    ),
+                  ),
                 ),
                 ColumnCell(
                   initialValue: 'Osuus (%)',
