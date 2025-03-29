@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/log.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
-class InputCell extends StatefulWidget {
+class InputCell extends StatefulWidget implements Cell {
   const InputCell({
     super.key,
     required this.initialValue,
