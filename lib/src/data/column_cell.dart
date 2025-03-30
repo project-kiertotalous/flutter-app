@@ -24,7 +24,7 @@ class ColumnCell extends StatelessWidget implements Cell {
         alignment: Alignment.centerLeft,
         child: Text(
           initialValue,
-          style: const TextStyle(fontWeight: FontWeight.w500),
+          style: const TextStyle(fontWeight: FontWeight.w400),
         ),
       ),
     );
