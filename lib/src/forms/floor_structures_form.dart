@@ -32,7 +32,7 @@ class FloorStructuresForm extends StatelessWidget {
           ),
           LayoutGrid(
             columnSizes: [
-              228.px,
+              232.px,
               140.px,
               140.px,
               140.px,

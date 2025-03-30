@@ -49,7 +49,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                 const SizedBox(height: 10),
                 LayoutGrid(
                   columnSizes: [
-                    345.px,
+                    363.px,
                     120.px,
                     120.px,
                   ],
