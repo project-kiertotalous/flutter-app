@@ -90,12 +90,21 @@ class CellarForm extends StatelessWidget {
               ],
             ),
 
-            SizedBox(height: 20), // Space before next grid
+            const SizedBox(height: 20), // Space before next grid
 
             // New grid for demolition materials
             LayoutGrid(
               columnSizes: [150.px, 120.px, 120.px], // Adjusted column widths
-              rowSizes: List.filled(9, 50.px), // 1 header row + 8 material rows
+              rowSizes: [
+                75.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                70.px,
+                70.px,
+                50.px,
+              ], // 1 header row + 8 material rows
               children: [
                 Cell.header(
                     initialValue:
