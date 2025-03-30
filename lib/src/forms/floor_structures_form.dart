@@ -21,7 +21,9 @@ class FloorStructuresForm extends StatelessWidget {
     return BlocBuilder<FloorStructuresBloc, FloorStructures>(
         builder: (context, state) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // TODO: why double header? needs fixing
           FormHeader(
             text: 'Lattian pintamateriaali',
           ),
@@ -30,7 +32,7 @@ class FloorStructuresForm extends StatelessWidget {
           ),
           LayoutGrid(
             columnSizes: [
-              220.px,
+              228.px,
               140.px,
               140.px,
               140.px,
@@ -51,6 +53,7 @@ class FloorStructuresForm extends StatelessWidget {
             ],
             children: [
               RowCell(
+                // intentionally empty, at least for now
                 initialValue: "",
                 checkbox: true,
                 checkboxValue: state.surfaceMaterialCoatingContainsAsbestos,
@@ -59,7 +62,7 @@ class FloorStructuresForm extends StatelessWidget {
                   SurfaceMaterialCoatingContainsAsbestosChanged(value),
                 ),
               ),
-              RowCell(
+              ColumnCell(
                 initialValue: 'Toimistotilat',
               ),
               ColumnCell(

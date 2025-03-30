@@ -83,6 +83,7 @@ class RoofsForm extends StatelessWidget {
     return BlocBuilder<TotalRoofsBloc, TotalRoofs>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormHeader(
               text: 'Katon pinta-ala',
@@ -138,7 +139,7 @@ class RoofsForm extends StatelessWidget {
                 ),
                 Cell.empty(),
                 Cell.header(
-                  text: 'Kattotyyppi',
+                  initialValue: 'Kattotyyppi',
                 ),
                 // TODO: this column needs an InfoButton
                 Cell.column(
@@ -180,7 +181,7 @@ class RoofsForm extends StatelessWidget {
                 ),
                 Cell.empty(),
                 Cell.header(
-                  text: 'Rakenne ja materiaalit',
+                  initialValue: 'Rakenne ja materiaalit',
                 ),
                 Cell.menu(
                   setter: (value) => totalRoofsBloc.add(TotalRoofsChanged(
@@ -230,7 +231,7 @@ class RoofsForm extends StatelessWidget {
                   items: _waterRoofTypeToList(),
                 ),
                 Cell.header(
-                  text: 'Katon purkumateriaalimäärät',
+                  initialValue: 'Katon purkumateriaalimäärät',
                 ),
                 Cell.column(
                   initialValue: 'm3',

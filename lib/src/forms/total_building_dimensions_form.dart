@@ -24,6 +24,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
     return BlocBuilder<TotalBuildingDimensionsBloc, TotalBuildingDimensions>(
         builder: (context, state) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FormHeader(text: 'Rakennuksen pinta-ala'),
           LayoutGrid(
