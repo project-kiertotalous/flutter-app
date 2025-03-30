@@ -25,11 +25,12 @@ class _InputCellState extends State<InputCell> {
   late TextEditingController _controller;
 
   void setIntValue(String value) {
-    widget.setter(int.parse(value));
+    int? number = int.tryParse(value);
+    widget.setter(number ?? 0);
   }
 
   void setDoubleValue(String value) {
-    logger.d('Controller value: ${_controller?.text}');
+    logger.d('Controller value: ${_controller.text}');
     var formattedValue = '0';
     // replace comma with period
     if (value.isNotEmpty) {
@@ -110,6 +111,12 @@ class _InputCellState extends State<InputCell> {
           ),
           onChanged: (value) =>
               widget.integer ? setIntValue(value) : setDoubleValue(value),
+          // select all text when cell gains focus.
+          // this is ux feature and can be turned off if that seems better.
+          onTap: () => _controller.selection = TextSelection(
+            baseOffset: 0,
+            extentOffset: _controller.value.text.length,
+          ),
           controller: _controller,
           inputFormatters: formatters(),
         ),
