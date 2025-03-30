@@ -3,6 +3,7 @@ import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
+import 'package:flutter_app/src/data/header_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/menu_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
@@ -77,8 +78,7 @@ abstract class Cell extends Widget {
     return GreyCell();
   }
 
-  // TODO: this should be refactored eventually to use HeaderCell or something similar
-  factory Cell.header({required String text}) {
-    return FormHeader(text: text);
+  factory Cell.header({required String initialValue}) {
+    return HeaderCell(initialValue: initialValue);
   }
 }
