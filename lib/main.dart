@@ -93,6 +93,11 @@ class MyApp extends StatelessWidget {
       // SettingsController to display the correct theme.
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xFF54be84),
+          // primary: Colors.black,
+          // secondary: Colors.blue,
+        ),
       ),
     );
   }
