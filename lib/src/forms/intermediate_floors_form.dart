@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
@@ -28,37 +29,41 @@ class IntermediateFloorsForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 50),
-                LayoutGrid(
-                    columnSizes: List.filled(3, 130.px),
-                    rowSizes: List.filled(2, 50.px),
-                    children: [
-                      FormHeader(text: "Välipohjat"),
-                      ColumnCell(initialValue: "Kerrosala (m2)"),
-                      ColumnCell(initialValue: "Kerroksia (kpl)"),
-                      RowCell(
-                          initialValue:
-                              "Välipohjien laskennassa käytetyt arvot"),
-                      OutputCell(
-                          getter: () =>
-                              state.totalBuildingDimensions?.grossFloorArea),
-                      OutputCell(
-                          getter: () => state.totalBuildingDimensions
-                              ?.floorCountExcludingBasements),
-                    ]),
+                LayoutGrid(columnSizes: List.filled(3, 130.px), rowSizes: [
+                  50.px,
+                  70.px
+                ], children: [
+                  Cell.header(initialValue: "Välipohjat"),
+                  ColumnCell(initialValue: "Kerrosala (m2)"),
+                  ColumnCell(initialValue: "Kerroksia (kpl)"),
+                  RowCell(
+                      initialValue: "Välipohjien laskennassa käytetyt arvot"),
+                  OutputCell(
+                      getter: () =>
+                          state.totalBuildingDimensions?.grossFloorArea),
+                  OutputCell(
+                      getter: () => state.totalBuildingDimensions
+                          ?.floorCountExcludingBasements),
+                ]),
                 const SizedBox(height: 10),
+                FormHeader(
+                  text: 'Välipohjien pinta-alat ja runkorakenteet',
+                ),
                 LayoutGrid(
                   columnSizes: [
-                    345.px,
+                    363.px,
                     120.px,
                     120.px,
                   ],
-                  rowSizes: List.filled(7, 50.px),
+                  rowSizes: [
+                    75.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                  ],
                   children: [
-                    FormHeader(
-                      text: 'Välipohjien pinta-alat ja runkorakenteet',
-                    ),
-                    EmptyCell(),
-                    EmptyCell(),
                     RowCell(
                       initialValue: "",
                       checkbox: true,
@@ -132,7 +137,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                   ],
                   rowSizes: List.filled(5, 50.px),
                   children: [
-                    FormHeader(text: 'Rakenne'),
+                    Cell.header(initialValue: 'Rakenne'),
                     ColumnCell(initialValue: 'Puuta (m³)'),
                     ColumnCell(initialValue: 'Puuta (tonnia)'),
                     ColumnCell(initialValue: 'Betonia (m³)'),

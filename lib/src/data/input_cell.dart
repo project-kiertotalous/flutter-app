@@ -107,15 +107,18 @@ class _InputCellState extends State<InputCell> {
       height: double.infinity,
       decoration: BoxDecoration(border: Border.all(width: 1)),
       child: Center(
-        child: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 4.0),
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+            ),
+            onChanged: (value) =>
+                widget.integer ? setIntValue(value) : setDoubleValue(value),
+            controller: _controller,
+            inputFormatters: formatters(),
+            focusNode: _focusNode,
           ),
-          onChanged: (value) =>
-              widget.integer ? setIntValue(value) : setDoubleValue(value),
-          controller: _controller,
-          inputFormatters: formatters(),
-          focusNode: _focusNode,
         ),
       ),
     );

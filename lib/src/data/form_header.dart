@@ -10,7 +10,10 @@ class FormHeader extends StatelessWidget implements Cell {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontWeight: FontWeight.w500),
+      style: TextStyle(
+        fontWeight: FontWeight.w500,
+        fontSize: 17,
+      ),
     );
   }
 }
