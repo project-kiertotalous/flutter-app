@@ -69,13 +69,13 @@ class _InputCellState extends State<InputCell> {
     return widget.initialValue!.toString().replaceFirst('.', ',');
   }
 
-  void _setTextSafely(String newText) {
-    final cursorPosition = _controller.selection.baseOffset;
-    _controller.text = newText;
-    _controller.selection = TextSelection.collapsed(
-      offset: newText.length < cursorPosition ? newText.length : cursorPosition,
-    );
-  }
+  // void _setTextSafely(String newText) {
+  //   final cursorPosition = _controller.selection.baseOffset;
+  //   _controller.text = newText;
+  //   _controller.selection = TextSelection.collapsed(
+  //     offset: newText.length < cursorPosition ? newText.length : cursorPosition,
+  //   );
+  // }
 
   @override
   void initState() {
@@ -83,14 +83,14 @@ class _InputCellState extends State<InputCell> {
     _controller = TextEditingController(text: formatDisplayedValue());
   }
 
-  @override
-  void didUpdateWidget(covariant InputCell oldWidget) {
-    super.didUpdateWidget(oldWidget);
+  // @override
+  // void didUpdateWidget(covariant InputCell oldWidget) {
+  //   super.didUpdateWidget(oldWidget);
 
-    if (widget.initialValue != oldWidget.initialValue) {
-      _setTextSafely(formatDisplayedValue());
-    }
-  }
+  //   if (widget.initialValue != oldWidget.initialValue) {
+  //     _setTextSafely(formatDisplayedValue());
+  //   }
+  // }
 
   @override
   void dispose() {
@@ -105,20 +105,25 @@ class _InputCellState extends State<InputCell> {
       height: double.infinity,
       decoration: BoxDecoration(border: Border.all(width: 1)),
       child: Center(
-        child: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
+        child: Focus(
+          // format displayed value when cell loses focus
+          onFocusChange: (hasFocus) =>
+              !hasFocus ? _controller.text = formatDisplayedValue() : null,
+          child: TextField(
+            decoration: InputDecoration(
+              border: InputBorder.none,
+            ),
+            onChanged: (value) =>
+                widget.integer ? setIntValue(value) : setDoubleValue(value),
+            // select all text when cell gains focus.
+            // this is ux feature and can be turned off if that seems better.
+            onTap: () => _controller.selection = TextSelection(
+              baseOffset: 0,
+              extentOffset: _controller.value.text.length,
+            ),
+            controller: _controller,
+            inputFormatters: formatters(),
           ),
-          onChanged: (value) =>
-              widget.integer ? setIntValue(value) : setDoubleValue(value),
-          // select all text when cell gains focus.
-          // this is ux feature and can be turned off if that seems better.
-          onTap: () => _controller.selection = TextSelection(
-            baseOffset: 0,
-            extentOffset: _controller.value.text.length,
-          ),
-          controller: _controller,
-          inputFormatters: formatters(),
         ),
       ),
     );
