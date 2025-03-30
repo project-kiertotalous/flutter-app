@@ -16,69 +16,59 @@ abstract class Cell extends Widget {
   }
 
   factory Cell.row(
-      {dynamic initialValue,
-      bool checkbox = false,
-      String? checkboxTitle,
-      Function? checkboxSetter,
-      bool? checkboxValue,
-      Widget? iconButton}) {
-    return RowCell(
+          {dynamic initialValue,
+          bool checkbox = false,
+          String? checkboxTitle,
+          Function? checkboxSetter,
+          bool? checkboxValue,
+          Widget? iconButton}) =>
+      RowCell(
+          initialValue: initialValue,
+          checkbox: checkbox,
+          checkboxTitle: checkboxTitle,
+          checkboxSetter: checkboxSetter,
+          checkboxValue: checkboxValue,
+          iconButton: iconButton);
+
+  factory Cell.column({required String initialValue}) => ColumnCell(
         initialValue: initialValue,
-        checkbox: checkbox,
-        checkboxTitle: checkboxTitle,
-        checkboxSetter: checkboxSetter,
-        checkboxValue: checkboxValue,
-        iconButton: iconButton);
-  }
-  factory Cell.column({required String initialValue}) {
-    return ColumnCell(
-      initialValue: initialValue,
-    );
-  }
+      );
 
   factory Cell.input({
     required num? initialValue,
     required Function setter,
     bool integer = false,
     bool percentage = false,
-  }) {
-    return InputCell(
-      initialValue: initialValue,
-      setter: setter,
-      integer: integer,
-      percentage: percentage,
-    );
-  }
+  }) =>
+      InputCell(
+        initialValue: initialValue,
+        setter: setter,
+        integer: integer,
+        percentage: percentage,
+      );
 
   factory Cell.output({
     required Function getter,
     bool percentage = false,
-  }) {
-    return OutputCell(
-      getter: getter,
-      percentage: percentage,
-    );
-  }
+  }) =>
+      OutputCell(
+        getter: getter,
+        percentage: percentage,
+      );
 
-  //TODO: test this actually works with dynamic instead of T
   factory Cell.menu({
     required dynamic initialValue,
     required List<DropdownMenuItem<dynamic>> items,
     required void Function(dynamic) setter,
-  }) {
-    return MenuCell<dynamic>(
-      setter: setter,
-      initialValue: initialValue,
-      items: items,
-    );
-  }
+  }) =>
+      MenuCell<dynamic>(
+        setter: setter,
+        initialValue: initialValue,
+        items: items,
+      );
 
-  factory Cell.grey() {
-    return GreyCell();
-  }
+  factory Cell.grey() => GreyCell();
 
   // TODO: this should be refactored eventually to use HeaderCell or something similar
-  factory Cell.header({required String text}) {
-    return FormHeader(text: text);
-  }
+  factory Cell.header({required String text}) => FormHeader(text: text);
 }
