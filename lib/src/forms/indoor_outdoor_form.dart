@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
@@ -111,7 +112,7 @@ class IndoorOutdoorForm extends StatelessWidget {
                   ),
                   EmptyCell(),
                   EmptyCell(),
-                  ColumnCell(
+                  Cell.header(
                       initialValue: "Ulko-ovien materiaalimäärät yhteensä"),
                   ColumnCell(initialValue: "m3"),
                   ColumnCell(initialValue: "tonnia"),
@@ -201,7 +202,7 @@ class IndoorOutdoorForm extends StatelessWidget {
                       getter: () =>
                           state.innerDoors.woodenDoors?.overallOuterDoors),
                   EmptyCell(),
-                  ColumnCell(
+                  Cell.header(
                       initialValue: "Sisäovien materiaalimäärät yhteensä"),
                   ColumnCell(initialValue: "m3"),
                   ColumnCell(initialValue: "tonnia"),
