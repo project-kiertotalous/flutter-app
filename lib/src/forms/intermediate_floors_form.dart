@@ -29,23 +29,22 @@ class IntermediateFloorsForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 50),
-                LayoutGrid(
-                    columnSizes: List.filled(3, 130.px),
-                    rowSizes: List.filled(2, 50.px),
-                    children: [
-                      Cell.header(initialValue: "Välipohjat"),
-                      ColumnCell(initialValue: "Kerrosala (m2)"),
-                      ColumnCell(initialValue: "Kerroksia (kpl)"),
-                      RowCell(
-                          initialValue:
-                              "Välipohjien laskennassa käytetyt arvot"),
-                      OutputCell(
-                          getter: () =>
-                              state.totalBuildingDimensions?.grossFloorArea),
-                      OutputCell(
-                          getter: () => state.totalBuildingDimensions
-                              ?.floorCountExcludingBasements),
-                    ]),
+                LayoutGrid(columnSizes: List.filled(3, 130.px), rowSizes: [
+                  50.px,
+                  70.px
+                ], children: [
+                  Cell.header(initialValue: "Välipohjat"),
+                  ColumnCell(initialValue: "Kerrosala (m2)"),
+                  ColumnCell(initialValue: "Kerroksia (kpl)"),
+                  RowCell(
+                      initialValue: "Välipohjien laskennassa käytetyt arvot"),
+                  OutputCell(
+                      getter: () =>
+                          state.totalBuildingDimensions?.grossFloorArea),
+                  OutputCell(
+                      getter: () => state.totalBuildingDimensions
+                          ?.floorCountExcludingBasements),
+                ]),
                 const SizedBox(height: 10),
                 LayoutGrid(
                   columnSizes: [
