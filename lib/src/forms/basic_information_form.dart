@@ -81,35 +81,32 @@ class BasicInformationFormState extends State<BasicInformationForm> {
     required FocusNode currentFocus,
     FocusNode? nextFocus,
   }) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 8.0),
-      child: SizedBox(
-        width: width,
-        child: TextFormField(
-          controller: controller,
-          focusNode: currentFocus,
-          textInputAction:
-              nextFocus != null ? TextInputAction.next : TextInputAction.done,
-          decoration: InputDecoration(
-            labelText: label,
-            border: OutlineInputBorder(),
-          ),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Täytä kenttä";
-            }
-            return null;
-          },
-          onChanged: (value) => onSaved(value), // Save as user types
-          onFieldSubmitted: (value) {
-            onSaved(value);
-            if (nextFocus != null) {
-              FocusScope.of(context).requestFocus(nextFocus);
-            } else {
-              FocusScope.of(context).unfocus();
-            }
-          },
+    return SizedBox(
+      width: width,
+      child: TextFormField(
+        controller: controller,
+        focusNode: currentFocus,
+        textInputAction:
+            nextFocus != null ? TextInputAction.next : TextInputAction.done,
+        decoration: InputDecoration(
+          labelText: label,
+          border: OutlineInputBorder(),
         ),
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "Täytä kenttä";
+          }
+          return null;
+        },
+        onChanged: (value) => onSaved(value), // Save as user types
+        onFieldSubmitted: (value) {
+          onSaved(value);
+          if (nextFocus != null) {
+            FocusScope.of(context).requestFocus(nextFocus);
+          } else {
+            FocusScope.of(context).unfocus();
+          }
+        },
       ),
     );
   }
@@ -122,7 +119,7 @@ class BasicInformationFormState extends State<BasicInformationForm> {
       width: 900,
       child: Card(
         elevation: 4,
-        margin: EdgeInsets.all(16),
+        margin: EdgeInsets.only(top: 16),
         child: Padding(
           padding: EdgeInsets.all(16),
           child: Form(
