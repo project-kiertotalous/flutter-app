@@ -23,6 +23,7 @@ class FixedFurnitureForm extends StatelessWidget {
     return BlocBuilder<FixedFurnitureBloc, FixedFurniture>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormHeader(text: "Kalustetyyppi ja määrät"),
 
