@@ -29,7 +29,7 @@ class FixedFurnitureForm extends StatelessWidget {
 
             // First grid: 2 columns, 14 rows
             LayoutGrid(
-              columnSizes: [360.px, 150.px],
+              columnSizes: [374.px, 150.px],
               rowSizes: List.filled(14, 50.px),
               children: [
                 RowCell(
