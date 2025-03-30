@@ -10,6 +10,7 @@ import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
+import 'package:flutter_app/src/forms/total_building_frame_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
@@ -36,6 +37,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         FoundationTypeAndFloorsForm(),
         CellarForm(),
         RoofsForm(),
+        TotalBuildingFrameForm(),
         FloorStructuresForm(),
         IntermediateFloorsForm(),
         const SizedBox(height: 20),
