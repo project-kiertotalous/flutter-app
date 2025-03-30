@@ -23,7 +23,6 @@ class InputCell extends StatefulWidget implements Cell {
 
 class _InputCellState extends State<InputCell> {
   late TextEditingController _controller;
-  late FocusNode _focusNode;
 
   void setIntValue(String value) {
     widget.setter(int.parse(value));
@@ -80,7 +79,6 @@ class _InputCellState extends State<InputCell> {
   @override
   void initState() {
     super.initState();
-    _focusNode = FocusNode();
     _controller = TextEditingController(text: formatDisplayedValue());
   }
 
@@ -95,7 +93,6 @@ class _InputCellState extends State<InputCell> {
 
   @override
   void dispose() {
-    _focusNode.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -115,7 +112,6 @@ class _InputCellState extends State<InputCell> {
               widget.integer ? setIntValue(value) : setDoubleValue(value),
           controller: _controller,
           inputFormatters: formatters(),
-          focusNode: _focusNode,
         ),
       ),
     );
