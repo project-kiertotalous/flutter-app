@@ -15,12 +15,16 @@ class ColumnCell extends StatelessWidget implements Cell {
       width: double.infinity,
       height: double.infinity,
       decoration: const BoxDecoration(
-          border: Border.fromBorderSide(BorderSide(width: 1))),
+        color: Color.fromARGB(255, 231, 228, 228),
+        border: Border.fromBorderSide(
+          BorderSide(width: 1),
+        ),
+      ),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
           initialValue,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.w500),
         ),
       ),
     );
