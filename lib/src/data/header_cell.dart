@@ -15,9 +15,14 @@ class HeaderCell extends StatelessWidget implements Cell {
           border: Border.fromBorderSide(BorderSide(width: 1))),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: Text(
-          initialValue,
-          style: const TextStyle(fontWeight: FontWeight.w500),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 4,
+          ),
+          child: Text(
+            initialValue,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
         ),
       ),
     );

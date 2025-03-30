@@ -32,6 +32,7 @@ class _MenuCellState<T> extends State<MenuCell<T>> {
       child: DropdownButton<T?>(
         value: currentValue,
         items: widget.items,
+        padding: EdgeInsets.symmetric(horizontal: 4),
         style: TextStyle(
           fontWeight: FontWeight.w400,
           color: Colors.black,

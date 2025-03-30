@@ -22,9 +22,12 @@ class ColumnCell extends StatelessWidget implements Cell {
       ),
       child: Align(
         alignment: Alignment.centerLeft,
-        child: Text(
-          initialValue,
-          style: const TextStyle(fontWeight: FontWeight.w400),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          child: Text(
+            initialValue,
+            style: const TextStyle(fontWeight: FontWeight.w400),
+          ),
         ),
       ),
     );
