@@ -46,19 +46,24 @@ class IntermediateFloorsForm extends StatelessWidget {
                           ?.floorCountExcludingBasements),
                 ]),
                 const SizedBox(height: 10),
+                FormHeader(
+                  text: 'Välipohjien pinta-alat ja runkorakenteet',
+                ),
                 LayoutGrid(
                   columnSizes: [
                     363.px,
                     120.px,
                     120.px,
                   ],
-                  rowSizes: List.filled(7, 50.px),
+                  rowSizes: [
+                    75.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                  ],
                   children: [
-                    FormHeader(
-                      text: 'Välipohjien pinta-alat ja runkorakenteet',
-                    ),
-                    EmptyCell(),
-                    EmptyCell(),
                     RowCell(
                       initialValue: "",
                       checkbox: true,
