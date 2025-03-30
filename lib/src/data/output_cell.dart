@@ -16,9 +16,13 @@ class OutputCell extends StatelessWidget implements Cell {
     var value = getter();
     String displayValue;
 
-    if (percentage && value is num) {
-      displayValue =
-          "${(value * 100).toInt()}%"; // Convert to integer percentage
+    if (percentage) {
+      if (value == null) {
+        displayValue = "0 %";
+      } else {
+        displayValue =
+            "${(value * 100).toInt()} %"; // Convert to integer percentage
+      }
     } else {
       displayValue = value?.toString() ?? "0.0";
     }

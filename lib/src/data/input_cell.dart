@@ -61,10 +61,10 @@ class _InputCellState extends State<InputCell> {
 
   String formatDisplayedValue() {
     if (widget.initialValue == null || widget.initialValue == 0) {
-      return widget.percentage ? '0%' : '0';
+      return widget.percentage ? '0 %' : '0';
     }
     if (widget.percentage) {
-      return '${(widget.initialValue! * 100).toStringAsFixed(0)}%';
+      return '${(widget.initialValue! * 100).toStringAsFixed(0)} %';
     }
     return widget.initialValue!.toString().replaceFirst('.', ',');
   }

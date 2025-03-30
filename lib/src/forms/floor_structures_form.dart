@@ -94,7 +94,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
                       state.officeSpaces!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -107,7 +107,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -120,7 +120,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
                       state.restroomsAndWashingFacilities!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -131,7 +131,8 @@ class FloorStructuresForm extends StatelessWidget {
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
-                      state.kitchens!.copyWith(floorPanelFloorPortion: value),
+                      state.kitchens!
+                          .copyWith(floorPanelFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -144,7 +145,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
                       state.teachingAndTreatmentSpaces!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -157,7 +158,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
                       state.storageAndWorkspaces!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -169,7 +170,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
                       state.otherSpaces!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -189,7 +190,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
                       state.officeSpaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -202,7 +203,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -215,7 +216,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
                       state.restroomsAndWashingFacilities!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -228,7 +229,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     KitchensChanged(
                       state.kitchens!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -241,7 +242,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
                       state.teachingAndTreatmentSpaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -254,7 +255,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
                       state.storageAndWorkspaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -267,7 +268,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
                       state.otherSpaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -285,7 +286,8 @@ class FloorStructuresForm extends StatelessWidget {
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
-                      state.officeSpaces!.copyWith(parquetFloorPortion: value),
+                      state.officeSpaces!
+                          .copyWith(parquetFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -298,7 +300,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!
-                          .copyWith(parquetFloorPortion: value),
+                          .copyWith(parquetFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -311,7 +313,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
                       state.restroomsAndWashingFacilities!
-                          .copyWith(parquetFloorPortion: value),
+                          .copyWith(parquetFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -322,7 +324,8 @@ class FloorStructuresForm extends StatelessWidget {
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
-                      state.kitchens!.copyWith(parquetFloorPortion: value),
+                      state.kitchens!
+                          .copyWith(parquetFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -335,7 +338,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
                       state.teachingAndTreatmentSpaces!
-                          .copyWith(parquetFloorPortion: value),
+                          .copyWith(parquetFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -347,7 +350,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
                       state.storageAndWorkspaces!
-                          .copyWith(parquetFloorPortion: value),
+                          .copyWith(parquetFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -358,7 +361,8 @@ class FloorStructuresForm extends StatelessWidget {
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
-                      state.otherSpaces!.copyWith(parquetFloorPortion: value),
+                      state.otherSpaces!
+                          .copyWith(parquetFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -377,7 +381,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
                       state.officeSpaces!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -390,7 +394,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -403,7 +407,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
                       state.restroomsAndWashingFacilities!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -414,7 +418,8 @@ class FloorStructuresForm extends StatelessWidget {
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
-                      state.kitchens!.copyWith(ceramicTileFloorPortion: value),
+                      state.kitchens!
+                          .copyWith(ceramicTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -427,7 +432,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
                       state.teachingAndTreatmentSpaces!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -440,7 +445,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
                       state.storageAndWorkspaces!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortion: value / 100),
                     ),
                   );
                 },
@@ -452,7 +457,7 @@ class FloorStructuresForm extends StatelessWidget {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
                       state.otherSpaces!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortion: value / 100),
                     ),
                   );
                 },

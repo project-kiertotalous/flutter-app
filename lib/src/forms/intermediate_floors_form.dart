@@ -77,7 +77,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                       initialValue: state.woodFramePercentageFraction,
                       percentage: true,
                       setter: (value) => intermediateFloorsBloc
-                          .add(WoodFramePercentageChanged(value)),
+                          .add(WoodFramePercentageChanged(value / 100)),
                     ),
                     OutputCell(getter: () => state.woodFrameFloorArea),
                     RowCell(
@@ -85,15 +85,15 @@ class IntermediateFloorsForm extends StatelessWidget {
                     InputCell(
                         initialValue: state.concreteCastingPercentageFraction,
                         percentage: true,
-                        setter: (value) => intermediateFloorsBloc
-                            .add(ConcreteCastingPercentageChanged(value))),
+                        setter: (value) => intermediateFloorsBloc.add(
+                            ConcreteCastingPercentageChanged(value / 100))),
                     OutputCell(getter: () => state.concreteCastingFloorArea),
                     RowCell(initialValue: "Ontelolaatta (m²)"),
                     InputCell(
                         initialValue: state.hollowCoreSlabPercentageFraction,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
-                            .add(HollowCoreSlabPercentageChanged(value))),
+                            .add(HollowCoreSlabPercentageChanged(value / 100))),
                     OutputCell(getter: () => state.hollowCoreSlabFloorArea),
                     RowCell(
                         initialValue:
@@ -102,7 +102,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                         initialValue: state.glulamBeamPercentageFraction,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
-                            .add(GlulamBeamPercentageChanged(value))),
+                            .add(GlulamBeamPercentageChanged(value / 100))),
                     OutputCell(getter: () => state.glulamBeamFloorArea),
                     RowCell(
                         initialValue:
