@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
@@ -88,13 +89,18 @@ class TotalBuildingFrameForm extends StatelessWidget {
             LayoutGrid(
               columnSizes: [
                 400.px,
-                160.px,
-                160.px,
-                160.px,
+                100.px,
+                100.px,
+                100.px,
+                100.px,
+                100.px,
+                100.px,
+                100.px,
+                100.px,
+                100.px,
               ],
               rowSizes: [
                 100.px,
-                50.px,
                 50.px,
                 50.px,
                 50.px,
@@ -123,16 +129,37 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   initialValue: 'Osuus (%)',
                 ),
                 ColumnCell(
-                  initialValue: 'm3',
+                  initialValue: 'Osuus (m2)',
                 ),
                 ColumnCell(
-                  initialValue: 'Tonnia',
+                  initialValue: 'Puuta (m3)',
+                ),
+                ColumnCell(
+                  initialValue: 'Puuta (tonnia)',
+                ),
+                ColumnCell(
+                  initialValue: 'Betonia (m3)',
+                ),
+                ColumnCell(
+                  initialValue: 'Betonia (tonnia)',
+                ),
+                ColumnCell(
+                  initialValue: 'Terästä (tonnia)',
+                ),
+                ColumnCell(
+                  initialValue: 'Tiiliä (m3)',
+                ),
+                ColumnCell(
+                  initialValue: 'Tiiliä (tonnia)',
                 ),
                 RowCell(
                   initialValue: 'Puurunko',
                   iconButton: InfoButton(),
                 ),
+
+                // puurunko
                 InputCell(
+                  percentage: true,
                   initialValue:
                       state.buildingFrame?.woodPortionFractionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
@@ -143,17 +170,22 @@ class TotalBuildingFrameForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                OutputCell(
-                  getter: () => state.woodVolume,
-                ),
-                OutputCell(
-                  getter: () => state.woodTons,
-                ),
+                OutputCell(getter: () => state.woodFramePart.area),
+                OutputCell(getter: () => state.woodFramePart.woodVolume),
+                OutputCell(getter: () => state.woodFramePart.woodTons),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+
+                // liimapalkit
                 RowCell(
                   initialValue: 'Liimapalkit',
                   iconButton: InfoButton(),
                 ),
                 InputCell(
+                  percentage: true,
                   initialValue: state.buildingFrame
                       ?.glulamVerticalColumnsPortionFractionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
@@ -164,19 +196,22 @@ class TotalBuildingFrameForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                // TODO: idk this getter
-                OutputCell(
-                  getter: () {},
-                ),
-                // TODO: idk this getter even ~~
-                OutputCell(
-                  getter: () {},
-                ),
+                OutputCell(getter: () => state.glulamBeamsPart.area),
+                OutputCell(getter: () => state.glulamBeamsPart.woodVolume),
+                OutputCell(getter: () => state.glulamBeamsPart.woodTons),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+
+                // betonipalkit
                 RowCell(
                   initialValue: 'Betonipalkit',
                   iconButton: InfoButton(),
                 ),
                 InputCell(
+                  percentage: true,
                   initialValue: state.buildingFrame
                       ?.concreteVerticalColumnsPortionFractionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
@@ -187,17 +222,35 @@ class TotalBuildingFrameForm extends StatelessWidget {
                     ),
                   ),
                 ),
+                Cell.grey(),
+                Cell.grey(),
                 OutputCell(
-                  getter: () => state.concreteVolume,
+                  getter: () => state.concreteVerticalColumnsPart.woodTons,
                 ),
                 OutputCell(
-                  getter: () => state.concreteTons,
+                  getter: () =>
+                      state.concreteVerticalColumnsPart.concreteVolume,
                 ),
+                OutputCell(
+                  getter: () => state.concreteVerticalColumnsPart.concreteTons,
+                ),
+                OutputCell(
+                  getter: () => state.concreteVerticalColumnsPart.steelTons,
+                ),
+                OutputCell(
+                  getter: () => state.concreteVerticalColumnsPart.brickTons,
+                ),
+                OutputCell(
+                  getter: () => state.concreteVerticalColumnsPart.brickVolume,
+                ),
+
+                // teräspalkit
                 RowCell(
                   initialValue: 'Teräspalkit',
                   iconButton: InfoButton(),
                 ),
                 InputCell(
+                  percentage: true,
                   initialValue: state.buildingFrame
                       ?.steelVerticalColumnsPortionFractionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
@@ -208,39 +261,58 @@ class TotalBuildingFrameForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                // TODO: this getter is missing
+                OutputCell(getter: () => state.steelVerticalColumnsPart.area),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
                 OutputCell(
-                  getter: () {},
+                  getter: () => state.steelVerticalColumnsPart.steelTons,
                 ),
-                OutputCell(
-                  getter: () => state.steelTons,
-                ),
+                Cell.grey(),
+                Cell.grey(),
+
+                // kantavat tiiliseinät
                 RowCell(
                   initialValue: 'Kantavat tiiliseinät',
                   iconButton: InfoButton(),
                 ),
                 InputCell(
-                  initialValue: state
-                      .buildingFrame?.brickCladWallPortionFractionPercentage,
+                  percentage: true,
+                  initialValue: state.buildingFrame
+                      ?.doubleLoadBearingBrickWallPortionFractionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(
-                        brickCladWallPortionFractionPercentage: value,
+                        doubleLoadBearingBrickWallPortionFractionPercentage:
+                            value,
                       ),
                     ),
                   ),
                 ),
                 OutputCell(
-                  getter: () => state.brickVolume,
+                  getter: () => state.doubleLoadBearingBrickWallPart.area,
+                ),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+                OutputCell(
+                  getter: () =>
+                      state.doubleLoadBearingBrickWallPart.brickVolume,
                 ),
                 OutputCell(
-                  getter: () => state.brickTons,
+                  getter: () => state.doubleLoadBearingBrickWallPart.brickTons,
                 ),
+
+                // betonielementit
                 RowCell(
                   initialValue: 'Betonielementit',
                   iconButton: InfoButton(),
                 ),
                 InputCell(
+                  percentage: true,
                   initialValue: state.buildingFrame
                       ?.concreteElementWallsWithoutFrameworkPortionFractionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
@@ -252,39 +324,41 @@ class TotalBuildingFrameForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                // TODO: missing getter
                 OutputCell(
-                  getter: () {},
+                  getter: () =>
+                      state.concreteElementWallsWithoutFrameworkPart.area,
                 ),
-                // TODO: missing getter
+                Cell.grey(),
+                Cell.grey(),
                 OutputCell(
-                  getter: () {},
+                  getter: () => state
+                      .concreteElementWallsWithoutFrameworkPart.concreteVolume,
                 ),
-                FormHeader(
-                  text: 'Yhteenveto',
-                ),
-                ColumnCell(
-                  initialValue: 'Seinien pinta-alat yhteensä (m2)',
-                ),
-                ColumnCell(
-                  initialValue: 'Kokonaismäärät (m3)',
-                ),
-                ColumnCell(
-                  initialValue: 'Kokonaismäärät (tonnia)',
-                ),
-                // errors should be displayed here
-                EmptyCell(),
                 OutputCell(
-                  getter: () => state.totalStructuralPartsArea,
+                  getter: () => state
+                      .concreteElementWallsWithoutFrameworkPart.concreteTons,
                 ),
-                // TODO: missing getter
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
+
+                // yhteensä
+                RowCell(
+                  initialValue: 'Yhteensä',
+                  iconButton: InfoButton(),
+                ),
                 OutputCell(
-                  getter: () {},
+                  getter: () =>
+                      state.totalEnvelopePartsPortionFractionPercentage,
                 ),
-                // TODO: missing getter
-                OutputCell(
-                  getter: () {},
-                ),
+                OutputCell(getter: () => state.totalEnvelopePartsArea),
+                OutputCell(getter: () => state.woodVolume),
+                OutputCell(getter: () => state.woodTons),
+                OutputCell(getter: () => state.concreteVolume),
+                OutputCell(getter: () => state.concreteTons),
+                OutputCell(getter: () => state.steelTons),
+                OutputCell(getter: () => state.brickVolume),
+                OutputCell(getter: () => state.brickTons),
               ],
             ),
           ],
