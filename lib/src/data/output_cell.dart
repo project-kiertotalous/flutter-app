@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
-class OutputCell extends StatelessWidget {
+class OutputCell extends StatelessWidget implements Cell {
   const OutputCell({
     super.key,
     required this.getter,

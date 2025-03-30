@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
-class ColumnCell extends StatelessWidget {
+class ColumnCell extends StatelessWidget implements Cell {
   const ColumnCell({
     super.key,
     required this.initialValue,

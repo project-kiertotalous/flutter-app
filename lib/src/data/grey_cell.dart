@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
-class GreyCell extends StatelessWidget {
+class GreyCell extends StatelessWidget implements Cell {
   const GreyCell({
     super.key,
   });
-
 
   @override
   Widget build(BuildContext context) {

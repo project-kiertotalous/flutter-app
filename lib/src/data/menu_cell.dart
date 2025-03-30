@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
-class MenuCell<T> extends StatefulWidget {
+class MenuCell<T> extends StatefulWidget implements Cell {
   const MenuCell({
     super.key,
-    required this.setter,
     required this.initialValue,
     required this.items,
+    required this.setter,
   });
 
+  final T? initialValue;
   final List<DropdownMenuItem<T?>> items;
   final Function(T?) setter;
-  final T? initialValue;
 
   @override
   State<MenuCell<T>> createState() => _MenuCellState<T>();

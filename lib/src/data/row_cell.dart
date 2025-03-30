@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
-class RowCell extends StatelessWidget {
+class RowCell extends StatelessWidget implements Cell {
   const RowCell({
     super.key,
     this.initialValue,
