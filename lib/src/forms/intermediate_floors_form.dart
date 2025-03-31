@@ -79,7 +79,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     ColumnCell(initialValue: "Lattiapinta-ala (m²)"),
                     RowCell(initialValue: "Puurunko (m²)"),
                     InputCell(
-                      initialValue: state.woodFramePercentageFraction,
+                      initialValue: state.woodFramePercentage,
                       percentage: true,
                       setter: (value) => intermediateFloorsBloc
                           .add(WoodFramePercentageChanged(value)),
@@ -88,14 +88,14 @@ class IntermediateFloorsForm extends StatelessWidget {
                     RowCell(
                         initialValue: "Betonivalu, oletuspaksuus 200 mm (m²)"),
                     InputCell(
-                        initialValue: state.concreteCastingPercentageFraction,
+                        initialValue: state.concreteCastingPercentage,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(ConcreteCastingPercentageChanged(value))),
                     OutputCell(getter: () => state.concreteCastingFloorArea),
                     RowCell(initialValue: "Ontelolaatta (m²)"),
                     InputCell(
-                        initialValue: state.hollowCoreSlabPercentageFraction,
+                        initialValue: state.hollowCoreSlabPercentage,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(HollowCoreSlabPercentageChanged(value))),
@@ -104,7 +104,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                         initialValue:
                             "Liimapalkki, oletusmäärä 0,4 jm/m² (m²)"),
                     InputCell(
-                        initialValue: state.glulamBeamPercentageFraction,
+                        initialValue: state.glulamBeamPercentage,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(GlulamBeamPercentageChanged(value))),
@@ -113,7 +113,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                         initialValue:
                             "Välipohjien lattiapinta-alat yhteensä (% / kerrosala yhteensä m²)"),
                     OutputCell(
-                      getter: () => state.totalFraction,
+                      getter: () => state.totalPercentage,
                       percentage: true,
                     ),
                     OutputCell(getter: () => state.totalFloorArea),

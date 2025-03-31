@@ -37,7 +37,7 @@ class IntermediateFloorsBloc
 
       final updatedIntermediateFloors =
           (state.intermediateFloors ?? IntermediateFloors()).copyWith(
-        woodFramePercentageFraction: event.value,
+        woodFramePercentage: event.value,
       );
 
       final newState =
@@ -51,7 +51,7 @@ class IntermediateFloorsBloc
 
       final updatedIntermediateFloors =
           (state.intermediateFloors ?? IntermediateFloors()).copyWith(
-        concreteCastingPercentageFraction: event.value,
+        concreteCastingPercentage: event.value,
       );
 
       final newState =
@@ -65,7 +65,7 @@ class IntermediateFloorsBloc
 
       final updatedIntermediateFloors =
           (state.intermediateFloors ?? IntermediateFloors()).copyWith(
-        hollowCoreSlabPercentageFraction: event.value,
+        hollowCoreSlabPercentage: event.value,
       );
 
       final newState =
@@ -79,7 +79,7 @@ class IntermediateFloorsBloc
 
       final updatedIntermediateFloors =
           (state.intermediateFloors ?? IntermediateFloors()).copyWith(
-        glulamBeamPercentageFraction: event.value,
+        glulamBeamPercentage: event.value,
       );
 
       final newState =
