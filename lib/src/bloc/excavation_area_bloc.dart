@@ -33,7 +33,7 @@ class ExcavationAreaBloc extends Bloc<ExcavationAreaEvent, ExcavationArea> {
       logger.d("CleanSoilPortionPercentageFractionChanged to ${event.amount}");
       emit(
         state.copyWith(
-          cleanSoilPortionPercentageFraction: event.amount,
+          cleanSoilPortionPercentage: event.amount,
         ),
       );
     });
