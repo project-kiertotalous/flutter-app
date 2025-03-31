@@ -23,6 +23,7 @@ class WindowsForm extends StatelessWidget {
 
     return BlocBuilder<WindowsBloc, Windows>(builder: (context, state) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FormHeader(
             text: 'Ikkunoiden ja lasiseinien määrät',

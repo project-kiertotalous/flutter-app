@@ -113,21 +113,24 @@ class _InputCellState extends State<InputCell> {
       height: double.infinity,
       decoration: BoxDecoration(border: Border.all(width: 1)),
       child: Center(
-        child: TextField(
-          focusNode: _focusNode,
-          decoration: InputDecoration(
-            border: InputBorder.none,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 4.0),
+          child: TextField(
+            focusNode: _focusNode,
+            decoration: InputDecoration(
+              border: InputBorder.none,
+            ),
+            onChanged: (value) =>
+                widget.integer ? setIntValue(value) : setDoubleValue(value),
+            // select all text when cell gains focus.
+            // this is ux feature and can be turned off if that seems better.
+            onTap: () => _controller.selection = TextSelection(
+              baseOffset: 0,
+              extentOffset: _controller.value.text.length,
+            ),
+            controller: _controller,
+            inputFormatters: formatters(),
           ),
-          onChanged: (value) =>
-              widget.integer ? setIntValue(value) : setDoubleValue(value),
-          // select all text when cell gains focus.
-          // this is ux feature and can be turned off if that seems better.
-          onTap: () => _controller.selection = TextSelection(
-            baseOffset: 0,
-            extentOffset: _controller.value.text.length,
-          ),
-          controller: _controller,
-          inputFormatters: formatters(),
         ),
       ),
       // ),
