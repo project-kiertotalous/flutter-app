@@ -2,6 +2,8 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/bloc/cellar_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
+import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
@@ -88,18 +90,27 @@ class CellarForm extends StatelessWidget {
               ],
             ),
 
-            SizedBox(height: 20), // Space before next grid
+            const SizedBox(height: 20), // Space before next grid
 
             // New grid for demolition materials
             LayoutGrid(
               columnSizes: [150.px, 120.px, 120.px], // Adjusted column widths
-              rowSizes: List.filled(9, 50.px), // 1 header row + 8 material rows
+              rowSizes: [
+                75.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                70.px,
+                70.px,
+                50.px,
+              ], // 1 header row + 8 material rows
               children: [
-                FormHeader(
-                    text:
+                Cell.header(
+                    initialValue:
                         "Kellarin lattian ja ulkoseinien purkumateriaalimäärät"),
-                RowCell(initialValue: "Tonnia"),
-                RowCell(initialValue: "m³"),
+                ColumnCell(initialValue: "Tonnia"),
+                ColumnCell(initialValue: "m³"),
                 RowCell(initialValue: "Betonia"),
                 OutputCell(getter: () => state.concreteTons),
                 OutputCell(getter: () => state.concreteVolume),

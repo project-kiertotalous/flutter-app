@@ -1,0 +1,323 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
+import 'package:flutter_app/src/bloc/total_roofs_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
+import 'package:flutter_app/src/data/column_cell.dart';
+import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/input_cell.dart';
+import 'package:flutter_app/src/data/menu_cell.dart';
+import 'package:flutter_app/src/data/output_cell.dart';
+import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+
+class RoofsForm extends StatelessWidget {
+  const RoofsForm({super.key});
+
+  /// Converts RoofType enum values to display names
+  /// and returns them as a list of DropdownMenuItems.
+  List<DropdownMenuItem<RoofType?>> _roofTypeToList() {
+    return [
+      DropdownMenuItem<RoofType?>(
+        value: null,
+        child: Text('Valitse'),
+      ),
+      ...RoofType.values.map((type) {
+        return DropdownMenuItem<RoofType?>(
+          value: type,
+          child: Text(_roofTypeToString(type)),
+        );
+      }),
+    ];
+  }
+
+  /// Converts WaterRoofType enum values to display names
+  /// and returns them as a list of DropdownMenuItems.
+  List<DropdownMenuItem<WaterRoofType?>> _waterRoofTypeToList() {
+    return [
+      DropdownMenuItem<WaterRoofType?>(
+        value: null,
+        child: Text('Valitse'),
+      ),
+      ...WaterRoofType.values.map((type) {
+        return DropdownMenuItem<WaterRoofType?>(
+          value: type,
+          child: Text(_waterRoofTypeToString(type)),
+        );
+      }),
+    ];
+  }
+
+  /// Converts RoofType enum to a user-friendly display name.
+  String _roofTypeToString(RoofType type) {
+    switch (type) {
+      case RoofType.woodenTruss:
+        return 'Puuristikko';
+      case RoofType.steelTruss:
+        return 'Teräsristikko';
+      case RoofType.concreteBeam:
+        return 'Betonipalkki';
+    }
+  }
+
+  /// Converts WaterRoofType enum to a user-friendly display name.
+  String _waterRoofTypeToString(WaterRoofType type) {
+    switch (type) {
+      case WaterRoofType.metalRoof:
+        return 'Peltikatto';
+      case WaterRoofType.roofingFelt:
+        return 'Kattohuopa';
+      case WaterRoofType.mineriteRoof:
+        return 'Mineriittikate';
+      case WaterRoofType.tiledRoof:
+        return 'Tiilikate';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final totalRoofsBloc = context.read<TotalRoofsBloc>();
+
+    return BlocBuilder<TotalRoofsBloc, TotalRoofs>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FormHeader(
+              text: 'Katon pinta-ala',
+            ),
+            LayoutGrid(
+              columnSizes: [
+                400.px,
+                160.px,
+                160.px,
+              ],
+              rowSizes: [
+                140.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+              ],
+              children: <Cell>[
+                Cell.row(
+                  initialValue:
+                      'Todellinen, mitatun tai piirustuksen mukainen kattopinta-ala (m2), TAI pohjanalanmukainen oletusmitoitus',
+                  checkbox: true,
+                  checkboxSetter: (value) => totalRoofsBloc.add(
+                    TotalRoofsChanged(
+                      state.copyWith.roofs!.call(
+                        useDefaultDimensions: value,
+                      ),
+                    ),
+                  ),
+                  checkboxTitle: 'Käytä oletusmitoitusta',
+                  checkboxValue: state.roofs?.useDefaultDimensions,
+                ),
+                Cell.input(
+                  initialValue: state.roofs?.ceilingArea,
+                  setter: (value) => totalRoofsBloc.add(
+                    TotalRoofsChanged(
+                      state.copyWith.roofs!.call(
+                        ceilingArea: value,
+                      ),
+                    ),
+                  ),
+                ),
+                Cell.empty(),
+                Cell.header(
+                  initialValue: 'Kattotyyppi',
+                ),
+                // TODO: this column needs an InfoButton
+                Cell.column(
+                  initialValue: 'Pinta-ala (m2)',
+                ),
+                Cell.column(
+                  initialValue: 'Kattotyypin osuus koko kattopinta-alasta (%)',
+                ),
+                Cell.row(
+                  initialValue: 'Harja-/aumakatto',
+                ),
+                Cell.output(
+                  getter: () => state.ridgeOrGableRoofArea,
+                ),
+                Cell.input(
+                  initialValue: state.roofs?.ridgeOrGableRoofPortion,
+                  setter: (value) => totalRoofsBloc.add(
+                    TotalRoofsChanged(
+                      state.copyWith.roofs!.call(
+                        ridgeOrGableRoofPortion: value,
+                      ),
+                    ),
+                  ),
+                ),
+                Cell.row(
+                  initialValue: 'Tasa-/pulpettikatto',
+                ),
+                Cell.output(
+                  getter: () => state.flatOrMonoPitchedRoofArea,
+                ),
+                Cell.output(
+                  getter: () => state.roofs?.flatOrMonoPitchedRoofPortion,
+                ),
+                Cell.row(
+                  initialValue: 'Koko kattopinta-ala (m2)',
+                ),
+                Cell.output(
+                  getter: () => state.calculatedCeilingArea,
+                ),
+                Cell.empty(),
+                Cell.header(
+                  initialValue: 'Rakenne ja materiaalit',
+                ),
+                Cell.menu(
+                  setter: (value) => totalRoofsBloc.add(TotalRoofsChanged(
+                      state.copyWith.roofs!.call(ridgeOrGableRoofType: value))),
+                  initialValue: state.roofs?.ridgeOrGableRoofType,
+                  items: _roofTypeToList(),
+                ),
+                Cell.menu(
+                  setter: (value) {
+                    totalRoofsBloc.add(TotalRoofsChanged(state.copyWith.roofs!
+                        .call(flatOrMonoPitchedRoofType: value)));
+                  },
+                  initialValue: state.roofs?.flatOrMonoPitchedRoofType,
+                  items: _roofTypeToList(),
+                ),
+                Cell.row(
+                  initialValue: 'Vesikatto',
+                  checkbox: true,
+                  checkboxSetter: (value) => totalRoofsBloc.add(
+                    TotalRoofsChanged(
+                      state.copyWith.roofs!.call(
+                        roofTrussesAreRecyclable: value,
+                      ),
+                    ),
+                  ),
+                  checkboxTitle: 'Kattoristikot kierrätettävissä',
+                  checkboxValue: state.roofs?.roofTrussesAreRecyclable,
+                ),
+                Cell.menu(
+                  setter: (value) => totalRoofsBloc.add(
+                    TotalRoofsChanged(
+                      state.copyWith.roofs!
+                          .call(ridgeOrGableWaterRoofType: value),
+                    ),
+                  ),
+                  initialValue: state.roofs?.ridgeOrGableWaterRoofType,
+                  items: _waterRoofTypeToList(),
+                ),
+                Cell.menu(
+                  setter: (value) => totalRoofsBloc.add(
+                    TotalRoofsChanged(
+                      state.copyWith.roofs!
+                          .call(flatOrMonoPitchedWaterRoofType: value),
+                    ),
+                  ),
+                  initialValue: state.roofs?.flatOrMonoPitchedWaterRoofType,
+                  items: _waterRoofTypeToList(),
+                ),
+                Cell.header(
+                  initialValue: 'Katon purkumateriaalimäärät',
+                ),
+                Cell.column(
+                  initialValue: 'm3',
+                ),
+                Cell.column(
+                  initialValue: 'Tonnia',
+                ),
+                Cell.row(
+                  initialValue:
+                      'Puuta (kattoristikot, aluslaudoitus ja kannattimet)',
+                ),
+                Cell.output(
+                  getter: () => state.woodVolume,
+                ),
+                Cell.output(
+                  getter: () => state.woodTons,
+                ),
+                Cell.row(
+                  initialValue: 'Terästä (teräsristikot, kattopellit)',
+                ),
+                Cell.output(
+                  // there doesn't seem to be a getter for this in TotalRoofs
+                  getter: () {},
+                ),
+                Cell.output(
+                  getter: () => state.steelTons,
+                ),
+                Cell.row(
+                  initialValue: 'Betoni',
+                ),
+                Cell.output(
+                  getter: () => state.concreteVolume,
+                ),
+                Cell.output(
+                  getter: () => state.concreteTons,
+                ),
+                Cell.row(
+                  initialValue: 'Lasi- ja mineraalieristevilla',
+                ),
+                Cell.output(
+                  getter: () => state.insulationVolume,
+                ),
+                Cell.output(
+                  getter: () => state.insulationTons,
+                ),
+                Cell.row(
+                  initialValue: 'Aluskate',
+                ),
+                Cell.output(
+                  getter: () => state.underlayVolume,
+                ),
+                Cell.output(
+                  getter: () => state.underlayTons,
+                ),
+                Cell.row(
+                  initialValue: 'Bitumikermikate (kattohuopa)',
+                ),
+                Cell.output(
+                  getter: () => state.bitumenVolume,
+                ),
+                Cell.output(
+                  getter: () => state.bitumenTons,
+                ),
+                Cell.row(
+                  initialValue: 'Mineriittikate',
+                ),
+                Cell.output(
+                  getter: () => state.mineriteVolume,
+                ),
+                Cell.output(
+                  getter: () => state.mineriteTons,
+                ),
+                Cell.row(
+                  initialValue: 'Kattotiilet',
+                ),
+                Cell.output(
+                  getter: () => state.roofTileVolume,
+                ),
+                Cell.output(
+                  getter: () => state.roofTileTons,
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
+  }
+}

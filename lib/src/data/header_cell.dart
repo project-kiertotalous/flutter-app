@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/cell.dart';
 
-class ColumnCell extends StatelessWidget implements Cell {
-  const ColumnCell({
-    super.key,
-    required this.initialValue,
-  });
+/// Meant to use in top left cell of a form.
+class HeaderCell extends StatelessWidget implements Cell {
+  const HeaderCell({super.key, required this.initialValue});
 
   final String initialValue;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       height: double.infinity,
+      width: double.infinity,
       decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 231, 228, 228),
-        border: Border.fromBorderSide(
-          BorderSide(width: 1),
-        ),
-      ),
+          border: Border.fromBorderSide(BorderSide(width: 1))),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 4,
+          ),
           child: Text(
             initialValue,
-            style: const TextStyle(fontWeight: FontWeight.w400),
+            style: const TextStyle(fontWeight: FontWeight.w500),
           ),
         ),
       ),

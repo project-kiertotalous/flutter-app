@@ -19,6 +19,7 @@ class RemovableGroundsForm extends StatelessWidget {
     return BlocBuilder<ExcavationAreaBloc, ExcavationArea>(
         builder: (context, state) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FormHeader(
               text: 'Poistettavat maa-ainekset, poistettava alue ja määrä'),
@@ -60,7 +61,7 @@ class RemovableGroundsForm extends StatelessWidget {
               OutputCell(getter: () => state.volumeToRemove),
               RowCell(initialValue: 'Poistettavan puhtaan maan osuus (%)'),
               OutputCell(
-                getter: () => state.cleanSoilPortionPercentageFraction,
+                getter: () => state.cleanSoilPortionPercentage,
                 percentage: true,
               ),
               RowCell(initialValue: 'Puhdas maa (tonnia)'),

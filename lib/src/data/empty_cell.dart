@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/data/cell.dart';
 
-class EmptyCell extends StatelessWidget {
+class EmptyCell extends StatelessWidget implements Cell {
   const EmptyCell({super.key});
 
   @override

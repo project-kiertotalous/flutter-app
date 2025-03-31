@@ -21,13 +21,14 @@ class InternalWallFramesAndSurfaceMaterialsForm extends StatelessWidget {
     return BlocBuilder<InternalWallFramesAndSurfaceMaterialBloc,
         InternalWallFramesAndSurfaceMaterial>(builder: (context, state) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FormHeader(
             text: 'Sisäseinien rungot ja pintamateriaalit',
           ),
           LayoutGrid(
             columnSizes: [
-              400.px,
+              350.px,
               120.px,
             ],
             rowSizes: [50.px, 50.px, 50.px],
