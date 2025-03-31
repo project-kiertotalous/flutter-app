@@ -8,7 +8,7 @@ class DoubleLoadBearingBrickWallBloc extends Bloc<
     on<LoadData>((event, emit) async {
       try {
         final portionFractionPercentage = event.totalBuildingFrame
-            .doubleLoadBearingBrickWallPart.portionFractionPercentage;
+            .doubleLoadBearingBrickWallPart.portionPercentage;
         final area =
             event.totalBuildingFrame.doubleLoadBearingBrickWallPart.area;
         final brickVolume =

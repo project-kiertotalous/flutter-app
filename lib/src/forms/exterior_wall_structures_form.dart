@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/src/bloc/exterior_wall_structures_bloc.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,236 +25,177 @@ class OuterWallsForm extends StatelessWidget {
 
           FormHeader(text: 'Ulkoseinärakenteiden osuus ja pinta-ala'),
           LayoutGrid(
-              columnSizes: [
-                150.px,
-                100.px,
-                100.px,
-                100.px,
-                100.px,
-                100.px,
-                100.px,
-                100.px,
-                100.px,
-                100.px,
-              ],
-              rowSizes: List.filled(14, 50.px),
-              //  [
-              //   50.px,
-              //   50.px,
-              //   50.px,
-              //   50.px,
-              //   50.px,
-              //   50.px,
-              //   50.px,
-              //   50.px,
-              //   50.px
-              // ],
-              children: [
-                RowCell(),
-              ]
-              //   [
-              //     ColumnCell(
-              //       initialValue: 'Seinärakenne',
-              //     ),
-              //     ColumnCell(
-              //       initialValue: "Osuus (%)",
-              //     ),
-              //     ColumnCell(
-              //       initialValue: "Pinta-ala (m²)",
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Kaksinkertainen tiiliseinä',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Betonielementtiseinä',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Tiiliverhoiltu seinä',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Lautaseinä',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Profiiliseinä',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Teräsprofiili sandwich-rakenne',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Mineriitti tai muu kivilevy',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Yhteensä',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //   ],
-              // ),
-
-              // SizedBox(height: 20),
-
-              // // Demolition Material Quantities Form
-              // FormHeader(text: 'Purkumateriaalien määrä'),
-              // LayoutGrid(
-              //   columnSizes: [150.px, 120.px, 120.px],
-              //   rowSizes: List.filled(12, 50.px),
-              //   children: [
-              //     ColumnCell(
-              //       initialValue: 'Materiaali',
-              //     ),
-              //     ColumnCell(
-              //       initialValue: "Tilavuus (m3)",
-              //     ),
-              //     ColumnCell(
-              //       initialValue: "Paino (tonnia)",
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Tuulensuojalevy (bituliitti, tms)',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Mineraalivilla',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: '130 mm kalkki tai punatiili',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: '20m ulkoverhouslauta',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: '11 mm kipsilevy',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Profiilipelti (teräs)',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Puolikova kuitulevy',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Styrox',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Rappaus, sisä -ja ulkoseinät',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Mineriittilevy',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     RowCell(
-              //       initialValue: 'Yhteensä',
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //     OutputCell(
-              //       getter: () => null,
-              //     ),
-              //   ],
+            columnSizes: [
+              150.px,
+              100.px,
+              100.px,
+              100.px,
+              100.px,
+              100.px,
+              100.px,
+              100.px,
+              100.px,
+              100.px,
+            ],
+            rowSizes: List.filled(14, 50.px),
+            //  [
+            //   50.px,
+            //   50.px,
+            //   50.px,
+            //   50.px,
+            //   50.px,
+            //   50.px,
+            //   50.px,
+            //   50.px,
+            //   50.px
+            // ],
+            children: [
+              Cell.header(
+                initialValue: 'Seinärakenne',
               ),
+              Cell.column(initialValue: 'Kaksinkertainen tiiliseinä'),
+              Cell.column(initialValue: 'Betonielementtiseinä'),
+              Cell.column(initialValue: 'Tiiliverhoiltu seinä'),
+              Cell.column(initialValue: 'Lautaseinä'),
+              Cell.column(initialValue: 'Profiilipelti'),
+              Cell.column(initialValue: 'Teräsprofiili sandwichrakenne'),
+              Cell.column(initialValue: 'Mineriitti tai muu kivilevy'),
+              Cell.column(initialValue: 'Yhteensä'),
+              Cell.empty(),
+              Cell.row(
+                initialValue: 'Rakenteen osuus koko ulkoseinistä (%)',
+              ),
+              Cell.output(percentage: true, getter: () => null),
+              Cell.output(percentage: true, getter: () {}),
+              Cell.input(initialValue: null, percentage: true, setter: () {}),
+              Cell.input(initialValue: null, percentage: true, setter: () {}),
+              Cell.input(initialValue: null, percentage: true, setter: () {}),
+              Cell.input(initialValue: null, percentage: true, setter: () {}),
+              Cell.input(initialValue: null, percentage: true, setter: () {}),
+              Cell.output(percentage: true, getter: () {}),
+              Cell.empty(),
+              Cell.row(initialValue: 'Pinta-ala (m2)'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.empty(),
+              Cell.header(initialValue: 'Purkumateriaalien määrä'),
+              Cell.empty(),
+              Cell.empty(),
+              Cell.empty(),
+              Cell.empty(),
+              Cell.empty(),
+              Cell.empty(),
+              Cell.empty(),
+              Cell.column(initialValue: 'Yhteensä (m3)'),
+              Cell.column(initialValue: 'Yhteensä (tonnia)'),
+              Cell.row(initialValue: 'Tuulensuojalevy (bituliitti, tms.)'),
+              Cell.grey(),
+              Cell.grey(),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.grey(),
+              Cell.grey(),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: 'Mineraalivilla'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: '130mm kalkki- tai punatiili'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: '20m ulkoverhouslauta'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: '11mm kipsilevy'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: 'Profiilipelti (teräs)'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: 'Puolikova kuitulevy'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: 'Styrox'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: 'Rappaus, sisä- ja ulkoseinät'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.row(initialValue: 'Mineriittilevy'),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+              Cell.output(getter: () {}),
+            ],
+          ),
         ],
       );
     });
