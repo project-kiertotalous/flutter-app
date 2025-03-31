@@ -1,10 +1,8 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
-import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
@@ -30,7 +28,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
 
           // Grid: 6 columns, 9 rows
           LayoutGrid(
-            columnSizes: [150.px, 150.px, 150.px, 150.px, 150.px, 150.px],
+            columnSizes: [210.px, 150.px, 150.px, 150.px, 150.px, 150.px],
             rowSizes: [
               50.px,
               50.px,

@@ -28,7 +28,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
   static const List<Tab> tabs = [
     Tab(text: "Ulkovaippa"),
     Tab(text: "Väliseinät ja ikkunat"),
-    Tab(text: "LVI, & säkö & muut varusteet")
+    Tab(text: "LVI, & sähkö & muut varusteet")
   ];
 
   List<Widget> outerSheathForms() => [
