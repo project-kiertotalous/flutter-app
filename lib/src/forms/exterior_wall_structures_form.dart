@@ -1,23 +1,18 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_app/src/bloc/exterior_wall_structures_bloc.dart';
+import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_app/src/data/form_header.dart';
-import 'package:flutter_app/src/data/output_cell.dart';
 
 class OuterWallsForm extends StatelessWidget {
   const OuterWallsForm({super.key});
 
-  /*THIS FORM USES THE PREVIOUS, OLD FIGMA PROTOTYPE VERSION, WHICH WAS MISSING OUTPUT CELLS! 
-  REFACTOR THIS FORM TO USE THE NEW FIGMA PROTOTYPES FORM LAYOUT*/
-
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<DoubleLoadBearingBrickWallBloc,
-        DoubleLoadBearingBrickWallState>(builder: (context, state) {
+    return BlocBuilder<TotalBuildingFrameBloc, TotalBuildingFrame>(
+        builder: (context, state) {
       return Column(
         children: [
           // Exterior Wall Structures Form
@@ -38,17 +33,6 @@ class OuterWallsForm extends StatelessWidget {
               100.px,
             ],
             rowSizes: List.filled(14, 50.px),
-            //  [
-            //   50.px,
-            //   50.px,
-            //   50.px,
-            //   50.px,
-            //   50.px,
-            //   50.px,
-            //   50.px,
-            //   50.px,
-            //   50.px
-            // ],
             children: [
               Cell.header(
                 initialValue: 'Seinärakenne',
