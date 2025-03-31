@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
@@ -83,7 +84,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           50.px,
         ],
         children: [
-          FormHeader(text: 'Perustyyppi ja lattiat'),
+          Cell.header(initialValue: 'Perustyyppi ja lattiat'),
           ColumnCell(
             initialValue: 'Valesokkeli',
           ),

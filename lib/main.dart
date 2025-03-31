@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/door_bloc.dart';
 import 'package:flutter_app/src/bloc/exterior_wall_structures_bloc.dart';
+import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,6 +86,10 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) =>
                       DoubleLoadBearingBrickWallBloc(),
                 ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      HvacAndElectricalInstallationsBloc(),
+                ),
               ],
               child: LargeBuildingsView(),
             ),
@@ -98,6 +103,11 @@ class MyApp extends StatelessWidget {
       // SettingsController to display the correct theme.
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Color(0xFF54be84),
+          // primary: Colors.black,
+          // secondary: Colors.blue,
+        ),
       ),
     );
   }

@@ -23,12 +23,13 @@ class FixedFurnitureForm extends StatelessWidget {
     return BlocBuilder<FixedFurnitureBloc, FixedFurniture>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormHeader(text: "Kalustetyyppi ja määrät"),
 
             // First grid: 2 columns, 14 rows
             LayoutGrid(
-              columnSizes: [360.px, 150.px],
+              columnSizes: [374.px, 150.px],
               rowSizes: List.filled(14, 50.px),
               children: [
                 RowCell(

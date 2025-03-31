@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
@@ -28,37 +29,41 @@ class IntermediateFloorsForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 50),
-                LayoutGrid(
-                    columnSizes: List.filled(3, 130.px),
-                    rowSizes: List.filled(2, 50.px),
-                    children: [
-                      FormHeader(text: "Välipohjat"),
-                      ColumnCell(initialValue: "Kerrosala (m2)"),
-                      ColumnCell(initialValue: "Kerroksia (kpl)"),
-                      RowCell(
-                          initialValue:
-                              "Välipohjien laskennassa käytetyt arvot"),
-                      OutputCell(
-                          getter: () =>
-                              state.totalBuildingDimensions?.grossFloorArea),
-                      OutputCell(
-                          getter: () => state.totalBuildingDimensions
-                              ?.floorCountExcludingBasements),
-                    ]),
+                LayoutGrid(columnSizes: List.filled(3, 130.px), rowSizes: [
+                  50.px,
+                  70.px
+                ], children: [
+                  Cell.header(initialValue: "Välipohjat"),
+                  ColumnCell(initialValue: "Kerrosala (m2)"),
+                  ColumnCell(initialValue: "Kerroksia (kpl)"),
+                  RowCell(
+                      initialValue: "Välipohjien laskennassa käytetyt arvot"),
+                  OutputCell(
+                      getter: () =>
+                          state.totalBuildingDimensions?.grossFloorArea),
+                  OutputCell(
+                      getter: () => state.totalBuildingDimensions
+                          ?.floorCountExcludingBasements),
+                ]),
                 const SizedBox(height: 10),
+                FormHeader(
+                  text: 'Välipohjien pinta-alat ja runkorakenteet',
+                ),
                 LayoutGrid(
                   columnSizes: [
-                    345.px,
+                    363.px,
                     120.px,
                     120.px,
                   ],
-                  rowSizes: List.filled(7, 50.px),
+                  rowSizes: [
+                    75.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                    50.px,
+                  ],
                   children: [
-                    FormHeader(
-                      text: 'Välipohjien pinta-alat ja runkorakenteet',
-                    ),
-                    EmptyCell(),
-                    EmptyCell(),
                     RowCell(
                       initialValue: "",
                       checkbox: true,
@@ -74,7 +79,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     ColumnCell(initialValue: "Lattiapinta-ala (m²)"),
                     RowCell(initialValue: "Puurunko (m²)"),
                     InputCell(
-                      initialValue: state.woodFramePercentageFraction,
+                      initialValue: state.woodFramePercentage,
                       percentage: true,
                       setter: (value) => intermediateFloorsBloc
                           .add(WoodFramePercentageChanged(value)),
@@ -83,14 +88,14 @@ class IntermediateFloorsForm extends StatelessWidget {
                     RowCell(
                         initialValue: "Betonivalu, oletuspaksuus 200 mm (m²)"),
                     InputCell(
-                        initialValue: state.concreteCastingPercentageFraction,
+                        initialValue: state.concreteCastingPercentage,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(ConcreteCastingPercentageChanged(value))),
                     OutputCell(getter: () => state.concreteCastingFloorArea),
                     RowCell(initialValue: "Ontelolaatta (m²)"),
                     InputCell(
-                        initialValue: state.hollowCoreSlabPercentageFraction,
+                        initialValue: state.hollowCoreSlabPercentage,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(HollowCoreSlabPercentageChanged(value))),
@@ -99,7 +104,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                         initialValue:
                             "Liimapalkki, oletusmäärä 0,4 jm/m² (m²)"),
                     InputCell(
-                        initialValue: state.glulamBeamPercentageFraction,
+                        initialValue: state.glulamBeamPercentage,
                         percentage: true,
                         setter: (value) => intermediateFloorsBloc
                             .add(GlulamBeamPercentageChanged(value))),
@@ -108,7 +113,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                         initialValue:
                             "Välipohjien lattiapinta-alat yhteensä (% / kerrosala yhteensä m²)"),
                     OutputCell(
-                      getter: () => state.totalFraction,
+                      getter: () => state.totalPercentage,
                       percentage: true,
                     ),
                     OutputCell(getter: () => state.totalFloorArea),
@@ -132,7 +137,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                   ],
                   rowSizes: List.filled(5, 50.px),
                   children: [
-                    FormHeader(text: 'Rakenne'),
+                    Cell.header(initialValue: 'Rakenne'),
                     ColumnCell(initialValue: 'Puuta (m³)'),
                     ColumnCell(initialValue: 'Puuta (tonnia)'),
                     ColumnCell(initialValue: 'Betonia (m³)'),
