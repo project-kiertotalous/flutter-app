@@ -94,7 +94,6 @@ class _InputCellState extends State<InputCell> {
     _focusNode.addListener(() {
       if (!_focusNode.hasFocus) {
         formatDisplayedValue();
-        logger.d({_controller.text});
       }
     });
   }
