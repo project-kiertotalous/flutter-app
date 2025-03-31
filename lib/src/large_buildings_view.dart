@@ -4,6 +4,7 @@ import 'package:flutter_app/src/forms/cellar_form.dart';
 import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
 import 'package:flutter_app/src/forms/floor_structures_form.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
+import 'package:flutter_app/src/forms/hvac_and_electrical_installations_form.dart';
 import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
 import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
@@ -26,7 +27,8 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
     with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: "Ulkovaippa"),
-    Tab(text: "Väliseinät ja ikkunat")
+    Tab(text: "Väliseinät ja ikkunat"),
+    Tab(text: "LVI, & säkö & muut varusteet")
   ];
 
   List<Widget> outerSheathForms() => [
@@ -50,6 +52,10 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         const SizedBox(height: 20),
         NavigationButtons(),
         const SizedBox(height: 30),
+      ];
+
+  List<Widget> lviForms() => [
+        HVACAndElectricalInstallationsForm(),
       ];
 
   @override
@@ -78,6 +84,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
                 forms: partitionsAndWindowsForms,
                 width: 1200,
               ),
+              TabView(forms: lviForms),
             ],
           ),
         ),
