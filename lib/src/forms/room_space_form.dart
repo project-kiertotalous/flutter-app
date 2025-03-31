@@ -10,7 +10,8 @@ import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/room_spaces.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/room_space.dart';
 
 class RoomSpaceForm extends StatelessWidget {
   const RoomSpaceForm({super.key});
@@ -384,7 +385,7 @@ class RoomSpaceForm extends StatelessWidget {
                 GreyCell(),
                 GreyCell(),
                 RowCell(
-                  initialValue: 'Tilan osuus seinien kokonaispinta-alasta (m)',
+                  initialValue: 'Tilan osuus seinien kokonaispinta-alasta (%)',
                 ),
                 OutputCell(
                   getter: () =>

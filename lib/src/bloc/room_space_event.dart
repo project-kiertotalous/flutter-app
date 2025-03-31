@@ -1,4 +1,4 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/room_space.dart';
 
 abstract class RoomSpaceEvent {}
 

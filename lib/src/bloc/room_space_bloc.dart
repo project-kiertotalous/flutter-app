@@ -1,6 +1,7 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/room_spaces.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/room_space.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app/log.dart';  // Make sure this import exists
+import 'package:flutter_app/log.dart';
 import 'room_space_event.dart';
 
 class RoomSpaceBloc extends Bloc<RoomSpaceEvent, RoomSpaces> {
