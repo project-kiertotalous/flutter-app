@@ -160,12 +160,11 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 // puurunko
                 InputCell(
                   percentage: true,
-                  initialValue:
-                      state.buildingFrame?.woodPortionFractionPercentage,
+                  initialValue: state.buildingFrame?.woodPortionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(
-                        woodPortionFractionPercentage: value,
+                        woodPortionPercentage: value,
                       ),
                     ),
                   ),
@@ -186,12 +185,12 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 ),
                 InputCell(
                   percentage: true,
-                  initialValue: state.buildingFrame
-                      ?.glulamVerticalColumnsPortionFractionPercentage,
+                  initialValue: state
+                      .buildingFrame?.glulamVerticalColumnsPortionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(
-                        glulamVerticalColumnsPortionFractionPercentage: value,
+                        glulamVerticalColumnsPortionPercentage: value,
                       ),
                     ),
                   ),
@@ -212,12 +211,12 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 ),
                 InputCell(
                   percentage: true,
-                  initialValue: state.buildingFrame
-                      ?.concreteVerticalColumnsPortionFractionPercentage,
+                  initialValue: state
+                      .buildingFrame?.concreteVerticalColumnsPortionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(
-                        concreteVerticalColumnsPortionFractionPercentage: value,
+                        concreteVerticalColumnsPortionPercentage: value,
                       ),
                     ),
                   ),
@@ -251,12 +250,12 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 ),
                 InputCell(
                   percentage: true,
-                  initialValue: state.buildingFrame
-                      ?.steelVerticalColumnsPortionFractionPercentage,
+                  initialValue: state
+                      .buildingFrame?.steelVerticalColumnsPortionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(
-                        steelVerticalColumnsPortionFractionPercentage: value,
+                        steelVerticalColumnsPortionPercentage: value,
                       ),
                     ),
                   ),
@@ -280,12 +279,11 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   percentage: true,
                   initialValue: state.buildingFrame
-                      ?.doubleLoadBearingBrickWallPortionFractionPercentage,
+                      ?.doubleLoadBearingBrickWallPortionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(
-                        doubleLoadBearingBrickWallPortionFractionPercentage:
-                            value,
+                        doubleLoadBearingBrickWallPortionPercentage: value,
                       ),
                     ),
                   ),
@@ -314,11 +312,11 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   percentage: true,
                   initialValue: state.buildingFrame
-                      ?.concreteElementWallsWithoutFrameworkPortionFractionPercentage,
+                      ?.concreteElementWallsWithoutFrameworkPortionPercentage,
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(
-                        concreteElementWallsWithoutFrameworkPortionFractionPercentage:
+                        concreteElementWallsWithoutFrameworkPortionPercentage:
                             value,
                       ),
                     ),
@@ -348,8 +346,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   iconButton: InfoButton(),
                 ),
                 OutputCell(
-                  getter: () =>
-                      state.totalEnvelopePartsPortionFractionPercentage,
+                  getter: () => state.totalEnvelopePartsPortionPercentage,
                 ),
                 OutputCell(getter: () => state.totalEnvelopePartsArea),
                 OutputCell(getter: () => state.woodVolume),
