@@ -12,6 +12,7 @@ import 'package:flutter_app/src/forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
+import 'package:flutter_app/src/forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 
@@ -56,6 +57,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
 
   List<Widget> lviForms() => [
         HVACAndElectricalInstallationsForm(),
+        YardAndProtectiveStructuresForm(),
       ];
 
   @override

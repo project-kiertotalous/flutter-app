@@ -3,6 +3,7 @@ import 'package:flutter_app/src/bloc/door_bloc.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
+import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/fixed_furniture_bloc.dart';
 import 'package:flutter_app/src/bloc/windows_bloc.dart';
@@ -84,6 +85,10 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       HvacAndElectricalInstallationsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      YardAndProtectiveStructuresBloc(),
                 ),
               ],
               child: LargeBuildingsView(),
