@@ -2,6 +2,33 @@ import 'package:flutter_app/src/bloc/exterior_wall_structures_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bl_demolition_materials/src/large_properties/external_shell_and_frame_structures/total/total_building_frame.dart';
 
+class DoubleLoadBearingBrickWallBloc extends Bloc<
+    DoubleLoadBearingBrickWallEvent, DoubleLoadBearingBrickWallState> {
+  DoubleLoadBearingBrickWallBloc() : super(DoubleLoadBearingBrickWallState()) {
+    on<LoadData>((event, emit) async {
+      try {
+        final portionFractionPercentage = event.totalBuildingFrame
+            .doubleLoadBearingBrickWallPart.portionFractionPercentage;
+        final area =
+            event.totalBuildingFrame.doubleLoadBearingBrickWallPart.area;
+        final brickVolume =
+            event.totalBuildingFrame.doubleLoadBearingBrickWallPart.brickVolume;
+        final brickTons =
+            event.totalBuildingFrame.doubleLoadBearingBrickWallPart.brickTons;
+
+        emit(state.copyWith(
+          portionFractionPercentage: portionFractionPercentage,
+          area: area,
+          brickVolume: brickVolume,
+          brickTons: brickTons,
+        ));
+      } catch (e) {
+        emit(state.copyWith(errorMessage: e.toString()));
+      }
+    });
+  }
+}
+
 class DoubleLoadBearingBrickWallState {
   final num? portionFractionPercentage;
   final num? area;
@@ -32,32 +59,5 @@ class DoubleLoadBearingBrickWallState {
       brickTons: brickTons ?? this.brickTons,
       errorMessage: errorMessage,
     );
-  }
-}
-
-class DoubleLoadBearingBrickWallBloc extends Bloc<
-    DoubleLoadBearingBrickWallEvent, DoubleLoadBearingBrickWallState> {
-  DoubleLoadBearingBrickWallBloc() : super(DoubleLoadBearingBrickWallState()) {
-    on<LoadData>((event, emit) async {
-      try {
-        final portionFractionPercentage = event.totalBuildingFrame
-            .doubleLoadBearingBrickWallPart.portionFractionPercentage;
-        final area =
-            event.totalBuildingFrame.doubleLoadBearingBrickWallPart.area;
-        final brickVolume =
-            event.totalBuildingFrame.doubleLoadBearingBrickWallPart.brickVolume;
-        final brickTons =
-            event.totalBuildingFrame.doubleLoadBearingBrickWallPart.brickTons;
-
-        emit(state.copyWith(
-          portionFractionPercentage: portionFractionPercentage,
-          area: area,
-          brickVolume: brickVolume,
-          brickTons: brickTons,
-        ));
-      } catch (e) {
-        emit(state.copyWith(errorMessage: e.toString()));
-      }
-    });
   }
 }
