@@ -55,7 +55,7 @@ class CellarForm extends StatelessWidget {
           children: [
             // Existing grid for cellar details
             LayoutGrid(
-              columnSizes: [150.px, 120.px, 120.px],
+              columnSizes: [210.px, 120.px, 120.px],
               rowSizes: [50.px, 50.px, 50.px, 50.px],
               children: [
                 FormHeader(text: 'Kellari'),
@@ -94,9 +94,9 @@ class CellarForm extends StatelessWidget {
 
             // New grid for demolition materials
             LayoutGrid(
-              columnSizes: [150.px, 120.px, 120.px], // Adjusted column widths
+              columnSizes: [210.px, 120.px, 120.px], // Adjusted column widths
               rowSizes: [
-                75.px,
+                60.px,
                 50.px,
                 50.px,
                 50.px,

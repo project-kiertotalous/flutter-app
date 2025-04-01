@@ -84,7 +84,7 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           50.px,
         ],
         children: [
-          Cell.header(initialValue: 'Perustyyppi ja lattiat'),
+          Cell.header(initialValue: 'Perustustyyppi ja lattiat'),
           ColumnCell(
             initialValue: 'Valesokkeli',
           ),
