@@ -1,16 +1,17 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/fixed_furniture.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/fixed_furniture_bloc.dart';
 import 'package:flutter_app/src/bloc/fixed_furniture_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/data/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/fixed_furniture.dart';
 
 /// Fixed Furniture UI Form
 class FixedFurnitureForm extends StatelessWidget {
@@ -69,7 +70,14 @@ class FixedFurnitureForm extends StatelessWidget {
                 RowCell(initialValue: "Kaapistot ja säilytystilat"),
                 GreyCell(),
                 //6
-                RowCell(initialValue: "Keittiökaapistot (lastulevy/puu)"),
+                RowCell(
+                  initialValue: "Keittiökaapistot (lastulevy/puu)",
+                  iconButton: InfoButton(
+                      text: TooltipTexts
+                          .partitionWallsDoorsAndWindows
+                          .fixedFurnitureTooltipTexts
+                          .chipboardOrWoodenKitchenCabinets),
+                ),
                 InputCell(
                   initialValue: state.kitchenClosetsWoodOrChipboard,
                   integer: true,
@@ -85,7 +93,11 @@ class FixedFurnitureForm extends StatelessWidget {
                       fixedFurnitureBloc.add(SteelLockerCabinetsChanged(value)),
                 ),
                 //8
-                RowCell(initialValue: "Vaatekaapit, ym. (puulevy)"),
+                RowCell(
+                    initialValue: "Vaatekaapit, ym. (puulevy)",
+                    iconButton: InfoButton(
+                        text: TooltipTexts.partitionWallsDoorsAndWindows
+                            .fixedFurnitureTooltipTexts.woodPanelClosets)),
                 InputCell(
                   initialValue: state.clothingOrOtherClosetsWood,
                   integer: true,

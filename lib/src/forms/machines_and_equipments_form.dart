@@ -1,15 +1,16 @@
+import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/machines_and_equipments.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
+import 'package:flutter_app/src/bloc/machines_and_equipments_event.dart';
+import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
-import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:flutter_app/src/data/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
-import 'package:flutter_app/src/bloc/machines_and_equipments_event.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/machines_and_equipments.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 // Machines and Equipments UI Form
 class MachinesAndEquipmentsForm extends StatelessWidget {
@@ -48,7 +49,12 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                     .add(MachinesRecyclableChanged(value)),
               ),
               ColumnCell(initialValue: "Oletuspaino (kg/kpl)"),
-              ColumnCell(initialValue: "kg/kpl"),
+              ColumnCell(
+                initialValue: "kg/kpl",
+                iconButton: InfoButton(
+                    text: TooltipTexts
+                        .hvacAndElectricalInstallations.machineDetailedWeight),
+              ),
               ColumnCell(initialValue: "Määrä (kpl)"),
               ColumnCell(initialValue: "Tonnia"),
               RowCell(initialValue: "Vesivaraajat (sähkö, pienet)"),
@@ -63,7 +69,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 initialValue: state.smallElectricalAccumulators?.quantity,
                 setter: (value) => machinesAndEquipmentsBloc.add(
                     SmallElectricalWaterAccumulatorsQuantityChanged(value)),
-                    integer: true,
+                integer: true,
               ),
               OutputCell(getter: () => state.smallElectricalAccumulators?.tons),
               RowCell(
@@ -80,7 +86,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 initialValue: state.largeElectricalAccumulators?.quantity,
                 setter: (value) => machinesAndEquipmentsBloc.add(
                     LargeElectricalWaterAccumulatorsQuantityChanged(value)),
-                    integer: true,
+                integer: true,
               ),
               OutputCell(getter: () => state.largeElectricalAccumulators?.tons),
               RowCell(initialValue: "Lämpöpatterit (sähkö)"),
@@ -94,7 +100,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 initialValue: state.electricRadiators?.quantity,
                 setter: (value) => machinesAndEquipmentsBloc
                     .add(ElectricRadiatorsQuantityChanged(value)),
-                    integer: true,
+                integer: true,
               ),
               OutputCell(getter: () => state.electricRadiators?.tons),
               RowCell(initialValue: "Lämpöpatterit (vesikiertoinen)"),
@@ -108,7 +114,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 initialValue: state.waterCirculatedRadiators?.quantity,
                 setter: (value) => machinesAndEquipmentsBloc
                     .add(WaterCirculatedRadiatorsQuantityChanged(value)),
-                    integer: true,
+                integer: true,
               ),
               OutputCell(getter: () => state.waterCirculatedRadiators?.tons),
               RowCell(initialValue: "Ilmanvaihtokoneet"),
@@ -122,7 +128,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 initialValue: state.ventilationUnits?.quantity,
                 setter: (value) => machinesAndEquipmentsBloc
                     .add(VentilationUnitsQuantityChanged(value)),
-                    integer: true,
+                integer: true,
               ),
               OutputCell(getter: () => state.ventilationUnits?.tons),
               RowCell(initialValue: "Sähkönjakokaapit ja mittarit"),
@@ -140,7 +146,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 setter: (value) => machinesAndEquipmentsBloc.add(
                     ElectricalDistributionCabinetsAndMetersQuantityChanged(
                         value)),
-                        integer: true,
+                integer: true,
               ),
               OutputCell(
                   getter: () =>
@@ -157,11 +163,10 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 initialValue: state.electricMotorsAndCirculationPumps?.quantity,
                 setter: (value) => machinesAndEquipmentsBloc.add(
                     ElectricMotorsAndCirculationPumpsQuantityChanged(value)),
-                    integer: true,
+                integer: true,
               ),
               OutputCell(
-                  getter: () =>
-                      state.electricMotorsAndCirculationPumps?.tons),
+                  getter: () => state.electricMotorsAndCirculationPumps?.tons),
               RowCell(initialValue: "Huippuimurit"),
               RowCell(initialValue: "15"),
               InputCell(
@@ -173,7 +178,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                 initialValue: state.roofExhaustFans?.quantity,
                 setter: (value) => machinesAndEquipmentsBloc
                     .add(RoofExhaustFansQuantityChanged(value)),
-                    integer: true,
+                integer: true,
               ),
               OutputCell(getter: () => state.roofExhaustFans?.tons),
             ],
