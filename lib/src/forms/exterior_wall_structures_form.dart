@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
+import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:flutter_app/src/data/form_header.dart';
 
 class OuterWallsForm extends StatelessWidget {
   const OuterWallsForm({super.key});
@@ -77,7 +77,8 @@ class OuterWallsForm extends StatelessWidget {
                     .concreteElementWallsWithoutFrameworkPart.portionPercentage,
               ),
               Cell.input(
-                initialValue: null,
+                initialValue:
+                    state.buildingFrame?.brickCladWallPortionPercentage,
                 percentage: true,
                 setter: (value) => totalBuildingFrameBloc.add(
                   BuildingFrameChanged(
@@ -88,7 +89,7 @@ class OuterWallsForm extends StatelessWidget {
                 ),
               ),
               Cell.input(
-                initialValue: null,
+                initialValue: state.buildingFrame?.boardWallPortionPercentage,
                 percentage: true,
                 setter: (value) => totalBuildingFrameBloc.add(
                   BuildingFrameChanged(
@@ -98,7 +99,8 @@ class OuterWallsForm extends StatelessWidget {
                 ),
               ),
               Cell.input(
-                initialValue: null,
+                initialValue:
+                    state.buildingFrame?.profiledSheetMetalPortionPercentage,
                 percentage: true,
                 setter: (value) => totalBuildingFrameBloc.add(
                   BuildingFrameChanged(
@@ -108,7 +110,8 @@ class OuterWallsForm extends StatelessWidget {
                 ),
               ),
               Cell.input(
-                initialValue: null,
+                initialValue: state.buildingFrame
+                    ?.steelProfileSandwichStructurePortionPercentage,
                 percentage: true,
                 setter: (value) => totalBuildingFrameBloc.add(
                   BuildingFrameChanged(
@@ -118,7 +121,8 @@ class OuterWallsForm extends StatelessWidget {
                 ),
               ),
               Cell.input(
-                initialValue: null,
+                initialValue: state
+                    .buildingFrame?.mineriteOrOtherStoneBoardPortionPercentage,
                 percentage: true,
                 setter: (value) => totalBuildingFrameBloc.add(
                   BuildingFrameChanged(

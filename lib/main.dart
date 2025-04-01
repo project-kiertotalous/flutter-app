@@ -100,8 +100,7 @@ class MyApp extends StatelessWidget {
                       HvacAndElectricalInstallationsBloc(),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) =>
-                      MachinesAndEquipmentsBloc(),
+                  create: (BuildContext context) => MachinesAndEquipmentsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => FixturesAndStructuresBloc(),
