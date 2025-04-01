@@ -1,14 +1,17 @@
+import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_and_structures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/fixtures_and_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/fixtures_and_structures_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
+import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:flutter_app/src/data/form_header.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_and_structures.dart';
+
+import '../data/info_button.dart';
+import '../data/tooltip_texts.dart';
 
 /// Fixtures and Structures Form
 class FixturesAndStructuresForm extends StatelessWidget {
@@ -39,7 +42,12 @@ class FixturesAndStructuresForm extends StatelessWidget {
                     fixturesBloc.add(FixturesRecyclableChanged(value)),
               ),
               ColumnCell(initialValue: "Oletuspaino (kg/m)"),
-              ColumnCell(initialValue: "kg/m"),
+              ColumnCell(
+                initialValue: "kg/m",
+                iconButton: InfoButton(
+                    text: TooltipTexts.hvacAndElectricalInstallations
+                        .detailedWeightPerMeters),
+              ),
               ColumnCell(initialValue: "Metriä (m)"),
               ColumnCell(initialValue: "Tonnia"),
               RowCell(initialValue: "Sadevesikourut ja rännit"),

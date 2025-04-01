@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/basic_information_form.dart';
 import 'package:flutter_app/src/forms/cellar_form.dart';
+import 'package:flutter_app/src/forms/exterior_wall_structures_form.dart';
 import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
 import 'package:flutter_app/src/forms/fixtures_and_structures_form.dart';
 import 'package:flutter_app/src/forms/floor_structures_form.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_app/src/forms/machines_and_equipments_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
+import 'package:flutter_app/src/forms/total_building_frame_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
 import 'package:flutter_app/src/forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
@@ -40,9 +42,11 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         RemovableGroundsForm(),
         FoundationTypeAndFloorsForm(),
         CellarForm(),
-        IntermediateFloorsForm(),
-        FloorStructuresForm(),
         RoofsForm(),
+        TotalBuildingFrameForm(),
+        FloorStructuresForm(),
+        IntermediateFloorsForm(),
+        OuterWallsForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
       ];

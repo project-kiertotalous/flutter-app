@@ -6,10 +6,12 @@ import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/menu_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/data/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -84,7 +86,12 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
           50.px,
         ],
         children: [
-          Cell.header(initialValue: 'Perustustyyppi ja lattiat'),
+          Cell.header(
+            initialValue: 'Perustustyyppi ja lattiat',
+            iconButton: InfoButton(
+                text: TooltipTexts
+                    .outerSheath.foundationAndFloors.foundationAndFloors),
+          ),
           ColumnCell(
             initialValue: 'Valesokkeli',
           ),

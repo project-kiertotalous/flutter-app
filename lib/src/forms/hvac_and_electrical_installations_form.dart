@@ -1,15 +1,17 @@
+import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/hvac_and_electrical_installations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/data/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/hvac_and_electrical_installations.dart';
 
 /// HVAC and Electrical Installations UI Form
 class HVACAndElectricalInstallationsForm extends StatelessWidget {
@@ -43,7 +45,12 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
             children: [
               ColumnCell(initialValue: "Johdot ja putket"),
               ColumnCell(initialValue: "Oletuspaino (kg/m)"),
-              ColumnCell(initialValue: "kg/m"),
+              ColumnCell(
+                initialValue: "kg/m",
+                iconButton: InfoButton(
+                    text: TooltipTexts.hvacAndElectricalInstallations
+                        .detailedWeightPerMeters),
+              ),
               ColumnCell(initialValue: "Metriä (m)"),
               ColumnCell(initialValue: "Kuutioita (m3)"),
               ColumnCell(initialValue: "Tonnia"),

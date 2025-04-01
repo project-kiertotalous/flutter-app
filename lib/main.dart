@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/door_bloc.dart';
+import 'package:flutter_app/src/bloc/exterior_wall_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/fixtures_and_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
+import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/fixed_furniture_bloc.dart';
@@ -69,6 +71,11 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => CellarBloc(),
                 ),
                 BlocProvider(
+                  create: (BuildContext context) => TotalBuildingFrameBloc(
+                    context.read<FoundationsBloc>(),
+                  ),
+                ),
+                BlocProvider(
                   create: (BuildContext context) => TotalRoofsBloc(),
                 ),
                 BlocProvider(
@@ -83,6 +90,10 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => FixedFurnitureBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      DoubleLoadBearingBrickWallBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>

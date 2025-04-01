@@ -1,17 +1,18 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/windows.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/windows_bloc.dart';
 import 'package:flutter_app/src/bloc/windows_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/grey_cell.dart';
-import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/output_cell.dart';
-import 'package:flutter_layout_grid/flutter_layout_grid.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/grey_cell.dart';
+import 'package:flutter_app/src/data/info_button.dart';
+import 'package:flutter_app/src/data/input_cell.dart';
+import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/windows.dart';
+import 'package:flutter_app/src/data/tooltip_texts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
 /// Windows and Window Walls UI Form
 class WindowsForm extends StatelessWidget {
@@ -55,7 +56,11 @@ class WindowsForm extends StatelessWidget {
                     windowsBloc.add(WindowsRecyclabilityChanged(value)),
               ),
               ColumnCell(initialValue: "Kappale"),
-              ColumnCell(initialValue: "m2"),
+              ColumnCell(
+                  initialValue: "m2",
+                  iconButton: InfoButton(
+                      text: TooltipTexts.partitionWallsDoorsAndWindows.windows
+                          .defaultWindowOpeningSize)),
               ColumnCell(initialValue: "Lasipinta-ala yhteensä (m2)"),
               // Row 2
               RowCell(initialValue: "Pinta-ala ja määrä"),

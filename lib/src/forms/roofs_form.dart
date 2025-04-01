@@ -6,10 +6,12 @@ import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
+import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/menu_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/data/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -96,7 +98,7 @@ class RoofsForm extends StatelessWidget {
               ],
               rowSizes: [
                 140.px,
-                50.px,
+                100.px,
                 50.px,
                 50.px,
                 50.px,
@@ -116,6 +118,8 @@ class RoofsForm extends StatelessWidget {
                 Cell.row(
                   initialValue:
                       'Todellinen, mitatun tai piirustuksen mukainen kattopinta-ala (m2), TAI pohjanalanmukainen oletusmitoitus',
+                  iconButton:
+                      InfoButton(text: TooltipTexts.outerSheath.roof.area),
                   checkbox: true,
                   checkboxSetter: (value) => totalRoofsBloc.add(
                     TotalRoofsChanged(
@@ -141,12 +145,16 @@ class RoofsForm extends StatelessWidget {
                 Cell.header(
                   initialValue: 'Kattotyyppi',
                 ),
-                // TODO: this column needs an InfoButton
                 Cell.column(
                   initialValue: 'Pinta-ala (m2)',
+                  iconButton: InfoButton(
+                      text: TooltipTexts.outerSheath.roof.areaDefault),
                 ),
                 Cell.column(
                   initialValue: 'Kattotyypin osuus koko kattopinta-alasta (%)',
+                  iconButton: InfoButton(
+                      text: TooltipTexts
+                          .outerSheath.roof.ridgeOrGableRoofPortion),
                 ),
                 Cell.row(
                   initialValue: 'Harja-/aumakatto',
@@ -242,6 +250,9 @@ class RoofsForm extends StatelessWidget {
                 Cell.row(
                   initialValue:
                       'Puuta (kattoristikot, aluslaudoitus ja kannattimet)',
+                  iconButton: InfoButton(
+                      text: TooltipTexts
+                          .outerSheath.roof.demolitionMaterialCount),
                 ),
                 Cell.output(
                   getter: () => state.woodVolume,
