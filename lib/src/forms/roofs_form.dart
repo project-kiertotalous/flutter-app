@@ -163,6 +163,7 @@ class RoofsForm extends StatelessWidget {
                   getter: () => state.ridgeOrGableRoofArea,
                 ),
                 Cell.input(
+                  percentage: true,
                   initialValue: state.roofs?.ridgeOrGableRoofPortion,
                   setter: (value) => totalRoofsBloc.add(
                     TotalRoofsChanged(
