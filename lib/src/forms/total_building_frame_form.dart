@@ -6,7 +6,6 @@ import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
-import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
@@ -42,7 +41,6 @@ class TotalBuildingFrameForm extends StatelessWidget {
               children: [
                 RowCell(
                   initialValue: 'Ulkoseinien kehämitta (jm)',
-                  iconButton: InfoButton(),
                   checkbox: true,
                   checkboxTitle: 'Käytä perustuksen kehämittaa',
                   checkboxValue:
@@ -154,7 +152,6 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 ),
                 RowCell(
                   initialValue: 'Puurunko',
-                  iconButton: InfoButton(),
                 ),
 
                 // puurunko
@@ -181,7 +178,6 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 // liimapalkit
                 RowCell(
                   initialValue: 'Liimapalkit',
-                  iconButton: InfoButton(),
                 ),
                 InputCell(
                   percentage: true,
@@ -207,7 +203,6 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 // betonipalkit
                 RowCell(
                   initialValue: 'Betonipalkit',
-                  iconButton: InfoButton(),
                 ),
                 InputCell(
                   percentage: true,
@@ -233,20 +228,12 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(
                   getter: () => state.concreteVerticalColumnsPart.concreteTons,
                 ),
-                OutputCell(
-                  getter: () => state.concreteVerticalColumnsPart.steelTons,
-                ),
-                OutputCell(
-                  getter: () => state.concreteVerticalColumnsPart.brickTons,
-                ),
-                OutputCell(
-                  getter: () => state.concreteVerticalColumnsPart.brickVolume,
-                ),
-
+                Cell.grey(),
+                Cell.grey(),
+                Cell.grey(),
                 // teräspalkit
                 RowCell(
                   initialValue: 'Teräspalkit',
-                  iconButton: InfoButton(),
                 ),
                 InputCell(
                   percentage: true,
@@ -274,7 +261,6 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 // kantavat tiiliseinät
                 RowCell(
                   initialValue: 'Kantavat tiiliseinät',
-                  iconButton: InfoButton(),
                 ),
                 InputCell(
                   percentage: true,
@@ -307,7 +293,6 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 // betonielementit
                 RowCell(
                   initialValue: 'Betonielementit',
-                  iconButton: InfoButton(),
                 ),
                 InputCell(
                   percentage: true,
@@ -343,12 +328,12 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 // yhteensä
                 RowCell(
                   initialValue: 'Yhteensä',
-                  iconButton: InfoButton(),
                 ),
                 OutputCell(
-                  getter: () => state.totalEnvelopePartsPortionPercentage,
+                  getter: () => state.totalStructuralPartsPortionPercentage,
+                  percentage: true,
                 ),
-                OutputCell(getter: () => state.totalEnvelopePartsArea),
+                OutputCell(getter: () => state.totalStructuralPartsArea),
                 OutputCell(getter: () => state.woodVolume),
                 OutputCell(getter: () => state.woodTons),
                 OutputCell(getter: () => state.concreteVolume),
