@@ -58,7 +58,6 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         FixedFurnitureForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
-        const SizedBox(height: 30),
       ];
 
   List<Widget> lviForms() => [
@@ -68,7 +67,6 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         YardAndProtectiveStructuresForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
-        const SizedBox(height: 30),
       ];
 
   @override
