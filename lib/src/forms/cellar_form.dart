@@ -52,15 +52,14 @@ class CellarForm extends StatelessWidget {
     return BlocBuilder<CellarBloc, Cellar>(
       builder: (context, state) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            FormHeader(text: 'Kellari'),
             // Existing grid for cellar details
             LayoutGrid(
               columnSizes: [210.px, 120.px, 120.px],
-              rowSizes: [50.px, 50.px, 50.px, 50.px],
+              rowSizes: [50.px, 50.px, 50.px,],
               children: [
-                FormHeader(text: 'Kellari'),
-                EmptyCell(),
-                EmptyCell(),
                 RowCell(initialValue: 'Kellarin lattia-ala (m²)'),
                 InputCell(
                   initialValue: state.floorArea,
@@ -96,7 +95,7 @@ class CellarForm extends StatelessWidget {
             LayoutGrid(
               columnSizes: [210.px, 120.px, 120.px], // Adjusted column widths
               rowSizes: [
-                60.px,
+                75.px,
                 50.px,
                 50.px,
                 50.px,

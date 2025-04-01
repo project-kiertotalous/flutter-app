@@ -27,7 +27,7 @@ class FixturesAndStructuresForm extends StatelessWidget {
               text: 'Rakennukseen liittyvät kiintokalusteet ja rakenteet'),
           const SizedBox(height: 20),
           LayoutGrid(
-            columnSizes: [280.px, 120.px, 120.px, 120.px, 120.px],
+            columnSizes: [280.px, 140.px, 140.px, 140.px, 140.px],
             rowSizes: [50.px, 50.px, 50.px, 50.px, 50.px],
             children: [
               RowCell(
