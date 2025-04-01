@@ -1,15 +1,18 @@
+import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/yard_and_protective_structures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
-import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/yard_and_protective_structures.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+
+import '../data/info_button.dart';
+import '../data/tooltip_texts.dart';
 
 /// Yard and Protective Structures UI Form
 class YardAndProtectiveStructuresForm extends StatelessWidget {
@@ -34,7 +37,12 @@ class YardAndProtectiveStructuresForm extends StatelessWidget {
               children: [
                 EmptyCell(),
                 ColumnCell(initialValue: "Oletuspaino (kg/m2)"),
-                ColumnCell(initialValue: "kg/m2"),
+                ColumnCell(
+                  initialValue: "kg/m2",
+                  iconButton: InfoButton(
+                      text: TooltipTexts.hvacAndElectricalInstallations
+                          .detailedWeightPerSquareMeters),
+                ),
                 ColumnCell(initialValue: "Neliötä (m2)"),
                 ColumnCell(initialValue: "Tonnia"),
                 RowCell(
