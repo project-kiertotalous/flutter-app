@@ -2,12 +2,12 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/src/bloc/machines_and_equipments_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
+import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/machines_and_equipments.dart';
 import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/machines_or_equipments/exports.dart';
 
 class MachinesAndEquipmentsBloc
     extends Bloc<MachinesAndEquipmentsEvent, MachinesAndEquipments> {
-  MachinesAndEquipmentsBloc()
-      : super(const MachinesAndEquipments()) {
+  MachinesAndEquipmentsBloc() : super(const MachinesAndEquipments()) {
     on<SmallElectricalWaterAccumulatorsWeightChanged>((event, emit) {
       logger.d("SmallElectricalWaterAccumulatorsChanged fired");
       emit(state.copyWith(
@@ -101,7 +101,8 @@ class MachinesAndEquipmentsBloc
     on<ElectricalDistributionCabinetsAndMetersWeightChanged>((event, emit) {
       logger.d("ElectricalDistributionCabinetsAndMetersWeightChanged fired");
       emit(state.copyWith(
-        electricalDistributionCabinetsAndMeters: ElectricalDistributionCabinetsAndMeters(
+        electricalDistributionCabinetsAndMeters:
+            ElectricalDistributionCabinetsAndMeters(
           weightKgPerPiece: event.value,
           quantity: state.electricalDistributionCabinetsAndMeters?.quantity,
         ),
@@ -110,8 +111,10 @@ class MachinesAndEquipmentsBloc
     on<ElectricalDistributionCabinetsAndMetersQuantityChanged>((event, emit) {
       logger.d("ElectricalDistributionCabinetsAndMetersQuantityChanged fired");
       emit(state.copyWith(
-        electricalDistributionCabinetsAndMeters: ElectricalDistributionCabinetsAndMeters(
-          weightKgPerPiece: state.electricalDistributionCabinetsAndMeters?.weightKgPerPiece,
+        electricalDistributionCabinetsAndMeters:
+            ElectricalDistributionCabinetsAndMeters(
+          weightKgPerPiece:
+              state.electricalDistributionCabinetsAndMeters?.weightKgPerPiece,
           quantity: event.value,
         ),
       ));
@@ -129,7 +132,8 @@ class MachinesAndEquipmentsBloc
       logger.d("ElectricMotorsAndCirculationPumpsQuantityChanged fired");
       emit(state.copyWith(
         electricMotorsAndCirculationPumps: ElectricMotorsAndCirculationPumps(
-          weightKgPerPiece: state.electricMotorsAndCirculationPumps?.weightKgPerPiece,
+          weightKgPerPiece:
+              state.electricMotorsAndCirculationPumps?.weightKgPerPiece,
           quantity: event.value,
         ),
       ));
