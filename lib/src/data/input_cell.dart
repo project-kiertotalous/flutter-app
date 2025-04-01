@@ -26,11 +26,14 @@ class _InputCellState extends State<InputCell> {
   late FocusNode _focusNode;
 
   void setIntValue(String value) {
-    widget.setter(int.parse(value));
+    int? number = int.tryParse(value);
+    widget.setter(number ?? 0);
   }
 
+  /// Changes TextController's text to double format that dart understands
+  /// and sets it via callback setter.
   void setDoubleValue(String value) {
-    logger.d('Controller value: ${_controller?.text}');
+    logger.d('Controller value: ${_controller.text}');
     var formattedValue = '0';
     // replace comma with period
     if (value.isNotEmpty) {
@@ -59,38 +62,40 @@ class _InputCellState extends State<InputCell> {
     ];
   }
 
-  String formatDisplayedValue() {
+  /// Formats controller's text to displayable format and updates [_controller].
+  void formatDisplayedValue() {
     if (widget.initialValue == null || widget.initialValue == 0) {
-      return widget.percentage ? '0%' : '0';
+      _controller.text = widget.percentage ? '0 %' : '0';
+      return;
     }
-    if (widget.percentage) {
-      return '${(widget.initialValue! * 100).toStringAsFixed(0)}%';
+    // format text to always have at least 1 decimal
+    if (!widget.integer) {
+      final decimals = widget.initialValue!.toString().split('.')[1].length;
+      _controller.text = widget.initialValue!.toStringAsFixed(decimals);
+      _controller.text = _controller.text.replaceFirst('.', ',');
     }
-    return widget.initialValue!.toString().replaceFirst('.', ',');
-  }
-
-  void _setTextSafely(String newText) {
-    final cursorPosition = _controller.selection.baseOffset;
-    _controller.text = newText;
-    _controller.selection = TextSelection.collapsed(
-      offset: newText.length < cursorPosition ? newText.length : cursorPosition,
-    );
+    // no decimals for integers - serves purpose of removing leading zeros
+    if (widget.integer) {
+      _controller.text = widget.initialValue!.toStringAsFixed(0);
+    }
+    // add a trailing % to percentage cells if it doesn't exist yet
+    if (widget.percentage && !_controller.text.endsWith('%')) {
+      _controller.text = '${_controller.text} %';
+    }
   }
 
   @override
   void initState() {
     super.initState();
+    _controller = TextEditingController();
+    formatDisplayedValue();
     _focusNode = FocusNode();
-    _controller = TextEditingController(text: formatDisplayedValue());
-  }
-
-  @override
-  void didUpdateWidget(covariant InputCell oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (widget.initialValue != oldWidget.initialValue) {
-      _setTextSafely(formatDisplayedValue());
-    }
+    // format display value when widget loses focus
+    _focusNode.addListener(() {
+      if (!_focusNode.hasFocus) {
+        formatDisplayedValue();
+      }
+    });
   }
 
   @override
@@ -110,17 +115,24 @@ class _InputCellState extends State<InputCell> {
         child: Padding(
           padding: const EdgeInsets.only(left: 4.0),
           child: TextField(
+            focusNode: _focusNode,
             decoration: InputDecoration(
               border: InputBorder.none,
             ),
             onChanged: (value) =>
                 widget.integer ? setIntValue(value) : setDoubleValue(value),
+            // select all text when cell gains focus.
+            // this is ux feature and can be turned off if that seems better.
+            onTap: () => _controller.selection = TextSelection(
+              baseOffset: 0,
+              extentOffset: _controller.value.text.length,
+            ),
             controller: _controller,
             inputFormatters: formatters(),
-            focusNode: _focusNode,
           ),
         ),
       ),
+      // ),
     );
   }
 }
