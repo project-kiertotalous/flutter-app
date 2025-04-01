@@ -29,15 +29,16 @@ class IntermediateFloorsForm extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 50),
-                LayoutGrid(columnSizes: List.filled(3, 130.px), rowSizes: [
+                FormHeader(text: 'Välipohjat'),
+                LayoutGrid(columnSizes: [200.px, 150.px, 150.px,], rowSizes: [
                   50.px,
-                  70.px
+                  50.px
                 ], children: [
-                  Cell.header(initialValue: "Välipohjat"),
+                  Cell.header(
+                      initialValue: "Välipohjien laskennassa käytetyt arvot"),
                   ColumnCell(initialValue: "Kerrosala (m2)"),
                   ColumnCell(initialValue: "Kerroksia (kpl)"),
-                  RowCell(
-                      initialValue: "Välipohjien laskennassa käytetyt arvot"),
+                  EmptyCell(),
                   OutputCell(
                       getter: () =>
                           state.totalBuildingDimensions?.grossFloorArea),
@@ -45,18 +46,18 @@ class IntermediateFloorsForm extends StatelessWidget {
                       getter: () => state.totalBuildingDimensions
                           ?.floorCountExcludingBasements),
                 ]),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 FormHeader(
                   text: 'Välipohjien pinta-alat ja runkorakenteet',
                 ),
                 LayoutGrid(
                   columnSizes: [
                     363.px,
-                    120.px,
-                    120.px,
+                    150.px,
+                    150.px,
                   ],
                   rowSizes: [
-                    75.px,
+                    60.px,
                     50.px,
                     50.px,
                     50.px,

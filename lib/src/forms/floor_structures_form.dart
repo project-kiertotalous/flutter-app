@@ -46,7 +46,7 @@ class FloorStructuresForm extends StatelessWidget {
               140.px,
             ],
             rowSizes: [
-              50.px,
+              75.px,
               50.px,
               50.px,
               50.px,

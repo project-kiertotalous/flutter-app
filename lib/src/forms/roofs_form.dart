@@ -93,8 +93,8 @@ class RoofsForm extends StatelessWidget {
             LayoutGrid(
               columnSizes: [
                 400.px,
-                160.px,
-                160.px,
+                170.px,
+                170.px,
               ],
               rowSizes: [
                 140.px,
