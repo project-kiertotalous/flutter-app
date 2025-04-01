@@ -40,9 +40,9 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         RemovableGroundsForm(),
         FoundationTypeAndFloorsForm(),
         CellarForm(),
-        RoofsForm(),
-        FloorStructuresForm(),
         IntermediateFloorsForm(),
+        FloorStructuresForm(),
+        RoofsForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
       ];
