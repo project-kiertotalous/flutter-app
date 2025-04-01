@@ -66,6 +66,9 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         MachinesAndEquipmentsForm(),
         FixturesAndStructuresForm(),
         YardAndProtectiveStructuresForm(),
+        const SizedBox(height: 20),
+        NavigationButtons(),
+        const SizedBox(height: 30),
       ];
 
   @override
