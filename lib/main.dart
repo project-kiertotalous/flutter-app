@@ -14,6 +14,7 @@ import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/bloc/cellar_bloc.dart';
+import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_builds_view.dart';
@@ -86,6 +87,10 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       HvacAndElectricalInstallationsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      MachinesAndEquipmentsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => FixturesAndStructuresBloc(),
