@@ -8,6 +8,7 @@ import 'package:flutter_app/src/forms/hvac_and_electrical_installations_form.dar
 import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
 import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
+import 'package:flutter_app/src/forms/machines_and_equipments_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
@@ -56,6 +57,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
 
   List<Widget> lviForms() => [
         HVACAndElectricalInstallationsForm(),
+        MachinesAndEquipmentsForm(),
       ];
 
   @override

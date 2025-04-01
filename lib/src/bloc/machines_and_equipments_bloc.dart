@@ -7,16 +7,7 @@ import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and
 class MachinesAndEquipmentsBloc
     extends Bloc<MachinesAndEquipmentsEvent, MachinesAndEquipments> {
   MachinesAndEquipmentsBloc()
-      : super(MachinesAndEquipments(
-            smallElectricalAccumulators: null,
-            largeElectricalAccumulators: null,
-            electricRadiators: null,
-            waterCirculatedRadiators: null,
-            ventilationUnits: null,
-            electricalDistributionCabinetsAndMeters: null,
-            electricMotorsAndCirculationPumps: null,
-            roofExhaustFans: null,
-            machinesRecyclable: false)) {
+      : super(const MachinesAndEquipments()) {
     on<SmallElectricalWaterAccumulatorsWeightChanged>((event, emit) {
       logger.d("SmallElectricalWaterAccumulatorsChanged fired");
       emit(state.copyWith(
