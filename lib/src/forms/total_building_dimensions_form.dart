@@ -10,6 +10,7 @@ import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/data/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -47,7 +48,8 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               ColumnCell(initialValue: 'Laskennallinen arvo'),
               RowCell(
                 initialValue: 'Rakennuksen kerrospinta-ala (bruttoala) (m2)',
-                iconButton: InfoButton(),
+                iconButton:
+                    InfoButton(text: TooltipTexts.outerSheath.grossFloorArea),
               ),
               InputCell(
                 initialValue: state.buildingDimensions?.grossFloorArea,
@@ -61,7 +63,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               ),
               RowCell(
                 initialValue: 'Rakennuksen tilavuus (m3)',
-                iconButton: InfoButton(),
+                iconButton: InfoButton(text: TooltipTexts.outerSheath.volume),
               ),
               InputCell(
                 initialValue: state.buildingDimensions?.volume,
@@ -87,7 +89,8 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               GreyCell(),
               RowCell(
                 initialValue: 'Keskimääräinen pinta-ala (m2)',
-                iconButton: InfoButton(),
+                iconButton:
+                    InfoButton(text: TooltipTexts.outerSheath.averageArea),
               ),
               InputCell(
                 initialValue: state.buildingDimensions?.averageArea,
@@ -101,7 +104,9 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               RowCell(
                 initialValue:
                     'Kerrospinta-ala yhteensä (ei kellaritiloja) (m2)',
-                iconButton: InfoButton(),
+                iconButton: InfoButton(
+                    text: TooltipTexts
+                        .outerSheath.grossFloorAreaExcludingCellars),
               ),
               OutputCell(
                 getter: () => state.grossFloorAreaExcludingCellars,

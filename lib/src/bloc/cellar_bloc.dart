@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/cellar_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class CellarBloc extends Bloc<CellarEvent, Cellar> {
   CellarBloc()
       : super(Cellar(
