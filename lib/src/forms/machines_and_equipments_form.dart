@@ -58,7 +58,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
               ColumnCell(initialValue: "Määrä (kpl)"),
               ColumnCell(initialValue: "Tonnia"),
               RowCell(initialValue: "Vesivaraajat (sähkö, pienet)"),
-              RowCell(initialValue: "100"),
+              ColumnCell(initialValue: "100"),
               InputCell(
                 initialValue:
                     state.smallElectricalAccumulators?.weightKgPerPiece,
@@ -75,7 +75,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
               RowCell(
                   initialValue:
                       "Vesivaraajat, suuret (sähkö, kaukolämpö 500-100L)"),
-              RowCell(initialValue: "400"),
+              ColumnCell(initialValue: "400"),
               InputCell(
                 initialValue:
                     state.largeElectricalAccumulators?.weightKgPerPiece,
@@ -90,7 +90,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
               ),
               OutputCell(getter: () => state.largeElectricalAccumulators?.tons),
               RowCell(initialValue: "Lämpöpatterit (sähkö)"),
-              RowCell(initialValue: "8"),
+              ColumnCell(initialValue: "8"),
               InputCell(
                 initialValue: state.electricRadiators?.weightKgPerPiece,
                 setter: (value) => machinesAndEquipmentsBloc
@@ -104,7 +104,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
               ),
               OutputCell(getter: () => state.electricRadiators?.tons),
               RowCell(initialValue: "Lämpöpatterit (vesikiertoinen)"),
-              RowCell(initialValue: "15"),
+              ColumnCell(initialValue: "15"),
               InputCell(
                 initialValue: state.waterCirculatedRadiators?.weightKgPerPiece,
                 setter: (value) => machinesAndEquipmentsBloc
@@ -118,7 +118,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
               ),
               OutputCell(getter: () => state.waterCirculatedRadiators?.tons),
               RowCell(initialValue: "Ilmanvaihtokoneet"),
-              RowCell(initialValue: "100"),
+              ColumnCell(initialValue: "100"),
               InputCell(
                 initialValue: state.ventilationUnits?.weightKgPerPiece,
                 setter: (value) => machinesAndEquipmentsBloc
@@ -132,7 +132,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
               ),
               OutputCell(getter: () => state.ventilationUnits?.tons),
               RowCell(initialValue: "Sähkönjakokaapit ja mittarit"),
-              RowCell(initialValue: "20"),
+              ColumnCell(initialValue: "20"),
               InputCell(
                 initialValue: state
                     .electricalDistributionCabinetsAndMeters?.weightKgPerPiece,
@@ -152,7 +152,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
                   getter: () =>
                       state.electricalDistributionCabinetsAndMeters?.tons),
               RowCell(initialValue: "Sähkömoottorit ja kiertovesipumput"),
-              RowCell(initialValue: "25"),
+              ColumnCell(initialValue: "25"),
               InputCell(
                 initialValue:
                     state.electricMotorsAndCirculationPumps?.weightKgPerPiece,
@@ -168,7 +168,7 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
               OutputCell(
                   getter: () => state.electricMotorsAndCirculationPumps?.tons),
               RowCell(initialValue: "Huippuimurit"),
-              RowCell(initialValue: "15"),
+              ColumnCell(initialValue: "15"),
               InputCell(
                 initialValue: state.roofExhaustFans?.weightKgPerPiece,
                 setter: (value) => machinesAndEquipmentsBloc

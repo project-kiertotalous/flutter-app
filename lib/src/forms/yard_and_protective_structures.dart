@@ -47,7 +47,7 @@ class YardAndProtectiveStructuresForm extends StatelessWidget {
                 ColumnCell(initialValue: "Tonnia"),
                 RowCell(
                     initialValue: "Tippapellit ja suojapellitykset (0,8 mm)"),
-                RowCell(initialValue: "8"),
+                ColumnCell(initialValue: "8"),
                 InputCell(
                   initialValue: state.dripTraysAndProtectiveMetalSheets
                       ?.weightKgPerSquareMeter,
@@ -64,7 +64,7 @@ class YardAndProtectiveStructuresForm extends StatelessWidget {
                     getter: () =>
                         state.dripTraysAndProtectiveMetalSheets?.tons),
                 RowCell(initialValue: "Betoniset pihalaatat"),
-                RowCell(initialValue: "120"),
+                ColumnCell(initialValue: "120"),
                 InputCell(
                   initialValue:
                       state.concretePavingSlabs?.weightKgPerSquareMeter,

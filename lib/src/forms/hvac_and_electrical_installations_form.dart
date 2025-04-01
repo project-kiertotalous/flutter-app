@@ -55,7 +55,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               ColumnCell(initialValue: "Kuutioita (m3)"),
               ColumnCell(initialValue: "Tonnia"),
               RowCell(initialValue: "Vesiputket (kupari)"),
-              RowCell(initialValue: "0.0207"),
+              ColumnCell(initialValue: "0.0207"),
               InputCell(
                 initialValue: state.copperWaterPipes?.weightKgPerMeter,
                 setter: (value) =>
@@ -69,7 +69,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               GreyCell(),
               OutputCell(getter: () => state.copperWaterPipes?.tons),
               RowCell(initialValue: "Vesiputket (muovi)"),
-              RowCell(initialValue: "0.12"),
+              ColumnCell(initialValue: "0.12"),
               InputCell(
                 initialValue: state.plasticWaterPipes?.weightKgPerMeter,
                 setter: (value) =>
@@ -85,7 +85,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               RowCell(
                   initialValue:
                       "Keskuslämmitysputket, vesikiertoinen lämmitys (teräs)"),
-              RowCell(initialValue: "4.3"),
+              ColumnCell(initialValue: "4.3"),
               InputCell(
                 initialValue: state.centralHeatingPipes?.weightKgPerMeter,
                 setter: (value) =>
@@ -99,7 +99,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               GreyCell(),
               OutputCell(getter: () => state.centralHeatingPipes?.tons),
               RowCell(initialValue: "Viemäriputket valurauta DN 150"),
-              RowCell(initialValue: "141"),
+              ColumnCell(initialValue: "141"),
               InputCell(
                 initialValue: state.castIronSewagePipes?.weightKgPerMeter,
                 setter: (value) =>
@@ -113,7 +113,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               GreyCell(),
               OutputCell(getter: () => state.castIronSewagePipes?.tons),
               RowCell(initialValue: "Viemäriputket muovi DN 150"),
-              RowCell(initialValue: "22"),
+              ColumnCell(initialValue: "22"),
               InputCell(
                 initialValue: state.plasticSewagePipes?.weightKgPerMeter,
                 setter: (value) =>
@@ -127,7 +127,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               OutputCell(getter: () => state.plasticSewagePipes?.volume),
               OutputCell(getter: () => state.plasticSewagePipes?.tons),
               RowCell(initialValue: "Ilmastointiputket teräs DN 300"),
-              RowCell(initialValue: "25"),
+              ColumnCell(initialValue: "25"),
               InputCell(
                 initialValue:
                     state.steelVentilationPipes300Dn?.weightKgPerMeter,
@@ -142,7 +142,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               GreyCell(),
               OutputCell(getter: () => state.steelVentilationPipes300Dn?.tons),
               RowCell(initialValue: "Ilmastointiputket teräs DN 500"),
-              RowCell(initialValue: "52"),
+              ColumnCell(initialValue: "52"),
               InputCell(
                 initialValue:
                     state.steelVentilationPipes500Dn?.weightKgPerMeter,
@@ -157,7 +157,7 @@ class HVACAndElectricalInstallationsForm extends StatelessWidget {
               GreyCell(),
               OutputCell(getter: () => state.steelVentilationPipes500Dn?.tons),
               RowCell(initialValue: "Sähköjohdot (kupari)"),
-              RowCell(initialValue: "0.13"),
+              ColumnCell(initialValue: "0.13"),
               InputCell(
                 initialValue: state.copperElectricalWires?.weightKgPerMeter,
                 setter: (value) =>
