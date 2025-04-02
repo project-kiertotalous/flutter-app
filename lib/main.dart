@@ -81,7 +81,9 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => TotalRoofsBloc(),
+                  create: (BuildContext context) => TotalRoofsBloc(
+                    context.read<FoundationsBloc>(),
+                  ),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
