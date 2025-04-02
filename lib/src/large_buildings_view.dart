@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/basic_information_form.dart';
 import 'package:flutter_app/src/forms/cellar_form.dart';
+import 'package:flutter_app/src/forms/exterior_wall_structures_form.dart';
 import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
+import 'package:flutter_app/src/forms/fixtures_and_structures_form.dart';
 import 'package:flutter_app/src/forms/floor_structures_form.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
+import 'package:flutter_app/src/forms/hvac_and_electrical_installations_form.dart';
 import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
 import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
+import 'package:flutter_app/src/forms/machines_and_equipments_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
+import 'package:flutter_app/src/forms/total_building_frame_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
+import 'package:flutter_app/src/forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 
@@ -26,7 +32,8 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
     with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: "Ulkovaippa"),
-    Tab(text: "Väliseinät ja ikkunat")
+    Tab(text: "Väliseinät ja ikkunat"),
+    Tab(text: "LVI, & sähkö & muut varusteet")
   ];
 
   List<Widget> outerSheathForms() => [
@@ -35,9 +42,11 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         RemovableGroundsForm(),
         FoundationTypeAndFloorsForm(),
         CellarForm(),
-        RoofsForm(),
-        FloorStructuresForm(),
         IntermediateFloorsForm(),
+        FloorStructuresForm(),
+        RoofsForm(),
+        TotalBuildingFrameForm(),
+        OuterWallsForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
       ];
@@ -49,7 +58,15 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         FixedFurnitureForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
-        const SizedBox(height: 30),
+      ];
+
+  List<Widget> lviForms() => [
+        HVACAndElectricalInstallationsForm(),
+        MachinesAndEquipmentsForm(),
+        FixturesAndStructuresForm(),
+        YardAndProtectiveStructuresForm(),
+        const SizedBox(height: 20),
+        NavigationButtons(),
       ];
 
   @override
@@ -78,6 +95,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
                 forms: partitionsAndWindowsForms,
                 width: 1200,
               ),
+              TabView(forms: lviForms),
             ],
           ),
         ),

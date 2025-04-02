@@ -30,8 +30,10 @@ abstract class Cell extends Widget {
           checkboxValue: checkboxValue,
           iconButton: iconButton);
 
-  factory Cell.column({required String initialValue}) => ColumnCell(
+  factory Cell.column({required String initialValue, Widget? iconButton}) =>
+      ColumnCell(
         initialValue: initialValue,
+        iconButton: iconButton,
       );
 
   factory Cell.input({
@@ -69,6 +71,6 @@ abstract class Cell extends Widget {
 
   factory Cell.grey() => GreyCell();
 
-  factory Cell.header({required String initialValue}) =>
-      HeaderCell(initialValue: initialValue);
+  factory Cell.header({required String initialValue, Widget? iconButton}) =>
+      HeaderCell(initialValue: initialValue, iconButton: iconButton);
 }
