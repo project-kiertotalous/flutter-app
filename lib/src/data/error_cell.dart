@@ -7,12 +7,15 @@ class ErrorCell extends StatelessWidget implements Cell {
     required this.getters,
   });
 
-  final List<Function> getters; // List of getter functions
+  final List<num?> Function() getters; // Function returning a List<num?>
 
   @override
   Widget build(BuildContext context) {
+    // Get all values from the function
+    List<num?> values = getters();
+
     // Check if any percentage is not exactly 100%
-    bool hasError = getters.any((getter) => getter() != 100.0);
+    bool hasError = values.any((value) => value != 100.0);
 
     return Container(
       width: double.infinity,

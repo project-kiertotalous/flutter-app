@@ -76,7 +76,7 @@ abstract class Cell extends Widget {
       HeaderCell(initialValue: initialValue, iconButton: iconButton);
 
   factory Cell.error({
-    required List<Function> getters,
+    required List<num?> Function() getters,
   }) =>
       ErrorCell(getters: getters);
 }
