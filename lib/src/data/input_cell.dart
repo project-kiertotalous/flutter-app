@@ -64,15 +64,23 @@ class _InputCellState extends State<InputCell> {
 
   /// Formats controller's text to displayable format and updates [_controller].
   void formatDisplayedValue() {
-    if (widget.initialValue == null || widget.initialValue == 0) {
+    if (widget.initialValue == null || widget.initialValue == 0 ) {
       _controller.text = widget.percentage ? '0 %' : '0';
       return;
     }
     // format text to always have at least 1 decimal
     if (!widget.integer) {
-      final decimals = widget.initialValue!.toString().split('.')[1].length;
-      _controller.text = widget.initialValue!.toStringAsFixed(decimals);
-      _controller.text = _controller.text.replaceFirst('.', ',');
+      final split = widget.initialValue!.toString().split('.');
+
+      if (split.length > 1) {
+        final decimals = split[1].length;
+        _controller.text = widget.initialValue!.toStringAsFixed(decimals);
+        _controller.text = _controller.text.replaceFirst('.', ',');
+      } else {
+        // It might be that the initial value has no decimals even if it is not
+        // an integer.
+        _controller.text = "${widget.initialValue!.toString()},0";
+      }
     }
     // no decimals for integers - serves purpose of removing leading zeros
     if (widget.integer) {
