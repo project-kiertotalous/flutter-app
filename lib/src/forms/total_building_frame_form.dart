@@ -5,6 +5,7 @@ import 'package:flutter_app/src/bloc/total_building_frame_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/error_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
@@ -99,6 +100,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
               ],
               rowSizes: [
                 100.px,
+                50.px,
                 50.px,
                 50.px,
                 50.px,
@@ -341,6 +343,9 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 OutputCell(getter: () => state.steelTons),
                 OutputCell(getter: () => state.brickVolume),
                 OutputCell(getter: () => state.brickTons),
+                ErrorCell(
+                    getters: () =>
+                        [state.totalStructuralPartsPortionPercentage])
               ],
             ),
           ],

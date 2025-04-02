@@ -14,15 +14,19 @@ class ErrorCell extends StatelessWidget implements Cell {
     // Get all values from the function
     List<num?> values = getters();
 
-    // Find errors (percentage total is not = 100%)
+    // Check for null values
+    int nullCount = values.where((value) => value == null).length;
+
+    // Find errors (percentage total is not 100%)
     int under100Count =
         values.where((value) => value != null && value < 100.0).length;
     int over100Count =
         values.where((value) => value != null && value > 100.0).length;
 
+    bool hasNullError = nullCount > 0;
     bool hasUnderError = under100Count > 0;
     bool hasOverError = over100Count > 0;
-    bool hasError = hasUnderError || hasOverError;
+    bool hasError = hasNullError || hasUnderError || hasOverError;
 
     // If no errors, return an invisible widget
     if (!hasError) {
@@ -32,21 +36,52 @@ class ErrorCell extends StatelessWidget implements Cell {
     // Error messages
     String errorMessage = "";
 
-    //If there are under and over errors
-    if (hasUnderError && hasOverError) {
-      errorMessage = (under100Count == 1 && over100Count == 1)
-          ? "Virhe! Yksi prosenttien summa on alle 100% ja yksi prosenttien summa on yli 100%!"
-          : "Virhe! $under100Count prosenttien summista on alle 100% ja $over100Count prosenttien summista yli 100%!";
-//If there are only under errors
-    } else if (hasUnderError) {
-      errorMessage = under100Count == 1
-          ? "Virhe! Prosentin summa on alle 100%!"
-          : "Virhe! $under100Count prosenttien summista on alle 100%!";
-      //If there are only over errors
-    } else if (hasOverError) {
-      errorMessage = over100Count == 1
-          ? "Virhe! Prosentin summa on yli 100%!"
-          : "Virhe! $over100Count prosenttien summista on yli 100%!";
+    // Scenario 1: Null values
+    if (hasNullError) {
+      if (nullCount == 1) {
+        errorMessage = "Virhe! Prosenttien kokonaissumma on alle 100%";
+      } else {
+        errorMessage =
+            "Virhe! $nullCount prosenttien kokonaissumma on alle 100%";
+      }
+    }
+
+    // Scenario 2: Under 100 errors (but no nulls)
+    if (hasUnderError && !hasNullError) {
+      errorMessage = (under100Count == 1)
+          ? "Virhe! Prosenttien kokonaissumma on alle 100%"
+          : "Virhe! $under100Count prosenttien kokonaissumma on alle 100%";
+    }
+
+    // Scenario 3: Over 100 errors (but no nulls)
+    if (hasOverError && !hasNullError) {
+      errorMessage = (over100Count == 1)
+          ? "Virhe! Prosenttien kokonaissumma on yli 100%!"
+          : "Virhe! $over100Count prosenttien kokonaissumma on yli 100%!";
+    }
+
+    // Scenario 4: Both null and under 100 errors
+    if (hasNullError && hasUnderError) {
+      errorMessage =
+          "Virhe! ${under100Count + nullCount} prosenttien kokonaissumma on alle 100%.";
+    }
+
+    // Scenario 5: Both null and over 100 errors
+    if (hasNullError && hasOverError) {
+      errorMessage =
+          "Virhe! $nullCount prosenttien kokonaissumma on alle 100% ja $over100Count kokonaissummaa on yli 100%.";
+    }
+
+    // Scenario 6: Null, under 100, and over 100 errors
+    if (hasNullError && hasUnderError && hasOverError) {
+      errorMessage =
+          "Virhe! ${under100Count + nullCount} prosenttien kokonaissumma on alle 100% ja $over100Count kokonaissummaa on yli 100%.";
+    }
+
+    // Scenario 7: Both under 100 and over 100 errors (but no nulls)
+    if (hasUnderError && hasOverError && !hasNullError) {
+      errorMessage =
+          "$under100Count prosenttien kokonaissumma on alle 100% ja $over100Count kokonaissummaa on yli 100%.";
     }
 
     return Container(
