@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/error_cell.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/header_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
@@ -73,4 +74,9 @@ abstract class Cell extends Widget {
 
   factory Cell.header({required String initialValue, Widget? iconButton}) =>
       HeaderCell(initialValue: initialValue, iconButton: iconButton);
+
+  factory Cell.error({
+    required List<Function> getters,
+  }) =>
+      ErrorCell(getters: getters);
 }
