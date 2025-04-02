@@ -171,17 +171,12 @@ class RoofsForm extends StatelessWidget {
                   initialValue: 'Tasa-/pulpettikatto',
                 ),
                 Cell.output(
-                  // multiplying by 100 fixes issues. likely but in calculation module?
-                  getter: () => (state.flatOrMonoPitchedRoofArea)! * 100,
+                  getter: () => state.flatOrMonoPitchedRoofArea,
                 ),
                 Cell.output(
                   percentage: true,
-                  // the get function uses Utils.percentageToFraction which is
-                  // used elsewhere, so instead of modifying it, the value
-                  // is multiplied by 100 to give the correct value here
                   getter: () =>
-                      (state.roofs?.flatOrMonoPitchedRoofPortionPercentage)! *
-                      100,
+                      state.roofs?.flatOrMonoPitchedRoofPortionPercentage,
                 ),
                 Cell.row(
                   initialValue: 'Koko kattopinta-ala (m2)',
