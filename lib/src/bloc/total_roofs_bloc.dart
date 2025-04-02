@@ -23,6 +23,9 @@ class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
         ) {
     on<FoundationsChanged>((event, emit) {
       logger.d("TotalRoofsBloc's Foundations changed to ${event.foundations}");
+      emit(
+        state.copyWith(foundations: event.foundations),
+      );
     });
     on<TotalRoofsChanged>((event, emit) {
       logger.d('TotalRoofsChanged to ${event.totalRoofs}');
@@ -30,7 +33,9 @@ class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
     });
     on<RoofsChanged>((event, emit) {
       logger.d('RoofsChanged to ${event.roofs}');
-      emit(state.copyWith(roofs: event.roofs));
+      emit(
+        state.copyWith(roofs: event.roofs),
+      );
     });
     on<BituminousWaterProofingChanged>((event, emit) {
       logger.d(
