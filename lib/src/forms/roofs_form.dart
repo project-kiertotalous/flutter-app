@@ -127,6 +127,7 @@ class RoofsForm extends StatelessWidget {
                 ),
                 Cell.input(
                   initialValue: state.roofs?.ceilingArea,
+                  enabled: !(state.roofs?.useDefaultDimensions)!,
                   setter: (value) => totalRoofsBloc.add(
                     TotalRoofsChanged(
                       state.copyWith.roofs!.call(
