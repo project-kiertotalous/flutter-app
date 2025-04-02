@@ -41,12 +41,14 @@ abstract class Cell extends Widget {
     required Function setter,
     bool integer = false,
     bool percentage = false,
+    bool enabled = true,
   }) =>
       InputCell(
         initialValue: initialValue,
         setter: setter,
         integer: integer,
         percentage: percentage,
+        enabled: enabled,
       );
 
   factory Cell.output({
