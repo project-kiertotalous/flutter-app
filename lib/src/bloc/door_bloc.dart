@@ -2,10 +2,6 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
 import 'door_event.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/inner_doors.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/outer_doors.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/inner_door.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/outer_door.dart';
 
 class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
   DoorBloc()
@@ -37,7 +33,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedPanelDoors = state.innerDoors.panelDoors?.copyWith(
             shutDoors: event.value, // Update only shutDoors
           ) ??
-          InnerDoor(shutDoors: event.value); // Create a new InnerDoor if null
+          DoorsInfo(shutDoors: event.value); // Create a new InnerDoor if null
 
       emit(state.copyWith(
         innerDoors: state.innerDoors.copyWith(panelDoors: updatedPanelDoors),
@@ -49,7 +45,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedWoodenDoors = state.innerDoors.woodenDoors?.copyWith(
             shutDoors: event.value, // Update only shutDoors
           ) ??
-          InnerDoor(shutDoors: event.value); // Create a new InnerDoor if null
+          DoorsInfo(shutDoors: event.value); // Create a new InnerDoor if null
 
       emit(state.copyWith(
         innerDoors: state.innerDoors.copyWith(woodenDoors: updatedWoodenDoors),
@@ -61,7 +57,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedFireDoors = state.innerDoors.fireDoors?.copyWith(
             shutDoors: event.value, // Update only shutDoors
           ) ??
-          InnerDoor(shutDoors: event.value); // Create a new InnerDoor if null
+          DoorsInfo(shutDoors: event.value); // Create a new InnerDoor if null
 
       emit(state.copyWith(
         innerDoors: state.innerDoors.copyWith(fireDoors: updatedFireDoors),
@@ -73,7 +69,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedPanelDoors = state.innerDoors.panelDoors?.copyWith(
             glassDoors: event.value, // Update only glassDoors
           ) ??
-          InnerDoor(glassDoors: event.value); // Create a new InnerDoor if null
+          DoorsInfo(glassDoors: event.value); // Create a new InnerDoor if null
 
       emit(state.copyWith(
         innerDoors: state.innerDoors.copyWith(panelDoors: updatedPanelDoors),
@@ -85,7 +81,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedWoodenDoors = state.innerDoors.woodenDoors?.copyWith(
             glassDoors: event.value, // Update only glassDoors
           ) ??
-          InnerDoor(glassDoors: event.value); // Create a new InnerDoor if null
+          DoorsInfo(glassDoors: event.value); // Create a new InnerDoor if null
 
       emit(state.copyWith(
         innerDoors: state.innerDoors.copyWith(woodenDoors: updatedWoodenDoors),
@@ -105,7 +101,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedWoodenDoors = state.outerDoors.woodenDoors?.copyWith(
             shutDoors: event.value,
           ) ??
-          OuterDoor(shutDoors: event.value);
+          DoorsInfo(shutDoors: event.value);
 
       emit(state.copyWith(
         outerDoors: state.outerDoors.copyWith(woodenDoors: updatedWoodenDoors),
@@ -119,7 +115,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedAluminiumDoors = state.outerDoors.aluminiumDoors?.copyWith(
             shutDoors: event.value,
           ) ??
-          OuterDoor(shutDoors: event.value);
+          DoorsInfo(shutDoors: event.value);
 
       emit(state.copyWith(
         outerDoors:
@@ -135,7 +131,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedSteelDoors = state.outerDoors.steelDoors?.copyWith(
             shutDoors: event.value,
           ) ??
-          OuterDoor(shutDoors: event.value);
+          DoorsInfo(shutDoors: event.value);
 
       emit(state.copyWith(
         outerDoors: state.outerDoors.copyWith(steelDoors: updatedSteelDoors),
@@ -149,7 +145,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedWoodenDoors = state.outerDoors.woodenDoors?.copyWith(
             glassDoors: event.value,
           ) ??
-          OuterDoor(glassDoors: event.value);
+          DoorsInfo(glassDoors: event.value);
 
       emit(state.copyWith(
         outerDoors: state.outerDoors.copyWith(woodenDoors: updatedWoodenDoors),
@@ -163,7 +159,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedAluminiumDoors = state.outerDoors.aluminiumDoors?.copyWith(
             glassDoors: event.value,
           ) ??
-          OuterDoor(glassDoors: event.value);
+          DoorsInfo(glassDoors: event.value);
 
       emit(state.copyWith(
         outerDoors:
@@ -179,7 +175,7 @@ class DoorBloc extends Bloc<DoorsEvent, DoorsState> {
       final updatedSteelDoors = state.outerDoors.steelDoors?.copyWith(
             glassDoors: event.value,
           ) ??
-          OuterDoor(glassDoors: event.value);
+          DoorsInfo(glassDoors: event.value);
 
       emit(state.copyWith(
         outerDoors: state.outerDoors.copyWith(steelDoors: updatedSteelDoors),
