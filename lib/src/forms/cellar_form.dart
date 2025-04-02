@@ -58,7 +58,11 @@ class CellarForm extends StatelessWidget {
             // Existing grid for cellar details
             LayoutGrid(
               columnSizes: [210.px, 120.px, 120.px],
-              rowSizes: [50.px, 50.px, 50.px,],
+              rowSizes: [
+                50.px,
+                50.px,
+                50.px,
+              ],
               children: [
                 RowCell(initialValue: 'Kellarin lattia-ala (m²)'),
                 InputCell(

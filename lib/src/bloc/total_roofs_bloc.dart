@@ -17,7 +17,7 @@ class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
             ),
             roofs: Roofs(
               ceilingArea: 0,
-              ridgeOrGableRoofPortion: 0,
+              ridgeOrGableRoofPortionPercentage: 0,
               ridgeOrGableRoofType: RoofType.concreteBeam,
               ridgeOrGableWaterRoofType: WaterRoofType.metalRoof,
               flatOrMonoPitchedRoofType: RoofType.concreteBeam,

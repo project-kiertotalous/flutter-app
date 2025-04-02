@@ -2,7 +2,6 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/windows_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/windows.dart';
 
 class WindowsBloc extends Bloc<WindowsEvent, Windows> {
   WindowsBloc()

@@ -1,4 +1,4 @@
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_and_structures.dart';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/fixtures_and_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/fixtures_and_structures_event.dart';

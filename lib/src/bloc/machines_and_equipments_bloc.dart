@@ -2,8 +2,6 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/src/bloc/machines_and_equipments_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/machines_and_equipments.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/machines_or_equipments/exports.dart';
 
 class MachinesAndEquipmentsBloc
     extends Bloc<MachinesAndEquipmentsEvent, MachinesAndEquipments> {

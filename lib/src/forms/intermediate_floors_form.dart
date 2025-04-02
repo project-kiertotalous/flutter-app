@@ -30,7 +30,11 @@ class IntermediateFloorsForm extends StatelessWidget {
               children: [
                 const SizedBox(height: 50),
                 FormHeader(text: 'Välipohjat'),
-                LayoutGrid(columnSizes: [200.px, 150.px, 150.px,], rowSizes: [
+                LayoutGrid(columnSizes: [
+                  200.px,
+                  150.px,
+                  150.px,
+                ], rowSizes: [
                   50.px,
                   50.px
                 ], children: [
