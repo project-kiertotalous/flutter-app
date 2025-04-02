@@ -116,8 +116,8 @@ class RoofsForm extends StatelessWidget {
                       InfoButton(text: TooltipTexts.outerSheath.roof.area),
                   checkbox: true,
                   checkboxSetter: (value) => totalRoofsBloc.add(
-                    TotalRoofsChanged(
-                      state.copyWith.roofs!.call(
+                    RoofsChanged(
+                      state.roofs!.copyWith(
                         useDefaultDimensions: value,
                       ),
                     ),
@@ -128,8 +128,8 @@ class RoofsForm extends StatelessWidget {
                 Cell.input(
                   initialValue: state.roofs?.ceilingArea,
                   setter: (value) => totalRoofsBloc.add(
-                    TotalRoofsChanged(
-                      state.copyWith.roofs!.call(
+                    RoofsChanged(
+                      state.roofs!.copyWith(
                         ceilingArea: value,
                       ),
                     ),
@@ -160,8 +160,8 @@ class RoofsForm extends StatelessWidget {
                   percentage: true,
                   initialValue: state.roofs?.ridgeOrGableRoofPortionPercentage,
                   setter: (value) => totalRoofsBloc.add(
-                    TotalRoofsChanged(
-                      state.copyWith.roofs!.call(
+                    RoofsChanged(
+                      state.roofs!.copyWith(
                         ridgeOrGableRoofPortionPercentage: value,
                       ),
                     ),
@@ -174,6 +174,7 @@ class RoofsForm extends StatelessWidget {
                   getter: () => state.flatOrMonoPitchedRoofArea,
                 ),
                 Cell.output(
+                  percentage: true,
                   getter: () =>
                       state.roofs?.flatOrMonoPitchedRoofPortionPercentage,
                 ),
@@ -188,15 +189,15 @@ class RoofsForm extends StatelessWidget {
                   initialValue: 'Rakenne ja materiaalit',
                 ),
                 Cell.menu(
-                  setter: (value) => totalRoofsBloc.add(TotalRoofsChanged(
-                      state.copyWith.roofs!.call(ridgeOrGableRoofType: value))),
+                  setter: (value) => totalRoofsBloc.add(RoofsChanged(
+                      state.roofs!.copyWith(ridgeOrGableRoofType: value))),
                   initialValue: state.roofs?.ridgeOrGableRoofType,
                   items: _roofTypeToList(),
                 ),
                 Cell.menu(
                   setter: (value) {
-                    totalRoofsBloc.add(TotalRoofsChanged(state.copyWith.roofs!
-                        .call(flatOrMonoPitchedRoofType: value)));
+                    totalRoofsBloc.add(RoofsChanged(state.roofs!
+                        .copyWith(flatOrMonoPitchedRoofType: value)));
                   },
                   initialValue: state.roofs?.flatOrMonoPitchedRoofType,
                   items: _roofTypeToList(),
@@ -205,8 +206,8 @@ class RoofsForm extends StatelessWidget {
                   initialValue: 'Vesikatto',
                   checkbox: true,
                   checkboxSetter: (value) => totalRoofsBloc.add(
-                    TotalRoofsChanged(
-                      state.copyWith.roofs!.call(
+                    RoofsChanged(
+                      state.roofs!.copyWith(
                         roofTrussesAreRecyclable: value,
                       ),
                     ),
@@ -216,9 +217,8 @@ class RoofsForm extends StatelessWidget {
                 ),
                 Cell.menu(
                   setter: (value) => totalRoofsBloc.add(
-                    TotalRoofsChanged(
-                      state.copyWith.roofs!
-                          .call(ridgeOrGableWaterRoofType: value),
+                    RoofsChanged(
+                      state.roofs!.copyWith(ridgeOrGableWaterRoofType: value),
                     ),
                   ),
                   initialValue: state.roofs?.ridgeOrGableWaterRoofType,
