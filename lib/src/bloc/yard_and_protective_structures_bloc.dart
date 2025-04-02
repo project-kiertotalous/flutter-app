@@ -1,8 +1,6 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/yard_and_protective_structures.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/yard_or_protective_structures/drip_trays_and_protective_metal_sheets.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/yard_or_protective_structures/concrete_paving_slabs.dart';
 
 import 'package:flutter_app/log.dart';
 

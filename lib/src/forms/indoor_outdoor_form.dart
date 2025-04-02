@@ -95,14 +95,11 @@ class IndoorOutdoorForm extends StatelessWidget {
                   ),
                   RowCell(initialValue: "Yhteensä (kpl)"),
                   OutputCell(
-                      getter: () =>
-                          state.outerDoors.woodenDoors?.overallOuterDoors),
+                      getter: () => state.outerDoors.woodenDoors?.doorCount),
                   OutputCell(
-                      getter: () =>
-                          state.outerDoors.aluminiumDoors?.overallOuterDoors),
+                      getter: () => state.outerDoors.aluminiumDoors?.doorCount),
                   OutputCell(
-                      getter: () =>
-                          state.outerDoors.steelDoors?.overallOuterDoors),
+                      getter: () => state.outerDoors.steelDoors?.doorCount),
                   RowCell(initialValue: "Kulku- ja kuormausovet, teräs (kpl)"),
                   InputCell(
                     initialValue: state.outerDoors.accessAndLoadingDoors,
@@ -196,11 +193,9 @@ class IndoorOutdoorForm extends StatelessWidget {
                   EmptyCell(),
                   RowCell(initialValue: "Yhteensä (kpl)"),
                   OutputCell(
-                      getter: () =>
-                          state.innerDoors.panelDoors?.overallOuterDoors),
+                      getter: () => state.innerDoors.panelDoors?.doorCount),
                   OutputCell(
-                      getter: () =>
-                          state.innerDoors.woodenDoors?.overallOuterDoors),
+                      getter: () => state.innerDoors.woodenDoors?.doorCount),
                   EmptyCell(),
                   Cell.header(
                       initialValue: "Sisäovien materiaalimäärät yhteensä"),

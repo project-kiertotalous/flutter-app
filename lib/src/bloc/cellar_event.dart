@@ -1,4 +1,4 @@
-import 'package:bl_demolition_materials/src/data_types/cellar_exterior_material.dart';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
 abstract class CellarEvent {}
 

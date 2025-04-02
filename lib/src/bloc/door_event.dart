@@ -1,7 +1,5 @@
 import 'package:equatable/equatable.dart';
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/inner_doors.dart';
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/outer_doors.dart';
 
 abstract class DoorsEvent extends Equatable {
   @override

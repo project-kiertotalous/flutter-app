@@ -1,4 +1,4 @@
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/partition_walls_demolition_materials.dart';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_event.dart';
@@ -43,14 +43,14 @@ class InternalWallFramesAndSurfaceMaterialsForm extends StatelessWidget {
                   initialValue:
                       'Sisäseinien kokonaispituus, kaikki kerrokset (jm)'),
               InputCell(
-                initialValue: state.overallLengthOfInternalWallsAllFloors,
+                initialValue: state.overallWallLength,
                 setter: (value) => internalWallFramesAndSurfaceMaterialBloc.add(
                   OverallLengthOfInternalWallsAllFloorsChanged(value),
                 ),
               ),
               RowCell(initialValue: 'Sisäseinien keskikorkeus (m)'),
               InputCell(
-                initialValue: state.averageHeightOfInternalWalls,
+                initialValue: state.averageWallHeight,
                 setter: (value) => internalWallFramesAndSurfaceMaterialBloc.add(
                   AverageHeightOfInternalWallsChanged(value),
                 ),

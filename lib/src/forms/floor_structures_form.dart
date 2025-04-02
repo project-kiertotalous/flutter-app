@@ -96,88 +96,91 @@ class FloorStructuresForm extends StatelessWidget {
               ),
               RowCell(initialValue: 'Lattiapaneeli'),
               InputCell(
-                initialValue: state.officeSpaces?.floorPanelFloorPortion,
+                initialValue:
+                    state.officeSpaces?.floorPanelFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
                       state.officeSpaces!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.lobbiesAndOtherCommonAreas?.floorPanelFloorPortion,
+                initialValue: state.lobbiesAndOtherCommonAreas
+                    ?.floorPanelFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.restroomsAndWashingFacilities?.floorPanelFloorPortion,
+                initialValue: state.restroomsAndWashingFacilities
+                    ?.floorPanelFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
                       state.restroomsAndWashingFacilities!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue: state.kitchens?.floorPanelFloorPortion,
+                initialValue: state.kitchens?.floorPanelFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
-                      state.kitchens!.copyWith(floorPanelFloorPortion: value),
+                      state.kitchens!
+                          .copyWith(floorPanelFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.teachingAndTreatmentSpaces?.floorPanelFloorPortion,
+                initialValue: state.teachingAndTreatmentSpaces
+                    ?.floorPanelFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
                       state.teachingAndTreatmentSpaces!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortionPercentage: value),
+                    ),
+                  );
+                },
+              ),
+              InputCell(
+                initialValue: state
+                    .storageAndWorkspaces?.floorPanelFloorPortionPercentage,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    StorageAndWorkspacesChanged(
+                      state.storageAndWorkspaces!
+                          .copyWith(floorPanelFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
                 initialValue:
-                    state.storageAndWorkspaces?.floorPanelFloorPortion,
-                percentage: true,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    StorageAndWorkspacesChanged(
-                      state.storageAndWorkspaces!
-                          .copyWith(floorPanelFloorPortion: value),
-                    ),
-                  );
-                },
-              ),
-              InputCell(
-                initialValue: state.otherSpaces?.floorPanelFloorPortion,
+                    state.otherSpaces?.floorPanelFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
                       state.otherSpaces!
-                          .copyWith(floorPanelFloorPortion: value),
+                          .copyWith(floorPanelFloorPortionPercentage: value),
                     ),
                   );
                 },
@@ -190,92 +193,99 @@ class FloorStructuresForm extends StatelessWidget {
               ),
               RowCell(initialValue: 'Muovimatto tai muovilaatta'),
               InputCell(
-                initialValue:
-                    state.officeSpaces?.plasticCarpetOrPlasticTileFloorPortion,
+                initialValue: state.officeSpaces
+                    ?.plasticCarpetOrPlasticTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
                       state.officeSpaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortionPercentage:
+                              value),
                     ),
                   );
                 },
               ),
               InputCell(
                 initialValue: state.lobbiesAndOtherCommonAreas
-                    ?.plasticCarpetOrPlasticTileFloorPortion,
+                    ?.plasticCarpetOrPlasticTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortionPercentage:
+                              value),
                     ),
                   );
                 },
               ),
               InputCell(
                 initialValue: state.restroomsAndWashingFacilities
-                    ?.plasticCarpetOrPlasticTileFloorPortion,
+                    ?.plasticCarpetOrPlasticTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
                       state.restroomsAndWashingFacilities!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortionPercentage:
+                              value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.kitchens?.plasticCarpetOrPlasticTileFloorPortion,
+                initialValue: state
+                    .kitchens?.plasticCarpetOrPlasticTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
                       state.kitchens!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortionPercentage:
+                              value),
                     ),
                   );
                 },
               ),
               InputCell(
                 initialValue: state.teachingAndTreatmentSpaces
-                    ?.plasticCarpetOrPlasticTileFloorPortion,
+                    ?.plasticCarpetOrPlasticTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     TeachingAndTreatmentSpacesChanged(
                       state.teachingAndTreatmentSpaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortionPercentage:
+                              value),
                     ),
                   );
                 },
               ),
               InputCell(
                 initialValue: state.storageAndWorkspaces
-                    ?.plasticCarpetOrPlasticTileFloorPortion,
+                    ?.plasticCarpetOrPlasticTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
                       state.storageAndWorkspaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortionPercentage:
+                              value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.otherSpaces?.plasticCarpetOrPlasticTileFloorPortion,
+                initialValue: state.otherSpaces
+                    ?.plasticCarpetOrPlasticTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
                       state.otherSpaces!.copyWith(
-                          plasticCarpetOrPlasticTileFloorPortion: value),
+                          plasticCarpetOrPlasticTileFloorPortionPercentage:
+                              value),
                     ),
                   );
                 },
@@ -288,85 +298,89 @@ class FloorStructuresForm extends StatelessWidget {
               ),
               RowCell(initialValue: 'Parketti'),
               InputCell(
-                initialValue: state.officeSpaces?.parquetFloorPortion,
+                initialValue: state.officeSpaces?.parquetFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
-                      state.officeSpaces!.copyWith(parquetFloorPortion: value),
+                      state.officeSpaces!
+                          .copyWith(parquetFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.lobbiesAndOtherCommonAreas?.parquetFloorPortion,
+                initialValue: state
+                    .lobbiesAndOtherCommonAreas?.parquetFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!
-                          .copyWith(parquetFloorPortion: value),
+                          .copyWith(parquetFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.restroomsAndWashingFacilities?.parquetFloorPortion,
+                initialValue: state.restroomsAndWashingFacilities
+                    ?.parquetFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     RestRoomsAndWashingFacilitiesChanged(
                       state.restroomsAndWashingFacilities!
-                          .copyWith(parquetFloorPortion: value),
+                          .copyWith(parquetFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue: state.kitchens?.parquetFloorPortion,
+                initialValue: state.kitchens?.parquetFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     KitchensChanged(
-                      state.kitchens!.copyWith(parquetFloorPortion: value),
+                      state.kitchens!
+                          .copyWith(parquetFloorPortionPercentage: value),
+                    ),
+                  );
+                },
+              ),
+              InputCell(
+                initialValue: state
+                    .teachingAndTreatmentSpaces?.parquetFloorPortionPercentage,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    TeachingAndTreatmentSpacesChanged(
+                      state.teachingAndTreatmentSpaces!
+                          .copyWith(parquetFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
                 initialValue:
-                    state.teachingAndTreatmentSpaces?.parquetFloorPortion,
-                percentage: true,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    TeachingAndTreatmentSpacesChanged(
-                      state.teachingAndTreatmentSpaces!
-                          .copyWith(parquetFloorPortion: value),
-                    ),
-                  );
-                },
-              ),
-              InputCell(
-                initialValue: state.storageAndWorkspaces?.parquetFloorPortion,
+                    state.storageAndWorkspaces?.parquetFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
                       state.storageAndWorkspaces!
-                          .copyWith(parquetFloorPortion: value),
+                          .copyWith(parquetFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue: state.otherSpaces?.parquetFloorPortion,
+                initialValue: state.otherSpaces?.parquetFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
-                      state.otherSpaces!.copyWith(parquetFloorPortion: value),
+                      state.otherSpaces!
+                          .copyWith(parquetFloorPortionPercentage: value),
                     ),
                   );
                 },
@@ -379,88 +393,91 @@ class FloorStructuresForm extends StatelessWidget {
               ),
               RowCell(initialValue: 'Kaakelilaatta'),
               InputCell(
-                initialValue: state.officeSpaces?.ceramicTileFloorPortion,
+                initialValue:
+                    state.officeSpaces?.ceramicTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OfficeSpacesChanged(
                       state.officeSpaces!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue:
-                    state.lobbiesAndOtherCommonAreas?.ceramicTileFloorPortion,
+                initialValue: state.lobbiesAndOtherCommonAreas
+                    ?.ceramicTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     LobbiesAndOtherCommonAreasChanged(
                       state.lobbiesAndOtherCommonAreas!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortionPercentage: value),
+                    ),
+                  );
+                },
+              ),
+              InputCell(
+                initialValue: state.restroomsAndWashingFacilities
+                    ?.ceramicTileFloorPortionPercentage,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    RestRoomsAndWashingFacilitiesChanged(
+                      state.restroomsAndWashingFacilities!
+                          .copyWith(ceramicTileFloorPortionPercentage: value),
+                    ),
+                  );
+                },
+              ),
+              InputCell(
+                initialValue: state.kitchens?.ceramicTileFloorPortionPercentage,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    KitchensChanged(
+                      state.kitchens!
+                          .copyWith(ceramicTileFloorPortionPercentage: value),
+                    ),
+                  );
+                },
+              ),
+              InputCell(
+                initialValue: state.teachingAndTreatmentSpaces
+                    ?.ceramicTileFloorPortionPercentage,
+                percentage: true,
+                setter: (value) {
+                  floorStructuresBloc.add(
+                    TeachingAndTreatmentSpacesChanged(
+                      state.teachingAndTreatmentSpaces!
+                          .copyWith(ceramicTileFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
                 initialValue: state
-                    .restroomsAndWashingFacilities?.ceramicTileFloorPortion,
-                percentage: true,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    RestRoomsAndWashingFacilitiesChanged(
-                      state.restroomsAndWashingFacilities!
-                          .copyWith(ceramicTileFloorPortion: value),
-                    ),
-                  );
-                },
-              ),
-              InputCell(
-                initialValue: state.kitchens?.ceramicTileFloorPortion,
-                percentage: true,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    KitchensChanged(
-                      state.kitchens!.copyWith(ceramicTileFloorPortion: value),
-                    ),
-                  );
-                },
-              ),
-              InputCell(
-                initialValue:
-                    state.teachingAndTreatmentSpaces?.ceramicTileFloorPortion,
-                percentage: true,
-                setter: (value) {
-                  floorStructuresBloc.add(
-                    TeachingAndTreatmentSpacesChanged(
-                      state.teachingAndTreatmentSpaces!
-                          .copyWith(ceramicTileFloorPortion: value),
-                    ),
-                  );
-                },
-              ),
-              InputCell(
-                initialValue:
-                    state.storageAndWorkspaces?.ceramicTileFloorPortion,
+                    .storageAndWorkspaces?.ceramicTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     StorageAndWorkspacesChanged(
                       state.storageAndWorkspaces!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortionPercentage: value),
                     ),
                   );
                 },
               ),
               InputCell(
-                initialValue: state.otherSpaces?.ceramicTileFloorPortion,
+                initialValue:
+                    state.otherSpaces?.ceramicTileFloorPortionPercentage,
                 percentage: true,
                 setter: (value) {
                   floorStructuresBloc.add(
                     OtherSpacesChanged(
                       state.otherSpaces!
-                          .copyWith(ceramicTileFloorPortion: value),
+                          .copyWith(ceramicTileFloorPortionPercentage: value),
                     ),
                   );
                 },
@@ -475,34 +492,35 @@ class FloorStructuresForm extends StatelessWidget {
                 initialValue: 'Pintamateriaalit yhteensä (%)',
               ),
               OutputCell(
-                getter: () => state.officeSpaces?.floorPortionTotal,
+                getter: () => state.officeSpaces?.floorPortionPercentageTotal,
+                percentage: true,
+              ),
+              OutputCell(
+                getter: () => state
+                    .lobbiesAndOtherCommonAreas?.floorPortionPercentageTotal,
+                percentage: true,
+              ),
+              OutputCell(
+                getter: () => state
+                    .restroomsAndWashingFacilities?.floorPortionPercentageTotal,
+                percentage: true,
+              ),
+              OutputCell(
+                getter: () => state.kitchens?.floorPortionPercentageTotal,
+                percentage: true,
+              ),
+              OutputCell(
+                getter: () => state
+                    .teachingAndTreatmentSpaces?.floorPortionPercentageTotal,
                 percentage: true,
               ),
               OutputCell(
                 getter: () =>
-                    state.lobbiesAndOtherCommonAreas?.floorPortionTotal,
+                    state.storageAndWorkspaces?.floorPortionPercentageTotal,
                 percentage: true,
               ),
               OutputCell(
-                getter: () =>
-                    state.restroomsAndWashingFacilities?.floorPortionTotal,
-                percentage: true,
-              ),
-              OutputCell(
-                getter: () => state.kitchens?.floorPortionTotal,
-                percentage: true,
-              ),
-              OutputCell(
-                getter: () =>
-                    state.teachingAndTreatmentSpaces?.floorPortionTotal,
-                percentage: true,
-              ),
-              OutputCell(
-                getter: () => state.storageAndWorkspaces?.floorPortionTotal,
-                percentage: true,
-              ),
-              OutputCell(
-                getter: () => state.otherSpaces?.floorPortionTotal,
+                getter: () => state.otherSpaces?.floorPortionPercentageTotal,
                 percentage: true,
               ),
               EmptyCell(),

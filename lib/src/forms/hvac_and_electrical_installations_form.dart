@@ -1,4 +1,4 @@
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/hvac_and_electrical_installations.dart';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart';
 import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_event.dart';

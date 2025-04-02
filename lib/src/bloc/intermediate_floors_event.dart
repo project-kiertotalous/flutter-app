@@ -1,5 +1,4 @@
-import 'package:bl_demolition_materials/src/large_properties/external_shell_and_frame_structures/total/total_building_dimensions.dart';
-import 'package:bl_demolition_materials/src/large_properties/external_shell_and_frame_structures/foundations.dart';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
 abstract class IntermediateFloorsEvent {}
 

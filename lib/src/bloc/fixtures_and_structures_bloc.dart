@@ -1,9 +1,4 @@
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_and_structures.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_or_structures/aluminium_chain_link_fences.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_or_structures/steel_chain_link_fences.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_or_structures/rain_gutters_and_downspouts.dart';
-import 'package:bl_demolition_materials/src/large_properties/hvac_electrical_and_other_equipment/fixtures_or_structures/fire_ladders_and_walkways.dart';
-
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/fixtures_and_structures_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,4 +1,4 @@
-import 'package:bl_demolition_materials/src/large_properties/partition_walls_doors_and_windows/windows.dart';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/windows_bloc.dart';
 import 'package:flutter_app/src/bloc/windows_event.dart';
