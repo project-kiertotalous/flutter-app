@@ -1,20 +1,16 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
+import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/bloc/total_roofs_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
-  TotalRoofsBloc()
-      : super(
-          // initialize values as non-null
-          TotalRoofs(
-            foundations: Foundations(
-              falsePlinth: FalsePlinthFoundation(),
-              crawlSpace: CrawlSpaceFoundation(),
-              shallow: ShallowFoundation(),
-              pillar: PillarFoundation(),
-              hollowCoreSlab: HollowCoreSlabFoundation(),
-            ),
+  final FoundationsBloc foundationsBloc;
+  TotalRoofsBloc(
+    this.foundationsBloc,
+  ) : super(
+          TotalRoofs().copyWith(
+            foundations: foundationsBloc.state,
             roofs: Roofs(
               ceilingArea: 0,
               ridgeOrGableRoofPortionPercentage: 0,
@@ -25,9 +21,16 @@ class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
             ),
           ),
         ) {
+    on<FoundationsChanged>((event, emit) {
+      logger.d("TotalRoofsBloc's Foundations changed to ${event.foundations}");
+    });
     on<TotalRoofsChanged>((event, emit) {
       logger.d('TotalRoofsChanged to ${event.totalRoofs}');
       emit(event.totalRoofs);
+    });
+    on<RoofsChanged>((event, emit) {
+      logger.d('RoofsChanged to ${event.roofs}');
+      emit(state.copyWith(roofs: event.roofs));
     });
     on<BituminousWaterProofingChanged>((event, emit) {
       logger.d(
@@ -37,6 +40,12 @@ class TotalRoofsBloc extends Bloc<TotalRoofsEvent, TotalRoofs> {
           bituminousWaterProofing: event.bituminousWaterProofing,
         ),
       );
+    });
+
+    foundationsBloc.stream.listen((foundationsState) {
+      logger.d(
+          'TotalRoofsBloc received an update from FoundationsBloc: $foundationsState');
+      add(FoundationsChanged(foundationsState));
     });
   }
 }

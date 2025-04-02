@@ -7,6 +7,16 @@ class TotalRoofsChanged extends TotalRoofsEvent {
   TotalRoofsChanged(this.totalRoofs);
 }
 
+class FoundationsChanged extends TotalRoofsEvent {
+  final Foundations foundations;
+  FoundationsChanged(this.foundations);
+}
+
+class RoofsChanged extends TotalRoofsEvent {
+  final Roofs roofs;
+  RoofsChanged(this.roofs);
+}
+
 class BituminousWaterProofingChanged extends TotalRoofsEvent {
   final bool bituminousWaterProofing;
   BituminousWaterProofingChanged(this.bituminousWaterProofing);
