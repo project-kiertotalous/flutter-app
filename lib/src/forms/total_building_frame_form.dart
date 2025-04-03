@@ -25,7 +25,6 @@ class TotalBuildingFrameForm extends StatelessWidget {
 
     return BlocBuilder<TotalBuildingFrameBloc, TotalBuildingFrame>(
       builder: (context, state) {
-        // return Container();
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
