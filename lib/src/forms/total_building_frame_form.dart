@@ -59,6 +59,7 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 ),
                 InputCell(
                   initialValue: state.buildingFrame?.externalWallsPerimeter,
+                  enabled: !(state.buildingFrame!.useFoundationCircumference),
                   setter: (value) => totalBuildingFrameBloc.add(
                     BuildingFrameChanged(
                       state.buildingFrame!.copyWith(

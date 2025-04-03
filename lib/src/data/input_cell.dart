@@ -10,12 +10,14 @@ class InputCell extends StatefulWidget implements Cell {
     required this.setter,
     this.integer = false,
     this.percentage = false,
+    this.enabled = true,
   });
 
   final num? initialValue;
   final Function setter;
   final bool integer;
   final bool percentage;
+  final bool enabled;
 
   @override
   State<InputCell> createState() => _InputCellState();
@@ -64,7 +66,7 @@ class _InputCellState extends State<InputCell> {
 
   /// Formats controller's text to displayable format and updates [_controller].
   void formatDisplayedValue() {
-    if (widget.initialValue == null || widget.initialValue == 0 ) {
+    if (widget.initialValue == null || widget.initialValue == 0) {
       _controller.text = widget.percentage ? '0 %' : '0';
       return;
     }
@@ -137,6 +139,7 @@ class _InputCellState extends State<InputCell> {
             ),
             controller: _controller,
             inputFormatters: formatters(),
+            enabled: widget.enabled,
           ),
         ),
       ),
