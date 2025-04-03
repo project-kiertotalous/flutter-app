@@ -21,13 +21,14 @@ class IntermediateFloorsBloc
           ),
         )) {
     on<TotalBuildingDimensionsChanged>((event, emit) {
-      logger.d("TotalBuildingDimensionsChanged ${event.value}");
+      logger.d(
+          "TotalIntermediateFloors.totalBuildingDimensionsChanged ${event.value}");
       final newState = state.copyWith(totalBuildingDimensions: event.value);
       emit(newState);
     });
 
-    on<TotalFoundationChanged>((event, emit) {
-      logger.d("TotalFoundationChanged ${event.value}");
+    on<FoundationsChanged>((event, emit) {
+      logger.d("TotalIntermediateFloors.foundations changed ${event.value}");
       final newState = state.copyWith(foundations: event.value);
       emit(newState);
     });
@@ -113,8 +114,7 @@ class IntermediateFloorsBloc
     foundationsBloc.stream.listen((foundationsState) {
       logger.d("Received update from FoundationsBloc: $foundationsState");
       // You can add specific events to handle foundation updates if necessary
-      add(TotalFoundationChanged(
-          foundationsState)); // Add custom event for foundations
+      add(FoundationsChanged(foundationsState));
     });
   }
 }
