@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/building_frame_event.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
-import 'package:flutter_app/src/bloc/total_building_frame_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
