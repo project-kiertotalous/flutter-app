@@ -4,6 +4,7 @@ import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/floor_structures_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/error_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/info_button.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
@@ -52,6 +53,7 @@ class FloorStructuresForm extends StatelessWidget {
               50.px,
               50.px,
               50.px,
+              75.px,
             ],
             children: [
               RowCell(
@@ -525,6 +527,19 @@ class FloorStructuresForm extends StatelessWidget {
               ),
               EmptyCell(),
               EmptyCell(),
+              ErrorCell(
+                  getters: () => [
+                        state.officeSpaces?.floorPortionPercentageTotal,
+                        state.lobbiesAndOtherCommonAreas
+                            ?.floorPortionPercentageTotal,
+                        state.restroomsAndWashingFacilities
+                            ?.floorPortionPercentageTotal,
+                        state.kitchens?.floorPortionPercentageTotal,
+                        state.teachingAndTreatmentSpaces
+                            ?.floorPortionPercentageTotal,
+                        state.storageAndWorkspaces?.floorPortionPercentageTotal,
+                        state.otherSpaces?.floorPortionPercentageTotal
+                      ]),
             ],
           ),
         ],
