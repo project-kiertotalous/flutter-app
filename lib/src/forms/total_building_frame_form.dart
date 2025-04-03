@@ -1,5 +1,7 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/building_frame_bloc.dart';
+import 'package:flutter_app/src/bloc/building_frame_event.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
@@ -13,12 +15,14 @@ import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
+/// This form only sets values to [BuildingFrameBloc]
+/// but uses getters of [TotalBuildingFrameBloc].
 class TotalBuildingFrameForm extends StatelessWidget {
   const TotalBuildingFrameForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final totalBuildingFrameBloc = context.read<TotalBuildingFrameBloc>();
+    final buildingFrameBloc = context.read<BuildingFrameBloc>();
 
     return BlocBuilder<TotalBuildingFrameBloc, TotalBuildingFrame>(
       builder: (context, state) {
@@ -46,12 +50,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   checkboxTitle: 'Käytä perustuksen kehämittaa',
                   checkboxValue:
                       state.buildingFrame?.useFoundationCircumference ?? false,
-                  checkboxSetter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        useFoundationCircumference: value,
-                      ),
-                    ),
+                  checkboxSetter: (value) => buildingFrameBloc.add(
+                    UseFoundationCircumferenceChanged(value),
                   ),
                 ),
                 OutputCell(
@@ -60,12 +60,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.buildingFrame?.externalWallsPerimeter,
                   enabled: !(state.buildingFrame!.useFoundationCircumference),
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        externalWallsPerimeter: value,
-                      ),
-                    ),
+                  setter: (value) => buildingFrameBloc.add(
+                    ExternalWallsPerimeterChanged(value),
                   ),
                 ),
                 RowCell(
@@ -73,11 +69,9 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 ),
                 InputCell(
                   initialValue: state.buildingFrame?.externalWallsAverageHeight,
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        externalWallsAverageHeight: value,
-                      ),
+                  setter: (value) => buildingFrameBloc.add(
+                    ExternalWallsAverageHeightChanged(
+                      value,
                     ),
                   ),
                 ),
@@ -114,16 +108,12 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 RowCell(
                   initialValue: 'Rakennemateriaalit',
                   checkbox: true,
-                  checkboxTitle: 'Elementit ovat kierrätettäviä',
                   // TODO: fix overflow issues and enable longer text
                   // 'Liima-, betoni-, teräs- ja betonielementit ovat kierrätettäviä',
+                  checkboxTitle: 'Elementit ovat kierrätettäviä',
                   checkboxValue: state.buildingFrame?.areMaterialsRecyclable,
-                  checkboxSetter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        areMaterialsRecyclable: value,
-                      ),
-                    ),
+                  checkboxSetter: (value) => buildingFrameBloc.add(
+                    AreMaterialsRecyclableChanged(value),
                   ),
                 ),
                 ColumnCell(
@@ -161,12 +151,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                 InputCell(
                   percentage: true,
                   initialValue: state.buildingFrame?.woodPortionPercentage,
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        woodPortionPercentage: value,
-                      ),
-                    ),
+                  setter: (value) => buildingFrameBloc.add(
+                    WoodPortionPercentageChanged(value),
                   ),
                 ),
                 OutputCell(getter: () => state.woodFramePart.area),
@@ -186,12 +172,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   percentage: true,
                   initialValue: state
                       .buildingFrame?.glulamVerticalColumnsPortionPercentage,
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        glulamVerticalColumnsPortionPercentage: value,
-                      ),
-                    ),
+                  setter: (value) => buildingFrameBloc.add(
+                    GlulamVerticalColumnsPortionPercentageChanged(value),
                   ),
                 ),
                 OutputCell(getter: () => state.glulamBeamsPart.area),
@@ -211,12 +193,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   percentage: true,
                   initialValue: state
                       .buildingFrame?.concreteVerticalColumnsPortionPercentage,
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        concreteVerticalColumnsPortionPercentage: value,
-                      ),
-                    ),
+                  setter: (value) => buildingFrameBloc.add(
+                    ConcreteVerticalColumnsPortionPercentageChanged(value),
                   ),
                 ),
                 Cell.grey(),
@@ -242,12 +220,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   percentage: true,
                   initialValue: state
                       .buildingFrame?.steelVerticalColumnsPortionPercentage,
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        steelVerticalColumnsPortionPercentage: value,
-                      ),
-                    ),
+                  setter: (value) => buildingFrameBloc.add(
+                    SteelVerticalColumnsPortionPercentageChanged(value),
                   ),
                 ),
                 OutputCell(getter: () => state.steelVerticalColumnsPart.area),
@@ -269,12 +243,8 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   percentage: true,
                   initialValue: state.buildingFrame
                       ?.doubleLoadBearingBrickWallPortionPercentage,
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        doubleLoadBearingBrickWallPortionPercentage: value,
-                      ),
-                    ),
+                  setter: (value) => buildingFrameBloc.add(
+                    DoubleLoadBearingBrickWallPortionPercentageChanged(value),
                   ),
                 ),
                 OutputCell(
@@ -301,13 +271,9 @@ class TotalBuildingFrameForm extends StatelessWidget {
                   percentage: true,
                   initialValue: state.buildingFrame
                       ?.concreteElementWallsWithoutFrameworkPortionPercentage,
-                  setter: (value) => totalBuildingFrameBloc.add(
-                    BuildingFrameChanged(
-                      state.buildingFrame!.copyWith(
-                        concreteElementWallsWithoutFrameworkPortionPercentage:
-                            value,
-                      ),
-                    ),
+                  setter: (value) => buildingFrameBloc.add(
+                    ConcreteElementWallsWithoutFrameworkPortionPercentageChanged(
+                        value),
                   ),
                 ),
                 OutputCell(

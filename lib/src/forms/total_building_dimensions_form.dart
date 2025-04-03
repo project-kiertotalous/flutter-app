@@ -1,5 +1,7 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/building_dimensions_bloc.dart';
+import 'package:flutter_app/src/bloc/building_dimensions_event.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
@@ -19,8 +21,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalBuildingDimensionsBloc =
-        context.read<TotalBuildingDimensionsBloc>();
+    final buildingDimensionsBloc = context.read<BuildingDimensionsBloc>();
 
     return BlocBuilder<TotalBuildingDimensionsBloc, TotalBuildingDimensions>(
         builder: (context, state) {
@@ -53,7 +54,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               ),
               InputCell(
                 initialValue: state.buildingDimensions?.grossFloorArea,
-                setter: (value) => totalBuildingDimensionsBloc.add(
+                setter: (value) => buildingDimensionsBloc.add(
                   GrossFloorAreaChanged(value),
                 ),
               ),
@@ -67,7 +68,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               ),
               InputCell(
                 initialValue: state.buildingDimensions?.volume,
-                setter: (value) => totalBuildingDimensionsBloc.add(
+                setter: (value) => buildingDimensionsBloc.add(
                   VolumeChanged(value),
                 ),
               ),
@@ -80,7 +81,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               InputCell(
                 initialValue:
                     state.buildingDimensions?.floorCountExcludingCellars,
-                setter: (value) => totalBuildingDimensionsBloc.add(
+                setter: (value) => buildingDimensionsBloc.add(
                   FloorCountExcludingCellarsChanged(value),
                 ),
                 integer: true,
@@ -94,7 +95,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
               ),
               InputCell(
                 initialValue: state.buildingDimensions?.averageArea,
-                setter: (value) => totalBuildingDimensionsBloc.add(
+                setter: (value) => buildingDimensionsBloc.add(
                   AverageAreaChanged(value),
                 ),
               ),
