@@ -10,12 +10,12 @@ class AreaToRemoveDepthChanged extends ExcavationAreaEvent {
   AreaToRemoveDepthChanged(this.amount);
 }
 
+class CleanSoilPortionPercentageChanged extends ExcavationAreaEvent {
+  final num amount;
+  CleanSoilPortionPercentageChanged(this.amount);
+}
+
 class AsphaltAreaChanged extends ExcavationAreaEvent {
   final num amount;
   AsphaltAreaChanged(this.amount);
-}
-
-class CleanSoilPortionPercentageFractionChanged extends ExcavationAreaEvent {
-  final num amount;
-  CleanSoilPortionPercentageFractionChanged(this.amount);
 }

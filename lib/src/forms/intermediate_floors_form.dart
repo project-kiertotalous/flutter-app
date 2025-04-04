@@ -5,6 +5,7 @@ import 'package:flutter_app/src/bloc/intermediate_floors_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/error_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
@@ -67,6 +68,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                     50.px,
                     50.px,
                     50.px,
+                    50.px,
                   ],
                   children: [
                     RowCell(
@@ -122,6 +124,7 @@ class IntermediateFloorsForm extends StatelessWidget {
                       percentage: true,
                     ),
                     OutputCell(getter: () => state.totalFloorArea),
+                    ErrorCell(getters: () => [state.totalPercentage]),
                   ],
                 ),
                 const SizedBox(height: 20),

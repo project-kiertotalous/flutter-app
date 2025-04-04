@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/home_view.dart';
+
+import 'data/cancel_dialog.dart';
 
 class NavigationButtons extends StatelessWidget {
   const NavigationButtons({super.key});
@@ -15,17 +16,13 @@ class NavigationButtons extends StatelessWidget {
           // "Edellinen" button - Goes back or to HomeView if first tab
           ElevatedButton(
             onPressed: tabController.index == 0
-                ? () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomeView()),
-                    );
-                  }
+                ? () => showDialog<String>(
+                    context: context, builder: (_) => CancelDialog())
                 : () => tabController.animateTo(tabController.index - 1),
             child: const Text("Edellinen"),
           ),
-          const SizedBox(width: 100), // Space  between the buttons
-
+          // Space  between the buttons
+          const SizedBox(width: 100),
           // "Seuraava" button - Goes to the next tab //TODO: Implement the logic for the last tab
           ElevatedButton(
             onPressed: () => tabController.animateTo(tabController.index + 1),

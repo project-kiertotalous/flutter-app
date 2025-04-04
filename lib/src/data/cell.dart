@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
+import 'package:flutter_app/src/data/error_cell.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/header_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
@@ -41,12 +42,14 @@ abstract class Cell extends Widget {
     required Function setter,
     bool integer = false,
     bool percentage = false,
+    bool enabled = true,
   }) =>
       InputCell(
         initialValue: initialValue,
         setter: setter,
         integer: integer,
         percentage: percentage,
+        enabled: enabled,
       );
 
   factory Cell.output({
@@ -73,4 +76,9 @@ abstract class Cell extends Widget {
 
   factory Cell.header({required String initialValue, Widget? iconButton}) =>
       HeaderCell(initialValue: initialValue, iconButton: iconButton);
+
+  factory Cell.error({
+    required List<num?> Function() getters,
+  }) =>
+      ErrorCell(getters: getters);
 }

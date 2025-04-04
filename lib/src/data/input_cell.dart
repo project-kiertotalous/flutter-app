@@ -10,12 +10,14 @@ class InputCell extends StatefulWidget implements Cell {
     required this.setter,
     this.integer = false,
     this.percentage = false,
+    this.enabled = true,
   });
 
   final num? initialValue;
   final Function setter;
   final bool integer;
   final bool percentage;
+  final bool enabled;
 
   @override
   State<InputCell> createState() => _InputCellState();
@@ -70,9 +72,17 @@ class _InputCellState extends State<InputCell> {
     }
     // format text to always have at least 1 decimal
     if (!widget.integer) {
-      final decimals = widget.initialValue!.toString().split('.')[1].length;
-      _controller.text = widget.initialValue!.toStringAsFixed(decimals);
-      _controller.text = _controller.text.replaceFirst('.', ',');
+      final split = widget.initialValue!.toString().split('.');
+
+      if (split.length > 1) {
+        final decimals = split[1].length;
+        _controller.text = widget.initialValue!.toStringAsFixed(decimals);
+        _controller.text = _controller.text.replaceFirst('.', ',');
+      } else {
+        // It might be that the initial value has no decimals even if it is not
+        // an integer.
+        _controller.text = "${widget.initialValue!.toString()},0";
+      }
     }
     // no decimals for integers - serves purpose of removing leading zeros
     if (widget.integer) {
@@ -129,6 +139,7 @@ class _InputCellState extends State<InputCell> {
             ),
             controller: _controller,
             inputFormatters: formatters(),
+            enabled: widget.enabled,
           ),
         ),
       ),
