@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/bloc/room_space_bloc.dart';
+import 'package:flutter_app/src/bloc/internal_wall_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/door_bloc.dart';
 import 'package:flutter_app/src/bloc/exterior_wall_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/fixtures_and_structures_bloc.dart';
