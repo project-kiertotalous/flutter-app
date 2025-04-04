@@ -20,6 +20,8 @@ import 'package:flutter_app/src/forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 
+import 'data/cancel_dialog.dart';
+
 /// This view is for estimating large buildings.
 class LargeBuildingsView extends StatefulWidget {
   const LargeBuildingsView({super.key});
@@ -72,35 +74,34 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: tabs.length,
-      child: DefaultTabControllerListener(
-        onTabChanged: (int index) {
-          debugPrint('tab changed: $index');
-        },
-        child: Scaffold(
-          backgroundColor: Colors.white,
-          appBar: AppBar(
-            backgroundColor: Colors.white,
-            title: Text('Suuret rakennukset'),
-            bottom: TabBar(
-              // controller: _tabController,
-              tabs: tabs,
-            ),
-          ),
-          // body: RemovableGroundsForm(data: removableGroundsData),
-          body: TabBarView(
-            children: [
-              TabView(forms: outerSheathForms),
-              TabView(
-                forms: partitionsAndWindowsForms,
-                width: 1200,
-              ),
-              TabView(forms: lviForms),
-            ],
-          ),
-        ),
-      ),
-    );
+        length: tabs.length,
+        child: DefaultTabControllerListener(
+            onTabChanged: (int index) {
+              debugPrint('tab changed: $index');
+            },
+            child: PopScope(
+                canPop: false,
+                onPopInvokedWithResult: (_, __) => showDialog<String>(
+                    context: context, builder: (_) => CancelDialog()),
+                child: Scaffold(
+                    backgroundColor: Colors.white,
+                    appBar: AppBar(
+                      backgroundColor: Colors.white,
+                      title: Text('Suuret rakennukset'),
+                      bottom: TabBar(
+                        // controller: _tabController,
+                        tabs: tabs,
+                      ),
+                    ),
+                    // body: RemovableGroundsForm(data: removableGroundsData),
+                    body: TabBarView(children: [
+                      TabView(forms: outerSheathForms),
+                      TabView(
+                        forms: partitionsAndWindowsForms,
+                        width: 1200,
+                      ),
+                      TabView(forms: lviForms),
+                    ])))));
   }
 }
 
