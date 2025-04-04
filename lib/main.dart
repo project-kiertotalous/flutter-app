@@ -90,7 +90,6 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) =>
                       InternalWallFramesAndSurfaceMaterialBloc(),
                 ),
-                BlocProvider(create: (BuildContext context) => RoomSpaceBloc()),
                 BlocProvider(
                   create: (BuildContext context) => DoorBloc(),
                 ),

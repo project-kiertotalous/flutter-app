@@ -1,5 +1,3 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
-
 abstract class RoomSpaceEvent {}
 
 class WoodFrameWallsChanged extends RoomSpaceEvent {
@@ -37,8 +35,7 @@ class CeramicTileWallsPortionPercentageChanged extends RoomSpaceEvent {
   CeramicTileWallsPortionPercentageChanged(this.value);
 }
 
-class PaintedPlasteredBrickWallPortionPercentageChanged
-    extends RoomSpaceEvent {
+class PaintedPlasteredBrickWallPortionPercentageChanged extends RoomSpaceEvent {
   final num value;
   PaintedPlasteredBrickWallPortionPercentageChanged(this.value);
 }
@@ -47,8 +44,3 @@ class PlasticCarpetPortionPercentageChanged extends RoomSpaceEvent {
   final num value;
   PlasticCarpetPortionPercentageChanged(this.value);
 }
-
-
-
-
-

@@ -12,3 +12,4 @@ class RoomSpaceChanged extends TotalRoomSpaceEvent {
   RoomSpaceChanged(this.roomSpace);
 }
 
+
