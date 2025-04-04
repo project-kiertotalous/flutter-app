@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/door_bloc.dart';
-import 'package:flutter_app/src/bloc/door_event.dart';
+import 'package:flutter_app/src/bloc/inner_doors_bloc.dart';
+import 'package:flutter_app/src/bloc/inner_doors_event.dart';
+import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
+import 'package:flutter_app/src/bloc/outer_doors_event.dart';
 import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
@@ -17,7 +20,8 @@ class IndoorOutdoorForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final doorBloc = context.read<DoorBloc>();
+    final innerDoorsBloc = context.read<InnerDoorsBloc>();
+    final outerDoorsBloc = context.read<OuterDoorsBloc>();
 
     return BlocBuilder<DoorBloc, DoorsState>(builder: (context, state) {
       return Align(
@@ -48,8 +52,8 @@ class IndoorOutdoorForm extends StatelessWidget {
                     checkbox: true,
                     checkboxValue: state.outerDoors.areDoorsRecyclable,
                     checkboxTitle: "Ulko-ovet ovat kierrätyskelpoisia",
-                    checkboxSetter: (value) => doorBloc.add(
-                      OuterDoorRecyclableChanged(value),
+                    checkboxSetter: (value) => outerDoorsBloc.add(
+                      OuterAreDoorsRecyclableChanged(value),
                     ),
                   ),
                   ColumnCell(initialValue: "Puuovet (kpl)"),
@@ -60,38 +64,38 @@ class IndoorOutdoorForm extends StatelessWidget {
                     initialValue: state.outerDoors.woodenDoors?.shutDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(OuterDoorWoodenShutDoorsChanged(value)),
+                        outerDoorsBloc.add(OuterShutWoodenDoorsChanged(value)),
                   ),
                   InputCell(
                     initialValue: state.outerDoors.aluminiumDoors?.shutDoors,
                     integer: true,
-                    setter: (value) =>
-                        doorBloc.add(OuterDoorAluminiumShutDoorsChanged(value)),
+                    setter: (value) => outerDoorsBloc
+                        .add(OuterShutAluminiumDoorsChanged(value)),
                   ),
                   InputCell(
                     initialValue: state.outerDoors.steelDoors?.shutDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(OuterDoorSteelShutDoorsChanged(value)),
+                        outerDoorsBloc.add(OuterShutSteelDoorsChanged(value)),
                   ),
                   RowCell(initialValue: "Lasiovia"),
                   InputCell(
                     initialValue: state.outerDoors.woodenDoors?.glassDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(OuterDoorWoodenGlassDoorsChanged(value)),
+                        outerDoorsBloc.add(OuterGlassWoodenDoorsChanged(value)),
                   ),
                   InputCell(
                     initialValue: state.outerDoors.aluminiumDoors?.glassDoors,
                     integer: true,
-                    setter: (value) => doorBloc
-                        .add(OuterDoorAluminiumGlassDoorsChanged(value)),
+                    setter: (value) => outerDoorsBloc
+                        .add(OuterGlassAluminiumDoorsChanged(value)),
                   ),
                   InputCell(
                     initialValue: state.outerDoors.steelDoors?.glassDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(OuterDoorSteelGlassDoorsChanged(value)),
+                        outerDoorsBloc.add(OuterGlassSteelDoorsChanged(value)),
                   ),
                   RowCell(initialValue: "Yhteensä (kpl)"),
                   OutputCell(
@@ -107,8 +111,8 @@ class IndoorOutdoorForm extends StatelessWidget {
                   InputCell(
                     initialValue: state.outerDoors.accessAndLoadingDoors,
                     integer: true,
-                    setter: (value) => doorBloc
-                        .add(OuterDoorAccessAndLoadingDoorsChanged(value)),
+                    setter: (value) => outerDoorsBloc
+                        .add(OuterAccessAndLoadingDoorsChanged(value)),
                   ),
                   EmptyCell(),
                   EmptyCell(),
@@ -154,7 +158,7 @@ class IndoorOutdoorForm extends StatelessWidget {
                     checkbox: true,
                     checkboxValue: state.innerDoors.areDoorsRecyclable,
                     checkboxTitle: "Sisäovet ovat kierrätyskelpoisia",
-                    checkboxSetter: (value) => doorBloc.add(
+                    checkboxSetter: (value) => innerDoorsBloc.add(
                       InnerDoorRecyclableChanged(value),
                     ),
                   ),
@@ -166,32 +170,32 @@ class IndoorOutdoorForm extends StatelessWidget {
                     initialValue: state.innerDoors.panelDoors?.shutDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(InnerDoorPanelShutDoorsChanged(value)),
+                        innerDoorsBloc.add(InnerShutPanelDoorsChanged(value)),
                   ),
                   InputCell(
                     initialValue: state.innerDoors.woodenDoors?.shutDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(InnerDoorWoodenShutDoorsChanged(value)),
+                        innerDoorsBloc.add(InnerShutWoodenDoorsChanged(value)),
                   ),
                   InputCell(
                     initialValue: state.innerDoors.fireDoors?.shutDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(InnerDoorFireShutDoorsChanged(value)),
+                        innerDoorsBloc.add(InnerShutFireDoorsChanged(value)),
                   ),
                   RowCell(initialValue: "Lasiovia"),
                   InputCell(
                     initialValue: state.innerDoors.panelDoors?.glassDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(InnerDoorPanelGlassDoorsChanged(value)),
+                        innerDoorsBloc.add(InnerGlassPanelDoorsChanged(value)),
                   ),
                   InputCell(
                     initialValue: state.innerDoors.woodenDoors?.glassDoors,
                     integer: true,
                     setter: (value) =>
-                        doorBloc.add(InnerDoorWoodenGlassDoorsChanged(value)),
+                        innerDoorsBloc.add(InnerGlassWoodenDoorsChanged(value)),
                   ),
                   EmptyCell(),
                   RowCell(initialValue: "Yhteensä (kpl)"),
