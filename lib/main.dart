@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/bloc/building_dimensions_bloc.dart';
+import 'package:flutter_app/src/bloc/building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/bloc/door_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
@@ -46,13 +48,31 @@ class MyApp extends StatelessWidget {
         '/': (context) => const HomeView(),
         '/large_buildings': (context) => MultiBlocProvider(
               providers: [
+                // Order of providers in this list matters!
+                // Provide "children" first, and Total blocs etc
+                // that listen to changes made in children after.
+                BlocProvider(
+                  create: (BuildContext context) => BuildingDimensionsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => BuildingFrameBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => CellarBloc(),
+                ),
                 BlocProvider(
                   create: (BuildContext context) =>
                       LargePropertyBasicInfoBloc(),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) =>
-                      TotalBuildingDimensionsBloc(),
+                  create: (BuildContext context) => FoundationsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => TotalBuildingDimensionsBloc(
+                    context.read<FoundationsBloc>(),
+                    context.read<CellarBloc>(),
+                    context.read<BuildingDimensionsBloc>(),
+                  ),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => ExcavationAreaBloc(),
@@ -61,11 +81,8 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => FloorStructuresBloc(),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => FoundationsBloc(),
+                  create: (BuildContext context) => ExcavationAreaBloc(),
                 ),
-                BlocProvider(
-                    create: (BuildContext context) => ExcavationAreaBloc()),
-                BlocProvider(create: (BuildContext context) => CellarBloc()),
                 BlocProvider(
                   create: (BuildContext context) => IntermediateFloorsBloc(
                     context.read<TotalBuildingDimensionsBloc>(),
@@ -73,11 +90,9 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => CellarBloc(),
-                ),
-                BlocProvider(
                   create: (BuildContext context) => TotalBuildingFrameBloc(
                     context.read<FoundationsBloc>(),
+                    context.read<BuildingFrameBloc>(),
                   ),
                 ),
                 BlocProvider(

@@ -1,21 +1,18 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+
 abstract class TotalBuildingDimensionsEvent {}
 
-class GrossFloorAreaChanged extends TotalBuildingDimensionsEvent {
-  final num value;
-  GrossFloorAreaChanged(this.value);
+class BuildingDimensionsChanged extends TotalBuildingDimensionsEvent {
+  BuildingDimensions buildingDimensions;
+  BuildingDimensionsChanged(this.buildingDimensions);
 }
 
-class VolumeChanged extends TotalBuildingDimensionsEvent {
-  final num value;
-  VolumeChanged(this.value);
+class CellarChanged extends TotalBuildingDimensionsEvent {
+  Cellar cellar;
+  CellarChanged(this.cellar);
 }
 
-class FloorCountExcludingCellarsChanged extends TotalBuildingDimensionsEvent {
-  final int value;
-  FloorCountExcludingCellarsChanged(this.value);
-}
-
-class AverageAreaChanged extends TotalBuildingDimensionsEvent {
-  final num value;
-  AverageAreaChanged(this.value);
+class FoundationsChanged extends TotalBuildingDimensionsEvent {
+  Foundations foundations;
+  FoundationsChanged(this.foundations);
 }
