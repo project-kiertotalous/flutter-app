@@ -1,6 +1,5 @@
 import 'package:flutter_app/src/bloc/exterior_wall_structures_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bl_demolition_materials/src/large_properties/external_shell_and_frame_structures/total/total_building_frame.dart';
 
 class DoubleLoadBearingBrickWallBloc extends Bloc<
     DoubleLoadBearingBrickWallEvent, DoubleLoadBearingBrickWallState> {
