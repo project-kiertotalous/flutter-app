@@ -15,8 +15,8 @@ import 'package:flutter_app/src/data/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
-/// This form only sets values to [BuildingDimensionsBloc]
-/// but uses getters of [TotalBuildingDimensionsBloc].
+/// Get values from [TotalBuildingDimensionsBloc],
+/// sets values to [BuildingDimensionsBloc].
 class TotalBuildingDimensionsForm extends StatelessWidget {
   const TotalBuildingDimensionsForm({super.key});
 
@@ -60,6 +60,7 @@ class TotalBuildingDimensionsForm extends StatelessWidget {
                 ),
               ),
               OutputCell(
+                // supposed to be empty for now (14.3.25)
                 getter: () => state.calculatedGrossFloorArea,
               ),
               RowCell(

@@ -5,153 +5,79 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuildingFrameBloc extends Bloc<BuildingFrameEvent, BuildingFrame> {
   BuildingFrameBloc() : super(BuildingFrame()) {
-    on<UseFoundationCircumferenceChanged>(
-      (event, emit) {
-        logger.d('useFoundationCircumference changed to: ${event.value}');
-        emit(
-          state.copyWith(useFoundationCircumference: event.value),
-        );
-      },
-    );
-    on<ExternalWallsPerimeterChanged>(
-      (event, emit) {
-        logger.d('externalWallsPerimeter changed to: ${event.value}');
-        emit(
-          state.copyWith(externalWallsPerimeter: event.value),
-        );
-      },
-    );
-    on<ExternalWallsAverageHeightChanged>(
-      (event, emit) {
-        logger.d('externalWallsAverageHeight changed to: ${event.value}');
-        emit(
-          state.copyWith(externalWallsAverageHeight: event.value),
-        );
-      },
-    );
-    on<AreMaterialsRecyclableChanged>(
-      (event, emit) {
-        logger.d('areMaterialsRecyclable changed to: ${event.value}');
-        emit(
-          state.copyWith(areMaterialsRecyclable: event.value),
-        );
-      },
-    );
-    on<WoodPortionPercentageChanged>(
-      (event, emit) {
-        logger.d('woodPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(woodPortionPercentage: event.value),
-        );
-      },
-    );
-    on<GlulamVerticalColumnsPortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'glulamVerticalColumnsPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            glulamVerticalColumnsPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<ConcreteVerticalColumnsPortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'concreteVerticalColumnsPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            concreteVerticalColumnsPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<SteelVerticalColumnsPortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'steelVerticalColumnsPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            steelVerticalColumnsPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<DoubleLoadBearingBrickWallPortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'doubleLoadBearingBrickWallPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            doubleLoadBearingBrickWallPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
+    on<UseFoundationCircumferenceChanged>((event, emit) {
+      emit(state.copyWith(useFoundationCircumference: event.value));
+      logger.d("BuildingFrame.useFoundationCircumference: ${event.value}");
+    });
+    on<ExternalWallsPerimeterChanged>((event, emit) {
+      emit(state.copyWith(externalWallsPerimeter: event.value));
+      logger.d("BuildingFrame.externalWallsPerimeter: ${event.value}");
+    });
+    on<ExternalWallsAverageHeightChanged>((event, emit) {
+      emit(state.copyWith(externalWallsAverageHeight: event.value));
+      logger.d("BuildingFrame.externalWallsAverageHeight: ${event.value}");
+    });
+    on<AreMaterialsRecyclableChanged>((event, emit) {
+      emit(state.copyWith(areMaterialsRecyclable: event.value));
+      logger.d("BuildingFrame.areMaterialsRecyclable: ${event.value}");
+    });
+    on<WoodPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(woodPortionPercentage: event.value));
+      logger.d("BuildingFrame.woodPortionPercentage: ${event.value}");
+    });
+    on<GlulamVerticalColumnsPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(glulamVerticalColumnsPortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.glulamVerticalColumnsPortionPercentage: ${event.value}");
+    });
+    on<ConcreteVerticalColumnsPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(
+          concreteVerticalColumnsPortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.concreteVerticalColumnsPortionPercentage: ${event.value}");
+    });
+    on<SteelVerticalColumnsPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(steelVerticalColumnsPortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.steelVerticalColumnsPortionPercentage: ${event.value}");
+    });
+    on<DoubleLoadBearingBrickWallPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(
+          doubleLoadBearingBrickWallPortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.doubleLoadBearingBrickWallPortionPercentage: ${event.value}");
+    });
     on<ConcreteElementWallsWithoutFrameworkPortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'concreteElementWallsWithoutFrameworkPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            concreteElementWallsWithoutFrameworkPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<BrickCladWallPortionPercentageChanged>(
-      (event, emit) {
-        logger.d('brickCladWallPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            brickCladWallPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<BoardWallPortionPercentageChanged>(
-      (event, emit) {
-        logger.d('boardWallPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            boardWallPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<ProfiledSheetMetalPortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'profiledSheetMetalPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            profiledSheetMetalPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<SteelProfileSandwichStructurePortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'steelProfileSandwichStructurePortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            steelProfileSandwichStructurePortionPercentage: event.value,
-          ),
-        );
-      },
-    );
-    on<MineriteOrOtherStoneBoardPortionPercentageChanged>(
-      (event, emit) {
-        logger.d(
-            'mineriteOrOtherStoneBoardPortionPercentage changed to: ${event.value}');
-        emit(
-          state.copyWith(
-            mineriteOrOtherStoneBoardPortionPercentage: event.value,
-          ),
-        );
-      },
-    );
+        (event, emit) {
+      emit(state.copyWith(
+          concreteElementWallsWithoutFrameworkPortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.concreteElementWallsWithoutFrameworkPortionPercentage: ${event.value}");
+    });
+    on<BrickCladWallPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(brickCladWallPortionPercentage: event.value));
+      logger.d("BuildingFrame.brickCladWallPortionPercentage: ${event.value}");
+    });
+    on<BoardWallPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(boardWallPortionPercentage: event.value));
+      logger.d("BuildingFrame.boardWallPortionPercentage: ${event.value}");
+    });
+    on<ProfiledSheetMetalPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(profiledSheetMetalPortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.profiledSheetMetalPortionPercentage: ${event.value}");
+    });
+    on<SteelProfileSandwichStructurePortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(
+          steelProfileSandwichStructurePortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.steelProfileSandwichStructurePortionPercentage: ${event.value}");
+    });
+    on<MineriteOrOtherStoneBoardPortionPercentageChanged>((event, emit) {
+      emit(state.copyWith(
+          mineriteOrOtherStoneBoardPortionPercentage: event.value));
+      logger.d(
+          "BuildingFrame.mineriteOrOtherStoneBoardPortionPercentage: ${event.value}");
+    });
   }
 }
