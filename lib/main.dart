@@ -107,6 +107,7 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) => TotalBuildingFrameBloc(
                     context.read<FoundationsBloc>(),
+                    context.read<BuildingFrameBloc>(),
                   ),
                 ),
                 BlocProvider(
