@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/tooltip_texts.dart';
 
 /// IconButton meant to display helpful text when hovered over.
 /// Does not allow to be focused, which means that this widget

@@ -4,13 +4,7 @@ import 'package:flutter_app/src/bloc/cellar_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CellarBloc extends Bloc<CellarEvent, Cellar> {
-  CellarBloc()
-      : super(Cellar(
-          floorArea: null,
-          exteriorWallsPerimeter: null,
-          wallHeight: null,
-          exteriorWallsMaterial: null,
-        )) {
+  CellarBloc() : super(Cellar()) {
     on<CellarMaterialChanged>((event, emit) {
       logger.d("CellarMaterialChanged fired");
       emit(state.copyWith(exteriorWallsMaterial: event.material));

@@ -2,6 +2,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/floor_structures_event.dart';
+import 'package:flutter_app/src/data/cell.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/error_cell.dart';
@@ -26,10 +27,452 @@ class FloorStructuresForm extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // TODO: why double header? needs fixing
-          FormHeader(
-            text: 'Lattian pintamateriaali',
+          FormHeader(text: 'Lattiarakenteet'),
+          LayoutGrid(
+            columnSizes: [
+              232.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+            ],
+            rowSizes: [
+              75.px,
+              50.px,
+            ],
+            children: [
+              Cell.empty(),
+              Cell.column(initialValue: 'Toimistotilat (m2)'),
+              Cell.column(initialValue: 'Aulat ja muut yleiset tilat (m2)'),
+              Cell.column(initialValue: 'WC- ja pesutilat (m2)'),
+              Cell.column(initialValue: 'Keittiöt (m2)'),
+              Cell.column(initialValue: 'Opetus-/hoitotilat (m2)'),
+              Cell.column(initialValue: 'Varastot ja työtilat (m2)'),
+              Cell.column(initialValue: 'Muut tilat (m2)'),
+              Cell.column(initialValue: 'Pinta-alat yhteensä (m2)'),
+              Cell.row(
+                initialValue: 'Tilan pinta-ala yhteensä (m2)',
+              ),
+              Cell.input(
+                initialValue: state.officeSpaces?.totalArea,
+                setter: (value) => floorStructuresBloc.add(
+                  OfficeSpacesChanged(
+                    state.officeSpaces!.copyWith(
+                      totalArea: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.lobbiesAndOtherCommonAreas?.totalArea,
+                setter: (value) => floorStructuresBloc.add(
+                  LobbiesAndOtherCommonAreasChanged(
+                    state.lobbiesAndOtherCommonAreas!.copyWith(
+                      totalArea: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.restroomsAndWashingFacilities?.totalArea,
+                setter: (value) => floorStructuresBloc.add(
+                  RestRoomsAndWashingFacilitiesChanged(
+                    state.restroomsAndWashingFacilities!.copyWith(
+                      totalArea: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.kitchens?.totalArea,
+                setter: (value) => floorStructuresBloc.add(
+                  KitchensChanged(
+                    state.kitchens!.copyWith(
+                      totalArea: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.teachingAndTreatmentSpaces?.totalArea,
+                setter: (value) => floorStructuresBloc.add(
+                  TeachingAndTreatmentSpacesChanged(
+                    state.teachingAndTreatmentSpaces!.copyWith(
+                      totalArea: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.storageAndWorkspaces?.totalArea,
+                setter: (value) => floorStructuresBloc.add(
+                  StorageAndWorkspacesChanged(
+                    state.storageAndWorkspaces!.copyWith(
+                      totalArea: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.otherSpaces?.totalArea,
+                setter: (value) => floorStructuresBloc.add(
+                  OtherSpacesChanged(
+                    state.otherSpaces!.copyWith(
+                      totalArea: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.output(getter: () => state.totalArea),
+            ],
           ),
+          const SizedBox(
+            height: 40,
+          ),
+          LayoutGrid(
+            columnSizes: [
+              232.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+              140.px,
+            ],
+            rowSizes: [
+              75.px,
+              50.px,
+              50.px,
+              50.px,
+              50.px,
+            ],
+            children: [
+              Cell.header(
+                initialValue:
+                    'Lattioiden pintarakenteen %-osuus koko välipohjasta',
+              ),
+              Cell.column(initialValue: 'Toimistotilat (m2)'),
+              Cell.column(initialValue: 'Aulat ja muut yleiset tilat (m2)'),
+              Cell.column(initialValue: 'WC- ja pesutilat (m2)'),
+              Cell.column(initialValue: 'Keittiöt (m2)'),
+              Cell.column(initialValue: 'Opetus-/hoitotilat (m2)'),
+              Cell.column(initialValue: 'Varastot ja työtilat (m2)'),
+              Cell.column(initialValue: 'Muut tilat (m2)'),
+              Cell.column(initialValue: 'Materiaali yht. (m3)'),
+              Cell.column(initialValue: 'Materiaali yht. (tonnia)'),
+              Cell.row(
+                initialValue: 'Lastulevy',
+              ),
+              Cell.input(
+                initialValue:
+                    state.officeSpaces?.chipBoardMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  OfficeSpacesChanged(
+                    state.officeSpaces!
+                        .copyWith(chipBoardMidsolePortionPercentage: value),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.lobbiesAndOtherCommonAreas
+                    ?.chipBoardMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  LobbiesAndOtherCommonAreasChanged(
+                    state.lobbiesAndOtherCommonAreas!.copyWith(
+                      chipBoardMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.restroomsAndWashingFacilities
+                    ?.chipBoardMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  RestRoomsAndWashingFacilitiesChanged(
+                    state.restroomsAndWashingFacilities!.copyWith(
+                      chipBoardMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.kitchens?.chipBoardMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  KitchensChanged(
+                    state.kitchens!.copyWith(
+                      chipBoardMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.teachingAndTreatmentSpaces
+                    ?.chipBoardMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  TeachingAndTreatmentSpacesChanged(
+                    state.teachingAndTreatmentSpaces!.copyWith(
+                      chipBoardMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state
+                    .storageAndWorkspaces?.chipBoardMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  StorageAndWorkspacesChanged(
+                    state.storageAndWorkspaces!.copyWith(
+                      chipBoardMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue:
+                    state.otherSpaces?.chipBoardMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  OtherSpacesChanged(
+                    state.otherSpaces!.copyWith(
+                      chipBoardMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.output(getter: () => state.chipBoardMidsoleVolume),
+              Cell.output(getter: () => state.chipBoardMidsoleTons),
+              Cell.row(
+                initialValue: 'Kipsilevy (cybroc)',
+              ),
+              Cell.input(
+                initialValue:
+                    state.officeSpaces?.gypsumBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  OfficeSpacesChanged(
+                    state.officeSpaces!.copyWith(
+                      gypsumBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.lobbiesAndOtherCommonAreas
+                    ?.gypsumBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  LobbiesAndOtherCommonAreasChanged(
+                    state.lobbiesAndOtherCommonAreas!.copyWith(
+                      gypsumBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.restroomsAndWashingFacilities
+                    ?.gypsumBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  RestRoomsAndWashingFacilitiesChanged(
+                    state.restroomsAndWashingFacilities!.copyWith(
+                      gypsumBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue:
+                    state.kitchens?.gypsumBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  KitchensChanged(
+                    state.kitchens!.copyWith(
+                      gypsumBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.teachingAndTreatmentSpaces
+                    ?.gypsumBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  TeachingAndTreatmentSpacesChanged(
+                    state.teachingAndTreatmentSpaces!.copyWith(
+                      gypsumBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.storageAndWorkspaces
+                    ?.gypsumBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  StorageAndWorkspacesChanged(
+                    state.storageAndWorkspaces!.copyWith(
+                      gypsumBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue:
+                    state.otherSpaces?.gypsumBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  OtherSpacesChanged(
+                    state.otherSpaces!.copyWith(
+                      gypsumBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.output(getter: () => state.gypsumBoardingMidsoleVolume),
+              Cell.output(getter: () => state.gypsumBoardingMidsoleTons),
+              Cell.row(
+                initialValue: 'Umpilaudoitus',
+              ),
+              Cell.input(
+                initialValue:
+                    state.officeSpaces?.solidBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  OfficeSpacesChanged(
+                    state.officeSpaces!.copyWith(
+                      solidBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.lobbiesAndOtherCommonAreas
+                    ?.solidBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  LobbiesAndOtherCommonAreasChanged(
+                    state.lobbiesAndOtherCommonAreas!.copyWith(
+                      solidBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.restroomsAndWashingFacilities
+                    ?.solidBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  RestRoomsAndWashingFacilitiesChanged(
+                    state.restroomsAndWashingFacilities!.copyWith(
+                      solidBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue:
+                    state.kitchens?.solidBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  KitchensChanged(
+                    state.kitchens!.copyWith(
+                      solidBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.teachingAndTreatmentSpaces
+                    ?.solidBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  TeachingAndTreatmentSpacesChanged(
+                    state.teachingAndTreatmentSpaces!.copyWith(
+                      solidBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue: state.storageAndWorkspaces
+                    ?.solidBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  StorageAndWorkspacesChanged(
+                    state.storageAndWorkspaces!.copyWith(
+                      solidBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.input(
+                initialValue:
+                    state.otherSpaces?.solidBoardingMidsolePortionPercentage,
+                percentage: true,
+                setter: (value) => floorStructuresBloc.add(
+                  OtherSpacesChanged(
+                    state.otherSpaces!.copyWith(
+                      solidBoardingMidsolePortionPercentage: value,
+                    ),
+                  ),
+                ),
+              ),
+              Cell.output(getter: () => state.solidBoardingMidsoleVolume),
+              Cell.output(getter: () => state.solidBoardingMidsoleTons),
+              Cell.row(
+                initialValue: 'Välipohjan rakenteet yhteensä (%)',
+              ),
+              Cell.output(
+                percentage: true,
+                getter: () => state.officeSpaces?.midsolePortionPercentageTotal,
+              ),
+              Cell.output(
+                percentage: true,
+                getter: () => state
+                    .lobbiesAndOtherCommonAreas?.midsolePortionPercentageTotal,
+              ),
+              Cell.output(
+                percentage: true,
+                getter: () => state.restroomsAndWashingFacilities
+                    ?.midsolePortionPercentageTotal,
+              ),
+              Cell.output(
+                percentage: true,
+                getter: () => state.kitchens?.midsolePortionPercentageTotal,
+              ),
+              Cell.output(
+                percentage: true,
+                getter: () => state
+                    .teachingAndTreatmentSpaces?.midsolePortionPercentageTotal,
+              ),
+              Cell.output(
+                percentage: true,
+                getter: () =>
+                    state.storageAndWorkspaces?.midsolePortionPercentageTotal,
+              ),
+              Cell.output(
+                percentage: true,
+                getter: () => state.otherSpaces?.midsolePortionPercentageTotal,
+              ),
+              Cell.empty(),
+              Cell.empty(),
+            ],
+          ),
+          // TODO: why double header? needs fixing
+          FormHeader(text: 'Lattian pintamateriaali'),
           FormHeader(
             text: 'Pinnoitemateriaalin prosenttiosuus tilan lattiapinta-alasta',
           ),
