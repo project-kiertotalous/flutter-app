@@ -17,17 +17,20 @@ class TotalRoomSpaceBloc extends Bloc<TotalRoomSpaceEvent, TotalRoomSpace> {
             internalWallFramesAndSurfaceMaterial:
                 internalWallFramesAndSurfaceMaterialBloc.state,
             roomSpace: roomSpaceBloc.state)) {
-
     on<InternalWallFramesAndSurfaceMaterialChanged>((event, emit) {
-      logger.d("InternalWallFramesAndSurfaceMaterial changed to ${event.internalWallFramesAndSurfaceMaterial}");
+      logger.d(
+          "InternalWallFramesAndSurfaceMaterial changed to ${event.value}");
       emit(state.copyWith(
           internalWallFramesAndSurfaceMaterial:
-              event.internalWallFramesAndSurfaceMaterial));
+              event.value));
     });
 
-    on<RoomSpaceChanged>((event, emit) {
-      logger.d("RoomSpace changed to ${event.roomSpace}");
-      emit(state.copyWith(roomSpace: event.roomSpace));
+    internalWallFramesAndSurfaceMaterialBloc.stream
+        .listen((internalWallFramesAndSurfaceMaterialState) {
+      logger.d(
+          'Received update from InternalWallFramesAndSurfaceMaterialBloc: $internalWallFramesAndSurfaceMaterialState');
+      add(InternalWallFramesAndSurfaceMaterialChanged(
+          internalWallFramesAndSurfaceMaterialState));
     });
   }
 }

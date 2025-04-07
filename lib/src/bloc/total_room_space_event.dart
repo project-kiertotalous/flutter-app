@@ -3,13 +3,9 @@ abstract class TotalRoomSpaceEvent {}
 
 class InternalWallFramesAndSurfaceMaterialChanged
     extends TotalRoomSpaceEvent {
-  final InternalWallFramesAndSurfaceMaterial internalWallFramesAndSurfaceMaterial;
-  InternalWallFramesAndSurfaceMaterialChanged(this.internalWallFramesAndSurfaceMaterial);
+  final InternalWallFramesAndSurfaceMaterial value;
+  InternalWallFramesAndSurfaceMaterialChanged(this.value);
 }
 
-class RoomSpaceChanged extends TotalRoomSpaceEvent {
-  final RoomSpace roomSpace;
-  RoomSpaceChanged(this.roomSpace);
-}
 
 

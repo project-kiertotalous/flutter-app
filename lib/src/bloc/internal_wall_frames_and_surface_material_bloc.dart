@@ -1,17 +1,27 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'internal_wall_frames_and_surface_material_event.dart';
-import 'package:flutter_app/src/bloc/room_space_bloc.dart';
 import 'package:flutter_app/log.dart';
 
 class InternalWallFramesAndSurfaceMaterialBloc extends Bloc<
     InternalWallFramesAndSurfaceMaterialEvent,
     InternalWallFramesAndSurfaceMaterial> {
-      final RoomSpaceBloc roomSpaceBloc = RoomSpaceBloc();
-
-      
   InternalWallFramesAndSurfaceMaterialBloc()
-      : super(InternalWallFramesAndSurfaceMaterial()) {
+      : super(InternalWallFramesAndSurfaceMaterial(
+      overallWallLength: null,
+      averageWallHeight: null,
+      officeSpaces: RoomSpace(),
+      lobbiesAndOtherCommonAreas: RoomSpace(),
+      restroomsAndWashingFacilities: RoomSpace(),
+      kitchens: RoomSpace(),
+      teachingAndTreatmentSpaces: RoomSpace(),
+      storageAndWorkspaces: RoomSpace(),
+      otherSpaces: RoomSpace(),
+      surfaceMaterialCoatingContainsAsbestos: false,
+        ) 
+      ){
+
+
     on<OverallLengthOfInternalWallsAllFloorsChanged>((event, emit) {
       logger
           .d("OverallLengthOfInternalWallsAllFloorsChanged to ${event.amount}");
@@ -27,57 +37,61 @@ class InternalWallFramesAndSurfaceMaterialBloc extends Bloc<
       ));
     });
 
-on<OfficeSpacesChanged>((event, emit) {
-      logger.d("OfficeSpacesChanged to ${event.officeSpaces}");
+    on<OfficeSpacesChanged>((event, emit) {
+      logger.d("RoomSpaceChanged to ${event.value}");
       emit(state.copyWith(
-        officeSpaces: event.officeSpaces,
+        officeSpaces: event.value,
       ));
     });
-on<LobbiesAndOtherCommonAreasChanged>((event, emit) {
-      logger.d("LobbiesAndOtherCommonAreasChanged to ${event.lobbiesAndOtherCommonAreas}");
+
+    on<LobbiesAndOtherCommonAreasChanged>((event, emit) {
+      logger.d("RoomSpaceChanged to ${event.value}");
       emit(state.copyWith(
-        lobbiesAndOtherCommonAreas: event.lobbiesAndOtherCommonAreas,
+        lobbiesAndOtherCommonAreas: event.value,
       ));
     });
 
     on<RestroomsAndWashingFacilitiesChanged>((event, emit) {
-      logger.d("RestroomsAndWashingFacilitiesChanged to ${event.restroomsAndWashingFacilities}");
+      logger.d("RoomSpaceChanged to ${event.value}");
       emit(state.copyWith(
-        restroomsAndWashingFacilities: event.restroomsAndWashingFacilities,
+        restroomsAndWashingFacilities: event.value,
       ));
     });
 
     on<KitchensChanged>((event, emit) {
-      logger.d("KitchensChanged to ${event.kitchens}");
+      logger.d("KitchensChanged to ${event.value}");
       emit(state.copyWith(
-        kitchens: event.kitchens,
+        kitchens: event.value,
       ));
     });
 
     on<TeachingAndTreatmentSpacesChanged>((event, emit) {
-      logger.d("TeachingAndTreatmentSpacesChanged to ${event.teachingAndTreatmentSpaces}");
+      logger.d("TeachingAndTreatmentSpacesChanged to ${event.value}");
       emit(state.copyWith(
-        teachingAndTreatmentSpaces: event.teachingAndTreatmentSpaces,
+        teachingAndTreatmentSpaces: event.value,
       ));
     });
 
     on<StorageAndWorkSpacesChanged>((event, emit) {
-      logger.d("StorageAndWorkSpacesChanged to ${event.storageAndWorkSpaces}");
+      logger.d("StorageAndWorkSpacesChanged to ${event.value}");
       emit(state.copyWith(
-        storageAndWorkspaces: event.storageAndWorkSpaces,
+        storageAndWorkspaces: event.value,
       ));
     });
 
     on<OtherSpacesChanged>((event, emit) {
-      logger.d("OtherSpacesChanged to ${event.otherSpaces}");
+      logger.d("OtherSpacesChanged to ${event.value}");
       emit(state.copyWith(
-        otherSpaces: event.otherSpaces,
+        otherSpaces: event.value,
       ));
     });
 
-    roomSpaceBloc.stream.listen((roomSpaceState) {
-      logger.d("RoomSpaceBloc stream updated");
-      add(RoomSpaceChanged(roomSpaceState));
+    on<SurfaceMaterialCoatingContainsAsbestosChanged>((event, emit) {
+      logger.d(
+          "SurfaceMaterialCoatingContainsAsbestosChanged to ${event.containsAsbestos}");
+      emit(state.copyWith(
+        surfaceMaterialCoatingContainsAsbestos: event.containsAsbestos,
+      ));
     });
   }
 }

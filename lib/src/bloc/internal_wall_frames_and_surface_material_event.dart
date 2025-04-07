@@ -1,6 +1,5 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
-
 abstract class InternalWallFramesAndSurfaceMaterialEvent {}
 
 class OverallLengthOfInternalWallsAllFloorsChanged
@@ -23,44 +22,44 @@ class RoomSpaceChanged
 
 class OfficeSpacesChanged
     extends InternalWallFramesAndSurfaceMaterialEvent {
-  final RoomSpace officeSpaces;
-  OfficeSpacesChanged(this.officeSpaces);
+  final RoomSpace value;
+  OfficeSpacesChanged(this.value);
 }
 
 class LobbiesAndOtherCommonAreasChanged
     extends InternalWallFramesAndSurfaceMaterialEvent {
-  final RoomSpace lobbiesAndOtherCommonAreas;
-  LobbiesAndOtherCommonAreasChanged(this.lobbiesAndOtherCommonAreas);
+  final RoomSpace value;
+  LobbiesAndOtherCommonAreasChanged(this.value);
 }
 
 class RestroomsAndWashingFacilitiesChanged
     extends InternalWallFramesAndSurfaceMaterialEvent {
-  final RoomSpace restroomsAndWashingFacilities;
-  RestroomsAndWashingFacilitiesChanged(this.restroomsAndWashingFacilities);
+  final RoomSpace value;
+  RestroomsAndWashingFacilitiesChanged(this.value);
 }
 
 class KitchensChanged
     extends InternalWallFramesAndSurfaceMaterialEvent {
-  final RoomSpace kitchens;
-  KitchensChanged(this.kitchens);
+  final RoomSpace value;
+  KitchensChanged(this.value);
 }
 
 class TeachingAndTreatmentSpacesChanged
     extends InternalWallFramesAndSurfaceMaterialEvent {
-  final RoomSpace teachingAndTreatmentSpaces;
-  TeachingAndTreatmentSpacesChanged(this.teachingAndTreatmentSpaces);
+  final RoomSpace value;
+  TeachingAndTreatmentSpacesChanged(this.value);
 }
 
 class StorageAndWorkSpacesChanged
     extends InternalWallFramesAndSurfaceMaterialEvent {
-  final RoomSpace storageAndWorkSpaces;
-  StorageAndWorkSpacesChanged(this.storageAndWorkSpaces);
+  final RoomSpace value;
+  StorageAndWorkSpacesChanged(this.value);
 }
  
 class OtherSpacesChanged
     extends InternalWallFramesAndSurfaceMaterialEvent {
-  final RoomSpace otherSpaces;
-  OtherSpacesChanged(this.otherSpaces);
+  final RoomSpace value;
+  OtherSpacesChanged(this.value);
 }
 
 class SurfaceMaterialCoatingContainsAsbestosChanged
