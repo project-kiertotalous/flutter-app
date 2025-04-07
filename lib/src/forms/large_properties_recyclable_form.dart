@@ -3,10 +3,7 @@ import 'package:flutter_app/src/bloc/large_properties_recyclable_materials_bloc.
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/large_properties_recyclable_materials_event.dart';
 import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_event.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/empty_cell.dart';
-import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
@@ -28,12 +25,12 @@ class RecyclableMaterialsForm extends StatelessWidget {
         children: [
           LayoutGrid(
             columnSizes: [
-              150.px,
-              150.px,
-              150.px,
-              150.px,
-              150.px,
-              150.px,
+              210.px,
+              120.px,
+              120.px,
+              120.px,
+              120.px,
+              120.px,
             ],
             rowSizes: List.generate(36, (_) => 50.px),
             children: [

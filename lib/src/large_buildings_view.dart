@@ -8,6 +8,7 @@ import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
 import 'package:flutter_app/src/forms/hvac_and_electrical_installations_form.dart';
 import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
 import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
+import 'package:flutter_app/src/forms/room_space_form.dart';
 import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
 import 'package:flutter_app/src/forms/large_properties_recyclable_form.dart';
 import 'package:flutter_app/src/forms/large_property_basic_information_form.dart';
@@ -58,6 +59,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
 
   List<Widget> partitionsAndWindowsForms() => [
         InternalWallFramesAndSurfaceMaterialsForm(),
+        RoomSpaceForm(),
         IndoorOutdoorForm(),
         WindowsForm(),
         FixedFurnitureForm(),
@@ -107,7 +109,6 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
                 TabView(forms: outerSheathForms),
                 TabView(
                   forms: partitionsAndWindowsForms,
-                  width: 1200,
                 ),
                 TabView(forms: lviForms),
                 TabView(
