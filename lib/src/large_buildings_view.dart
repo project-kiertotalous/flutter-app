@@ -100,7 +100,6 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
                       TabView(forms: outerSheathForms),
                       TabView(
                         forms: partitionsAndWindowsForms,
-                        width: 1200,
                       ),
                       TabView(forms: lviForms),
                     ])))));
