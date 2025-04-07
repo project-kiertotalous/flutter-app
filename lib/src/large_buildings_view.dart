@@ -13,6 +13,7 @@ import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials
 import 'package:flutter_app/src/forms/large_property_basic_information_form.dart';
 import 'package:flutter_app/src/forms/machines_and_equipments_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
+import 'package:flutter_app/src/forms/reusable_and_recyclable_materials_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/total_building_frame_form.dart';
@@ -36,7 +37,8 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
   static const List<Tab> tabs = [
     Tab(text: "Ulkovaippa"),
     Tab(text: "Väliseinät ja ikkunat"),
-    Tab(text: "LVI, & sähkö & muut varusteet")
+    Tab(text: "LVI, & sähkö & muut varusteet"),
+    Tab(text: "Purkumateriaalit"),
   ];
 
   List<Widget> outerSheathForms() => [
@@ -73,36 +75,50 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         NavigationButtons(),
       ];
 
+  List<Widget> demolitionMaterialsForms() => [
+        ReusableAndRecyclableMaterialsForm(),
+      ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: tabs.length,
-        child: DefaultTabControllerListener(
-            onTabChanged: (int index) {
-              debugPrint('tab changed: $index');
-            },
-            child: PopScope(
-                canPop: false,
-                onPopInvokedWithResult: (_, __) => showDialog<String>(
-                    context: context, builder: (_) => CancelDialog()),
-                child: Scaffold(
-                    backgroundColor: Colors.white,
-                    appBar: AppBar(
-                      backgroundColor: Colors.white,
-                      title: Text('Suuret rakennukset'),
-                      bottom: TabBar(
-                        // controller: _tabController,
-                        tabs: tabs,
-                      ),
-                    ),
-                    // body: RemovableGroundsForm(data: removableGroundsData),
-                    body: TabBarView(children: [
-                      TabView(forms: outerSheathForms),
-                      TabView(
-                        forms: partitionsAndWindowsForms,
-                      ),
-                      TabView(forms: lviForms),
-                    ])))));
+      length: tabs.length,
+      child: DefaultTabControllerListener(
+        onTabChanged: (int index) {
+          debugPrint('tab changed: $index');
+        },
+        child: PopScope(
+          canPop: false,
+          onPopInvokedWithResult: (_, __) => showDialog<String>(
+              context: context, builder: (_) => CancelDialog()),
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              title: Text('Suuret rakennukset'),
+              bottom: TabBar(
+                // controller: _tabController,
+                tabs: tabs,
+              ),
+            ),
+            // body: RemovableGroundsForm(data: removableGroundsData),
+            body: TabBarView(
+              children: [
+                TabView(forms: outerSheathForms),
+                TabView(
+                  forms: partitionsAndWindowsForms,
+                ),
+                TabView(forms: lviForms),
+                TabView(
+                  forms: demolitionMaterialsForms,
+                  width: 1600,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

@@ -1,6 +1,7 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/building_dimensions_bloc.dart';
+import 'package:flutter_app/src/bloc/building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_event.dart';
@@ -8,58 +9,64 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TotalBuildingDimensionsBloc
     extends Bloc<TotalBuildingDimensionsEvent, TotalBuildingDimensions> {
-  final FoundationsBloc foundationsBloc;
-  final CellarBloc cellarBloc;
   final BuildingDimensionsBloc buildingDimensionsBloc;
-
-  TotalBuildingDimensionsBloc(
-    this.foundationsBloc,
-    this.cellarBloc,
-    this.buildingDimensionsBloc,
-  ) : super(
-          TotalBuildingDimensions().copyWith(
-            foundations: foundationsBloc.state,
-            cellar: cellarBloc.state,
+  final CellarBloc cellarBloc;
+  final FoundationsBloc foundationsBloc;
+  final BuildingFrameBloc buildingFrameBloc;
+  TotalBuildingDimensionsBloc({
+    required this.buildingDimensionsBloc,
+    required this.cellarBloc,
+    required this.foundationsBloc,
+    required this.buildingFrameBloc,
+  }) : super(
+          TotalBuildingDimensions(
             buildingDimensions: buildingDimensionsBloc.state,
+            cellar: cellarBloc.state,
+            foundations: foundationsBloc.state,
+            buildingFrame: buildingFrameBloc.state,
           ),
         ) {
+    // handle events
     on<BuildingDimensionsChanged>((event, emit) {
+      emit(state.copyWith(buildingDimensions: event.buildingDimensions));
       logger.d(
-          "TotalBuildingDimensions.buildingDimensions changed to ${event.buildingDimensions}");
-      emit(
-        state.copyWith(buildingDimensions: event.buildingDimensions),
-      );
+          'TotalBuildingDimensions.buildingDimensions changed to ${event.buildingDimensions}');
     });
     on<CellarChanged>((event, emit) {
-      logger.d("TotalBuildingDimensions.cellar changed to: ${event.cellar}");
-      emit(
-        state.copyWith(cellar: event.cellar),
-      );
+      emit(state.copyWith(cellar: event.cellar));
+      logger.d('TotalBuildingDimensions.cellar changed to ${event.cellar}');
     });
     on<FoundationsChanged>((event, emit) {
+      emit(state.copyWith(foundations: event.foundations));
       logger.d(
-          "TotalBuildingDimensions.foundations changed to: ${event.foundations}");
-      emit(
-        state.copyWith(foundations: event.foundations),
-      );
+          'TotalBuildingDimensions.foundations changed to ${event.foundations}');
+    });
+    on<BuildingFrameChanged>((event, emit) {
+      emit(state.copyWith(buildingFrame: event.buildingFrame));
+      logger.d(
+          'TotalBuildingDimensions.buildingFrame changed to ${event.buildingFrame}');
     });
 
-    // updates this bloc when FoundationsBloc is changed elsewhere
-    foundationsBloc.stream.listen((foundationsState) {
-      // logger.d('Received update from FoundationsBloc: $foundationsState');
-      add(FoundationsChanged(foundationsState));
-    });
-
-    // updates this bloc when CellarBloc is changed elsewhere
-    cellarBloc.stream.listen((cellarState) {
-      // logger.d('Received update from FoundationsBloc: $foundationsState');
-      add(CellarChanged(cellarState));
-    });
-
-    // updates this bloc when BuildingDimensionsBloc is changed elsewhere
-    buildingDimensionsBloc.stream.listen((buildingDimensionsState) {
-      // logger.d('Received update from FoundationsBloc: $foundationsState');
-      add(BuildingDimensionsChanged(buildingDimensionsState));
-    });
+    // listen to other blocs
+    buildingDimensionsBloc.stream.listen(
+      (state) => add(
+        BuildingDimensionsChanged(state),
+      ),
+    );
+    cellarBloc.stream.listen(
+      (state) => add(
+        CellarChanged(state),
+      ),
+    );
+    foundationsBloc.stream.listen(
+      (state) => add(
+        FoundationsChanged(state),
+      ),
+    );
+    buildingFrameBloc.stream.listen(
+      (state) => add(
+        BuildingFrameChanged(state),
+      ),
+    );
   }
 }

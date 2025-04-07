@@ -7,29 +7,20 @@ class BuildingDimensionsBloc
     extends Bloc<BuildingDimensionsEvent, BuildingDimensions> {
   BuildingDimensionsBloc() : super(BuildingDimensions()) {
     on<GrossFloorAreaChanged>((event, emit) {
-      logger.d("BuildingDimensions.grossFloorArea changed to ${event.value}");
-      emit(
-        state.copyWith(grossFloorArea: event.value),
-      );
+      emit(state.copyWith(grossFloorArea: event.value));
+      logger.d("BuildingDimensions.grossFloorArea: ${event.value}");
     });
     on<VolumeChanged>((event, emit) {
-      logger.d("BuildingDimensions.volume changed to ${event.value}");
-      emit(
-        state.copyWith(volume: event.value),
-      );
+      emit(state.copyWith(volume: event.value));
+      logger.d("BuildingDimensions.volume: ${event.value}");
     });
     on<FloorCountExcludingCellarsChanged>((event, emit) {
-      logger.d(
-          "BuildingDimensions.floorCountExcludingCellars changed to ${event.value}");
-      emit(
-        state.copyWith(floorCountExcludingCellars: event.value),
-      );
+      emit(state.copyWith(floorCountExcludingCellars: event.value));
+      logger.d("BuildingDimensions.floorCountExcludingCellars: ${event.value}");
     });
     on<AverageAreaChanged>((event, emit) {
-      logger.d("BuildingDimensions.averageArea changed to ${event.value}");
-      emit(
-        state.copyWith(averageArea: event.value),
-      );
+      emit(state.copyWith(averageArea: event.value));
+      logger.d("BuildingDimensions.averageArea: ${event.value}");
     });
   }
 }
