@@ -5,6 +5,7 @@ import 'package:flutter_app/src/bloc/large_properties_recyclable_materials_event
 import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
+import 'package:flutter_app/src/data/header_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
@@ -35,13 +36,13 @@ class RecyclableMaterialsForm extends StatelessWidget {
             rowSizes: List.generate(36, (_) => 50.px),
             children: [
               // Row 1
-              ColumnCell(
+              HeaderCell(
                   initialValue: "Kierrätettävät rakenneosat ja kalusteet"),
-              RowCell(initialValue: "Myyntihinta (€/kpl tai €/tonni)"),
-              RowCell(initialValue: "Materiaalierän hinta (€)"),
-              RowCell(initialValue: "Tilavuus (m3)"),
-              RowCell(initialValue: "Yhteispaino (tonnia)"),
-              RowCell(initialValue: "Määrä (kpl, m tai m2)"),
+              ColumnCell(initialValue: "Myyntihinta (€/kpl tai €/tonni)"),
+              ColumnCell(initialValue: "Materiaalierän hinta (€)"),
+              ColumnCell(initialValue: "Tilavuus (m3)"),
+              ColumnCell(initialValue: "Yhteispaino (tonnia)"),
+              ColumnCell(initialValue: "Määrä (kpl, m tai m2)"),
 
               // Row 2
               RowCell(initialValue: "Betonipalkit (runko)"),
