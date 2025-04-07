@@ -2,8 +2,6 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/large_properties_disposal_materials_and_hazardous_waste_event.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter_app/src/bloc/disposal_materials_and_hazardous_waste_bloc.dart';
 
 class DisposalMaterialsAndHazardousWasteBloc extends Bloc<
     DisposalMaterialsAndHazardousWasteEvent,

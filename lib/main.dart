@@ -13,6 +13,8 @@ import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart
 import 'package:flutter_app/src/bloc/inner_doors_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_disposal_materials_and_hazardous_waste_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
 import 'package:flutter_app/src/bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
 import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
@@ -74,6 +76,9 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) =>
                       ReusableAndRecyclableMaterialsBloc(),
                 ),
+                BlocProvider(
+                    create: (context) =>
+                        DisposalMaterialsAndHazardousWasteBloc()),
                 BlocProvider(
                   create: (BuildContext context) =>
                       LargePropertyBasicInfoBloc(),
@@ -177,6 +182,20 @@ class MyApp extends StatelessWidget {
                         context.read<YardAndProtectiveStructuresBloc>(),
                     reusableAndRecyclableMaterialsBloc:
                         context.read<ReusableAndRecyclableMaterialsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalDisposalMaterialsAndHazardousWasteBloc(
+                    disposalMaterialsAndHazardousWasteBloc:
+                        context.read<DisposalMaterialsAndHazardousWasteBloc>(),
+                    excavationAreaBloc: context.read<ExcavationAreaBloc>(),
+                    cellarBloc: context.read<CellarBloc>(),
+                    fixedFurnitureBloc: context.read<FixedFurnitureBloc>(),
+                    floorStructuresBloc: context.read<FloorStructuresBloc>(),
+                    foundationsBloc: context.read<FoundationsBloc>(),
+                    internalWallFramesAndSurfaceMaterialBloc: context
+                        .read<InternalWallFramesAndSurfaceMaterialBloc>(),
                   ),
                 ),
               ],
