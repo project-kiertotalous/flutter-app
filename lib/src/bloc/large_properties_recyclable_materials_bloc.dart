@@ -3,10 +3,9 @@ import 'package:flutter_app/src/bloc/large_properties_recyclable_materials_event
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
 
-class RecyclableComponentsAndFurnitureBloc extends Bloc<
-    RecyclableComponentsAndFurnitureEvent, RecyclableComponentsAndFurniture> {
-  RecyclableComponentsAndFurnitureBloc()
-      : super(RecyclableComponentsAndFurniture()) {
+class RecyclableMaterialsBloc
+    extends Bloc<RecyclableMaterialsEvent, RecyclableComponentsAndFurniture> {
+  RecyclableMaterialsBloc() : super(RecyclableComponentsAndFurniture()) {
     on<ConcreteFrameBeamsUnitPriceChanged>((event, emit) {
       emit(state.copyWith(concreteFrameBeamsUnitPrice: event.value));
       logger.d('concreteFrameBeamsUnitPrice changed to ${event.value}');
