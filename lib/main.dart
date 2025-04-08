@@ -29,9 +29,10 @@ import 'package:flutter_app/src/bloc/total_reusable_and_recyclable_materials_blo
 import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
 import 'package:flutter_app/src/bloc/windows_bloc.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
+import 'package:flutter_app/src/bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
-import 'package:flutter_app/src/smaller_builds_view.dart';
+import 'package:flutter_app/src/smaller_buildings_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -247,7 +248,12 @@ class MyApp extends StatelessWidget {
               ],
               child: LargeBuildingsView(),
             ),
-        '/smaller_buildings': (context) => SmallerBuildingsView(),
+        '/smaller_buildings': (context) => MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (BuildContext context) => SmallPropertyBasicInfoBloc(),)
+          ],
+          child: SmallerBuildingsView(),
+        ),
       },
       // onGenerateTitle: (BuildContext context) =>
       //     AppLocalizations.of(context)!.appTitle,
