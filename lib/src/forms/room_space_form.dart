@@ -1,6 +1,7 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
+import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/form_header.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
@@ -53,9 +54,8 @@ class RoomSpaceForm extends StatelessWidget {
                 50.px,
               ],
               children: [
-                RowCell(
-                  initialValue:
-                      'Erilaiset tilat, kuten toimistot, aulat, luokkahuoneet, asuintilat ja muut vastaavat huoneet',
+                EmptyCell(
+                 
                 ),
                 ColumnCell(
                   initialValue: 'Toimistotilat',

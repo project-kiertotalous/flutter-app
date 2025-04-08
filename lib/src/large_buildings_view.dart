@@ -18,6 +18,7 @@ import 'package:flutter_app/src/forms/machines_and_equipments_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/forms/reusable_and_recyclable_materials_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
+import 'package:flutter_app/src/forms/room_space_surface_material_percentages_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/total_building_frame_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
@@ -62,6 +63,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
   List<Widget> partitionsAndWindowsForms() => [
         InternalWallFramesAndSurfaceMaterialsForm(),
         RoomSpaceForm(),
+        RoomSpaceSurfaceMaterialPercentagesForm(),
         IndoorOutdoorForm(),
         WindowsForm(),
         FixedFurnitureForm(),
