@@ -25,9 +25,9 @@ class DemolitionWasteAndCostForm extends StatelessWidget {
         children: [
           LayoutGrid(
             columnSizes: [
-              200.px,
-              200.px,
-              200.px,
+              210.px,
+              120.px,
+              120.px,
             ],
             rowSizes: [
               50.px,
@@ -51,8 +51,8 @@ class DemolitionWasteAndCostForm extends StatelessWidget {
           const SizedBox(height: 20),
           LayoutGrid(
             columnSizes: [
-              300.px,
-              300.px,
+              210.px,
+              120.px,
             ],
             rowSizes: [
               50.px,
