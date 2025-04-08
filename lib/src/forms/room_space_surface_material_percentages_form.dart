@@ -583,7 +583,7 @@ class RoomSpaceSurfaceMaterialPercentagesForm extends StatelessWidget {
                 OutputCell(getter: () => state.totalPlasticCarpetVolume),
                 OutputCell(getter: () => state.totalPlasticCarpetTons),
                 RowCell(
-                  initialValue: 'Väliseinien rakenteet yhteensä',
+                  initialValue: 'Väliseinien rakenteet yhteensä (%)',
                 ),
                 OutputCell(
                   getter: () => state.officeSpaces
