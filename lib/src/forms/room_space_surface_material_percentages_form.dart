@@ -55,7 +55,14 @@ class RoomSpaceSurfaceMaterialPercentagesForm extends StatelessWidget {
                 50.px
               ],
               children: [
-                EmptyCell(),
+                RowCell(
+                  checkbox: true,
+                  checkboxTitle: 'Pinnoite sisältää asbestia',
+                  checkboxValue: state.surfaceMaterialCoatingContainsAsbestos,
+                  checkboxSetter: (value) =>
+                      internalWallFramesAndSurfaceMaterialBloc.add(
+                          SurfaceMaterialCoatingContainsAsbestosChanged(value)),
+                ),
                 ColumnCell(
                   initialValue: 'Toimistotilat',
                 ),
@@ -430,13 +437,15 @@ class RoomSpaceSurfaceMaterialPercentagesForm extends StatelessWidget {
                   percentage: true,
                 ),
                 InputCell(
-                    initialValue: state.lobbiesAndOtherCommonAreas
-                        ?.paintedPlasteredBrickWallPortionPercentage,
-                    setter: (value) => internalWallFramesAndSurfaceMaterialBloc
-                        .add(LobbiesAndOtherCommonAreasChanged(state.lobbiesAndOtherCommonAreas!.copyWith(
-                            paintedPlasteredBrickWallPortionPercentage:
-                                value))),
-                                percentage: true,),
+                  initialValue: state.lobbiesAndOtherCommonAreas
+                      ?.paintedPlasteredBrickWallPortionPercentage,
+                  setter: (value) => internalWallFramesAndSurfaceMaterialBloc
+                      .add(LobbiesAndOtherCommonAreasChanged(
+                          state.lobbiesAndOtherCommonAreas!.copyWith(
+                              paintedPlasteredBrickWallPortionPercentage:
+                                  value))),
+                  percentage: true,
+                ),
                 InputCell(
                   initialValue: state.restroomsAndWashingFacilities
                       ?.paintedPlasteredBrickWallPortionPercentage,
@@ -511,12 +520,14 @@ class RoomSpaceSurfaceMaterialPercentagesForm extends StatelessWidget {
                   percentage: true,
                 ),
                 InputCell(
-                    initialValue: state.lobbiesAndOtherCommonAreas
-                        ?.plasticCarpetPortionPercentage,
-                    setter: (value) => internalWallFramesAndSurfaceMaterialBloc
-                        .add(LobbiesAndOtherCommonAreasChanged(state.lobbiesAndOtherCommonAreas!
-                            .copyWith(plasticCarpetPortionPercentage: value))),
-                            percentage: true,),
+                  initialValue: state.lobbiesAndOtherCommonAreas
+                      ?.plasticCarpetPortionPercentage,
+                  setter: (value) => internalWallFramesAndSurfaceMaterialBloc
+                      .add(LobbiesAndOtherCommonAreasChanged(state
+                          .lobbiesAndOtherCommonAreas!
+                          .copyWith(plasticCarpetPortionPercentage: value))),
+                  percentage: true,
+                ),
                 InputCell(
                   initialValue: state.restroomsAndWashingFacilities
                       ?.plasticCarpetPortionPercentage,
@@ -577,32 +588,38 @@ class RoomSpaceSurfaceMaterialPercentagesForm extends StatelessWidget {
                 OutputCell(
                   getter: () => state.officeSpaces
                       ?.totalPartitionWallsStructuresPortionPercentage,
-                      percentage: true,
+                  percentage: true,
                 ),
                 OutputCell(
-                    getter: () => state.lobbiesAndOtherCommonAreas
-                        ?.totalPartitionWallsStructuresPortionPercentage,
-                        percentage: true,),
+                  getter: () => state.lobbiesAndOtherCommonAreas
+                      ?.totalPartitionWallsStructuresPortionPercentage,
+                  percentage: true,
+                ),
                 OutputCell(
-                    getter: () => state.restroomsAndWashingFacilities
-                        ?.totalPartitionWallsStructuresPortionPercentage,
-                        percentage: true,),
+                  getter: () => state.restroomsAndWashingFacilities
+                      ?.totalPartitionWallsStructuresPortionPercentage,
+                  percentage: true,
+                ),
                 OutputCell(
-                    getter: () => state.kitchens
-                        ?.totalPartitionWallsStructuresPortionPercentage,
-                        percentage: true,),
+                  getter: () => state
+                      .kitchens?.totalPartitionWallsStructuresPortionPercentage,
+                  percentage: true,
+                ),
                 OutputCell(
-                    getter: () => state.teachingAndTreatmentSpaces
-                        ?.totalPartitionWallsStructuresPortionPercentage,
-                        percentage: true,),
+                  getter: () => state.teachingAndTreatmentSpaces
+                      ?.totalPartitionWallsStructuresPortionPercentage,
+                  percentage: true,
+                ),
                 OutputCell(
-                    getter: () => state.storageAndWorkspaces
-                        ?.totalPartitionWallsStructuresPortionPercentage,
-                        percentage: true,),
+                  getter: () => state.storageAndWorkspaces
+                      ?.totalPartitionWallsStructuresPortionPercentage,
+                  percentage: true,
+                ),
                 OutputCell(
-                    getter: () => state.otherSpaces
-                        ?.totalPartitionWallsStructuresPortionPercentage,
-                        percentage: true,),
+                  getter: () => state.otherSpaces
+                      ?.totalPartitionWallsStructuresPortionPercentage,
+                  percentage: true,
+                ),
                 OutputCell(getter: () => state.totalSpacesWallArea),
                 GreyCell(),
                 GreyCell(),
