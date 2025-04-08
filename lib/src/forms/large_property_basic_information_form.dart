@@ -105,7 +105,7 @@ class LargePropertyBasicInformationForm extends StatelessWidget {
                               initialValue: state.version,
                               width: 400,
                               setter: (value) =>
-                                  bloc.add(LargePropertyVersionChanged(value))),                
+                                  bloc.add(LargePropertyVersionChanged(value))),
                         ],
                       ),
                     ),
@@ -122,6 +122,7 @@ class LargePropertyBasicInformationForm extends StatelessWidget {
                       bloc.add(LargePropertyDescriptionChanged(value)),
                   decoration: const InputDecoration(
                     labelText: "Rakennuksen tiedot",
+                    alignLabelWithHint: true, // Aligns label to the top-left
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(12)),
                     ),
