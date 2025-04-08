@@ -13,6 +13,8 @@ import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart
 import 'package:flutter_app/src/bloc/inner_doors_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_demolition_waste_and_costs_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
 import 'package:flutter_app/src/bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
 import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
@@ -73,6 +75,10 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       ReusableAndRecyclableMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      DemolitionWasteAndCostsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -179,6 +185,21 @@ class MyApp extends StatelessWidget {
                         context.read<ReusableAndRecyclableMaterialsBloc>(),
                   ),
                 ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalDemolitionWasteAndCostsBloc(
+                    demolitionWasteAndCostsBloc:
+                        context.read<DemolitionWasteAndCostsBloc>(),
+                    totalReusableAndRecyclableMaterialsBloc:
+                        context.read<TotalReusableAndRecyclableMaterialsBloc>(),
+                    totalRecyclableComponentsAndFurnitureBloc: context
+                        .read<TotalRecyclableComponentsAndFurnitureBloc>(),
+                    totalDisposalMaterialsAndHazardousWasteBloc: context
+                        .read<TotalDisposalMaterialsAndHazardousWasteBloc>(),
+                    totalBuildingDimensionsBloc:
+                        context.read<TotalBuildingDimensionsBloc>(),
+                  ),
+                )
               ],
               child: LargeBuildingsView(),
             ),
