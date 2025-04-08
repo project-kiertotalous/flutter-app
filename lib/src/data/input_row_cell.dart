@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+
+class InputRowCell extends StatefulWidget {
+  // Changed to StatefulWidget
+  final String label;
+  final String? initialValue;
+  final void Function(String) setter;
+
+  const InputRowCell({
+    super.key,
+    required this.label,
+    this.initialValue,
+    required this.setter,
+  });
+
+  @override
+  State<InputRowCell> createState() => _InputRowCellState();
+}
+
+class _InputRowCellState extends State<InputRowCell> {
+  late final TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController(text: widget.initialValue);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      decoration: BoxDecoration(border: Border.all(width: 1)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: TextField(
+          controller: _controller,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: widget.label,
+            isDense: true,
+            contentPadding: EdgeInsets.zero,
+          ),
+          textAlign: TextAlign.start, // Changed from left to start
+          onChanged: widget.setter,
+        ),
+      ),
+    );
+  }
+}

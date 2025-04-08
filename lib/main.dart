@@ -34,6 +34,8 @@ import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_buildings_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_app/src/bloc/concrete_bricks_tiles_ceramics_bloc.dart';
+import 'package:flutter_app/src/bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -90,6 +92,10 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       DemolitionWasteAndCostsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      ConcreteBricksTilesCeramicsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -245,15 +251,35 @@ class MyApp extends StatelessWidget {
                         context.read<TotalBuildingDimensionsBloc>(),
                   ),
                 ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalConcreteBricksTilesCeramicsBloc(
+                    concreteBricksTilesCeramicsBloc:
+                        context.read<ConcreteBricksTilesCeramicsBloc>(),
+                    foundationsBloc: context.read<FoundationsBloc>(),
+                    totalIntermediateFloorsBloc:
+                        context.read<IntermediateFloorsBloc>(),
+                    totalRoofsBloc: context.read<TotalRoofsBloc>(),
+                    totalBuildingFrameBloc:
+                        context.read<TotalBuildingFrameBloc>(),
+                    internalWallFramesAndSurfaceMaterialBloc: context
+                        .read<InternalWallFramesAndSurfaceMaterialBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
               ],
               child: LargeBuildingsView(),
             ),
         '/smaller_buildings': (context) => MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (BuildContext context) => SmallPropertyBasicInfoBloc(),)
-          ],
-          child: SmallerBuildingsView(),
-        ),
+              providers: [
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SmallPropertyBasicInfoBloc(),
+                )
+              ],
+              child: SmallerBuildingsView(),
+            ),
       },
       // onGenerateTitle: (BuildContext context) =>
       //     AppLocalizations.of(context)!.appTitle,

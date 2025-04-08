@@ -22,6 +22,7 @@ import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/room_space_surface_material_percentages_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/total_building_frame_form.dart';
+import 'package:flutter_app/src/forms/waste_law_demolition_estimates_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
 import 'package:flutter_app/src/forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
@@ -44,6 +45,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
     Tab(text: "Väliseinät ja ikkunat"),
     Tab(text: "LVI, & sähkö & muut varusteet"),
     Tab(text: "Purkumateriaalit"),
+    Tab(text: "Taulukko"),
   ];
 
   List<Widget> outerSheathForms() => [
@@ -86,6 +88,12 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         RecyclableMaterialsForm(),
         LargePropertiesDisposalMaterialsAndHazardousWasteForm(),
         DemolitionWasteAndCostForm(),
+        NavigationButtons(),
+      ];
+
+  List<Widget> wasteLawDemolitionForms() => [
+        WasteLawDemolitionMaterialEstimatesForm(),
+        NavigationButtons(),
       ];
 
   @override
@@ -122,6 +130,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
                   forms: demolitionMaterialsForms,
                   width: 1600,
                 ),
+                TabView(forms: wasteLawDemolitionForms),
               ],
             ),
           ),

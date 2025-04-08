@@ -10,6 +10,7 @@ class RowCell extends StatelessWidget implements Cell {
     this.checkboxSetter,
     this.checkboxValue,
     this.iconButton, // Change type to Widget?
+    this.centerText = false,
   });
 
   final dynamic initialValue;
@@ -17,7 +18,8 @@ class RowCell extends StatelessWidget implements Cell {
   final String? checkboxTitle;
   final Function? checkboxSetter;
   final bool? checkboxValue;
-  final Widget? iconButton; // Changed from IconButton? to Widget?
+  final Widget? iconButton;
+  final bool centerText;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +36,7 @@ class RowCell extends StatelessWidget implements Cell {
           children: [
             Expanded(
               child: Align(
-                alignment: Alignment.centerLeft, // Align text to the left
+                alignment: centerText ? Alignment.center : Alignment.centerLeft,
                 child: Text(initialValue?.toString() ?? ""),
               ),
             ),
