@@ -35,7 +35,7 @@ class LargePropertiesDisposalMaterialsAndHazardousWasteForm
               120.px,
             ],
             rowSizes: [
-              50.px,
+              75.px,
               50.px,
               50.px,
               50.px,
@@ -100,7 +100,7 @@ class LargePropertiesDisposalMaterialsAndHazardousWasteForm
               // Sixth row
               RowCell(
                   initialValue:
-                      "Mineriitti, tiilet, tiilikate, kattohuopa, kaakelilaatat yms. (sisältää asbestia)"),
+                      "Mineriitti, tiilet, kattohuopa, kaakelit yms. (sis. asbestia)"),
               InputCell(
                 initialValue: state
                     .otherAsbestosContainingMaterial.demolitionOrProcessingCost,
