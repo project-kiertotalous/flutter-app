@@ -22,8 +22,9 @@ import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/room_space_surface_material_percentages_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/total_building_frame_form.dart';
-import 'package:flutter_app/src/forms/waste_law_demolition_estimates_form.dart';
+import 'package:flutter_app/src/forms/concrete_bricks_tiles_ceramics_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
+import 'package:flutter_app/src/forms/wood_glass_plastics_form.dart';
 import 'package:flutter_app/src/forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
@@ -92,7 +93,8 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
       ];
 
   List<Widget> wasteLawDemolitionForms() => [
-        WasteLawDemolitionMaterialEstimatesForm(),
+        ConcreteBricksTilesCeramicsForm(),
+        WoodGlassPlasticsForm(),
         NavigationButtons(),
       ];
 

@@ -27,7 +27,9 @@ import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
+import 'package:flutter_app/src/bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/bloc/windows_bloc.dart';
+import 'package:flutter_app/src/bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
@@ -96,6 +98,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       ConcreteBricksTilesCeramicsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => WoodGlassPlasticsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -264,6 +269,14 @@ class MyApp extends StatelessWidget {
                         context.read<TotalBuildingFrameBloc>(),
                     internalWallFramesAndSurfaceMaterialBloc: context
                         .read<InternalWallFramesAndSurfaceMaterialBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => TotalWoodGlassPlasticsBloc(
+                    woodGlassPlasticsBloc:
+                        context.read<WoodGlassPlasticsBloc>(),
                     totalDemolitionWasteAndCostsBloc:
                         context.read<TotalDemolitionWasteAndCostsBloc>(),
                   ),
