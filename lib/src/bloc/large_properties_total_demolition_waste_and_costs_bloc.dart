@@ -3,6 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/bloc/large_properties_demolition_waste_and_costs_bloc.dart';
 import 'package:flutter_app/src/bloc/large_properties_total_demolition_waste_and_costs_event.dart';
+import 'package:flutter_app/src/bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_reusable_and_recyclable_materials_bloc.dart';
 

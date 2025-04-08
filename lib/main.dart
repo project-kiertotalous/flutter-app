@@ -14,6 +14,8 @@ import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart
 import 'package:flutter_app/src/bloc/inner_doors_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_disposal_materials_and_hazardous_waste_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
 import 'package:flutter_app/src/bloc/large_properties_demolition_waste_and_costs_bloc.dart';
 import 'package:flutter_app/src/bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
 import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_bloc.dart';
@@ -81,6 +83,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) => RecyclableMaterialsBloc(),
                 ),
+                BlocProvider(
+                    create: (context) =>
+                        DisposalMaterialsAndHazardousWasteBloc()),
                 BlocProvider(
                   create: (BuildContext context) =>
                       DemolitionWasteAndCostsBloc(),
@@ -212,6 +217,20 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
+                      TotalDisposalMaterialsAndHazardousWasteBloc(
+                    disposalMaterialsAndHazardousWasteBloc:
+                        context.read<DisposalMaterialsAndHazardousWasteBloc>(),
+                    excavationAreaBloc: context.read<ExcavationAreaBloc>(),
+                    cellarBloc: context.read<CellarBloc>(),
+                    fixedFurnitureBloc: context.read<FixedFurnitureBloc>(),
+                    floorStructuresBloc: context.read<FloorStructuresBloc>(),
+                    foundationsBloc: context.read<FoundationsBloc>(),
+                    internalWallFramesAndSurfaceMaterialBloc: context
+                        .read<InternalWallFramesAndSurfaceMaterialBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
                       TotalDemolitionWasteAndCostsBloc(
                     demolitionWasteAndCostsBloc:
                         context.read<DemolitionWasteAndCostsBloc>(),
@@ -224,7 +243,7 @@ class MyApp extends StatelessWidget {
                     totalBuildingDimensionsBloc:
                         context.read<TotalBuildingDimensionsBloc>(),
                   ),
-                )
+                ),
               ],
               child: LargeBuildingsView(),
             ),
