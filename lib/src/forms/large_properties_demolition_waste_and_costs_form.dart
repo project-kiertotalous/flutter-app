@@ -75,7 +75,7 @@ class DemolitionWasteAndCostForm extends StatelessWidget {
               ),
               RowCell(
                   initialValue:
-                      "Purkumateriaalien mukaan laskettu purkukustannus (€/tonni)"),
+                      "Purkumateriaaliperusteinen kustannus (€/tonni)"),
               OutputCell(
                   getter: () => state
                       .demolitionCostMaterialPerTonCalculatedFromDemolitionMaterials),
@@ -83,17 +83,16 @@ class DemolitionWasteAndCostForm extends StatelessWidget {
               OutputCell(getter: () => state.estimatedDemolitionCost),
               RowCell(
                   initialValue:
-                      "Rakennuksen purkukustannus (ei sisällä maanpoistoa)"),
+                      "Rakennuksen purkukustannus (ei sis. maanpoistoa)"),
               OutputCell(
                   getter: () =>
                       state.estimatedDemolitionCostExcludingExcavations),
               RowCell(initialValue: "Purkukustannus/neliö (€/m2)"),
               OutputCell(getter: () => state.demolitionCostPerSquareMeter),
-              RowCell(initialValue: "Purkukustannus/rakennuskuutio (€/m3)"),
+              RowCell(initialValue: "Purkukustannus/kuutio (€/m3)"),
               OutputCell(getter: () => state.demolitionCostPerCubicMeter),
               RowCell(
-                  initialValue:
-                      "Purkukustannus/rakennuskuutio (ei sisällä maanpoistoa)"),
+                  initialValue: "Purkukustannus/kuutio (ei sis. maanpoistoa)"),
               OutputCell(
                   getter: () =>
                       state.demolitionCostPerCubicMeterExcludingExcavations),
