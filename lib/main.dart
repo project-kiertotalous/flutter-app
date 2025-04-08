@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/bloc/building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/building_frame_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/bloc/door_bloc.dart';
 import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart
 import 'package:flutter_app/src/bloc/inner_doors_bloc.dart';
 import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
 import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
+import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
 import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
@@ -73,6 +75,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       ReusableAndRecyclableMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => RecyclableMaterialsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -177,6 +182,26 @@ class MyApp extends StatelessWidget {
                         context.read<YardAndProtectiveStructuresBloc>(),
                     reusableAndRecyclableMaterialsBloc:
                         context.read<ReusableAndRecyclableMaterialsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalRecyclableComponentsAndFurnitureBloc(
+                    intermediateFloorsBloc:
+                        context.read<IntermediateFloorsBloc>(),
+                    totalRoofsBloc: context.read<TotalRoofsBloc>(),
+                    totalBuildingFrameBloc:
+                        context.read<TotalBuildingFrameBloc>(),
+                    fixturesAndStructuresBloc:
+                        context.read<FixturesAndStructuresBloc>(),
+                    fixedFurnitureBloc: context.read<FixedFurnitureBloc>(),
+                    outerDoorsBloc: context.read<OuterDoorsBloc>(),
+                    innerDoorsBloc: context.read<InnerDoorsBloc>(),
+                    windowsBloc: context.read<WindowsBloc>(),
+                    machinesAndEquipmentsBloc:
+                        context.read<MachinesAndEquipmentsBloc>(),
+                    recyclableMaterialsBloc:
+                        context.read<RecyclableMaterialsBloc>(),
                   ),
                 ),
               ],

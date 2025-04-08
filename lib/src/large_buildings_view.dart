@@ -10,6 +10,7 @@ import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
 import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/forms/room_space_form.dart';
 import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
+import 'package:flutter_app/src/forms/large_properties_recyclable_form.dart';
 import 'package:flutter_app/src/forms/large_property_basic_information_form.dart';
 import 'package:flutter_app/src/forms/machines_and_equipments_form.dart';
 import 'package:flutter_app/src/forms/removable_grounds_form.dart';
@@ -77,6 +78,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
 
   List<Widget> demolitionMaterialsForms() => [
         ReusableAndRecyclableMaterialsForm(),
+        RecyclableMaterialsForm(),
       ];
 
   @override
