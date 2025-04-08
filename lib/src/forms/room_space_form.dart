@@ -345,20 +345,21 @@ class RoomSpaceForm extends StatelessWidget {
                 RowCell(
                   initialValue: 'Tilan seinäpinta-ala yhteensä (m2)',
                 ),
+                OutputCell(getter: () => state.totalOfficeSpaces.totalWallArea),
                 OutputCell(
-                  getter: () => state.totalOfficeSpaces.totalWallArea
+                  getter: () =>
+                      state.totalLobbiesAndOtherCommonAreas.totalWallArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalLobbiesAndOtherCommonAreas.totalWallArea,
-                ),
-                OutputCell(
-                  getter: () => state.totalRestroomsAndWashingFacilities.totalWallArea,
+                  getter: () =>
+                      state.totalRestroomsAndWashingFacilities.totalWallArea,
                 ),
                 OutputCell(
                   getter: () => state.totalKitchens.totalWallArea,
                 ),
                 OutputCell(
-                  getter: () => state.totalTeachingAndTreatmentSpaces.totalWallArea,
+                  getter: () =>
+                      state.totalTeachingAndTreatmentSpaces.totalWallArea,
                 ),
                 OutputCell(
                   getter: () => state.totalStorageAndWorkspaces.totalWallArea,
@@ -375,31 +376,38 @@ class RoomSpaceForm extends StatelessWidget {
                   initialValue: 'Tilan osuus seinien kokonaispinta-alasta (%)',
                 ),
                 OutputCell(
-                  getter: () => state.totalOfficeSpaces.totalWallAreaPortionPercentage,
+                  getter: () =>
+                      state.totalOfficeSpaces.totalWallAreaPortionPercentage,
                   percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalLobbiesAndOtherCommonAreas.totalWallAreaPortionPercentage,
+                  getter: () => state.totalLobbiesAndOtherCommonAreas
+                      .totalWallAreaPortionPercentage,
                   percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalRestroomsAndWashingFacilities.totalWallAreaPortionPercentage,
+                  getter: () => state.totalRestroomsAndWashingFacilities
+                      .totalWallAreaPortionPercentage,
                   percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalKitchens.totalWallAreaPortionPercentage,
+                  getter: () =>
+                      state.totalKitchens.totalWallAreaPortionPercentage,
                   percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalTeachingAndTreatmentSpaces.totalWallAreaPortionPercentage,
+                  getter: () => state.totalTeachingAndTreatmentSpaces
+                      .totalWallAreaPortionPercentage,
                   percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalStorageAndWorkspaces.totalWallAreaPortionPercentage,
+                  getter: () => state
+                      .totalStorageAndWorkspaces.totalWallAreaPortionPercentage,
                   percentage: true,
                 ),
                 OutputCell(
-                  getter: () => state.totalOtherSpaces.totalWallAreaPortionPercentage,
+                  getter: () =>
+                      state.totalOtherSpaces.totalWallAreaPortionPercentage,
                   percentage: true,
                 ),
                 OutputCell(
