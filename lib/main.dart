@@ -38,6 +38,8 @@ import 'package:flutter_app/src/smaller_buildings_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/bloc/concrete_bricks_tiles_ceramics_bloc.dart';
 import 'package:flutter_app/src/bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
+import 'package:flutter_app/src/bloc/bituminous_mixtures_coal_tar_products_bloc.dart';
+import 'package:flutter_app/src/bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -101,6 +103,10 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => WoodGlassPlasticsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      BituminousMixturesCoalTarProductsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -277,6 +283,15 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => TotalWoodGlassPlasticsBloc(
                     woodGlassPlasticsBloc:
                         context.read<WoodGlassPlasticsBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalBituminousMixturesCoalTarProductsBloc(
+                    bituminousMixturesCoalTarProductsBloc:
+                        context.read<BituminousMixturesCoalTarProductsBloc>(),
                     totalDemolitionWasteAndCostsBloc:
                         context.read<TotalDemolitionWasteAndCostsBloc>(),
                   ),

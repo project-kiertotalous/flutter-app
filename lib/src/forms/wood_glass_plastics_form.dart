@@ -64,7 +64,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                 OutputCell(getter: () => state.wood.volume),
                 OutputCell(getter: () => state.wood.tons),
                 InputRowCell(
-                    label: "",
+                    label: "Kirjoita tähän",
                     initialValue: state.wood.notes,
                     setter: (value) => bloc.add(WoodNotesChanged(value))),
 
@@ -74,7 +74,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                 OutputCell(getter: () => state.glass.volume),
                 OutputCell(getter: () => state.glass.tons),
                 InputRowCell(
-                    label: "",
+                    label: "Kirjoita tähän",
                     initialValue: state.glass.notes,
                     setter: (value) => bloc.add(GlassNotesChanged(value))),
 
@@ -84,7 +84,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                 OutputCell(getter: () => state.plastic.volume),
                 OutputCell(getter: () => state.plastic.tons),
                 InputRowCell(
-                    label: "",
+                    label: "Kirjoita tähän",
                     initialValue: state.plastic.notes,
                     setter: (value) => bloc.add(PlasticNotesChanged(value))),
 
@@ -100,7 +100,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                     getter: () =>
                         state.otherDangerousOrContaminatedMaterial.tons),
                 InputRowCell(
-                    label: "",
+                    label: "Kirjoita tähän",
                     initialValue:
                         state.otherDangerousOrContaminatedMaterial.notes,
                     setter: (value) =>

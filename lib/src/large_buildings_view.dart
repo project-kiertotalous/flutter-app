@@ -1,5 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/forms/bituminous_mixtures_coal_tar_products_form.dart';
 import 'package:flutter_app/src/forms/cellar_form.dart';
 import 'package:flutter_app/src/forms/exterior_wall_structures_form.dart';
 import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
@@ -95,6 +96,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
   List<Widget> wasteLawDemolitionForms() => [
         ConcreteBricksTilesCeramicsForm(),
         WoodGlassPlasticsForm(),
+        BituminousMixturesCoalTarProductsForm(),
         NavigationButtons(),
       ];
 

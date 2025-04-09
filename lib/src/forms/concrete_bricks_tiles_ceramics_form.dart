@@ -67,7 +67,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             OutputCell(getter: () => state.concrete.volume),
             OutputCell(getter: () => state.concrete.tons),
             InputRowCell(
-                label: "",
+                label: "Kirjoita tähän",
                 initialValue: state.concrete.notes,
                 setter: (value) => bloc.add(ConcreteNotesChanged(value))),
 
@@ -77,7 +77,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             OutputCell(getter: () => state.brick.volume),
             OutputCell(getter: () => state.brick.tons),
             InputRowCell(
-                label: "",
+                label: "Kirjoita tähän",
                 initialValue: state.brick.notes,
                 setter: (value) => bloc.add(BrickNotesChanged(value))),
 
@@ -87,7 +87,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             OutputCell(getter: () => state.ceramicTiles.volume),
             OutputCell(getter: () => state.ceramicTiles.tons),
             InputRowCell(
-                label: "",
+                label: "Kirjoita tähän",
                 initialValue: state.ceramicTiles.notes,
                 setter: (value) => bloc.add(CeramicTilesNotesChanged(value))),
 
@@ -103,7 +103,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
                 getter: () =>
                     state.hazardousConcreteBrickTileCeramicMixtures.tons),
             InputRowCell(
-                label: "",
+                label: "Kirjoita tähän",
                 initialValue:
                     state.hazardousConcreteBrickTileCeramicMixtures.notes,
                 setter: (value) =>
@@ -121,7 +121,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
                 initialValue: state.otherMaterials?.tons,
                 setter: (value) => state.otherMaterials?.tons),
             InputRowCell(
-                label: "",
+                label: "Kirjoita tähän",
                 initialValue: state.otherMaterials?.notes,
                 setter: (value) => bloc.add(OtherMaterialsNotesChanged(value))),
           ],
