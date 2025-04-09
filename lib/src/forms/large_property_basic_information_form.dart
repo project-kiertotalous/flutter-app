@@ -106,16 +106,29 @@ class LargePropertyBasicInformationForm extends StatelessWidget {
                               width: 400,
                               setter: (value) =>
                                   bloc.add(LargePropertyVersionChanged(value))),
-                          _buildTextField(
-                              label: "Rakennuksen tiedot",
-                              initialValue: state.description,
-                              width: 400,
-                              setter: (value) => bloc
-                                  .add(LargePropertyDescriptionChanged(value))),
                         ],
                       ),
                     ),
                   ],
+                ),
+                const SizedBox(height: 16),
+
+                /// text field "Rakennuksen tiedot"
+                TextFormField(
+                  initialValue: state.description,
+                  maxLines: null,
+                  minLines: 5,
+                  onChanged: (value) =>
+                      bloc.add(LargePropertyDescriptionChanged(value)),
+                  decoration: const InputDecoration(
+                    labelText: "Rakennuksen tiedot",
+                    alignLabelWithHint: true, // Aligns label to the top-left
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                  ),
                 ),
               ],
             ),
