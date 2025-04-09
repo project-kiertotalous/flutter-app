@@ -29,57 +29,59 @@ class SmallPropertyBasicInformationForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<SmallPropertyBasicInfoBloc>();
     return BlocBuilder<SmallPropertyBasicInfoBloc, SmallPropertyEvaluationInfo>(
-        builder: (context, state) => SizedBox(
-            width: 900,
-            child: Card(
-                elevation: 4,
-                margin: EdgeInsets.only(top: 16),
-                child: Padding(
-                    padding: EdgeInsets.all(16),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+      builder: (context, state) => SizedBox(
+        width: 900,
+        child: Card(
+          elevation: 4,
+          margin: EdgeInsets.only(top: 16),
+          child: Padding(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Kohteen tiedot",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 10),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  // Aligns to top
+                  children: [
+                    // Left column with fixed width
+                    SizedBox(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment
+                            .start, // Aligns text fields to left
                         children: [
-                          Text(
-                            "Kohteen tiedot",
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 10),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            // Aligns to top
-                            children: [
-                              // Left column with fixed width
-                              SizedBox(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment
-                                      .start, // Aligns text fields to left
-                                  children: [
-                                    _buildTextField(
-                                        label: "Kohteen nimi",
-                                        initialValue: state.propertyName,
-                                        width: 400,
-                                        setter: (value) => bloc.add(
-                                            SmallPropertyNameChanged(value))),
-                                    _buildTextField(
-                                        label: "Rakennustyyppi",
-                                        initialValue: state.buildingType,
-                                        width: 400,
-                                        setter: (value) => bloc.add(
-                                            SmallPropertyBuildingTypeChanged(
-                                                value))),
-                                    _buildTextField(
-                                        label: "Osoite",
-                                        initialValue: state.address,
-                                        width: 400,
-                                        setter: (value) => bloc.add(
-                                            SmallPropertyAddressChanged(
-                                                value))),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          )
-                        ])))));
+                          _buildTextField(
+                              label: "Kohteen nimi",
+                              initialValue: state.propertyName,
+                              width: 400,
+                              setter: (value) =>
+                                  bloc.add(SmallPropertyNameChanged(value))),
+                          _buildTextField(
+                              label: "Rakennustyyppi",
+                              initialValue: state.buildingType,
+                              width: 400,
+                              setter: (value) => bloc.add(
+                                  SmallPropertyBuildingTypeChanged(value))),
+                          _buildTextField(
+                              label: "Osoite",
+                              initialValue: state.address,
+                              width: 400,
+                              setter: (value) =>
+                                  bloc.add(SmallPropertyAddressChanged(value))),
+                        ],
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
