@@ -46,6 +46,7 @@ import 'package:flutter_app/src/bloc/total_concrete_bricks_tiles_ceramics_bloc.d
 import 'package:flutter_app/src/bloc/bituminous_mixtures_coal_tar_products_bloc.dart';
 import 'package:flutter_app/src/bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
 import 'package:flutter_app/src/bloc/insulation_and_asbestos_containing_materials_bloc.dart';
+import 'package:flutter_app/src/bloc/gypsym_based_building_materials_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -124,6 +125,10 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       InsulationAndAsbestosContainingMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      GypsumBasedBuildingMaterialsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>

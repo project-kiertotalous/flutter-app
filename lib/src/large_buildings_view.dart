@@ -7,6 +7,7 @@ import 'package:flutter_app/src/forms/fixed_furniture_form.dart';
 import 'package:flutter_app/src/forms/fixtures_and_structures_form.dart';
 import 'package:flutter_app/src/forms/floor_structures_form.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
+import 'package:flutter_app/src/forms/gypsym_based_building_materials_form.dart';
 import 'package:flutter_app/src/forms/hvac_and_electrical_installations_form.dart';
 import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
 import 'package:flutter_app/src/forms/insulation_and_asbestos_containing_materials_form.dart';
@@ -104,6 +105,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         MetalsAndAlloysForm(),
         SoilAggregatesDredgingMaterialsForm(),
         InsulationAndAsbestosContainingMaterialsForm(),
+        GypsumBasedBuildingMaterialsForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
       ];
