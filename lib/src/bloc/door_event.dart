@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
 abstract class DoorsEvent {}

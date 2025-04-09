@@ -4,7 +4,6 @@ import 'package:flutter_app/src/bloc/large_properties_disposal_materials_and_haz
 import 'package:flutter_app/src/bloc/large_properties_disposal_materials_and_hazardous_waste_event.dart';
 import 'package:flutter_app/src/bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/empty_cell.dart';
 import 'package:flutter_app/src/data/grey_cell.dart';
 import 'package:flutter_app/src/data/header_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
