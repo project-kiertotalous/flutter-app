@@ -5,7 +5,7 @@ import 'package:flutter_app/src/bloc/soil_aggregates_dredging_materials_event.da
 import 'package:flutter_app/src/bloc/total_soil_aggregates_dredging_materials_bloc.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/input_row_cell.dart';
+import 'package:flutter_app/src/data/input_text_row_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -71,7 +71,7 @@ class SoilAggregatesDredgingMaterialsForm extends StatelessWidget {
                         "Vaarallisia aineita sisältävät Maa- ja kiviainekset"),
                 OutputCell(getter: () => state.hazardousSoilAndRock.volume),
                 OutputCell(getter: () => state.hazardousSoilAndRock.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.hazardousSoilAndRock.notes,
                     setter: (value) =>
@@ -89,7 +89,7 @@ class SoilAggregatesDredgingMaterialsForm extends StatelessWidget {
                 InputCell(
                     initialValue: state.soilAndRock?.tons,
                     setter: (value) => bloc.add(SoilAndRockTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.soilAndRock?.notes,
                     setter: (value) =>
@@ -108,7 +108,7 @@ class SoilAggregatesDredgingMaterialsForm extends StatelessWidget {
                     initialValue: state.hazardousDredgingSpoil?.tons,
                     setter: (value) =>
                         bloc.add(HazardousDredgingSpoilTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.hazardousDredgingSpoil?.notes,
                     setter: (value) =>
@@ -127,7 +127,7 @@ class SoilAggregatesDredgingMaterialsForm extends StatelessWidget {
                     initialValue: state.dredgingSpoil?.tons,
                     setter: (value) =>
                         bloc.add(DredgingSpoilTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.dredgingSpoil?.notes,
                     setter: (value) =>
@@ -146,7 +146,7 @@ class SoilAggregatesDredgingMaterialsForm extends StatelessWidget {
                     initialValue: state.hazardousRailwayBallast?.tons,
                     setter: (value) =>
                         bloc.add(HazardousRailwayBallastTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.hazardousRailwayBallast?.notes,
                     setter: (value) =>
@@ -165,7 +165,7 @@ class SoilAggregatesDredgingMaterialsForm extends StatelessWidget {
                     initialValue: state.railwayBallast?.tons,
                     setter: (value) =>
                         bloc.add(RailwayBallastTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.railwayBallast?.notes,
                     setter: (value) =>
