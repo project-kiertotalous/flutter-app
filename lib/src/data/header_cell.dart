@@ -25,7 +25,7 @@ class HeaderCell extends StatelessWidget implements Cell {
               child: Align(
                 alignment: Alignment.centerLeft, // Align text to the left
                 child: Text(
-                  initialValue?.toString() ?? "",
+                  initialValue.toString(),
                   style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
