@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/forms/floor_structures_form.dart';
-import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
-import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
-import 'package:flutter_app/src/forms/large_property_basic_information_form.dart';
-import 'package:flutter_app/src/forms/removable_grounds_form.dart';
-import 'package:flutter_app/src/forms/roofs_form.dart';
+import 'package:flutter_app/src/lp-forms/floor_structures_form.dart';
+import 'package:flutter_app/src/lp-forms/foundation_type_and_floors_form.dart';
+import 'package:flutter_app/src/lp-forms/intermediate_floors_form.dart';
+import 'package:flutter_app/src/lp-forms/large_property_basic_information_form.dart';
+import 'package:flutter_app/src/lp-forms/removable_grounds_form.dart';
+import 'package:flutter_app/src/lp-forms/roofs_form.dart';
 import 'package:flutter_app/src/navigation_buttons.dart';
-import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
-import 'package:flutter_app/src/forms/cellar_form.dart';
-import 'package:flutter_app/src/forms/total_building_frame_form.dart';
+import 'package:flutter_app/src/lp-forms/total_building_dimensions_form.dart';
+import 'package:flutter_app/src/lp-forms/cellar_form.dart';
+import 'package:flutter_app/src/lp-forms/total_building_frame_form.dart';
 
 class OuterSheathView extends StatelessWidget {
   const OuterSheathView({
