@@ -9,6 +9,7 @@ import 'package:flutter_app/src/forms/floor_structures_form.dart';
 import 'package:flutter_app/src/forms/foundation_type_and_floors_form.dart';
 import 'package:flutter_app/src/forms/hvac_and_electrical_installations_form.dart';
 import 'package:flutter_app/src/forms/indoor_outdoor_form.dart';
+import 'package:flutter_app/src/forms/insulation_and_asbestos_containing_materials_form.dart';
 import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/forms/large_properties_demolition_waste_and_costs_form.dart';
 import 'package:flutter_app/src/forms/large_properties_disposal_materials_and_hazardous_waste_form.dart';
@@ -102,6 +103,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         BituminousMixturesCoalTarProductsForm(),
         MetalsAndAlloysForm(),
         SoilAggregatesDredgingMaterialsForm(),
+        InsulationAndAsbestosContainingMaterialsForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
       ];

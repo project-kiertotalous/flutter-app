@@ -5,7 +5,7 @@ import 'package:flutter_app/src/bloc/metals_and_alloys_event.dart';
 import 'package:flutter_app/src/bloc/total_metals_and_alloys_bloc.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/input_row_cell.dart';
+import 'package:flutter_app/src/data/input_text_row_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,7 +70,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 OutputCell(getter: () => "Kupari, pronssi, messinki"),
                 OutputCell(getter: () => ""),
                 OutputCell(getter: () => state.copperBronzeAndBrass.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.copperBronzeAndBrass.notes,
                     setter: (value) =>
@@ -81,7 +81,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 OutputCell(getter: () => "Alumiini"),
                 OutputCell(getter: () => ""),
                 OutputCell(getter: () => state.aluminium.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.aluminium.notes,
                     setter: (value) => bloc.add(AluminiumNotesChanged(value))),
@@ -93,7 +93,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 InputCell(
                     initialValue: state.lead?.tons,
                     setter: (value) => bloc.add(LeadTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.lead?.notes,
                     setter: (value) => bloc.add(LeadNotesChanged(value))),
@@ -105,7 +105,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 InputCell(
                     initialValue: state.zinc?.tons,
                     setter: (value) => bloc.add(ZincTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.zinc?.notes,
                     setter: (value) => bloc.add(ZincNotesChanged(value))),
@@ -115,7 +115,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 OutputCell(getter: () => "Rauta ja teräs"),
                 OutputCell(getter: () => ""),
                 OutputCell(getter: () => state.ironAndSteel.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.ironAndSteel.notes,
                     setter: (value) =>
@@ -128,7 +128,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 InputCell(
                     initialValue: state.tin?.tons,
                     setter: (value) => bloc.add(TinTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.tin?.notes,
                     setter: (value) => bloc.add(TinNotesChanged(value))),
@@ -138,7 +138,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 OutputCell(getter: () => "Sekametallit"),
                 OutputCell(getter: () => ""),
                 OutputCell(getter: () => state.mixedMetals.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.mixedMetals.notes,
                     setter: (value) =>
@@ -154,7 +154,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                     initialValue: state.contaminatedMetalWaste?.tons,
                     setter: (value) =>
                         bloc.add(ContaminatedMetalWasteTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.contaminatedMetalWaste?.notes,
                     setter: (value) =>
@@ -170,7 +170,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                     initialValue: state.hazardousOilAndTarCables?.tons,
                     setter: (value) =>
                         bloc.add(HazardousOilAndTarCablesTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.hazardousOilAndTarCables?.notes,
                     setter: (value) =>
@@ -185,7 +185,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 InputCell(
                     initialValue: state.otherCables?.tons,
                     setter: (value) => bloc.add(OtherCablesTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.otherCables?.notes,
                     setter: (value) =>

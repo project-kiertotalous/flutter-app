@@ -36,6 +36,7 @@ import 'package:flutter_app/src/bloc/windows_bloc.dart';
 import 'package:flutter_app/src/bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/small_property_basic_info_bloc.dart';
+import 'package:flutter_app/src/forms/insulation_and_asbestos_containing_materials_form.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_buildings_view.dart';
@@ -44,6 +45,7 @@ import 'package:flutter_app/src/bloc/concrete_bricks_tiles_ceramics_bloc.dart';
 import 'package:flutter_app/src/bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
 import 'package:flutter_app/src/bloc/bituminous_mixtures_coal_tar_products_bloc.dart';
 import 'package:flutter_app/src/bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
+import 'package:flutter_app/src/bloc/insulation_and_asbestos_containing_materials_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -118,6 +120,10 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       SoilAggregatesDredgingMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      InsulationAndAsbestosContainingMaterialsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
