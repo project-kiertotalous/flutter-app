@@ -5,7 +5,7 @@ import 'package:flutter_app/src/bloc/concrete_bricks_tiles_ceramics_event.dart';
 import 'package:flutter_app/src/bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/input_row_cell.dart';
+import 'package:flutter_app/src/data/input_text_row_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,7 +63,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             OutputCell(getter: () => "Betoni"),
             OutputCell(getter: () => state.concrete.volume),
             OutputCell(getter: () => state.concrete.tons),
-            InputRowCell(
+            InputTextRowCell(
                 label: "Kirjoita tähän",
                 initialValue: state.concrete.notes,
                 setter: (value) => bloc.add(ConcreteNotesChanged(value))),
@@ -73,7 +73,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             OutputCell(getter: () => "Tiilet"),
             OutputCell(getter: () => state.brick.volume),
             OutputCell(getter: () => state.brick.tons),
-            InputRowCell(
+            InputTextRowCell(
                 label: "Kirjoita tähän",
                 initialValue: state.brick.notes,
                 setter: (value) => bloc.add(BrickNotesChanged(value))),
@@ -83,7 +83,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             OutputCell(getter: () => "Laatat ja keramiikka"),
             OutputCell(getter: () => state.ceramicTiles.volume),
             OutputCell(getter: () => state.ceramicTiles.tons),
-            InputRowCell(
+            InputTextRowCell(
                 label: "Kirjoita tähän",
                 initialValue: state.ceramicTiles.notes,
                 setter: (value) => bloc.add(CeramicTilesNotesChanged(value))),
@@ -99,7 +99,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             OutputCell(
                 getter: () =>
                     state.hazardousConcreteBrickTileCeramicMixtures.tons),
-            InputRowCell(
+            InputTextRowCell(
                 label: "Kirjoita tähän",
                 initialValue:
                     state.hazardousConcreteBrickTileCeramicMixtures.notes,
@@ -118,7 +118,7 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
             InputCell(
                 initialValue: state.otherMaterials?.tons,
                 setter: (value) => bloc.add(OtherMaterialsTonsChanged(value))),
-            InputRowCell(
+            InputTextRowCell(
                 label: "Kirjoita tähän",
                 initialValue: state.otherMaterials?.notes,
                 setter: (value) => bloc.add(OtherMaterialsNotesChanged(value))),

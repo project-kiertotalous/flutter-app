@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class InputRowCell extends StatefulWidget {
+class InputTextRowCell extends StatefulWidget {
   // Changed to StatefulWidget
   final String label;
   final String? initialValue;
   final void Function(String) setter;
 
-  const InputRowCell({
+  const InputTextRowCell({
     super.key,
     required this.label,
     this.initialValue,
@@ -14,10 +14,10 @@ class InputRowCell extends StatefulWidget {
   });
 
   @override
-  State<InputRowCell> createState() => _InputRowCellState();
+  State<InputTextRowCell> createState() => _InputRowCellState();
 }
 
-class _InputRowCellState extends State<InputRowCell> {
+class _InputRowCellState extends State<InputTextRowCell> {
   late final TextEditingController _controller;
 
   @override

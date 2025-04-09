@@ -4,7 +4,7 @@ import 'package:flutter_app/src/bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/bloc/wood_glass_plastics_event.dart';
 import 'package:flutter_app/src/bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/input_row_cell.dart';
+import 'package:flutter_app/src/data/input_text_row_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -63,7 +63,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                 OutputCell(getter: () => "Puu"),
                 OutputCell(getter: () => state.wood.volume),
                 OutputCell(getter: () => state.wood.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.wood.notes,
                     setter: (value) => bloc.add(WoodNotesChanged(value))),
@@ -73,7 +73,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                 OutputCell(getter: () => "Lasi"),
                 OutputCell(getter: () => state.glass.volume),
                 OutputCell(getter: () => state.glass.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.glass.notes,
                     setter: (value) => bloc.add(GlassNotesChanged(value))),
@@ -83,7 +83,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                 OutputCell(getter: () => "Muovi"),
                 OutputCell(getter: () => state.plastic.volume),
                 OutputCell(getter: () => state.plastic.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.plastic.notes,
                     setter: (value) => bloc.add(PlasticNotesChanged(value))),
@@ -99,7 +99,7 @@ class WoodGlassPlasticsForm extends StatelessWidget {
                 OutputCell(
                     getter: () =>
                         state.otherDangerousOrContaminatedMaterial.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue:
                         state.otherDangerousOrContaminatedMaterial.notes,

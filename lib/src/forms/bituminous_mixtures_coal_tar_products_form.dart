@@ -5,7 +5,7 @@ import 'package:flutter_app/src/bloc/bituminous_mixtures_coal_tar_products_event
 import 'package:flutter_app/src/bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
 import 'package:flutter_app/src/data/column_cell.dart';
 import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/input_row_cell.dart';
+import 'package:flutter_app/src/data/input_text_row_cell.dart';
 import 'package:flutter_app/src/data/output_cell.dart';
 import 'package:flutter_app/src/data/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -73,7 +73,7 @@ class BituminousMixturesCoalTarProductsForm extends StatelessWidget {
                 OutputCell(
                     getter: () =>
                         state.coalTarContainingBituminousMixtures.tons),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue:
                         state.coalTarContainingBituminousMixtures.notes,
@@ -94,7 +94,7 @@ class BituminousMixturesCoalTarProductsForm extends StatelessWidget {
                     initialValue: state.otherBituminousMixtures?.tons,
                     setter: (value) =>
                         bloc.add(OtherBituminousMixturesTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.otherBituminousMixtures?.notes,
                     setter: (value) =>
@@ -109,7 +109,7 @@ class BituminousMixturesCoalTarProductsForm extends StatelessWidget {
                 InputCell(
                     initialValue: state.unnamed?.tons,
                     setter: (value) => bloc.add(UnnamedTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.unnamed?.notes,
                     setter: (value) => bloc.add(UnnamedNotesChanged(value))),
@@ -125,7 +125,7 @@ class BituminousMixturesCoalTarProductsForm extends StatelessWidget {
                     initialValue: state.coalTarAndTarProducts?.tons,
                     setter: (value) =>
                         bloc.add(CoalTarAndTarProductsTonsChanged(value))),
-                InputRowCell(
+                InputTextRowCell(
                     label: "Kirjoita tähän",
                     initialValue: state.coalTarAndTarProducts?.notes,
                     setter: (value) =>

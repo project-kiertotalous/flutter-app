@@ -73,7 +73,7 @@ class SoilAggregatesDredgingMaterialsForm extends StatelessWidget {
                 OutputCell(getter: () => state.hazardousSoilAndRock.tons),
                 InputRowCell(
                     label: "Kirjoita tähän",
-                    initialValue: state.hazardousSoilAndRock?.notes,
+                    initialValue: state.hazardousSoilAndRock.notes,
                     setter: (value) =>
                         bloc.add(HazardousSoilAndRockNotesChanged(value))),
 
