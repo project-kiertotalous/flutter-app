@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/cell.dart';
+import 'package:flutter_app/src/shared/cell.dart';
 
-class ColumnCell extends StatelessWidget implements Cell {
-  const ColumnCell({super.key, required this.initialValue, this.iconButton});
+/// Meant to use in top left cell of a form.
+class HeaderCell extends StatelessWidget implements Cell {
+  const HeaderCell({super.key, required this.initialValue, this.iconButton});
 
-  final String initialValue;
   final Widget? iconButton;
+  final String initialValue;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity, // Expands to fill available width
       height: double.infinity, // Expands to fill available height
-      decoration: const BoxDecoration(
-        color: Color.fromARGB(255, 231, 228, 228),
-        border: Border.fromBorderSide(
-          BorderSide(width: 1),
-        ),
-      ),
+      decoration: BoxDecoration(border: Border.all(width: 1)), // Main border
       child: Padding(
         padding: const EdgeInsets.only(left: 4.0),
         child: Row(
@@ -29,8 +25,8 @@ class ColumnCell extends StatelessWidget implements Cell {
               child: Align(
                 alignment: Alignment.centerLeft, // Align text to the left
                 child: Text(
-                  initialValue,
-                  style: const TextStyle(fontWeight: FontWeight.w400),
+                  initialValue.toString(),
+                  style: const TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
             ),

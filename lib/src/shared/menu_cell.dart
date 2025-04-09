@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/cell.dart';
+import 'package:flutter_app/src/shared/cell.dart';
 
 class MenuCell<T> extends StatefulWidget implements Cell {
   const MenuCell({

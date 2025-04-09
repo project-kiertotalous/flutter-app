@@ -37,7 +37,7 @@ import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/small_property_basic_info_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_properties_view.dart';
 import 'package:flutter_app/src/smaller_properties_view.dart';
@@ -345,7 +345,7 @@ class MyApp extends StatelessWidget {
                               context.read<TotalDemolitionWasteAndCostsBloc>(),
                         )),
               ],
-              child: LargeBuildingsView(),
+              child: LargePropertiesView(),
             ),
         '/smaller_buildings': (context) => MultiBlocProvider(
               providers: [
@@ -354,7 +354,7 @@ class MyApp extends StatelessWidget {
                       SmallPropertyBasicInfoBloc(),
                 )
               ],
-              child: SmallerBuildingsView(),
+              child: SmallerPropertiesView(),
             ),
       },
       // onGenerateTitle: (BuildContext context) =>

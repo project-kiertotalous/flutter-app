@@ -2,17 +2,17 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_event.dart';
-import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/empty_cell.dart';
-import 'package:flutter_app/src/data/form_header.dart';
-import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/output_cell.dart';
-import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
+import 'package:flutter_app/src/shared/empty_cell.dart';
+import 'package:flutter_app/src/shared/form_header.dart';
+import 'package:flutter_app/src/shared/input_cell.dart';
+import 'package:flutter_app/src/shared/output_cell.dart';
+import 'package:flutter_app/src/shared/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
-import '../data/info_button.dart';
-import '../data/tooltip_texts.dart';
+import '../shared/info_button.dart';
+import '../shared/tooltip_texts.dart';
 
 /// Yard and Protective Structures UI Form
 class YardAndProtectiveStructuresForm extends StatelessWidget {

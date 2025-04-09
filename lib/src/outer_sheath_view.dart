@@ -5,7 +5,7 @@ import 'package:flutter_app/src/lp-forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/lp-forms/large_property_basic_information_form.dart';
 import 'package:flutter_app/src/lp-forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/lp-forms/roofs_form.dart';
-import 'package:flutter_app/src/navigation_buttons.dart';
+import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/lp-forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/lp-forms/cellar_form.dart';
 import 'package:flutter_app/src/lp-forms/total_building_frame_form.dart';

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/empty_cell.dart';
-import 'package:flutter_app/src/data/error_cell.dart';
-import 'package:flutter_app/src/data/grey_cell.dart';
-import 'package:flutter_app/src/data/header_cell.dart';
-import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/menu_cell.dart';
-import 'package:flutter_app/src/data/output_cell.dart';
-import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
+import 'package:flutter_app/src/shared/empty_cell.dart';
+import 'package:flutter_app/src/shared/error_cell.dart';
+import 'package:flutter_app/src/shared/grey_cell.dart';
+import 'package:flutter_app/src/shared/header_cell.dart';
+import 'package:flutter_app/src/shared/input_cell.dart';
+import 'package:flutter_app/src/shared/menu_cell.dart';
+import 'package:flutter_app/src/shared/output_cell.dart';
+import 'package:flutter_app/src/shared/row_cell.dart';
 
 /// This class serves the purpose of being syntactic sugar for creating cells
 /// of different types.

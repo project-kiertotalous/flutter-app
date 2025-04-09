@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_app/log.dart';
-import 'package:flutter_app/src/data/cell.dart';
+import 'package:flutter_app/src/shared/cell.dart';
 
 class InputCell extends StatefulWidget implements Cell {
   const InputCell({

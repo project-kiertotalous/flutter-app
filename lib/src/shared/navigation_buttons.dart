@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'data/cancel_dialog.dart';
+import 'cancel_dialog.dart';
 
 class NavigationButtons extends StatelessWidget {
   const NavigationButtons({super.key});

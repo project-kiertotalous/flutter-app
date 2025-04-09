@@ -1,8 +1,8 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/lp-bloc/small_property_basic_info_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/small_property_basic_info_event.dart';
-import 'package:flutter_app/src/data/input_text.dart';
+import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/small_property_basic_info_event.dart';
+import 'package:flutter_app/src/shared/input_text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SmallPropertyBasicInformationForm extends StatelessWidget {

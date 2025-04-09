@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/reusable_and_recyclable_materials_event.dart';
 import 'package:flutter_app/src/lp-bloc/total_reusable_and_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/data/cell.dart';
+import 'package:flutter_app/src/shared/cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 

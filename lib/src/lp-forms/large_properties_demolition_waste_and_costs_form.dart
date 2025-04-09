@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/large_properties_demolition_waste_and_costs_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/large_properties_demolition_waste_and_costs_event.dart';
 import 'package:flutter_app/src/lp-bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
-import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/header_cell.dart';
-import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/output_cell.dart';
-import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
+import 'package:flutter_app/src/shared/header_cell.dart';
+import 'package:flutter_app/src/shared/input_cell.dart';
+import 'package:flutter_app/src/shared/output_cell.dart';
+import 'package:flutter_app/src/shared/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 

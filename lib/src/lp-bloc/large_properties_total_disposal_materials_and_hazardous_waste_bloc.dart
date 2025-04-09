@@ -1,5 +1,4 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/lp-bloc/cellar_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/excavation_area_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_app/src/lp-bloc/foundations_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/internal_wall_frames_and_surface_material_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/large_properties_disposal_materials_and_hazardous_waste_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/large_property_total_disposal_materials_and_hazardous_waste_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class TotalDisposalMaterialsAndHazardousWasteBloc extends Bloc<
     TotalDisposalMaterialsAndHazardousWasteEvent,

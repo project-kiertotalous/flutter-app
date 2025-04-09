@@ -32,20 +32,20 @@ import 'package:flutter_app/src/lp-forms/concrete_bricks_tiles_ceramics_form.dar
 import 'package:flutter_app/src/lp-forms/windows_form.dart';
 import 'package:flutter_app/src/lp-forms/wood_glass_plastics_form.dart';
 import 'package:flutter_app/src/lp-forms/yard_and_protective_structures.dart';
-import 'package:flutter_app/src/navigation_buttons.dart';
+import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 
-import 'data/cancel_dialog.dart';
+import 'shared/cancel_dialog.dart';
 
 /// This view is for estimating large buildings.
-class LargeBuildingsView extends StatefulWidget {
-  const LargeBuildingsView({super.key});
+class LargePropertiesView extends StatefulWidget {
+  const LargePropertiesView({super.key});
 
   @override
-  State<LargeBuildingsView> createState() => _LargeBuildingsViewState();
+  State<LargePropertiesView> createState() => _LargeBuildingsViewState();
 }
 
-class _LargeBuildingsViewState extends State<LargeBuildingsView>
+class _LargeBuildingsViewState extends State<LargePropertiesView>
     with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: "Ulkovaippa"),

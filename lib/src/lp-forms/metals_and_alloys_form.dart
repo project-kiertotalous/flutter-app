@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/metals_and_alloys_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/metals_and_alloys_event.dart';
 import 'package:flutter_app/src/lp-bloc/total_metals_and_alloys_bloc.dart';
-import 'package:flutter_app/src/data/column_cell.dart';
-import 'package:flutter_app/src/data/input_cell.dart';
-import 'package:flutter_app/src/data/input_text_row_cell.dart';
-import 'package:flutter_app/src/data/output_cell.dart';
-import 'package:flutter_app/src/data/row_cell.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
+import 'package:flutter_app/src/shared/input_cell.dart';
+import 'package:flutter_app/src/shared/input_text_row_cell.dart';
+import 'package:flutter_app/src/shared/output_cell.dart';
+import 'package:flutter_app/src/shared/row_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 

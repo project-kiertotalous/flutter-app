@@ -2,10 +2,10 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/total_roofs_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_roofs_event.dart';
-import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/form_header.dart';
-import 'package:flutter_app/src/data/info_button.dart';
-import 'package:flutter_app/src/data/tooltip_texts.dart';
+import 'package:flutter_app/src/shared/cell.dart';
+import 'package:flutter_app/src/shared/form_header.dart';
+import 'package:flutter_app/src/shared/info_button.dart';
+import 'package:flutter_app/src/shared/tooltip_texts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
