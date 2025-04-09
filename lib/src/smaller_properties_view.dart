@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/lp-forms/small_property_basic_information_form.dart';
+import 'package:flutter_app/src/sp-forms/small_property_basic_information_form.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 import 'shared/cancel_dialog.dart';
 
 /// This view is for estimating smaller row houses and blocks of flats.
-class SmallerBuildingsView extends StatefulWidget {
-  const SmallerBuildingsView({super.key});
+class SmallerPropertiesView extends StatefulWidget {
+  const SmallerPropertiesView({super.key});
 
   @override
-  State<SmallerBuildingsView> createState() => _SmallerBuildingsViewState();
+  State<SmallerPropertiesView> createState() => _SmallerBuildingsViewState();
 }
 
-class _SmallerBuildingsViewState extends State<SmallerBuildingsView>
+class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
     with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: "Perustukset & ulkovaippa"),

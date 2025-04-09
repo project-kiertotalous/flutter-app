@@ -28,15 +28,15 @@ import 'package:flutter_app/src/tab_view.dart';
 
 import 'shared/cancel_dialog.dart';
 
-/// This view is for estimating large buildings.
-class LargeBuildingsView extends StatefulWidget {
-  const LargeBuildingsView({super.key});
+/// This view is for estimating large properties.
+class LargePropertiesView extends StatefulWidget {
+  const LargePropertiesView({super.key});
 
   @override
-  State<LargeBuildingsView> createState() => _LargeBuildingsViewState();
+  State<LargePropertiesView> createState() => _LargePropertiesViewState();
 }
 
-class _LargeBuildingsViewState extends State<LargeBuildingsView>
+class _LargePropertiesViewState extends State<LargePropertiesView>
     with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: "Ulkovaippa"),
