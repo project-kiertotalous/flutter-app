@@ -124,9 +124,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 // Row 8
                 RowCell(initialValue: "17 04 06"),
                 OutputCell(getter: () => "Tina"),
-                InputCell(
-                    initialValue: state.tin?.volume,
-                    setter: (value) => bloc.add(TinVolumeChanged(value))),
+                OutputCell(getter: () => ""),
                 InputCell(
                     initialValue: state.tin?.tons,
                     setter: (value) => bloc.add(TinTonsChanged(value))),

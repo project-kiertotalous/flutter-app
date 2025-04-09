@@ -24,11 +24,13 @@ import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
 import 'package:flutter_app/src/bloc/metals_and_alloys_bloc.dart';
 import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/bloc/reusable_and_recyclable_materials_bloc.dart';
+import 'package:flutter_app/src/bloc/soil_aggregates_dredging_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_metals_and_alloys_bloc.dart';
 import 'package:flutter_app/src/bloc/total_reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
+import 'package:flutter_app/src/bloc/total_soil_aggregates_dredging_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/bloc/windows_bloc.dart';
 import 'package:flutter_app/src/bloc/wood_glass_plastics_bloc.dart';
@@ -112,6 +114,10 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => MetalsAndAlloysBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SoilAggregatesDredgingMaterialsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -308,6 +314,14 @@ class MyApp extends StatelessWidget {
                         context.read<TotalDemolitionWasteAndCostsBloc>(),
                   ),
                 ),
+                BlocProvider(
+                    create: (BuildContext context) =>
+                        TotalSoilAggregatesDredgingMaterialsBloc(
+                          soilAggregatesDredgingMaterialsBloc: context
+                              .read<SoilAggregatesDredgingMaterialsBloc>(),
+                          totalDemolitionWasteAndCostsBloc:
+                              context.read<TotalDemolitionWasteAndCostsBloc>(),
+                        )),
               ],
               child: LargeBuildingsView(),
             ),

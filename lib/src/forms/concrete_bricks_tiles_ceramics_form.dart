@@ -113,10 +113,11 @@ class ConcreteBricksTilesCeramicsForm extends StatelessWidget {
                     "Muut kuin nimikkeessä 17 01 06 mainitut betonin, tiilten, laattojen ja keramiikan seokset"),
             InputCell(
                 initialValue: state.otherMaterials?.volume,
-                setter: (value) => state.otherMaterials?.volume),
+                setter: (value) =>
+                    bloc.add(OtherMaterialsVolumeChanged(value))),
             InputCell(
                 initialValue: state.otherMaterials?.tons,
-                setter: (value) => state.otherMaterials?.tons),
+                setter: (value) => bloc.add(OtherMaterialsTonsChanged(value))),
             InputRowCell(
                 label: "Kirjoita tähän",
                 initialValue: state.otherMaterials?.notes,

@@ -22,6 +22,7 @@ import 'package:flutter_app/src/forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/forms/reusable_and_recyclable_materials_form.dart';
 import 'package:flutter_app/src/forms/roofs_form.dart';
 import 'package:flutter_app/src/forms/room_space_surface_material_percentages_form.dart';
+import 'package:flutter_app/src/forms/soil_aggregates_dredging_materials_form.dart';
 import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/total_building_frame_form.dart';
 import 'package:flutter_app/src/forms/concrete_bricks_tiles_ceramics_form.dart';
@@ -100,6 +101,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         WoodGlassPlasticsForm(),
         BituminousMixturesCoalTarProductsForm(),
         MetalsAndAlloysForm(),
+        SoilAggregatesDredgingMaterialsForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
       ];
