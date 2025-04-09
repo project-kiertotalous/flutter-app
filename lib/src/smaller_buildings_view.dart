@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/forms/small_property_basic_information_form.dart';
-import 'package:flutter_app/src/data/navigation_buttons.dart';
+import 'package:flutter_app/src/lp-forms/small_property_basic_information_form.dart';
+import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
-import 'data/cancel_dialog.dart';
+import 'shared/cancel_dialog.dart';
 
 /// This view is for estimating smaller row houses and blocks of flats.
 class SmallerBuildingsView extends StatefulWidget {
