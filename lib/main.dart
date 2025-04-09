@@ -21,10 +21,12 @@ import 'package:flutter_app/src/bloc/large_properties_total_demolition_waste_and
 import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
+import 'package:flutter_app/src/bloc/metals_and_alloys_bloc.dart';
 import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/bloc/reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
+import 'package:flutter_app/src/bloc/total_metals_and_alloys_bloc.dart';
 import 'package:flutter_app/src/bloc/total_reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
 import 'package:flutter_app/src/bloc/total_wood_glass_plastics_bloc.dart';
@@ -107,6 +109,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       BituminousMixturesCoalTarProductsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => MetalsAndAlloysBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -292,6 +297,13 @@ class MyApp extends StatelessWidget {
                       TotalBituminousMixturesCoalTarProductsBloc(
                     bituminousMixturesCoalTarProductsBloc:
                         context.read<BituminousMixturesCoalTarProductsBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => TotalMetalsAndAlloysBloc(
+                    metalsAndAlloysBloc: context.read<MetalsAndAlloysBloc>(),
                     totalDemolitionWasteAndCostsBloc:
                         context.read<TotalDemolitionWasteAndCostsBloc>(),
                   ),
