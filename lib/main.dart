@@ -22,12 +22,14 @@ import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials
 import 'package:flutter_app/src/bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
 import 'package:flutter_app/src/bloc/metals_and_alloys_bloc.dart';
+import 'package:flutter_app/src/bloc/other_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/bloc/reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/soil_aggregates_dredging_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/bloc/total_metals_and_alloys_bloc.dart';
+import 'package:flutter_app/src/bloc/total_other_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
 import 'package:flutter_app/src/bloc/total_soil_aggregates_dredging_materials_bloc.dart';
@@ -36,7 +38,6 @@ import 'package:flutter_app/src/bloc/windows_bloc.dart';
 import 'package:flutter_app/src/bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/bloc/small_property_basic_info_bloc.dart';
-import 'package:flutter_app/src/forms/insulation_and_asbestos_containing_materials_form.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_buildings_view.dart';
 import 'package:flutter_app/src/smaller_buildings_view.dart';
@@ -129,6 +130,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       GypsumBasedBuildingMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => OtherMaterialsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -330,6 +334,13 @@ class MyApp extends StatelessWidget {
                         TotalSoilAggregatesDredgingMaterialsBloc(
                           soilAggregatesDredgingMaterialsBloc: context
                               .read<SoilAggregatesDredgingMaterialsBloc>(),
+                          totalDemolitionWasteAndCostsBloc:
+                              context.read<TotalDemolitionWasteAndCostsBloc>(),
+                        )),
+                BlocProvider(
+                    create: (BuildContext context) => TotalOtherMaterialsBloc(
+                          otherMaterialsBloc:
+                              context.read<OtherMaterialsBloc>(),
                           totalDemolitionWasteAndCostsBloc:
                               context.read<TotalDemolitionWasteAndCostsBloc>(),
                         )),

@@ -32,10 +32,10 @@ class WoodGlassPlasticsForm extends StatelessWidget {
               rowSizes: [
                 75.px,
                 50.px,
-                50.px,
-                50.px,
-                50.px,
-                50.px,
+                75.px,
+                75.px,
+                75.px,
+                75.px,
               ],
               children: [
                 // Row 1

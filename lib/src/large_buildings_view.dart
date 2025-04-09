@@ -15,6 +15,7 @@ import 'package:flutter_app/src/forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/forms/large_properties_demolition_waste_and_costs_form.dart';
 import 'package:flutter_app/src/forms/large_properties_disposal_materials_and_hazardous_waste_form.dart';
 import 'package:flutter_app/src/forms/metals_and_alloys_form.dart';
+import 'package:flutter_app/src/forms/other_materials_form.dart';
 import 'package:flutter_app/src/forms/room_space_form.dart';
 import 'package:flutter_app/src/forms/internal_wall_frames_and_surface_materials_form.dart';
 import 'package:flutter_app/src/forms/large_properties_recyclable_form.dart';
@@ -106,6 +107,7 @@ class _LargeBuildingsViewState extends State<LargeBuildingsView>
         SoilAggregatesDredgingMaterialsForm(),
         InsulationAndAsbestosContainingMaterialsForm(),
         GypsumBasedBuildingMaterialsForm(),
+        OtherMaterialsForm(),
         const SizedBox(height: 20),
         NavigationButtons(),
       ];
