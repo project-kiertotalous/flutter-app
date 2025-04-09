@@ -1,38 +1,38 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/bloc/building_dimensions_bloc.dart';
-import 'package:flutter_app/src/bloc/building_frame_bloc.dart';
-import 'package:flutter_app/src/bloc/large_properties_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/bloc/cellar_bloc.dart';
-import 'package:flutter_app/src/bloc/door_bloc.dart';
-import 'package:flutter_app/src/bloc/excavation_area_bloc.dart';
-import 'package:flutter_app/src/bloc/exterior_wall_structures_bloc.dart';
-import 'package:flutter_app/src/bloc/fixed_furniture_bloc.dart';
-import 'package:flutter_app/src/bloc/fixtures_and_structures_bloc.dart';
-import 'package:flutter_app/src/bloc/floor_structures_bloc.dart';
-import 'package:flutter_app/src/bloc/foundations_bloc.dart';
-import 'package:flutter_app/src/bloc/hvac_and_electrical_installations_bloc.dart';
-import 'package:flutter_app/src/bloc/inner_doors_bloc.dart';
-import 'package:flutter_app/src/bloc/intermediate_floors_bloc.dart';
-import 'package:flutter_app/src/bloc/internal_wall_frames_and_surface_material_bloc.dart';
-import 'package:flutter_app/src/bloc/large_properties_disposal_materials_and_hazardous_waste_bloc.dart';
-import 'package:flutter_app/src/bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
-import 'package:flutter_app/src/bloc/large_properties_demolition_waste_and_costs_bloc.dart';
-import 'package:flutter_app/src/bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
-import 'package:flutter_app/src/bloc/large_properties_total_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/bloc/large_property_basic_info_bloc.dart';
-import 'package:flutter_app/src/bloc/machines_and_equipments_bloc.dart';
-import 'package:flutter_app/src/bloc/outer_doors_bloc.dart';
-import 'package:flutter_app/src/bloc/reusable_and_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/bloc/total_building_dimensions_bloc.dart';
-import 'package:flutter_app/src/bloc/total_building_frame_bloc.dart';
-import 'package:flutter_app/src/bloc/total_reusable_and_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/bloc/total_roofs_bloc.dart';
-import 'package:flutter_app/src/bloc/windows_bloc.dart';
-import 'package:flutter_app/src/bloc/yard_and_protective_structures_bloc.dart';
-import 'package:flutter_app/src/bloc/small_property_basic_info_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/building_dimensions_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/building_frame_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_recyclable_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/cellar_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/door_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/excavation_area_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/exterior_wall_structures_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/fixed_furniture_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/fixtures_and_structures_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/floor_structures_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/foundations_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/hvac_and_electrical_installations_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/inner_doors_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/intermediate_floors_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/internal_wall_frames_and_surface_material_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_disposal_materials_and_hazardous_waste_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_demolition_waste_and_costs_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_total_recyclable_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/machines_and_equipments_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/outer_doors_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/reusable_and_recyclable_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_building_dimensions_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_building_frame_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_reusable_and_recyclable_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_roofs_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
-import 'package:flutter_app/src/large_buildings_view.dart';
-import 'package:flutter_app/src/smaller_buildings_view.dart';
+import 'package:flutter_app/src/large_properties_view.dart';
+import 'package:flutter_app/src/smaller_properties_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -246,14 +246,17 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
               ],
-              child: LargeBuildingsView(),
+              child: LargePropertiesView(),
             ),
         '/smaller_buildings': (context) => MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (BuildContext context) => SmallPropertyBasicInfoBloc(),)
-          ],
-          child: SmallerBuildingsView(),
-        ),
+              providers: [
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SmallPropertyBasicInfoBloc(),
+                )
+              ],
+              child: SmallerPropertiesView(),
+            ),
       },
       // onGenerateTitle: (BuildContext context) =>
       //     AppLocalizations.of(context)!.appTitle,
