@@ -89,9 +89,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 // Row 5
                 RowCell(initialValue: "17 04 03"),
                 OutputCell(getter: () => "Lyijy"),
-                InputCell(
-                    initialValue: state.lead?.volume,
-                    setter: (value) => bloc.add(LeadVolumeChanged(value))),
+                OutputCell(getter: () => ""),
                 InputCell(
                     initialValue: state.lead?.tons,
                     setter: (value) => bloc.add(LeadTonsChanged(value))),
@@ -103,9 +101,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 // Row 6
                 RowCell(initialValue: "17 04 04"),
                 OutputCell(getter: () => "Sinkki"),
-                InputCell(
-                    initialValue: state.zinc?.volume,
-                    setter: (value) => bloc.add(ZincVolumeChanged(value))),
+                OutputCell(getter: () => ""),
                 InputCell(
                     initialValue: state.zinc?.tons,
                     setter: (value) => bloc.add(ZincTonsChanged(value))),
@@ -115,7 +111,6 @@ class MetalsAndAlloysForm extends StatelessWidget {
                     setter: (value) => bloc.add(ZincNotesChanged(value))),
 
                 // Row 7
-
                 RowCell(initialValue: "17 04 05"),
                 OutputCell(getter: () => "Rauta ja teräs"),
                 OutputCell(getter: () => ""),
@@ -126,7 +121,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                     setter: (value) =>
                         bloc.add(IronAndSteelNotesChanged(value))),
 
-                // Row 6
+                // Row 8
                 RowCell(initialValue: "17 04 06"),
                 OutputCell(getter: () => "Tina"),
                 InputCell(
@@ -141,7 +136,6 @@ class MetalsAndAlloysForm extends StatelessWidget {
                     setter: (value) => bloc.add(TinNotesChanged(value))),
 
                 // Row 9
-
                 RowCell(initialValue: "17 04 07"),
                 OutputCell(getter: () => "Sekametallit"),
                 OutputCell(getter: () => ""),
@@ -157,10 +151,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 OutputCell(
                     getter: () =>
                         "Vaarallisten aineiden saastuttamat metallijätteet"),
-                InputCell(
-                    initialValue: state.contaminatedMetalWaste?.volume,
-                    setter: (value) =>
-                        bloc.add(ContaminatedMetalWasteVolumeChanged(value))),
+                OutputCell(getter: () => ""),
                 InputCell(
                     initialValue: state.contaminatedMetalWaste?.tons,
                     setter: (value) =>
@@ -176,10 +167,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 OutputCell(
                     getter: () =>
                         "Kaapelit, jotka sisältävät öljyä, kivihiilitervaa tai muita vaarallisia aineita"),
-                InputCell(
-                    initialValue: state.hazardousOilAndTarCables?.volume,
-                    setter: (value) =>
-                        bloc.add(HazardousOilAndTarCablesVolumeChanged(value))),
+                OutputCell(getter: () => ""),
                 InputCell(
                     initialValue: state.hazardousOilAndTarCables?.tons,
                     setter: (value) =>
@@ -195,10 +183,7 @@ class MetalsAndAlloysForm extends StatelessWidget {
                 OutputCell(
                     getter: () =>
                         "Muut kuin nimikkeessä 17 04 10 mainitut kaapelit"),
-                InputCell(
-                    initialValue: state.otherCables?.volume,
-                    setter: (value) =>
-                        bloc.add(OtherCablesVolumeChanged(value))),
+                OutputCell(getter: () => ""),
                 InputCell(
                     initialValue: state.otherCables?.tons,
                     setter: (value) => bloc.add(OtherCablesTonsChanged(value))),
