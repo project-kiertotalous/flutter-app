@@ -2,13 +2,8 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_app/src/lp-bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_building_frame_event.dart';
-<<<<<<< HEAD
-import 'package:flutter_app/src/data/cell.dart';
-import 'package:flutter_app/src/data/form_header.dart';
-=======
 import 'package:flutter_app/src/shared/cell.dart';
 import 'package:flutter_app/src/shared/form_header.dart';
->>>>>>> origin/main
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
