@@ -24,7 +24,7 @@ import 'package:flutter_app/src/forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/forms/total_building_frame_form.dart';
 import 'package:flutter_app/src/forms/windows_form.dart';
 import 'package:flutter_app/src/forms/yard_and_protective_structures.dart';
-import 'package:flutter_app/src/navigation_buttons.dart';
+import 'package:flutter_app/src/data/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 
 import 'data/cancel_dialog.dart';

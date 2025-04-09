@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/forms/small_property_basic_information_form.dart';
-import 'package:flutter_app/src/navigation_buttons.dart';
+import 'package:flutter_app/src/data/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 import 'data/cancel_dialog.dart';
 
@@ -84,7 +84,7 @@ class _SmallerBuildingsViewState extends State<SmallerBuildingsView>
                 TabView(
                   forms: araTable,
                 ),
-                                TabView(
+                TabView(
                   forms: saveFile,
                 )
               ],
