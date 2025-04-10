@@ -1,7 +1,7 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/sp-bloc/SB_excavation_area_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/SB_excavation_area_event.dart';
+import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/sp_excavation_area_event.dart';
 import 'package:flutter_app/src/shared/form_header.dart';
 import 'package:flutter_app/src/shared/input_cell.dart';
 import 'package:flutter_app/src/shared/output_cell.dart';
@@ -68,7 +68,8 @@ class SBRemovableGroundsForm extends StatelessWidget {
                 ),
               ),
               RowCell(initialValue: 'Poistettavasta maasta saastunutta (%)'),
-              OutputCell(getter: () => state.contaminatedSoil),
+              OutputCell(getter: () => state.contaminatedSoil,
+              percentage: true,),
               RowCell(initialValue: 'Asfaltti alue (m2)'),
               InputCell(
                 initialValue: state.asphaltAreaInSquareMeters,

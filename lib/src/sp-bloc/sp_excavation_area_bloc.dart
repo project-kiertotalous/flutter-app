@@ -1,6 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
-import 'SB_excavation_area_event.dart';
+import 'sp_excavation_area_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SBExcavationAreaBloc
@@ -28,6 +28,15 @@ class SBExcavationAreaBloc
       emit(
         state.copyWith(
           asphaltAreaInSquareMeters: event.value,
+        ),
+      );
+    });
+
+    on<CleanSoilPortionPercentageChanged>((event, emit) {
+      logger.d("CleanSoilPortionPercentageChanged to ${event.value}");
+      emit(
+        state.copyWith(
+          removableCleanSoilInPercents: event.value,
         ),
       );
     });
