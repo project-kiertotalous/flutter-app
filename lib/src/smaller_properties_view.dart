@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/sp-forms/small_property_basic_information_form.dart';
+import 'package:flutter_app/src/sp-forms/SB_removable_grounds_form.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 import 'shared/cancel_dialog.dart';
@@ -25,6 +26,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
 
   List<Widget> outerSheathForms() => [
         SmallPropertyBasicInformationForm(),
+        SBRemovableGroundsForm(),
         NavigationButtons(),
       ];
 
@@ -64,7 +66,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
             backgroundColor: Colors.white,
             appBar: AppBar(
               backgroundColor: Colors.white,
-              title: Text('Suuret rakennukset'),
+              title: Text('Rivi- ja pienkerrostalot'),
               bottom: TabBar(
                 // controller: _tabController,
                 tabs: tabs,
