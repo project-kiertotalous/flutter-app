@@ -219,8 +219,8 @@ class WallsForm extends StatelessWidget {
           InputCell(
               initialValue: state.stoneOrBrickWallsInLinearMeters,
               setter: (value) => bloc.add(StoneOrBrickWallsChanged(value))),
-          OutputCell(getter: () => state.brickWallsPartialExteriorCladdingTons),
-          OutputCell(getter: () => state.cleanWoodTons),
+          OutputCell(getter: () => state.partitionWallsTons),
+          OutputCell(getter: () => state.cleanWoodOrBurnableWoodTons),
           OutputCell(getter: () => state.windProtectionBoardTons),
           OutputCell(getter: () => state.insulationWoolTons),
           OutputCell(getter: () => state.outerWallBoardCurtainTons),
