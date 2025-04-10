@@ -30,6 +30,7 @@ import 'package:flutter_app/src/lp-bloc/total_roofs_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/foundation_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_properties_view.dart';
@@ -257,6 +258,10 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => SBExcavationAreaBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SmallPropertiesFoundationBloc(),
                 ),
               ],
               child: SmallerPropertiesView(),
