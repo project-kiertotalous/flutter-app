@@ -24,18 +24,18 @@ class WoodGlassPlasticsForm extends StatelessWidget {
             LayoutGrid(
               columnSizes: [
                 200.px,
-                350.px,
+                400.px,
                 100.px,
                 100.px,
-                350.px,
+                450.px,
               ],
               rowSizes: [
-                75.px,
+                60.px,
                 50.px,
-                75.px,
-                75.px,
-                75.px,
-                75.px,
+                60.px,
+                60.px,
+                60.px,
+                60.px,
               ],
               children: [
                 // Row 1
