@@ -1,15 +1,12 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/shared/cell.dart';
 import 'package:flutter_app/src/shared/column_cell.dart';
 import 'package:flutter_app/src/shared/empty_cell.dart';
 import 'package:flutter_app/src/shared/form_header.dart';
-import 'package:flutter_app/src/shared/info_button.dart';
 import 'package:flutter_app/src/shared/input_cell.dart';
 import 'package:flutter_app/src/shared/menu_cell.dart';
 import 'package:flutter_app/src/shared/output_cell.dart';
 import 'package:flutter_app/src/shared/row_cell.dart';
-import 'package:flutter_app/src/shared/tooltip_texts.dart';
 import 'package:flutter_app/src/sp-bloc/walls_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/walls_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -156,7 +153,7 @@ class WallsForm extends StatelessWidget {
         ],
         rowSizes: [
           50.px,
-          100.px,
+          90.px,
           50.px,
           50.px,
         ],
