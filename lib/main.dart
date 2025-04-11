@@ -21,13 +21,21 @@ import 'package:flutter_app/src/lp-bloc/large_properties_total_demolition_waste_
 import 'package:flutter_app/src/lp-bloc/large_properties_total_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/machines_and_equipments_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/metals_and_alloys_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/other_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/reusable_and_recyclable_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/soil_aggregates_dredging_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_building_dimensions_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_building_frame_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_metals_and_alloys_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_other_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_roofs_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_soil_aggregates_dredging_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
@@ -36,7 +44,14 @@ import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_properties_view.dart';
 import 'package:flutter_app/src/smaller_properties_view.dart';
+import 'package:flutter_app/src/sp-bloc/walls_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/concrete_bricks_tiles_ceramics_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/bituminous_mixtures_coal_tar_products_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -93,6 +108,35 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       DemolitionWasteAndCostsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      ConcreteBricksTilesCeramicsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => WoodGlassPlasticsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      BituminousMixturesCoalTarProductsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => MetalsAndAlloysBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SoilAggregatesDredgingMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      InsulationAndAsbestosContainingMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      GypsumBasedBuildingMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => OtherMaterialsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
@@ -248,6 +292,62 @@ class MyApp extends StatelessWidget {
                         context.read<TotalBuildingDimensionsBloc>(),
                   ),
                 ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalConcreteBricksTilesCeramicsBloc(
+                    concreteBricksTilesCeramicsBloc:
+                        context.read<ConcreteBricksTilesCeramicsBloc>(),
+                    foundationsBloc: context.read<FoundationsBloc>(),
+                    totalIntermediateFloorsBloc:
+                        context.read<IntermediateFloorsBloc>(),
+                    totalRoofsBloc: context.read<TotalRoofsBloc>(),
+                    totalBuildingFrameBloc:
+                        context.read<TotalBuildingFrameBloc>(),
+                    internalWallFramesAndSurfaceMaterialBloc: context
+                        .read<InternalWallFramesAndSurfaceMaterialBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => TotalWoodGlassPlasticsBloc(
+                    woodGlassPlasticsBloc:
+                        context.read<WoodGlassPlasticsBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalBituminousMixturesCoalTarProductsBloc(
+                    bituminousMixturesCoalTarProductsBloc:
+                        context.read<BituminousMixturesCoalTarProductsBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => TotalMetalsAndAlloysBloc(
+                    metalsAndAlloysBloc: context.read<MetalsAndAlloysBloc>(),
+                    totalDemolitionWasteAndCostsBloc:
+                        context.read<TotalDemolitionWasteAndCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                    create: (BuildContext context) =>
+                        TotalSoilAggregatesDredgingMaterialsBloc(
+                          soilAggregatesDredgingMaterialsBloc: context
+                              .read<SoilAggregatesDredgingMaterialsBloc>(),
+                          totalDemolitionWasteAndCostsBloc:
+                              context.read<TotalDemolitionWasteAndCostsBloc>(),
+                        )),
+                BlocProvider(
+                    create: (BuildContext context) => TotalOtherMaterialsBloc(
+                          otherMaterialsBloc:
+                              context.read<OtherMaterialsBloc>(),
+                          totalDemolitionWasteAndCostsBloc:
+                              context.read<TotalDemolitionWasteAndCostsBloc>(),
+                        )),
               ],
               child: LargePropertiesView(),
             ),
@@ -263,6 +363,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       SmallPropertiesFoundationBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => WallsBloc(),
                 ),
                 BlocProvider(create: (BuildContext context) => SmallPropertiesRoofsBloc()),
               ],

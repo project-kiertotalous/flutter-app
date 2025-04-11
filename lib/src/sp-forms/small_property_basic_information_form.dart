@@ -1,4 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:flutter_app/src/shared/row_cell.dart';
+import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/small_property_basic_info_event.dart';
@@ -76,7 +78,22 @@ class SmallPropertyBasicInformationForm extends StatelessWidget {
                       ),
                     ),
                   ],
-                )
+                ),
+                const SizedBox(height: 4),
+                LayoutGrid(columnSizes: [
+                  350.px,
+                ], rowSizes: [
+                  50.px,
+                ], children: [
+                  RowCell(
+                    checkbox: true,
+                    checkboxSetter: (value) =>
+                        bloc.add(IsHazardousSubstanceSurveyDoneChanged(value)),
+                    checkboxTitle:
+                        "Onko vaarallisten aineiden kartoitus tehty?",
+                    checkboxValue: state.isHazardousSubstanceSurveyDone,
+                  ),
+                ]),
               ],
             ),
           ),
