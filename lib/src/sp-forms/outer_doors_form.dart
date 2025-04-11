@@ -1,5 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/shared/header_cell.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_event.dart';
 import 'package:flutter_app/src/shared/form_header.dart';
@@ -25,7 +26,7 @@ class SPOuterDoorsForm extends StatelessWidget {
             FormHeader(text: 'Ulko-ovet'),
             LayoutGrid(
               columnSizes: [
-                400.px,
+                250.px,
                 160.px,
                 160.px,
                 160.px,
@@ -38,7 +39,90 @@ class SPOuterDoorsForm extends StatelessWidget {
                 50.px,
               ],
               children: [
-                RowCell()
+                RowCell(
+                  checkbox: true,
+                  checkboxTitle: 'Ulko-ovet kierrätettäviä',
+                  checkboxSetter: (value) => outerDoorsBloc.add(
+                    SPAreDoorsRecyclableChanged(value),
+                  ),
+                  checkboxValue: state.areDoorsRecyclable,
+                ),
+                HeaderCell(
+                  initialValue: 'Puuovet (kpl)',
+                ),
+                HeaderCell(
+                  initialValue: 'Alumiiniovet (kpl)',
+                ),
+                HeaderCell(
+                  initialValue: 'Teräsovet (kpl)',
+                ),
+                RowCell(
+                  initialValue: 'Umpiovet',
+                ),
+                InputCell(
+                  initialValue: state.woodenDoor?.shutDoors,
+                  setter: (value) => outerDoorsBloc.add(
+                    SPOuterShutWoodenDoorsChanged(value),
+                  ),
+                ),
+                InputCell(
+                  initialValue: state.aluminiumDoor?.shutDoors,
+                  setter: (value) => outerDoorsBloc.add(
+                    SPOuterShutAluminiumDoorsChanged(value),
+                  ),
+                ),
+                InputCell(
+                  initialValue: state.steelDoor?.shutDoors,
+                  setter: (value) => outerDoorsBloc.add(
+                    SPOuterShutSteelDoorsChanged(value),
+                  ),
+                ),
+                RowCell(
+                  initialValue: 'Lasilliset ovet',
+                ),
+                InputCell(
+                  initialValue: state.woodenDoor?.glassDoors,
+                  setter: (value) => outerDoorsBloc.add(
+                    SPOuterGlassWoodenDoorsChanged(value),
+                  ),
+                ),
+                InputCell(
+                  initialValue: state.aluminiumDoor?.glassDoors,
+                  setter: (value) => outerDoorsBloc.add(
+                    SPOuterGlassAluminiumDoorsChanged(value),
+                  ),
+                ),
+                InputCell(
+                  initialValue: state.steelDoor?.glassDoors,
+                  setter: (value) => outerDoorsBloc.add(
+                    SPOuterGlassSteelDoorsChanged(value),
+                  ),
+                ),
+                RowCell(
+                  initialValue: 'Materiaalimäärä (tonnia)',
+                ),
+                OutputCell(
+                  getter: () => state.woodenDoorTons,
+                ),
+                OutputCell(
+                  getter: () => state.aluminiumDoorTons,
+                ),
+                OutputCell(
+                  getter: () => state.steelDoorTons,
+                ),
+                RowCell(
+                  initialValue: 'Lasia (tonnia)',
+                ),
+                OutputCell(
+                  getter: () => state.woodenDoorGlassTons,
+                ),
+                OutputCell(
+                  getter: () => state.aluminiumDoorGlassTons,
+                ),
+                OutputCell(
+                  getter: () => state.steelDoorGlassTons,
+                ),
+
               ],
             ),
           ],
