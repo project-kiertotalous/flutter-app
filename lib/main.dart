@@ -43,6 +43,7 @@ import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_properties_view.dart';
 import 'package:flutter_app/src/smaller_properties_view.dart';
+import 'package:flutter_app/src/sp-bloc/walls_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/concrete_bricks_tiles_ceramics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
@@ -361,6 +362,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) =>
                       SmallPropertiesFoundationBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => WallsBloc(),
                 ),
               ],
               child: SmallerPropertiesView(),
