@@ -37,6 +37,8 @@ import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/foundation_bloc.dart';
@@ -366,6 +368,10 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => WallsBloc(),
+                ),
+                BlocProvider(create: (BuildContext context) => SmallPropertiesRoofsBloc()),
+                BlocProvider(
+                  create: (BuildContext context) => SPOuterDoorsBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => SPInnerDoorsBloc(),
