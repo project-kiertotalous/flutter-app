@@ -78,21 +78,21 @@ class SmallPropertiesRoofsForm extends StatelessWidget {
             OutputCell(getter: () => state.roofArea),
             OutputCell(getter: () => state.woodenRoofLatticeWeightTons),
             OutputCell(getter: () => state.underBoardingWeightTons),
-            OutputCell(getter: () => state.underLaymentTons),
+            OutputCell(getter: () => state.waterRoofWeightKgPerSqm),
             OutputCell(getter: () => state.underLaymentTons),
             RowCell(initialValue: 'Kierrätyskelpoiset materiaalit'),
             RowCell(
                 checkbox: true,
                 checkboxTitle: 'Puu                 ',
-                initialValue: state.containsRecyclableWood,
                 checkboxSetter: (value) =>
-                    roofsBloc.add(ContainsRecyclableWoodChanged(value))),
+                    roofsBloc.add(ContainsRecyclableWoodChanged(value)),
+                    checkboxValue: state.containsRecyclableWood,),
             RowCell(
                 checkbox: true,
                 checkboxTitle: 'Katemateriaali\nsisältää asbestia',
-                initialValue: state.coveringMaterialContainsAsbestos,
                 checkboxSetter: (value) => roofsBloc
-                    .add(CoveringMaterialContainsAsbestosChanged(value))),
+                    .add(CoveringMaterialContainsAsbestosChanged(value)),
+                    checkboxValue: state.coveringMaterialContainsAsbestos,),
           ]),
         ],
       );
