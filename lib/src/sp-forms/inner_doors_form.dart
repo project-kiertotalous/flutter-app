@@ -7,7 +7,6 @@ import 'package:flutter_app/src/shared/form_header.dart';
 import 'package:flutter_app/src/shared/input_cell.dart';
 import 'package:flutter_app/src/shared/output_cell.dart';
 import 'package:flutter_app/src/shared/row_cell.dart';
-import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -41,6 +40,54 @@ class SPInnerDoorsForm extends StatelessWidget {
               ),
               HeaderCell(initialValue: 'Puuovet (kpl)'),
               HeaderCell(initialValue: 'Levyovet (kpl)'),
+              RowCell(
+                initialValue: 'Umpiovia',
+              ),
+              InputCell(
+                initialValue: state.woodenDoor?.shutDoors,
+                setter: (value) => innerDoorsBloc.add(
+                  SPInnerShutWoodenDoorsChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.panelDoor?.shutDoors,
+                setter: (value) => innerDoorsBloc.add(
+                  SPInnerShutPanelDoorsChanged(value),
+                ),
+              ),
+              RowCell(
+                initialValue: 'Lasiovia',
+              ),
+              InputCell(
+                initialValue: state.woodenDoor?.glassDoors,
+                setter: (value) => innerDoorsBloc.add(
+                  SPInnerGlassWoodenDoorsChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.panelDoor?.glassDoors,
+                setter: (value) => innerDoorsBloc.add(
+                  SPInnerGlassPanelDoorsChanged(value),
+                ),
+              ),
+              RowCell(
+                initialValue: 'Puuta (tonnia)',
+              ),
+              OutputCell(
+                getter: () => state.woodenDoorWoodTons,
+              ),
+                 OutputCell(
+                getter: () => state.panelDoorWoodTons,
+              ),
+              RowCell(
+                initialValue: 'Lasia (tonnia)',
+              ),
+              OutputCell(
+                getter: () => state.woodenDoorGlassTons,
+              ),
+              OutputCell(
+                getter: () => state.panelDoorGlassTons,
+              )
             ],
           ),
         ]);
