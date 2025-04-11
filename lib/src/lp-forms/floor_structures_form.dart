@@ -981,7 +981,6 @@ class FloorStructuresForm extends StatelessWidget {
                         state.teachingAndTreatmentSpaces
                             ?.floorPortionPercentageTotal,
                         state.storageAndWorkspaces?.floorPortionPercentageTotal,
-                        state.otherSpaces?.floorPortionPercentageTotal
                       ]),
             ],
           ),

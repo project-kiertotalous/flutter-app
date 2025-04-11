@@ -1,15 +1,21 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/lp-forms/bituminous_mixtures_coal_tar_products_form.dart';
 import 'package:flutter_app/src/lp-forms/cellar_form.dart';
 import 'package:flutter_app/src/lp-forms/exterior_wall_structures_form.dart';
 import 'package:flutter_app/src/lp-forms/fixed_furniture_form.dart';
 import 'package:flutter_app/src/lp-forms/fixtures_and_structures_form.dart';
 import 'package:flutter_app/src/lp-forms/floor_structures_form.dart';
 import 'package:flutter_app/src/lp-forms/foundation_type_and_floors_form.dart';
+import 'package:flutter_app/src/lp-forms/gypsym_based_building_materials_form.dart';
 import 'package:flutter_app/src/lp-forms/hvac_and_electrical_installations_form.dart';
 import 'package:flutter_app/src/lp-forms/indoor_outdoor_form.dart';
+import 'package:flutter_app/src/lp-forms/insulation_and_asbestos_containing_materials_form.dart';
 import 'package:flutter_app/src/lp-forms/intermediate_floors_form.dart';
 import 'package:flutter_app/src/lp-forms/large_properties_demolition_waste_and_costs_form.dart';
 import 'package:flutter_app/src/lp-forms/large_properties_disposal_materials_and_hazardous_waste_form.dart';
+import 'package:flutter_app/src/lp-forms/metals_and_alloys_form.dart';
+import 'package:flutter_app/src/lp-forms/other_materials_form.dart';
 import 'package:flutter_app/src/lp-forms/room_space_form.dart';
 import 'package:flutter_app/src/lp-forms/internal_wall_frames_and_surface_materials_form.dart';
 import 'package:flutter_app/src/lp-forms/large_properties_recyclable_form.dart';
@@ -19,30 +25,34 @@ import 'package:flutter_app/src/lp-forms/removable_grounds_form.dart';
 import 'package:flutter_app/src/lp-forms/reusable_and_recyclable_materials_form.dart';
 import 'package:flutter_app/src/lp-forms/roofs_form.dart';
 import 'package:flutter_app/src/lp-forms/room_space_surface_material_percentages_form.dart';
+import 'package:flutter_app/src/lp-forms/soil_aggregates_dredging_materials_form.dart';
 import 'package:flutter_app/src/lp-forms/total_building_dimensions_form.dart';
 import 'package:flutter_app/src/lp-forms/total_building_frame_form.dart';
+import 'package:flutter_app/src/lp-forms/concrete_bricks_tiles_ceramics_form.dart';
 import 'package:flutter_app/src/lp-forms/windows_form.dart';
+import 'package:flutter_app/src/lp-forms/wood_glass_plastics_form.dart';
 import 'package:flutter_app/src/lp-forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
 
 import 'shared/cancel_dialog.dart';
 
-/// This view is for estimating large properties.
+/// This view is for estimating large buildings.
 class LargePropertiesView extends StatefulWidget {
   const LargePropertiesView({super.key});
 
   @override
-  State<LargePropertiesView> createState() => _LargePropertiesViewState();
+  State<LargePropertiesView> createState() => _LargeBuildingsViewState();
 }
 
-class _LargePropertiesViewState extends State<LargePropertiesView>
+class _LargeBuildingsViewState extends State<LargePropertiesView>
     with TickerProviderStateMixin {
   static const List<Tab> tabs = [
     Tab(text: "Ulkovaippa"),
     Tab(text: "Väliseinät ja ikkunat"),
     Tab(text: "LVI, & sähkö & muut varusteet"),
     Tab(text: "Purkumateriaalit"),
+    Tab(text: "Taulukko"),
   ];
 
   List<Widget> outerSheathForms() => [
@@ -85,6 +95,21 @@ class _LargePropertiesViewState extends State<LargePropertiesView>
         RecyclableMaterialsForm(),
         LargePropertiesDisposalMaterialsAndHazardousWasteForm(),
         DemolitionWasteAndCostForm(),
+        const SizedBox(height: 20),
+        NavigationButtons(),
+      ];
+
+  List<Widget> wasteLawDemolitionForms() => [
+        ConcreteBricksTilesCeramicsForm(),
+        WoodGlassPlasticsForm(),
+        BituminousMixturesCoalTarProductsForm(),
+        MetalsAndAlloysForm(),
+        SoilAggregatesDredgingMaterialsForm(),
+        InsulationAndAsbestosContainingMaterialsForm(),
+        GypsumBasedBuildingMaterialsForm(),
+        OtherMaterialsForm(),
+        const SizedBox(height: 20),
+        NavigationButtons(),
       ];
 
   @override
@@ -121,6 +146,7 @@ class _LargePropertiesViewState extends State<LargePropertiesView>
                   forms: demolitionMaterialsForms,
                   width: 1600,
                 ),
+                TabView(forms: wasteLawDemolitionForms),
               ],
             ),
           ),
