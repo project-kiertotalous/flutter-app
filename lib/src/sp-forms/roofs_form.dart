@@ -18,7 +18,6 @@ class SmallPropertiesRoofsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final roofsBloc = context.read<SmallPropertiesRoofsBloc>();
-    // Use the roofsBloc variable or remove it if unnecessary.
 
     return BlocBuilder<SmallPropertiesRoofsBloc, Roof>(
         builder: (context, state) {
