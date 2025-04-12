@@ -10,6 +10,9 @@ import 'package:flutter_app/src/sp-forms/walls_form.dart';
 import 'package:flutter_app/src/sp-forms/outer_doors_form.dart';
 import 'package:flutter_app/src/tab_view.dart';
 import 'shared/cancel_dialog.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:printing/printing.dart';
 
 /// This view is for estimating smaller row houses and blocks of flats.
 class SmallerPropertiesView extends StatefulWidget {
@@ -60,7 +63,78 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
 
   List<Widget> saveFile() => [
         NavigationButtons(),
+        const SizedBox(height: 10),
+        ElevatedButton.icon(
+          onPressed: () => _showExportOptions(context),
+          icon: Icon(Icons.download),
+          label: Text('Export the data'),
+        )
+
       ];
+
+  void _showExportOptions(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: Icon(Icons.picture_as_pdf),
+              title: Text('Export PDF'),
+              onTap: () {
+                Navigator.pop(context);
+                _exportAsPDF();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.grid_on),
+              title: Text('Export Excel'),
+              onTap: () {
+                Navigator.pop(context);
+                _exportAsExcel();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.all_inclusive),
+              title: Text('Export Both'),
+              onTap: () {
+                Navigator.pop(context);
+                _exportAsPDF();
+                _exportAsExcel();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _exportAsPDF() async {
+    final pdf = pw.Document();
+
+    pdf.addPage(
+      pw.Page(
+        build: (pw.Context context) {
+          return pw.Center(
+            child: pw.Text(
+              'This is a sample demolition report.',
+              style: pw.TextStyle(fontSize: 24),
+            ),
+          );
+        },
+      ),
+    );
+
+    await Printing.layoutPdf(
+      onLayout: (PdfPageFormat format) async => pdf.save(),
+    );
+  }
+
+  void _exportAsExcel() {
+    print('Excel export triggered');
+    // Implementation will be done here!!
+  }    
 
   @override
   Widget build(BuildContext context) {
