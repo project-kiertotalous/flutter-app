@@ -2,20 +2,20 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 abstract class SPApartmentEvent {}
 
 class PcsPerHouseChanged extends SPApartmentEvent {
-  final int pcsPerHouse;
-  PcsPerHouseChanged(this.pcsPerHouse);
+  final int value;
+  PcsPerHouseChanged(this.value);
 }
 class FloorAreaPerApartmentChanged extends SPApartmentEvent {
-  final num floorAreaPerApartment;
-  FloorAreaPerApartmentChanged(this.floorAreaPerApartment);
+  final num value;
+  FloorAreaPerApartmentChanged(this.value);
 }
 class InnerWallsPerApartmentLinearMetersChanged extends SPApartmentEvent {
-  final num innerWallsPerApartmentLinearMeters;
-  InnerWallsPerApartmentLinearMetersChanged(this.innerWallsPerApartmentLinearMeters);
+  final num value;
+  InnerWallsPerApartmentLinearMetersChanged(this.value);
 }
 class WallHeightChanged extends SPApartmentEvent {
-  final num wallHeight;
-  WallHeightChanged(this.wallHeight);
+  final num value;
+  WallHeightChanged(this.value);
 }
 class SurfaceMaterialChanged extends SPApartmentEvent {
   final SurfaceMaterial? surfaceMaterial;
@@ -40,12 +40,12 @@ class BathroomFloorMaterialChanged extends SPApartmentEvent {
   BathroomFloorMaterialChanged(this.bathroomFloorMaterial);
 }
 class KitchenWallMaterialAreaPerApartmentChanged extends SPApartmentEvent {
-  final num kitchenWallMaterialAreaPerApartment;
-  KitchenWallMaterialAreaPerApartmentChanged(this.kitchenWallMaterialAreaPerApartment);
+  final num value;
+  KitchenWallMaterialAreaPerApartmentChanged(this.value);
 }
 class KitchenClosetsInLinearMeterChanged extends SPApartmentEvent {
-  final num kitchenClosetsInLinearMeter;
-  KitchenClosetsInLinearMeterChanged(this.kitchenClosetsInLinearMeter);
+  final num value;
+  KitchenClosetsInLinearMeterChanged(this.value);
 }
 class AreKitchenClosetsRecyclableChanged extends SPApartmentEvent {
   final bool areKitchenClosetsRecyclable;
@@ -53,28 +53,29 @@ class AreKitchenClosetsRecyclableChanged extends SPApartmentEvent {
 }
 
 class DressingClosetsInLinearMeterChanged extends SPApartmentEvent {
-  final num dressingClosetsInLinearMeter;
-  DressingClosetsInLinearMeterChanged(this.dressingClosetsInLinearMeter);
+  final num value;
+  DressingClosetsInLinearMeterChanged(this.value);
 }
 class AreDressingClosetsRecyclableChanged extends SPApartmentEvent {
   final bool areDressingClosetsRecyclable;
   AreDressingClosetsRecyclableChanged(this.areDressingClosetsRecyclable);
 }
-class BathroomWallAreaPerApartmentChanged extends SPApartmentEvent {
-  final num bathroomWallAreaPerApartment;
-  BathroomWallAreaPerApartmentChanged(this.bathroomWallAreaPerApartment);
-}
 class BathroomFloorAreaPerApartmentChanged extends SPApartmentEvent {
-  final num bathroomFloorAreaPerApartment;
-  BathroomFloorAreaPerApartmentChanged(this.bathroomFloorAreaPerApartment);
+  final num value;
+  BathroomFloorAreaPerApartmentChanged(this.value); 
 }
+class BathroomWallAreaPerApartmentChanged extends SPApartmentEvent {
+  final num value;
+  BathroomWallAreaPerApartmentChanged(this.value);
+}
+
 class SaunaPanelingAreaPerApartmentChanged extends SPApartmentEvent {
-  final num saunaPanelingAreaPerApartment;
-  SaunaPanelingAreaPerApartmentChanged(this.saunaPanelingAreaPerApartment);
+  final num value;
+  SaunaPanelingAreaPerApartmentChanged(this.value);
 }
 class ApartmentSpecificKitchenToiletOrSaunaFurnitureChanged extends SPApartmentEvent {
-  final num apartmentSpecificKitchenToiletOrSaunaFurniture;
-  ApartmentSpecificKitchenToiletOrSaunaFurnitureChanged(this.apartmentSpecificKitchenToiletOrSaunaFurniture);
+  final num value;
+  ApartmentSpecificKitchenToiletOrSaunaFurnitureChanged(this.value);
 }
 
 class IsFurnitureRecyclableChanged extends SPApartmentEvent {
