@@ -379,7 +379,7 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => SPInnerDoorsBloc(),
                 ),
                 BlocProvider(
-                  create:(BuildContext context) => SmallPropertiesElectricalInstallationsAndHvacBloc())
+                  create:(BuildContext context) => SmallPropertiesElectricalInstallationsAndHvacBloc()),
                 BlocProvider(
                   create: (BuildContext context) => SPMachineryBloc(),
                 ),
