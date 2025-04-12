@@ -16,124 +16,113 @@ class SPElectricalInstallationsAndhvacForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final hvacBloc = context.read<SmallPropertiesElectricalInstallationsAndHvacBloc>();
+    final hvacBloc =
+        context.read<SmallPropertiesElectricalInstallationsAndHvacBloc>();
 
     return BlocBuilder<SmallPropertiesElectricalInstallationsAndHvacBloc, Hvac>(
       builder: (context, state) {
-        return Column(crossAxisAlignment: CrossAxisAlignment.start,
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FormHeader(text: 'Sähköasennukset ja LVI'),
             LayoutGrid(
-              columnSizes: [250.px, 160.px, 160.px, 160.px],
-              rowSizes: [50.px, 50.px, 50.px, 50.px, 50.px, 50.px, 50.px, 50.px, 50.px],
+              columnSizes: [250.px, 160.px, 160.px],
+              rowSizes: [
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px
+              ],
               children: [
                 EmptyCell(),
-                HeaderCell(initialValue: 'Kpl'),
                 HeaderCell(initialValue: 'Metriä'),
                 HeaderCell(initialValue: 'KG'),
                 RowCell(initialValue: 'Sähköjohdot, kupari'),
                 InputCell(
-                  initialValue: state.electricalWiresCopper?.pieces,
-                  setter: (value) => hvacBloc.add(SPElectricalWiresCopperChanged(value)),
-                ),
-                InputCell(
-                  initialValue: state.electricalWiresCopper?.length,
-                  setter: (value) => hvacBloc.add(SPElectricalWiresCopperChanged(value)),
+                  initialValue: state.electricalWiresCopper,
+                  setter: (value) =>
+                      hvacBloc.add(SPElectricalWiresCopperChanged(value)),
                 ),
                 OutputCell(
-                  getter: () => state.electricalWiresCopper?.weight,
+                  getter: () => state.electricalWiresCopperWeightKg,
                 ),
                 RowCell(initialValue: 'Kupariputket'),
                 InputCell(
-                    
-                    initialValue: state.copperPipes?.pieces,
-                    setter: (value) => hvacBloc.add(SPCopperPipesChanged(value)),
-                ),
-                InputCell(
-                  initialValue: state.copperPipes?.length,
+                  initialValue: state.copperPipes,
                   setter: (value) => hvacBloc.add(SPCopperPipesChanged(value)),
                 ),
                 OutputCell(
-                  getter:() => state.copperPipes?.weight,
+                  getter: () => state.copperPipesWeightKg,
                 ),
                 RowCell(initialValue: 'Muoviputket, vesi'),
                 InputCell(
-                  initialValue: state.plasticPipesWater?.pieces,
-                  setter: (value) => hvacBloc.add(SPPlasticPipesWaterChanged(value)),
-                ),
-                InputCell(
-                  initialValue: state.plasticPipesWater?.length,
-                  setter: (value) => hvacBloc.add(SPPlasticPipesWaterChanged(value)),
+                  initialValue: state.plasticPipesWater,
+                  setter: (value) =>
+                      hvacBloc.add(SPPlasticPipesWaterChanged(value)),
                 ),
                 OutputCell(
-                  getter: () => state.plasticPipesWater?.weight,
+                  getter: () => state.plasticPipesWaterWeightKg,
                 ),
                 RowCell(initialValue: 'Ilmastointiputket D200'),
                 InputCell(
-                  initialValue: state.ventilationPipesD200?.pieces,
-                  setter: (value) => hvacBloc.add(SPVentilationPipesD200Changed(value)),
-                ),
-                InputCell(
-                  initialValue: state.ventilationPipesD200?.length,
-                  setter: (value) => hvacBloc.add(SPVentilationPipesD200Changed(value)),
+                  initialValue: state.ventilationPipesD200,
+                  setter: (value) =>
+                      hvacBloc.add(SPVentilationPipesD200Changed(value)),
                 ),
                 OutputCell(
-                  getter: () => state.ventilationPipesD200?.weight,
+                  getter: () => state.ventilationPipesD200WeightKg,
                 ),
                 RowCell(
                   initialValue: 'Keskuslämmitysputket',
                 ),
                 InputCell(
-                  initialValue: state.centralHeatingPipes?.pieces,
-                  setter: (value) => hvacBloc.add(SPCentralHeatingPipesChanged(value)),
-                ),
-                InputCell(
-                  initialValue: state.centralHeatingPipes?.length,
-                  setter: (value) => hvacBloc.add(SPCentralHeatingPipesChanged(value)),
+                  initialValue: state.centralHeatingPipes,
+                  setter: (value) =>
+                      hvacBloc.add(SPCentralHeatingPipesChanged(value)),
                 ),
                 OutputCell(
-                  getter: () => state.centralHeatingPipes?.weight,
+                  getter: () => state.centralHeatingPipesWeightKg,
                 ),
-                RowCell(
-                  initialValue: 'Valurautaputket'),
-                  InputCell(initialValue: state.castIronPipes?.pieces),
-                  InputCell(initialValue: state.castIronPipes?.length),
-                  OutPutCell(
-                    getter: () => state.castIronPipes?.weight,
-                  ),
+                RowCell(initialValue: 'Valurautaputket'),
+                InputCell(
+                  initialValue: state.castIronPipes,
+                  setter: (value) =>
+                      hvacBloc.add(SPCastIronPipesChanged(value)),
+                ),
+                OutputCell(
+                  getter: () => state.castIronPipesWeightKg,
+                ),
                 RowCell(
                   initialValue: 'Muoviset viemäriputket',
                 ),
                 InputCell(
-                  initialValue: state.sewagePipesPlastic?.pieces,
-                  setter: (value) => hvacBloc.add(SPSewagePipesPlasticChanged(value)),
-                ),
-                InputCell(
-                  initialValue: state.sewagePipesPlastic?.length,
-                  setter: (value) => hvacBloc.add(SPSewagePipesPlasticChanged(value)),
+                  initialValue: state.sewagePipesPlastic,
+                  setter: (value) =>
+                      hvacBloc.add(SPSewagePipesPlasticChanged(value)),
                 ),
                 OutputCell(
-                  getter: () => state.sewagePipesPlastic?.weight,
+                  getter: () => state.sewagePipesPlasticWeightKg,
                 ),
                 RowCell(
                   initialValue: 'Sadevesikourut ja rännit',
                 ),
                 InputCell(
-                  initialValue: state.rainGutters?.pieces,
-                  setter: (value) => hvacBloc.add(SPRainGuttersChanged(value)),
-                ),
-                InputCell(
-                  initialValue: state.rainGutters?.length,
+                  initialValue: state.rainGutters,
                   setter: (value) => hvacBloc.add(SPRainGuttersChanged(value)),
                 ),
                 OutputCell(
-                  getter: () => state.rainGutters?.weight,
+                  getter: () => state.rainGuttersWeightKg,
                 )
               ],
-                ),
+            ),
           ],
-                );
-      },  
-            ); 
+        );
+      },
+    );
   }
 }
