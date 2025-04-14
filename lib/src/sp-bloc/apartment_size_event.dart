@@ -1,3 +1,4 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 abstract class SPApartmentSizeEvent {}
 
 class OneRoomPcsPerHouseChanged extends SPApartmentSizeEvent {
@@ -77,7 +78,24 @@ class FourRoomsWallHeightChanged extends SPApartmentSizeEvent {
   FourRoomsWallHeightChanged(this.value);
 }
 
+class SurfaceMaterialChanged extends SPApartmentSizeEvent {
+  final SurfaceMaterial? surfaceMaterial;
+  SurfaceMaterialChanged(this.surfaceMaterial);
+}
 
+class FloorMaterialChanged extends SPApartmentSizeEvent {
+  final FloorMaterial? floorMaterial;
+  FloorMaterialChanged(this.floorMaterial);
+}
+class KitchenWallMaterialChanged extends SPApartmentSizeEvent {
+  final KitchenWallMaterial? kitchenWallMaterial;
+  KitchenWallMaterialChanged(this.kitchenWallMaterial);
+}
+
+class ApartmentChanged extends SPApartmentSizeEvent {
+  final Apartment apartment;
+  ApartmentChanged(this.apartment);
+}
 
 
 
