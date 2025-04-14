@@ -37,7 +37,7 @@ import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/apartment_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/apartment_size_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
@@ -385,7 +385,7 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => SPMachineryBloc(),
                 ),
                  BlocProvider(
-                  create: (BuildContext context) => SPApartmentBloc(),
+                  create: (BuildContext context) => SPApartmentSizeBloc(),
                 ),
               ],
               child: SmallerPropertiesView(),
