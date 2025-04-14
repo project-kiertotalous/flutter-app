@@ -6,6 +6,7 @@ import 'package:flutter_app/src/sp-forms/inner_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/small_property_basic_information_form.dart';
 import 'package:flutter_app/src/sp-forms/SB_removable_grounds_form.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
+import 'package:flutter_app/src/sp-forms/sp_windows_form.dart';
 import 'package:flutter_app/src/sp-forms/walls_form.dart';
 import 'package:flutter_app/src/sp-forms/outer_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/machinery_form.dart';
@@ -39,6 +40,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
         SmallPropertiesRoofsForm(),
         SPOuterDoorsForm(),
         SPInnerDoorsForm(),
+        SpWindowsForm(),
         SPElectricalInstallationsAndhvacForm(),
         SPMachineryForm(),
         NavigationButtons(),
