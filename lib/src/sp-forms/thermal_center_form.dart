@@ -37,7 +37,7 @@ class ThermalCenterForm extends StatelessWidget {
     return [
       DropdownMenuItem<GarageWallMaterial?>(
         value: null,
-        child: Text('Valitse'),
+        child: Text('Seinämateriaali'),
       ),
       ...GarageWallMaterial.values.map((material) {
         return DropdownMenuItem<GarageWallMaterial?>(
@@ -67,7 +67,7 @@ class ThermalCenterForm extends StatelessWidget {
     return [
       DropdownMenuItem<SmallPropertyRoofType?>(
         value: null,
-        child: Text('Valitse'),
+        child: Text('Kattomtyyppi'),
       ),
       ...SmallPropertyRoofType.values.map((material) {
         return DropdownMenuItem<SmallPropertyRoofType?>(
@@ -87,7 +87,7 @@ class ThermalCenterForm extends StatelessWidget {
       case SmallPropertyRoofType.pentRoof:
         return 'Pulpettikatto, ristikko jako 800mm';
       case null:
-        return 'Valitse';
+        return 'Kattotyyppi';
     }
   }
 
@@ -95,7 +95,7 @@ class ThermalCenterForm extends StatelessWidget {
     return [
       DropdownMenuItem<WaterRoofType?>(
         value: null,
-        child: Text('Valitse'),
+        child: Text('Vesikatemateriaali'),
       ),
       ...WaterRoofType.values.map((material) {
         return DropdownMenuItem<WaterRoofType?>(
@@ -216,19 +216,19 @@ class ThermalCenterForm extends StatelessWidget {
             ColumnCell(initialValue: "Betoniteräksen määrä (tonnia)"),
             EmptyCell(),
             EmptyCell(),
-            EmptyCell(),
+            MenuCell<GarageWallMaterial?>(
+              setter: (value) => bloc.add(GarageWallMaterialChanged(value)),
+              initialValue: state.garageWallMaterial,
+              items: garageWallMaterialToList(),
+            ),
             OutputCell(getter: () => state.wallArea),
             OutputCell(getter: () => state.outerWallSurfaceMaterial),
             OutputCell(getter: () => state.concreteTons),
             OutputCell(getter: () => state.reinforcedConcreteTons),
             EmptyCell(),
             EmptyCell(),
-            RowCell(initialValue: "Seinämateriaali"),
-            MenuCell<GarageWallMaterial?>(
-              setter: (value) => bloc.add(GarageWallMaterialChanged(value)),
-              initialValue: state.garageWallMaterial,
-              items: garageWallMaterialToList(),
-            ),
+            EmptyCell(),
+            EmptyCell(),
             EmptyCell(),
             EmptyCell(),
             EmptyCell(),
@@ -280,19 +280,19 @@ class ThermalCenterForm extends StatelessWidget {
             ColumnCell(initialValue: "Aluskate määrä (tonnia)"),
             EmptyCell(),
             EmptyCell(),
-            EmptyCell(),
+            MenuCell<WaterRoofType?>(
+              setter: (value) => bloc.add(WaterRoofTypeChanged(value)),
+              initialValue: state.waterRoofType,
+              items: waterRoofTypeToList(),
+            ),
             OutputCell(getter: () => state.woodenRoofLatticeWeightTons),
             OutputCell(getter: () => state.underBoardingWeightTons),
             OutputCell(getter: () => state.waterRoofWeightTons),
             OutputCell(getter: () => state.underLaymentWeightTons),
             EmptyCell(),
             EmptyCell(),
-            RowCell(initialValue: "Vesikatemateriaali"),
-            MenuCell<WaterRoofType?>(
-              setter: (value) => bloc.add(WaterRoofTypeChanged(value)),
-              initialValue: state.waterRoofType,
-              items: waterRoofTypeToList(),
-            ),
+            EmptyCell(),
+            EmptyCell(),
             EmptyCell(),
             EmptyCell(),
             EmptyCell(),
