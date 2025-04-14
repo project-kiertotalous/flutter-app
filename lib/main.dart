@@ -48,6 +48,8 @@ import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_properties_view.dart';
 import 'package:flutter_app/src/smaller_properties_view.dart';
+import 'package:flutter_app/src/sp-bloc/thermal_center_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/total_thermal_center_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/walls_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/concrete_bricks_tiles_ceramics_bloc.dart';
@@ -371,7 +373,9 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) => WallsBloc(),
                 ),
-                BlocProvider(create: (BuildContext context) => SmallPropertiesRoofsBloc()),
+                BlocProvider(
+                    create: (BuildContext context) =>
+                        SmallPropertiesRoofsBloc()),
                 BlocProvider(
                   create: (BuildContext context) => SPOuterDoorsBloc(),
                 ),
@@ -379,9 +383,18 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => SPInnerDoorsBloc(),
                 ),
                 BlocProvider(
-                  create:(BuildContext context) => SmallPropertiesElectricalInstallationsAndHvacBloc()),
+                    create: (BuildContext context) =>
+                        SmallPropertiesElectricalInstallationsAndHvacBloc()),
                 BlocProvider(
                   create: (BuildContext context) => SPMachineryBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => ThermalCenterBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => TotalThermalCenterBloc(
+                    thermalCenterBloc: context.read<ThermalCenterBloc>(),
+                  ),
                 ),
               ],
               child: SmallerPropertiesView(),
