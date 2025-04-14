@@ -32,7 +32,7 @@ class SPApartmentForm extends StatelessWidget {
               100.px,
               150.px,
               100.px,
-              150.px,
+              200.px,
             ],
             rowSizes: [
               50.px,
@@ -200,7 +200,7 @@ class SPApartmentForm extends StatelessWidget {
               GreyCell(),
               OutputCell(getter: () => state.totalTrunkWoodTons),
               EmptyCell(),
-              RowCell(initialValue: 'Pintamateriaali/huoneisto (tonnia)'),
+              RowCell(initialValue: 'Pintamateriaalia/huoneisto (tonnia)'),
               OutputCell(
                   getter: () => state.oneRoom?.surfaceMaterialPerApartmentTons),
               OutputCell(
@@ -218,8 +218,67 @@ class SPApartmentForm extends StatelessWidget {
                 setter: (value) => apartmentBloc.add(
                   SurfaceMaterialChanged(value),
                 ),
-                initialValue: state.oneRoom?.surfaceMaterial,
+                initialValue: state.oneRoom?.surfaceMaterial ==
+                            state.twoRooms?.surfaceMaterial &&
+                        state.oneRoom?.surfaceMaterial ==
+                            state.threeRooms?.surfaceMaterial &&
+                        state.oneRoom?.surfaceMaterial ==
+                            state.fourRooms?.surfaceMaterial
+                    ? state.oneRoom?.surfaceMaterial
+                    : null,
                 items: surfaceMaterialToList(),
+              ),
+              RowCell(
+                initialValue: 'Lattiamateriaali/huoneisto (tonnia)',
+              ),
+              OutputCell(
+                  getter: () => state.oneRoom?.floorMaterialPerApartmentTons),
+              OutputCell(
+                  getter: () => state.twoRooms?.floorMaterialPerApartmentTons),
+              OutputCell(
+                  getter: () =>
+                      state.threeRooms?.floorMaterialPerApartmentTons),
+              OutputCell(
+                  getter: () => state.fourRooms?.floorMaterialPerApartmentTons),
+              GreyCell(),
+              OutputCell(getter: () => state.totalFloorMaterialTons),
+              MenuCell<FloorMaterial?>(
+                setter: (value) => apartmentBloc.add(
+                  FloorMaterialChanged(value),
+                ),
+                initialValue: null,
+                items: floorMaterialToList(),
+              ),
+              RowCell(
+                initialValue: 'Keittiön seinämateriaali/huoneisto (m2)',
+              ),
+              OutputCell(
+                  getter: () =>
+                      state.oneRoom?.kitchenWallMaterialAreaPerApartment),
+              OutputCell(
+                  getter: () =>
+                      state.twoRooms?.kitchenWallMaterialAreaPerApartment),
+              OutputCell(
+                  getter: () =>
+                      state.threeRooms?.kitchenWallMaterialAreaPerApartment),
+              OutputCell(
+                  getter: () =>
+                      state.fourRooms?.kitchenWallMaterialAreaPerApartment),
+              OutputCell(getter: () => state.totalkitchenWallArea),
+              OutputCell(getter: () => state.totalkitchenWallTons),
+              MenuCell<KitchenWallMaterial?>(
+                setter: (value) => apartmentBloc.add(
+                  KitchenWallMaterialChanged(value),
+                ),
+                initialValue: state.oneRoom?.kitchenWallMaterial ==
+                            state.twoRooms?.kitchenWallMaterial &&
+                        state.oneRoom?.kitchenWallMaterial ==
+                            state.threeRooms?.kitchenWallMaterial &&
+                        state.oneRoom?.kitchenWallMaterial ==
+                            state.fourRooms?.kitchenWallMaterial
+                    ? state.oneRoom?.kitchenWallMaterial
+                    : null,
+                items: kitchenWallMaterialToList(),
               ),
             ],
           )
@@ -252,6 +311,58 @@ class SPApartmentForm extends StatelessWidget {
         return 'Lastulevy';
       case SurfaceMaterial.woodenPanel:
         return 'Lautapaneeli';
+    }
+  }
+
+  //Floor material type
+  List<DropdownMenuItem<FloorMaterial?>> floorMaterialToList() {
+    return [
+      DropdownMenuItem<FloorMaterial?>(
+        value: null,
+        child: Text('Lattiamateriaali'),
+      ),
+      ...FloorMaterial.values.map((type) {
+        return DropdownMenuItem<FloorMaterial?>(
+          value: type,
+          child: Text(floorMaterialToString(type)),
+        );
+      })
+    ];
+  }
+
+  String floorMaterialToString(FloorMaterial type) {
+    switch (type) {
+      case FloorMaterial.parquet:
+        return 'Parketti';
+      case FloorMaterial.plasticCarpet:
+        return 'Muovimatto';
+      case FloorMaterial.woodPanel:
+        return 'Puupaneeli';
+    }
+  }
+
+  //Kitchen wall material type
+  List<DropdownMenuItem<KitchenWallMaterial?>> kitchenWallMaterialToList() {
+    return [
+      DropdownMenuItem<KitchenWallMaterial?>(
+        value: null,
+        child: Text('Keittiön seinämateriaali'),
+      ),
+      ...KitchenWallMaterial.values.map((type) {
+        return DropdownMenuItem<KitchenWallMaterial?>(
+          value: type,
+          child: Text(kitchenWallMaterialToString(type)),
+        );
+      })
+    ];
+  }
+
+  String kitchenWallMaterialToString(KitchenWallMaterial type) {
+    switch (type) {
+      case KitchenWallMaterial.ceramicTile:
+        return 'Kaakeli';
+      case KitchenWallMaterial.plasticCarpet:
+        return 'Muovimatto';
     }
   }
 }

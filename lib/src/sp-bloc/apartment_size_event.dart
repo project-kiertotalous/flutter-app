@@ -92,10 +92,7 @@ class KitchenWallMaterialChanged extends SPApartmentSizeEvent {
   KitchenWallMaterialChanged(this.kitchenWallMaterial);
 }
 
-class ApartmentChanged extends SPApartmentSizeEvent {
-  final Apartment apartment;
-  ApartmentChanged(this.apartment);
-}
+
 
 
 

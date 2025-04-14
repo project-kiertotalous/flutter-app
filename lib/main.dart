@@ -398,12 +398,8 @@ class MyApp extends StatelessWidget {
                     thermalCenterBloc: context.read<ThermalCenterBloc>(),
                   ),
                 ),
-                BlocProvider(
-                  create: (BuildContext context) => SPApartmentBloc(),
-                ),
                  BlocProvider(
                   create: (BuildContext context) => SPApartmentSizeBloc(
-                    apartmentBloc: context.read<SPApartmentBloc>(),
                   ),
                 ),
               ],
