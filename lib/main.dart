@@ -39,10 +39,13 @@ import 'package:flutter_app/src/lp-bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/carport_or_garage_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/hall_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/passage_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/sp_door_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/foundation_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
@@ -361,6 +364,18 @@ class MyApp extends StatelessWidget {
             ),
         '/smaller_buildings': (context) => MultiBlocProvider(
               providers: [
+                BlocProvider(
+                  create: (BuildContext context) => HallDoorsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => PassageDoorsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => SpDoorBloc(
+                    passageDoorsBloc: context.read<PassageDoorsBloc>(),
+                    hallDoorsBloc: context.read<HallDoorsBloc>(),
+                  ),
+                ),
                 BlocProvider(
                   create: (BuildContext context) => SpWindowsBloc(),
                 ),
