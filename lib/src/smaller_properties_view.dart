@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/sp-forms/carport_or_garage_form.dart';
 import 'package:flutter_app/src/sp-forms/electric_installations_and_HVAC_form.dart';
 import 'package:flutter_app/src/sp-forms/foundation_form.dart';
 import 'package:flutter_app/src/sp-forms/passage_doors_form.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_app/src/sp-forms/inner_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/small_property_basic_information_form.dart';
 import 'package:flutter_app/src/sp-forms/SB_removable_grounds_form.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
+import 'package:flutter_app/src/sp-forms/sp_windows_form.dart';
 import 'package:flutter_app/src/sp-forms/thermal_center_form.dart';
 import 'package:flutter_app/src/sp-forms/walls_form.dart';
 import 'package:flutter_app/src/sp-forms/outer_doors_form.dart';
@@ -41,6 +43,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
         SmallPropertiesRoofsForm(),
         SPOuterDoorsForm(),
         SPInnerDoorsForm(),
+        SpWindowsForm(),
         SPElectricalInstallationsAndhvacForm(),
         SPMachineryForm(),
         NavigationButtons(),
@@ -51,6 +54,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
       ];
 
   List<Widget> yardBuildingsAndStructures() => [
+        CarportOrGarageForm(),
         PassageDoorsForm(),
         ThermalCenterForm(),
         NavigationButtons(),
