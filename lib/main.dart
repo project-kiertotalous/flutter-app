@@ -42,6 +42,7 @@ import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/sp_disposal_materials_and_hazardous_waste_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/foundation_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
@@ -359,6 +360,10 @@ class MyApp extends StatelessWidget {
             ),
         '/smaller_buildings': (context) => MultiBlocProvider(
               providers: [
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SpDisposalMaterialsAndHazardousWasteBloc(),
+                ),
                 BlocProvider(
                   create: (BuildContext context) =>
                       SmallPropertyBasicInfoBloc(),
