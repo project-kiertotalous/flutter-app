@@ -81,24 +81,26 @@ class SmallPropertiesRoofsForm extends StatelessWidget {
             OutputCell(getter: () => state.underLaymentTons),
             RowCell(initialValue: 'Kierrätyskelpoiset materiaalit'),
             RowCell(
-                checkbox: true,
-                checkboxTitle: 'Puu                 ',
-                checkboxSetter: (value) =>
-                    roofsBloc.add(ContainsRecyclableWoodChanged(value)),
-                    checkboxValue: state.containsRecyclableWood,),
+              checkbox: true,
+              checkboxTitle: 'Puu                 ',
+              checkboxSetter: (value) =>
+                  roofsBloc.add(ContainsRecyclableWoodChanged(value)),
+              checkboxValue: state.containsRecyclableWood,
+            ),
             RowCell(
-                checkbox: true,
-                checkboxTitle: 'Katemateriaali\nsisältää asbestia',
-                checkboxSetter: (value) => roofsBloc
-                    .add(CoveringMaterialContainsAsbestosChanged(value)),
-                    checkboxValue: state.coveringMaterialContainsAsbestos,),
+              checkbox: true,
+              checkboxTitle: 'Katemateriaali\nsisältää asbestia',
+              checkboxSetter: (value) =>
+                  roofsBloc.add(CoveringMaterialContainsAsbestosChanged(value)),
+              checkboxValue: state.coveringMaterialContainsAsbestos,
+            ),
           ]),
         ],
       );
     });
   }
 
-    //Roof type
+  //Roof type
   List<DropdownMenuItem<SmallPropertyRoofType?>> roofTypeToList() {
     return [
       DropdownMenuItem<SmallPropertyRoofType?>(

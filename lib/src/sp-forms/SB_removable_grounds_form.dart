@@ -68,8 +68,10 @@ class SBRemovableGroundsForm extends StatelessWidget {
                 ),
               ),
               RowCell(initialValue: 'Poistettavasta maasta saastunutta (%)'),
-              OutputCell(getter: () => state.contaminatedSoil,
-              percentage: true,),
+              OutputCell(
+                getter: () => state.contaminatedSoil,
+                percentage: true,
+              ),
               RowCell(initialValue: 'Asfaltti alue (m2)'),
               InputCell(
                 initialValue: state.asphaltAreaInSquareMeters,
