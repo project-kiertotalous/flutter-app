@@ -32,7 +32,7 @@ class SPApartmentForm extends StatelessWidget {
               100.px,
               150.px,
               100.px,
-              200.px,
+              210.px,
             ],
             rowSizes: [
               50.px,
@@ -349,6 +349,50 @@ class SPApartmentForm extends StatelessWidget {
               OutputCell(
                 getter: () => state.totaldressingClosetTons,
               ),
+              EmptyCell(),
+              RowCell(
+                initialValue: 'WC- ja pesutilojen seinät/huoneisto (m2)',
+              ),
+              InputCell(
+                initialValue: state.oneRoom?.bathroomWallAreaPerApartment,
+                setter: (value) => apartmentBloc.add(
+                  OneRoomBathroomWallAreaPerApartmentChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.twoRooms?.bathroomWallAreaPerApartment,
+                setter: (value) => apartmentBloc.add(
+                  TwoRoomsBathroomWallAreaPerApartmentChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.threeRooms?.bathroomWallAreaPerApartment,
+                setter: (value) => apartmentBloc.add(
+                  ThreeRoomsBathroomWallAreaPerApartmentChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.fourRooms?.bathroomWallAreaPerApartment,
+                setter: (value) => apartmentBloc.add(
+                  FourRoomsBathroomWallAreaPerApartmentChanged(value),
+                ),
+              ),
+              OutputCell(getter: () => state.totalBathroomWallArea),
+              OutputCell(getter: () => state.totalBathroomWallTons),
+              MenuCell<BathroomWallMaterial?>(
+                setter: (value) => apartmentBloc.add(
+                  BathroomWallMaterialChanged(value),
+                ),
+                initialValue: state.oneRoom?.bathroomWallMaterial ==
+                            state.twoRooms?.bathroomWallMaterial &&
+                        state.oneRoom?.bathroomWallMaterial ==
+                            state.threeRooms?.bathroomWallMaterial &&
+                        state.oneRoom?.bathroomWallMaterial ==
+                            state.fourRooms?.bathroomWallMaterial
+                    ? state.oneRoom?.bathroomWallMaterial
+                    : null,
+                items: bathroomWallMaterialToList(),
+              ),
             ],
           )
         ]);
@@ -431,6 +475,31 @@ class SPApartmentForm extends StatelessWidget {
       case KitchenWallMaterial.ceramicTile:
         return 'Kaakeli';
       case KitchenWallMaterial.plasticCarpet:
+        return 'Muovimatto';
+    }
+  }
+
+  //Bathroom wall material type
+  List<DropdownMenuItem<BathroomWallMaterial?>> bathroomWallMaterialToList() {
+    return [
+      DropdownMenuItem<BathroomWallMaterial?>(
+        value: null,
+        child: Text('Pesutilojen seinämateriaali'),
+      ),
+      ...BathroomWallMaterial.values.map((type) {
+        return DropdownMenuItem<BathroomWallMaterial?>(
+          value: type,
+          child: Text(bathroomWallMaterialToString(type)),
+        );
+      })
+    ];
+  }
+
+  String bathroomWallMaterialToString(BathroomWallMaterial type) {
+    switch (type) {
+      case BathroomWallMaterial.ceramicTile:
+        return 'Kaakeli';
+      case BathroomWallMaterial.plasticCarpet:
         return 'Muovimatto';
     }
   }

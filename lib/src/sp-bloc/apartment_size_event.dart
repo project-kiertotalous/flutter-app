@@ -133,6 +133,69 @@ class AreDressingClosetsRecyclableChanged extends SPApartmentSizeEvent {
   AreDressingClosetsRecyclableChanged(this.areDressingClosetsRecyclable);
 }
 
+class OneRoomBathroomWallAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  OneRoomBathroomWallAreaPerApartmentChanged(this.value);
+}
+class TwoRoomsBathroomWallAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  TwoRoomsBathroomWallAreaPerApartmentChanged(this.value);
+}
+class ThreeRoomsBathroomWallAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  ThreeRoomsBathroomWallAreaPerApartmentChanged(this.value);
+}
+class FourRoomsBathroomWallAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  FourRoomsBathroomWallAreaPerApartmentChanged(this.value);
+}
+
+class BathroomWallMaterialChanged extends SPApartmentSizeEvent {
+  final BathroomWallMaterial? bathroomWallMaterial;
+  BathroomWallMaterialChanged(this.bathroomWallMaterial);
+}
+class OneRoomBathroomFloorAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  OneRoomBathroomFloorAreaPerApartmentChanged(this.value);
+}
+class TwoRoomsBathroomFloorAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  TwoRoomsBathroomFloorAreaPerApartmentChanged(this.value);
+}
+class ThreeRoomsBathroomFloorAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  ThreeRoomsBathroomFloorAreaPerApartmentChanged(this.value);
+}
+class FourRoomsBathroomFloorAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  FourRoomsBathroomFloorAreaPerApartmentChanged(this.value);
+}
+class BathroomFloorMaterialChanged extends SPApartmentSizeEvent {
+  final BathroomFloorMaterial? bathroomFloorMaterial;
+  BathroomFloorMaterialChanged(this.bathroomFloorMaterial);
+}
+class OneRoomSaunaPanelingAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  OneRoomSaunaPanelingAreaPerApartmentChanged(this.value);
+}
+class TwoRoomsSaunaPanelingAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  TwoRoomsSaunaPanelingAreaPerApartmentChanged(this.value);
+}
+class ThreeRoomsSaunaPanelingAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  ThreeRoomsSaunaPanelingAreaPerApartmentChanged(this.value);
+}
+class FourRoomsSaunaPanelingAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  FourRoomsSaunaPanelingAreaPerApartmentChanged(this.value);
+}
+class ApartmentSpecificKitchenToiletOrSaunaFurnitureChanged extends SPApartmentSizeEvent {
+  final num value;
+  ApartmentSpecificKitchenToiletOrSaunaFurnitureChanged(this.value);
+}
+
+
 
 
 
