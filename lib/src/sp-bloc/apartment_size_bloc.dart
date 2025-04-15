@@ -84,6 +84,27 @@ class ApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
           fourRooms: state.fourRooms!.copyWith(wallHeight: event.value)));
     });
 
+    on<OneRoomKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          oneRoom: state.oneRoom!
+              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+    });
+    on<TwoRoomsKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          twoRooms: state.twoRooms!
+              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+    });
+    on<ThreeRoomsKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          threeRooms: state.threeRooms!
+              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+    });
+    on<FourRoomsKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          fourRooms: state.fourRooms!
+              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+    });
+
     on<OneRoomKitchenClosetsInLinearMeterChanged>((event, emit) {
       emit(state.copyWith(
           oneRoom: state.oneRoom!
@@ -146,6 +167,51 @@ class ApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
           fourRooms: state.fourRooms!
               .copyWith(bathroomWallAreaPerApartment: event.value)));
     });
+
+    on<OneRoomBathroomFloorAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          oneRoom: state.oneRoom!
+              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+    });
+    on<TwoRoomsBathroomFloorAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          twoRooms: state.twoRooms!
+              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+    });
+
+    on<ThreeRoomsBathroomFloorAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          threeRooms: state.threeRooms!
+              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+    });
+
+    on<FourRoomsBathroomFloorAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          fourRooms: state.fourRooms!
+              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+    });
+
+    on<OneRoomSaunaPanelingAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          oneRoom: state.oneRoom!
+              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+    });
+    on<TwoRoomsSaunaPanelingAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          twoRooms: state.twoRooms!
+              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+    });
+    on<ThreeRoomsSaunaPanelingAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          threeRooms: state.threeRooms!
+              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+    });
+    on<FourRoomsSaunaPanelingAreaPerApartmentChanged>((event, emit) {
+      emit(state.copyWith(
+          fourRooms: state.fourRooms!
+              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+    });
+
 
   }
 }

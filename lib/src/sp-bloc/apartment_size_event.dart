@@ -84,6 +84,23 @@ class FourRoomsWallHeightChanged extends SPApartmentSizeEvent {
   FourRoomsWallHeightChanged(this.value);
 }
 
+class OneRoomKitchenWallMaterialAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  OneRoomKitchenWallMaterialAreaPerApartmentChanged(this.value);
+}
+class TwoRoomsKitchenWallMaterialAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  TwoRoomsKitchenWallMaterialAreaPerApartmentChanged(this.value);
+}
+class ThreeRoomsKitchenWallMaterialAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  ThreeRoomsKitchenWallMaterialAreaPerApartmentChanged(this.value);
+}
+class FourRoomsKitchenWallMaterialAreaPerApartmentChanged extends SPApartmentSizeEvent {
+  final num value;
+  FourRoomsKitchenWallMaterialAreaPerApartmentChanged(this.value);
+}
+
 class OneRoomKitchenClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
   final num value;
   OneRoomKitchenClosetsInLinearMeterChanged(this.value);

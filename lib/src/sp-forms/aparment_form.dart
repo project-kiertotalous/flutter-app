@@ -36,7 +36,7 @@ class SPApartmentForm extends StatelessWidget {
               100.px,
               150.px,
               100.px,
-              210.px,
+              220.px,
             ],
             rowSizes: [
               50.px,
@@ -54,7 +54,7 @@ class SPApartmentForm extends StatelessWidget {
               50.px,
               50.px,
               50.px,
-              50.px,
+              62.px,
             ],
             children: [
               RowCell(
@@ -262,26 +262,39 @@ class SPApartmentForm extends StatelessWidget {
               OutputCell(
                   getter: () => state.apartmentSize.totalFloorMaterialTons),
               MenuCell<FloorMaterial?>(
-                setter: (value) => apartmentBloc.add(
-                  FloorMaterialChanged(value)),
-                  initialValue: state.apartment.floorMaterial,
-                  items: floorMaterialToList(),
-                ),
+                setter: (value) =>
+                    apartmentBloc.add(FloorMaterialChanged(value)),
+                initialValue: state.apartment.floorMaterial,
+                items: floorMaterialToList(),
+              ),
               RowCell(
                 initialValue: 'Keittiön seinämateriaali/huoneisto (m2)',
               ),
-              OutputCell(
-                  getter: () => state.apartmentSize.oneRoom
-                      ?.kitchenWallMaterialAreaPerApartment),
-              OutputCell(
-                  getter: () => state.apartmentSize.twoRooms
-                      ?.kitchenWallMaterialAreaPerApartment),
-              OutputCell(
-                  getter: () => state.apartmentSize.threeRooms
-                      ?.kitchenWallMaterialAreaPerApartment),
-              OutputCell(
-                  getter: () => state.apartmentSize.fourRooms
-                      ?.kitchenWallMaterialAreaPerApartment),
+              InputCell(
+                initialValue: state
+                    .apartmentSize.oneRoom?.kitchenWallMaterialAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                    OneRoomKitchenWallMaterialAreaPerApartmentChanged(value)),
+              ),
+              InputCell(
+                initialValue: state.apartmentSize.twoRooms
+                    ?.kitchenWallMaterialAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                    TwoRoomsKitchenWallMaterialAreaPerApartmentChanged(value)),
+              ),
+              InputCell(
+                initialValue: state.apartmentSize.threeRooms
+                    ?.kitchenWallMaterialAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                    ThreeRoomsKitchenWallMaterialAreaPerApartmentChanged(
+                        value)),
+              ),
+              InputCell(
+                initialValue: state.apartmentSize.fourRooms
+                    ?.kitchenWallMaterialAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                    FourRoomsKitchenWallMaterialAreaPerApartmentChanged(value)),
+              ),
               OutputCell(
                   getter: () => state.apartmentSize.totalkitchenWallArea),
               OutputCell(
@@ -297,7 +310,9 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'Keittiön kaapistot (jm)',
                 checkbox: true,
                 checkboxTitle: 'Kierrätettäviä',
-                checkboxSetter: () => null, //TODO sort this out
+                checkboxSetter: (value) => apartmentBloc
+                    .add(AreKitchenClosetsRecyclableChanged(value)),
+                checkboxValue: state.apartment.areKitchenClosetsRecyclable,
               ),
               InputCell(
                 initialValue:
@@ -336,8 +351,9 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'Vaatekomerot (jm)',
                 checkbox: true,
                 checkboxTitle: 'Kierrätettäviä',
-                checkboxSetter: () =>
-                    state.apartment.areDressingClosetsRecyclable,
+                checkboxSetter: (value) => apartmentBloc
+                    .add(AreDressingClosetsRecyclableChanged(value)),
+                checkboxValue: state.apartment.areDressingClosetsRecyclable,
               ),
               InputCell(
                 initialValue:
@@ -447,8 +463,132 @@ class SPApartmentForm extends StatelessWidget {
               ),
               OutputCell(
                   getter: () => state.apartmentSize.totalBathroomFloorArea),
+              OutputCell(
+                  getter: () => state.apartmentSize.totalBathroomFloorTons),
+              MenuCell<BathroomFloorMaterial?>(
+                  initialValue: state.apartment.bathroomFloorMaterial,
+                  items: bathroomFloorMaterialToList(),
+                  setter: (value) =>
+                      apartmentBloc.add(BathroomFloorMaterialChanged(value))),
+              RowCell(initialValue: 'Saunan panelointi/huoneisto (m2)'),
+              InputCell(
+                initialValue:
+                    state.apartmentSize.oneRoom?.saunaPanelingAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                  OneRoomSaunaPanelingAreaPerApartmentChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue:
+                    state.apartmentSize.twoRooms?.saunaPanelingAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                  TwoRoomsSaunaPanelingAreaPerApartmentChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state
+                    .apartmentSize.threeRooms?.saunaPanelingAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                  ThreeRoomsSaunaPanelingAreaPerApartmentChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state
+                    .apartmentSize.fourRooms?.saunaPanelingAreaPerApartment,
+                setter: (value) => apartmentSizeBloc.add(
+                  FourRoomsSaunaPanelingAreaPerApartmentChanged(value),
+                ),
+              ),
+              OutputCell(
+                  getter: () => state.apartmentSize.totalSaunaPanelingArea),
+              OutputCell(
+                  getter: () => state.apartmentSize.totalSaunaPanelingTons),
+              EmptyCell(),
             ],
-          )
+          ),
+          FormHeader(
+              text: 'Huoneistokohtaiset keittiö-, WC- ja saunakalusteet'),
+          LayoutGrid(columnSizes: [
+            150.px,
+            150.px,
+            150.px,
+            150.px,
+            150.px,
+            150.px,
+            150.px
+          ], rowSizes: [
+            50.px,
+            50.px,
+            50.px
+          ], children: [
+            RowCell(
+                checkbox: true,
+                checkboxTitle: 'Kierrätettäviä',
+                checkboxSetter: (value) =>
+                    apartmentBloc.add(IsFurnitureRecyclableChanged(value)),
+                checkboxValue: state.apartment.isFurnitureRecyclable),
+            EmptyCell(),
+            EmptyCell(),
+            EmptyCell(),
+            EmptyCell(),
+            EmptyCell(),
+            EmptyCell(),
+            RowCell(
+              checkbox: true,
+              checkboxTitle: 'WC-istuin',
+              checkboxSetter: (value) =>
+                  apartmentBloc.add(ToiletSeatChanged(value)),
+              checkboxValue: state.apartment.toiletSeat,
+            ),
+            RowCell(
+              checkbox: true,
+              checkboxTitle: 'Posliiniallas',
+              checkboxSetter: (value) =>
+                  apartmentBloc.add(CeramicSinkChanged(value)),
+              checkboxValue: state.apartment.ceramicSink,
+            ),
+            RowCell(
+              checkbox: true,
+              checkboxTitle: 'Jääkaappi',
+              checkboxSetter: (value) =>
+                  apartmentBloc.add(RefrigeratorChanged(value)),
+              checkboxValue: state.apartment.refrigerator,
+            ),
+            RowCell(
+              checkbox: true,
+              checkboxTitle: 'Sähköliesi',
+              checkboxSetter: (value) =>
+                  apartmentBloc.add(ElectricStoveChanged(value)),
+              checkboxValue: state.apartment.electricStove,
+            ),
+            RowCell(
+              checkbox: true,
+              checkboxTitle: 'Teräspöytä',
+              checkboxSetter: (value) =>
+                  apartmentBloc.add(SteelTableChanged(value)),
+              checkboxValue: state.apartment.steelTable,
+            ),
+            RowCell(
+              checkbox: true,
+              checkboxTitle: 'Vesivaraaja',
+              checkboxSetter: (value) =>
+                  apartmentBloc.add(WaterHeaterChanged(value)),
+              checkboxValue: state.apartment.waterHeater,
+            ),
+            RowCell(
+              checkbox: true,
+              checkboxTitle: 'Saunankiuas',
+              checkboxSetter: (value) =>
+                  apartmentBloc.add(SaunaStoveChanged(value)),
+              checkboxValue: state.apartment.saunaStove,
+            ),
+            RowCell(
+              initialValue: 'Tonnia yhteensä',
+            ),
+            OutputCell(
+                getter: () =>
+                    state.apartmentSize.totalKitchenToiletOrSaunaFurnitureTons),
+          ])
         ]);
       },
     );
@@ -554,6 +694,31 @@ class SPApartmentForm extends StatelessWidget {
       case BathroomWallMaterial.ceramicTile:
         return 'Kaakeli';
       case BathroomWallMaterial.plasticCarpet:
+        return 'Muovimatto';
+    }
+  }
+
+  //Bathroom floor material type
+  List<DropdownMenuItem<BathroomFloorMaterial?>> bathroomFloorMaterialToList() {
+    return [
+      DropdownMenuItem<BathroomFloorMaterial?>(
+        value: null,
+        child: Text('Pesutilojen lattiamateriaali'),
+      ),
+      ...BathroomFloorMaterial.values.map((type) {
+        return DropdownMenuItem<BathroomFloorMaterial?>(
+          value: type,
+          child: Text(bathroomFloorMaterialToString(type)),
+        );
+      })
+    ];
+  }
+
+  String bathroomFloorMaterialToString(BathroomFloorMaterial type) {
+    switch (type) {
+      case BathroomFloorMaterial.ceramicTile:
+        return 'Kaakeli';
+      case BathroomFloorMaterial.plasticCarpet:
         return 'Muovimatto';
     }
   }
