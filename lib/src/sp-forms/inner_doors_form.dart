@@ -48,12 +48,14 @@ class SPInnerDoorsForm extends StatelessWidget {
                 setter: (value) => innerDoorsBloc.add(
                   SPInnerShutWoodenDoorsChanged(value),
                 ),
+                integer: true,
               ),
               InputCell(
                 initialValue: state.panelDoor?.shutDoors,
                 setter: (value) => innerDoorsBloc.add(
                   SPInnerShutPanelDoorsChanged(value),
                 ),
+                integer: true,
               ),
               RowCell(
                 initialValue: 'Lasiovia',
@@ -63,12 +65,14 @@ class SPInnerDoorsForm extends StatelessWidget {
                 setter: (value) => innerDoorsBloc.add(
                   SPInnerGlassWoodenDoorsChanged(value),
                 ),
+                integer: true,
               ),
               InputCell(
                 initialValue: state.panelDoor?.glassDoors,
                 setter: (value) => innerDoorsBloc.add(
                   SPInnerGlassPanelDoorsChanged(value),
                 ),
+                integer: true,
               ),
               RowCell(
                 initialValue: 'Puuta (tonnia)',
@@ -76,7 +80,7 @@ class SPInnerDoorsForm extends StatelessWidget {
               OutputCell(
                 getter: () => state.woodenDoorWoodTons,
               ),
-                 OutputCell(
+              OutputCell(
                 getter: () => state.panelDoorWoodTons,
               ),
               RowCell(

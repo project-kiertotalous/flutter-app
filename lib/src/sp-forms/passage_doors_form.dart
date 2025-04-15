@@ -111,10 +111,10 @@ class PassageDoorsForm extends StatelessWidget {
               Cell.row(initialValue: 'Kpl'),
               Cell.input(
                 initialValue: state.hallDoors.woodenDoors,
-                integer: true,
                 setter: (value) => hallBloc.add(
                   WoodenDoorsChanged(value),
                 ),
+                integer: true,
               ),
               Cell.input(
                 initialValue: state.hallDoors.aluminiumDoors,
