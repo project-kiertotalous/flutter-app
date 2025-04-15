@@ -47,6 +47,7 @@ import 'package:flutter_app/src/sp-bloc/passage_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/spApartments_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_door_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/foundation_bloc.dart';
@@ -421,10 +422,15 @@ class MyApp extends StatelessWidget {
                     thermalCenterBloc: context.read<ThermalCenterBloc>(),
                   ),
                 ),
-                 BlocProvider(
-                  create: (BuildContext context) => SPApartmentSizeBloc(
-                  ),
+                BlocProvider(
+                  create: (BuildContext context) => ApartmentSizeBloc(),
                 ),
+                BlocProvider(create: (BuildContext context) => ApartmentBloc()),
+                BlocProvider(
+                    create: (BuildContext context) => SPApartmentsBloc(
+                          apartmentSizeBloc: context.read<ApartmentSizeBloc>(),
+                          apartmentBloc: context.read<ApartmentBloc>(),
+                        ))
               ],
               child: SmallerPropertiesView(),
             ),

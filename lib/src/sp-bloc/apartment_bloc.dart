@@ -2,12 +2,11 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SPApartmentBloc extends Bloc<SPApartmentEvent, Apartment> {
-  SPApartmentBloc() : super(Apartment()) {
+class ApartmentBloc extends Bloc<ApartmentEvent, Apartment> {
+  ApartmentBloc() : super(Apartment()) {
     on<PcsPerHouseChanged>((event, emit) {
       emit(state.copyWith(pcsPerHouse: event.value));
     });
-
     on<FloorAreaPerApartmentChanged>((event, emit) {
       emit(state.copyWith(floorAreaPerApartment: event.value));
     });
@@ -18,19 +17,19 @@ class SPApartmentBloc extends Bloc<SPApartmentEvent, Apartment> {
       emit(state.copyWith(wallHeight: event.value));
     });
     on<SurfaceMaterialChanged>((event, emit) {
-      emit(state.copyWith(surfaceMaterial: event.surfaceMaterial));
+      emit(state.copyWith(surfaceMaterial: event.value));
     });
     on<FloorMaterialChanged>((event, emit) {
-      emit(state.copyWith(floorMaterial: event.floorMaterial));
+      emit(state.copyWith(floorMaterial: event.value));
     });
     on<KitchenWallMaterialChanged>((event, emit) {
-      emit(state.copyWith(kitchenWallMaterial: event.kitchenWallMaterial));
+      emit(state.copyWith(kitchenWallMaterial: event.value));
     });
     on<BathroomWallMaterialChanged>((event, emit) {
-      emit(state.copyWith(bathroomWallMaterial: event.bathroomWallMaterial));
+      emit(state.copyWith(bathroomWallMaterial: event.value));
     });
     on<BathroomFloorMaterialChanged>((event, emit) {
-      emit(state.copyWith(bathroomFloorMaterial: event.bathroomFloorMaterial));
+      emit(state.copyWith(bathroomFloorMaterial: event.value));
     });
     on<KitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
       emit(state.copyWith(kitchenWallMaterialAreaPerApartment: event.value));
@@ -39,13 +38,13 @@ class SPApartmentBloc extends Bloc<SPApartmentEvent, Apartment> {
       emit(state.copyWith(kitchenClosetsInLinearMeter: event.value));
     });
     on<AreKitchenClosetsRecyclableChanged>((event, emit) {
-      emit(state.copyWith(areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable));
+      emit(state.copyWith(areKitchenClosetsRecyclable: event.value));
     });
     on<DressingClosetsInLinearMeterChanged>((event, emit) {
       emit(state.copyWith(dressingClosetsInLinearMeter: event.value));
     });
     on<AreDressingClosetsRecyclableChanged>((event, emit) {
-      emit(state.copyWith(areDressingClosetsRecyclable: event.areDressingClosetsRecyclable));
+      emit(state.copyWith(areDressingClosetsRecyclable: event.value));
     });
     
     on<BathroomFloorAreaPerApartmentChanged>((event, emit) {
@@ -61,28 +60,28 @@ class SPApartmentBloc extends Bloc<SPApartmentEvent, Apartment> {
       emit(state.copyWith(apartmentSpecificKitchenToiletOrSaunaFurniture: event.value));
     });
     on<IsFurnitureRecyclableChanged>((event, emit) {
-      emit(state.copyWith(isFurnitureRecyclable: event.isFurnitureRecyclable));
+      emit(state.copyWith(isFurnitureRecyclable: event.value));
     });
     on<ToiletSeatChanged>((event, emit) {
-      emit(state.copyWith(toiletSeat: event.toiletSeat));
+      emit(state.copyWith(toiletSeat: event.value));
     });
     on<CeramicSinkChanged>((event, emit) {
-      emit(state.copyWith(ceramicSink: event.ceramicSink));
+      emit(state.copyWith(ceramicSink: event.value));
     });
     on<RefrigeratorChanged>((event, emit) {
-      emit(state.copyWith(refrigerator: event.refrigerator));
+      emit(state.copyWith(refrigerator: event.value));
     });
     on<ElectricStoveChanged>((event, emit) {
-      emit(state.copyWith(electricStove: event.electricStove));
+      emit(state.copyWith(electricStove: event.value));
     });
     on<SteelTableChanged>((event, emit) {
-      emit(state.copyWith(steelTable: event.steelTable));
+      emit(state.copyWith(steelTable: event.value));
     });
     on<WaterHeaterChanged>((event, emit) {
-      emit(state.copyWith(waterHeater: event.waterHeater));
+      emit(state.copyWith(waterHeater: event.value));
     });
     on<SaunaStoveChanged>((event, emit) {
-      emit(state.copyWith(saunaStove: event.saunaStove));
+      emit(state.copyWith(saunaStove: event.value));
     });
 
   }

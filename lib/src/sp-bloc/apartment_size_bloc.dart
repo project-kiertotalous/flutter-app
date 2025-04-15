@@ -2,8 +2,8 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_size_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SPApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
-  SPApartmentSizeBloc()
+class ApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
+  ApartmentSizeBloc()
       : super(ApartmentSize(
           oneRoom: Apartment(),
           twoRooms: Apartment(),
@@ -84,42 +84,6 @@ class SPApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
           fourRooms: state.fourRooms!.copyWith(wallHeight: event.value)));
     });
 
-    on<SurfaceMaterialChanged>((event, emit) {
-      emit(state.copyWith(
-        oneRoom:
-            state.oneRoom?.copyWith(surfaceMaterial: event.surfaceMaterial),
-        twoRooms:
-            state.twoRooms?.copyWith(surfaceMaterial: event.surfaceMaterial),
-        threeRooms:
-            state.threeRooms?.copyWith(surfaceMaterial: event.surfaceMaterial),
-        fourRooms:
-            state.fourRooms?.copyWith(surfaceMaterial: event.surfaceMaterial),
-      ));
-    });
-
-    on<FloorMaterialChanged>((event, emit) {
-      emit(state.copyWith(
-        oneRoom: state.oneRoom?.copyWith(floorMaterial: event.floorMaterial),
-        twoRooms: state.twoRooms?.copyWith(floorMaterial: event.floorMaterial),
-        threeRooms:
-            state.threeRooms?.copyWith(floorMaterial: event.floorMaterial),
-        fourRooms:
-            state.fourRooms?.copyWith(floorMaterial: event.floorMaterial),
-      ));
-    });
-    on<KitchenWallMaterialChanged>((event, emit) {
-      emit(state.copyWith(
-        oneRoom: state.oneRoom
-            ?.copyWith(kitchenWallMaterial: event.kitchenWallMaterial),
-        twoRooms: state.twoRooms
-            ?.copyWith(kitchenWallMaterial: event.kitchenWallMaterial),
-        threeRooms: state.threeRooms
-            ?.copyWith(kitchenWallMaterial: event.kitchenWallMaterial),
-        fourRooms: state.fourRooms
-            ?.copyWith(kitchenWallMaterial: event.kitchenWallMaterial),
-      ));
-    });
-
     on<OneRoomKitchenClosetsInLinearMeterChanged>((event, emit) {
       emit(state.copyWith(
           oneRoom: state.oneRoom!
@@ -140,18 +104,7 @@ class SPApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
           fourRooms: state.fourRooms!
               .copyWith(kitchenClosetsInLinearMeter: event.value)));
     });
-    on<AreKitchenClosetsRecyclableChanged>((event, emit) {
-      emit(state.copyWith(
-        oneRoom: state.oneRoom?.copyWith(
-            areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
-        twoRooms: state.twoRooms?.copyWith(
-            areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
-        threeRooms: state.threeRooms?.copyWith(
-            areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
-        fourRooms: state.fourRooms?.copyWith(
-            areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
-      ));
-    });
+  
     on<OneRoomDressingClosetsInLinearMeterChanged>((event, emit) {
       emit(state.copyWith(
           oneRoom: state.oneRoom!
@@ -173,18 +126,6 @@ class SPApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
               .copyWith(dressingClosetsInLinearMeter: event.value)));
     });
 
-    on<AreDressingClosetsRecyclableChanged>((event, emit) {
-      emit(state.copyWith(
-        oneRoom: state.oneRoom?.copyWith(
-            areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
-        twoRooms: state.twoRooms?.copyWith(
-            areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
-        threeRooms: state.threeRooms?.copyWith(
-            areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
-        fourRooms: state.fourRooms?.copyWith(
-            areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
-      ));
-    });
     on<OneRoomBathroomWallAreaPerApartmentChanged>((event, emit) {
       emit(state.copyWith(
           oneRoom: state.oneRoom!
@@ -205,17 +146,6 @@ class SPApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
           fourRooms: state.fourRooms!
               .copyWith(bathroomWallAreaPerApartment: event.value)));
     });
-    on<BathroomWallMaterialChanged>((event, emit) {
-      emit(state.copyWith(
-        oneRoom:
-            state.oneRoom?.copyWith(bathroomWallMaterial: event.bathroomWallMaterial),
-        twoRooms:
-            state.twoRooms?.copyWith(bathroomWallMaterial: event.bathroomWallMaterial),
-        threeRooms:
-            state.threeRooms?.copyWith(bathroomWallMaterial: event.bathroomWallMaterial),
-        fourRooms:
-            state.fourRooms?.copyWith(bathroomWallMaterial: event.bathroomWallMaterial),
-      ));
-    });
+
   }
 }
