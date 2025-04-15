@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/sp-forms/carport_or_garage_form.dart';
 import 'package:flutter_app/src/sp-forms/electric_installations_and_HVAC_form.dart';
 import 'package:flutter_app/src/sp-forms/foundation_form.dart';
 import 'package:flutter_app/src/sp-forms/roofs_form.dart';
@@ -52,6 +53,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
       ];
 
   List<Widget> yardBuildingsAndStructures() => [
+        CarportOrGarageForm(),
         ThermalCenterForm(),
         NavigationButtons(),
       ];
