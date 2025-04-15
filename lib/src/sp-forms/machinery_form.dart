@@ -151,8 +151,8 @@ class SPMachineryForm extends StatelessWidget {
                 ),
               ),
               MenuCell<FencesBetweenApartments?>(
-                setter: (value) =>
-                    machineryBloc.add(SPFencesBetweenApartmentsChanged(value)),
+                setter: (value) => machineryBloc.add(
+                  SPFencesBetweenApartmentsChanged(value)),
                 initialValue: state.fencesBetweenApartments,
                 items: fenceTypeToList(),
               ),

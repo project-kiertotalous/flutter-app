@@ -76,7 +76,7 @@ class SPInnerDoorsForm extends StatelessWidget {
               OutputCell(
                 getter: () => state.woodenDoorWoodTons,
               ),
-              OutputCell(
+                 OutputCell(
                 getter: () => state.panelDoorWoodTons,
               ),
               RowCell(
