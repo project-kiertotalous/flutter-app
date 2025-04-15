@@ -92,6 +92,47 @@ class KitchenWallMaterialChanged extends SPApartmentSizeEvent {
   KitchenWallMaterialChanged(this.kitchenWallMaterial);
 }
 
+class OneRoomKitchenClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  OneRoomKitchenClosetsInLinearMeterChanged(this.value);
+}
+class TwoRoomsKitchenClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  TwoRoomsKitchenClosetsInLinearMeterChanged(this.value);
+}
+class ThreeRoomsKitchenClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  ThreeRoomsKitchenClosetsInLinearMeterChanged(this.value);
+}
+class FourRoomsKitchenClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  FourRoomsKitchenClosetsInLinearMeterChanged(this.value);
+}
+class AreKitchenClosetsRecyclableChanged extends SPApartmentSizeEvent {
+  final bool areKitchenClosetsRecyclable;
+  AreKitchenClosetsRecyclableChanged(this.areKitchenClosetsRecyclable);
+}
+class OneRoomDressingClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  OneRoomDressingClosetsInLinearMeterChanged(this.value);
+}
+class TwoRoomsDressingClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  TwoRoomsDressingClosetsInLinearMeterChanged(this.value);
+}
+class ThreeRoomsDressingClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  ThreeRoomsDressingClosetsInLinearMeterChanged(this.value);
+}
+class FourRoomsDressingClosetsInLinearMeterChanged extends SPApartmentSizeEvent {
+  final num value;
+  FourRoomsDressingClosetsInLinearMeterChanged(this.value);
+}
+class AreDressingClosetsRecyclableChanged extends SPApartmentSizeEvent {
+  final bool areDressingClosetsRecyclable;
+  AreDressingClosetsRecyclableChanged(this.areDressingClosetsRecyclable);
+}
+
 
 
 

@@ -25,7 +25,7 @@ class SPApartmentForm extends StatelessWidget {
           FormHeader(text: 'Huoneistot'),
           LayoutGrid(
             columnSizes: [
-              250.px,
+              300.px,
               100.px,
               100.px,
               100.px,
@@ -279,6 +279,75 @@ class SPApartmentForm extends StatelessWidget {
                     ? state.oneRoom?.kitchenWallMaterial
                     : null,
                 items: kitchenWallMaterialToList(),
+              ),
+              RowCell(
+                initialValue: 'Keittiön kaapistot (jm)',
+                checkbox: true,
+                checkboxTitle: 'Kierrätettäviä',
+                checkboxSetter: () => null, //TODO sort this out
+              ),
+              InputCell(
+                initialValue: state.oneRoom?.kitchenClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  OneRoomKitchenClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.twoRooms?.kitchenClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  TwoRoomsKitchenClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.threeRooms?.kitchenClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  ThreeRoomsKitchenClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.fourRooms?.kitchenClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  FourRoomsKitchenClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              GreyCell(),
+              OutputCell(
+                getter: () => state.totalkitchenClosetTons,
+              ),
+              EmptyCell(),
+              RowCell(
+                initialValue: 'Vaatekomerot (jm)',
+                checkbox: true,
+                checkboxTitle: 'Kierrätettäviä',
+                checkboxSetter: () => null, //TODO sort this out
+              ),
+              InputCell(
+                initialValue: state.oneRoom?.dressingClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  OneRoomDressingClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.twoRooms?.dressingClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  TwoRoomsDressingClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.threeRooms?.dressingClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  ThreeRoomsDressingClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              InputCell(
+                initialValue: state.fourRooms?.dressingClosetsInLinearMeter,
+                setter: (value) => apartmentBloc.add(
+                  FourRoomsDressingClosetsInLinearMeterChanged(value),
+                ),
+              ),
+              GreyCell(),
+              OutputCell(
+                getter: () => state.totaldressingClosetTons,
               ),
             ],
           )

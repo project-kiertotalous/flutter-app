@@ -119,5 +119,62 @@ class SPApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
         fourRooms: state.fourRooms?.copyWith(kitchenWallMaterial: event.kitchenWallMaterial),
       ));
     });
+
+    on<OneRoomKitchenClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          oneRoom:
+              state.oneRoom!.copyWith(kitchenClosetsInLinearMeter: event.value)));
+    });
+    on<TwoRoomsKitchenClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          twoRooms:
+              state.twoRooms!.copyWith(kitchenClosetsInLinearMeter: event.value)));
+    });
+    on<ThreeRoomsKitchenClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          threeRooms:
+              state.threeRooms!.copyWith(kitchenClosetsInLinearMeter: event.value)));
+    });
+    on<FourRoomsKitchenClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          fourRooms:
+              state.fourRooms!.copyWith(kitchenClosetsInLinearMeter: event.value)));
+    });
+    on<AreKitchenClosetsRecyclableChanged>((event, emit) {
+      emit(state.copyWith(
+        oneRoom: state.oneRoom?.copyWith(areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
+        twoRooms: state.twoRooms?.copyWith(areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
+        threeRooms: state.threeRooms?.copyWith(areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
+        fourRooms: state.fourRooms?.copyWith(areKitchenClosetsRecyclable: event.areKitchenClosetsRecyclable),
+      ));
+    });
+    on<OneRoomDressingClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          oneRoom:
+              state.oneRoom!.copyWith(dressingClosetsInLinearMeter: event.value)));
+    });
+    on<TwoRoomsDressingClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          twoRooms:
+              state.twoRooms!.copyWith(dressingClosetsInLinearMeter: event.value)));
+    });
+    on<ThreeRoomsDressingClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          threeRooms:
+              state.threeRooms!.copyWith(dressingClosetsInLinearMeter: event.value)));
+    });
+    on<FourRoomsDressingClosetsInLinearMeterChanged>((event, emit) {
+      emit(state.copyWith(
+          fourRooms:
+              state.fourRooms!.copyWith(dressingClosetsInLinearMeter: event.value)));
+    });
+    on<AreDressingClosetsRecyclableChanged>((event, emit) {
+      emit(state.copyWith(
+        oneRoom: state.oneRoom?.copyWith(areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
+        twoRooms: state.twoRooms?.copyWith(areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
+        threeRooms: state.threeRooms?.copyWith(areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
+        fourRooms: state.fourRooms?.copyWith(areDressingClosetsRecyclable: event.areDressingClosetsRecyclable),
+      ));
+    });
   }
 }
