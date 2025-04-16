@@ -228,16 +228,16 @@ class SPApartmentForm extends StatelessWidget {
               RowCell(initialValue: 'Pintamateriaalia/huoneisto (tonnia)'),
               OutputCell(
                   getter: () => state
-                      .apartmentSize.oneRoom?.surfaceMaterialPerApartmentTons),
+                      .apartmentSize.oneRoomSurfaceMaterialPerApartmentTons),
               OutputCell(
                   getter: () => state
-                      .apartmentSize.twoRooms?.surfaceMaterialPerApartmentTons),
+                      .apartmentSize.twoRoomsSurfaceMaterialPerApartmentTons),
               OutputCell(
-                  getter: () => state.apartmentSize.threeRooms
-                      ?.surfaceMaterialPerApartmentTons),
+                  getter: () => state
+                      .apartmentSize.threeRoomsSurfaceMaterialPerApartmentTons),
               OutputCell(
-                  getter: () => state.apartmentSize.fourRooms
-                      ?.surfaceMaterialPerApartmentTons),
+                  getter: () => state
+                      .apartmentSize.fourRoomsSurfaceMaterialPerApartmentTons),
               GreyCell(),
               OutputCell(
                   getter: () => state.apartmentSize.totalSurfaceMaterialTons),
@@ -251,17 +251,27 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'Lattiamateriaali/huoneisto (tonnia)',
               ),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.oneRoom?.floorMaterialPerApartmentTons),
+                // TODO: these need to be added once fixed on calculation side
+                getter: () {},
+                // getter: () => state
+                //     .apartmentSize.oneRoom?.,
+                // ),
+              ),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.twoRooms?.floorMaterialPerApartmentTons),
+                getter: () {},
+                // getter: () =>
+                //     state.apartmentSize.twoRooms?.floorMaterialPerApartmentTons,
+              ),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.threeRooms?.floorMaterialPerApartmentTons),
+                getter: () {},
+                // getter: () => state
+                //     .apartmentSize.threeRooms?.floorMaterialPerApartmentTons,
+              ),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.fourRooms?.floorMaterialPerApartmentTons),
+                getter: () {},
+                // getter: () => state
+                //     .apartmentSize.fourRooms?.floorMaterialPerApartmentTons,
+              ),
               GreyCell(),
               OutputCell(
                   getter: () => state.apartmentSize.totalFloorMaterialTons),
