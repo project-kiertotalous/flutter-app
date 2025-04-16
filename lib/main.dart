@@ -37,17 +37,24 @@ import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/carport_or_garage_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/hall_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/passage_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/sp_door_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/sp_excavation_area_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/foundation_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/small_property_basic_info_bloc.dart';
 import 'package:flutter_app/src/home_view.dart';
 import 'package:flutter_app/src/large_properties_view.dart';
 import 'package:flutter_app/src/smaller_properties_view.dart';
+import 'package:flutter_app/src/sp-bloc/sp_windows_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/thermal_center_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/total_thermal_center_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/walls_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/yard_roof_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -359,6 +366,24 @@ class MyApp extends StatelessWidget {
         '/smaller_buildings': (context) => MultiBlocProvider(
               providers: [
                 BlocProvider(
+                  create: (BuildContext context) => HallDoorsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => PassageDoorsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => SpDoorBloc(
+                    passageDoorsBloc: context.read<PassageDoorsBloc>(),
+                    hallDoorsBloc: context.read<HallDoorsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => SpWindowsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => CarportOrGarageBloc(),
+                ),
+                BlocProvider(
                   create: (BuildContext context) =>
                       SmallPropertyBasicInfoBloc(),
                 ),
@@ -389,6 +414,14 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => YardRoofBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => ThermalCenterBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => TotalThermalCenterBloc(
+                    thermalCenterBloc: context.read<ThermalCenterBloc>(),
+                  ),
                 ),
               ],
               child: SmallerPropertiesView(),

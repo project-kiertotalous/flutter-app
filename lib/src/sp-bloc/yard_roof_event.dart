@@ -3,7 +3,7 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 abstract class YardRoofEvent {}
 
 class RoofTypeChanged extends YardRoofEvent {
-  final RoofType? value;
+  final SmallPropertyRoofType? value;
   RoofTypeChanged(this.value);
 }
 

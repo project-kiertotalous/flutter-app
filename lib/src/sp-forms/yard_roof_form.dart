@@ -18,7 +18,7 @@ class YardRoofForm extends StatelessWidget {
     return [
       const DropdownMenuItem<SmallPropertyRoofType?>(
         value: null,
-        child: Text('Valitse'),
+        child: Text('Valitse Kattotyyppi'),
       ),
       ...SmallPropertyRoofType.values.map((type) {
         return DropdownMenuItem<SmallPropertyRoofType?>(
@@ -44,7 +44,7 @@ class YardRoofForm extends StatelessWidget {
     return [
       const DropdownMenuItem<WaterRoofType?>(
         value: null,
-        child: Text('Vesikate'),
+        child: Text('Materiaali'),
       ),
       ...WaterRoofType.values.map((type) {
         return DropdownMenuItem<WaterRoofType?>(
@@ -90,8 +90,15 @@ class YardRoofForm extends StatelessWidget {
             50.px
           ], children: [
             FormHeader(text: "Katto"),
-            ColumnCell(initialValue: "ADD DRODPDOWN MENU HERE LATER!!"),
-            EmptyCell(),
+            GridPlacement(
+                columnStart: 1,
+                columnSpan: 2,
+                rowStart: 0,
+                child: MenuCell(
+                  initialValue: state.roofType,
+                  items: roofTypeToList(),
+                  setter: (value) => bloc.add(RoofTypeChanged(value)),
+                )),
             EmptyCell(),
             MenuCell(
               initialValue: state.waterRoofType,
