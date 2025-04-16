@@ -72,24 +72,28 @@ class SPApartmentForm extends StatelessWidget {
               ),
               InputCell(
                 initialValue: state.apartmentSize.oneRoom?.pcsPerHouse,
+                integer: true,
                 setter: (value) => apartmentSizeBloc.add(
                   OneRoomPcsPerHouseChanged(value),
                 ),
               ),
               InputCell(
                 initialValue: state.apartmentSize.twoRooms?.pcsPerHouse,
+                integer: true,
                 setter: (value) => apartmentSizeBloc.add(
                   TwoRoomsPcsPerHouseChanged(value),
                 ),
               ),
               InputCell(
                 initialValue: state.apartmentSize.threeRooms?.pcsPerHouse,
+                integer: true,
                 setter: (value) => apartmentSizeBloc.add(
                   ThreeRoomsPcsPerHouseChanged(value),
                 ),
               ),
               InputCell(
                 initialValue: state.apartmentSize.fourRooms?.pcsPerHouse,
+                integer: true,
                 setter: (value) => apartmentSizeBloc.add(
                   FourRoomsPcsPerHouseChanged(value),
                 ),
