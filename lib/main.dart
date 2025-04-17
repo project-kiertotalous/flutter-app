@@ -1,3 +1,4 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/building_dimensions_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/building_frame_bloc.dart';
@@ -161,9 +162,6 @@ class MyApp extends StatelessWidget {
                     foundationsBloc: context.read<FoundationsBloc>(),
                     buildingFrameBloc: context.read<BuildingFrameBloc>(),
                   ),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) => ExcavationAreaBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => FloorStructuresBloc(),
@@ -418,6 +416,41 @@ class MyApp extends StatelessWidget {
                   create: (BuildContext context) => TotalThermalCenterBloc(
                     thermalCenterBloc: context.read<ThermalCenterBloc>(),
                   ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      ReusableAndRecyclableMaterialsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      TotalReusableAndRecyclableMaterialsBloc(
+                          foundationsBloc: context.read<FoundationsBloc>(),
+                          totalIntermediateFloorsBloc: context.read<
+                              IntermediateFloorsBloc>(),
+                          totalRoofsBloc: context.read<TotalRoofsBloc>(),
+                          totalBuildingFrameBloc: context.read<
+                              TotalBuildingFrameBloc>(),
+                          outerDoorsBloc: context.read<OuterDoorsBloc>(),
+                          innerDoorsBloc: context.read<InnerDoorsBloc>(),
+                          fixedFurnitureBloc:
+                              context.read<FixedFurnitureBloc>(),
+                          floorStructuresBloc:
+                              context.read<FloorStructuresBloc>(),
+                          cellarBloc: context.read<CellarBloc>(),
+                          internalWallFramesAndSurfaceMaterialBloc: context
+                              .read<InternalWallFramesAndSurfaceMaterialBloc>(),
+                          windowsBloc: context.read<WindowsBloc>(),
+                          hvacAndElectricalInstallationsBloc: context
+                              .read<HvacAndElectricalInstallationsBloc>(),
+                          machinesAndEquipmentsBloc:
+                              context.read<MachinesAndEquipmentsBloc>(),
+                          fixturesAndStructuresBloc:
+                              context.read<FixturesAndStructuresBloc>(),
+                          yardAndProtectiveStructuresBloc:
+                              context.read<YardAndProtectiveStructuresBloc>(),
+                          reusableAndRecyclableMaterialsBloc: context
+                              .read<ReusableAndRecyclableMaterialsBloc>(),
+                          excavationAreaBloc: SBExcavationAreaBloc()),
                 ),
               ],
               child: SmallerPropertiesView(),
