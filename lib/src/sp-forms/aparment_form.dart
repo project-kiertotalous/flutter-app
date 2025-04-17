@@ -251,26 +251,20 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'Lattiamateriaali/huoneisto (tonnia)',
               ),
               OutputCell(
-                // TODO: these need to be added once fixed on calculation side
-                getter: () {},
-                // getter: () => state
-                //     .apartmentSize.oneRoom?.,
-                // ),
+                getter: () =>
+                    state.apartmentSize.oneRoomFloorMaterialPerApartmentTons,
               ),
               OutputCell(
-                getter: () {},
-                // getter: () =>
-                //     state.apartmentSize.twoRooms?.floorMaterialPerApartmentTons,
+                getter: () =>
+                    state.apartmentSize.twoRoomsFloorMaterialPerApartmentTons,
               ),
               OutputCell(
-                getter: () {},
-                // getter: () => state
-                //     .apartmentSize.threeRooms?.floorMaterialPerApartmentTons,
+                getter: () =>
+                    state.apartmentSize.threeRoomsFloorMaterialPerApartmentTons,
               ),
               OutputCell(
-                getter: () {},
-                // getter: () => state
-                //     .apartmentSize.fourRooms?.floorMaterialPerApartmentTons,
+                getter: () =>
+                    state.apartmentSize.fourRoomsFloorMaterialPerApartmentTons,
               ),
               GreyCell(),
               OutputCell(
