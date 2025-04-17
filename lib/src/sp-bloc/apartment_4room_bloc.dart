@@ -2,8 +2,8 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ApartmentBloc extends Bloc<ApartmentEvent, Apartment> {
-  ApartmentBloc() : super(Apartment()) {
+class Apartment4RoomBloc extends Bloc<ApartmentEvent, Apartment> {
+  Apartment4RoomBloc() : super(Apartment()) {
     on<PcsPerHouseChanged>((event, emit) {
       emit(state.copyWith(pcsPerHouse: event.value));
     });
