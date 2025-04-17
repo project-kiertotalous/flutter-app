@@ -1,4 +1,5 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
+import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_size_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,207 +12,294 @@ class ApartmentSizeBloc extends Bloc<SPApartmentSizeEvent, ApartmentSize> {
           fourRooms: Apartment(),
         )) {
     on<OneRoomPcsPerHouseChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!.copyWith(pcsPerHouse: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          pcsPerHouse: event.value,
+        ),
+      );
+      logger.d('ApartmentSizeBloc.oneRoom: ${state.oneRoom}');
     });
     on<TwoRoomsPcsPerHouseChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!.copyWith(pcsPerHouse: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          pcsPerHouse: event.value,
+        ),
+      );
     });
     on<ThreeRoomsPcsPerHouseChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!.copyWith(pcsPerHouse: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          pcsPerHouse: event.value,
+        ),
+      );
     });
     on<FourRoomsPcsPerHouseChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!.copyWith(pcsPerHouse: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          pcsPerHouse: event.value,
+        ),
+      );
     });
 
     on<OneRoomFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom:
-              state.oneRoom!.copyWith(floorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          floorAreaPerApartment: event.value,
+        ),
+      );
     });
     on<TwoRoomsFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms:
-              state.twoRooms!.copyWith(floorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          floorAreaPerApartment: event.value,
+        ),
+      );
     });
     on<ThreeRoomsFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms:
-              state.threeRooms!.copyWith(floorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          floorAreaPerApartment: event.value,
+        ),
+      );
     });
     on<FourRoomsFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms:
-              state.fourRooms!.copyWith(floorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          floorAreaPerApartment: event.value,
+        ),
+      );
     });
     on<OneRoomInnerWallsPerApartmentLinearMetersChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!
-              .copyWith(innerWallsPerApartmentLinearMeters: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          innerWallsPerApartmentLinearMeters: event.value,
+        ),
+      );
     });
     on<TwoRoomsInnerWallsPerApartmentLinearMetersChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!
-              .copyWith(innerWallsPerApartmentLinearMeters: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          innerWallsPerApartmentLinearMeters: event.value,
+        ),
+      );
     });
     on<ThreeRoomsInnerWallsPerApartmentLinearMetersChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!
-              .copyWith(innerWallsPerApartmentLinearMeters: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          innerWallsPerApartmentLinearMeters: event.value,
+        ),
+      );
     });
     on<FourRoomsInnerWallsPerApartmentLinearMetersChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!
-              .copyWith(innerWallsPerApartmentLinearMeters: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          innerWallsPerApartmentLinearMeters: event.value,
+        ),
+      );
     });
     on<OneRoomWallHeightChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!.copyWith(wallHeight: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          wallHeight: event.value,
+        ),
+      );
     });
     on<TwoRoomsWallHeightChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!.copyWith(wallHeight: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          wallHeight: event.value,
+        ),
+      );
     });
     on<ThreeRoomsWallHeightChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!.copyWith(wallHeight: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          wallHeight: event.value,
+        ),
+      );
     });
     on<FourRoomsWallHeightChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!.copyWith(wallHeight: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          wallHeight: event.value,
+        ),
+      );
     });
 
     on<OneRoomKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!
-              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          kitchenWallMaterialAreaPerApartment: event.value,
+        ),
+      );
     });
     on<TwoRoomsKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!
-              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          kitchenWallMaterialAreaPerApartment: event.value,
+        ),
+      );
     });
     on<ThreeRoomsKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!
-              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          kitchenWallMaterialAreaPerApartment: event.value,
+        ),
+      );
     });
     on<FourRoomsKitchenWallMaterialAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!
-              .copyWith(kitchenWallMaterialAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          kitchenWallMaterialAreaPerApartment: event.value,
+        ),
+      );
     });
 
     on<OneRoomKitchenClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!
-              .copyWith(kitchenClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          kitchenClosetsInLinearMeter: event.value,
+        ),
+      );
     });
     on<TwoRoomsKitchenClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!
-              .copyWith(kitchenClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          kitchenClosetsInLinearMeter: event.value,
+        ),
+      );
     });
     on<ThreeRoomsKitchenClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!
-              .copyWith(kitchenClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          kitchenClosetsInLinearMeter: event.value,
+        ),
+      );
     });
     on<FourRoomsKitchenClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!
-              .copyWith(kitchenClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          kitchenClosetsInLinearMeter: event.value,
+        ),
+      );
     });
-  
+
     on<OneRoomDressingClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!
-              .copyWith(dressingClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          dressingClosetsInLinearMeter: event.value,
+        ),
+      );
     });
     on<TwoRoomsDressingClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!
-              .copyWith(dressingClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          dressingClosetsInLinearMeter: event.value,
+        ),
+      );
     });
     on<ThreeRoomsDressingClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!
-              .copyWith(dressingClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          dressingClosetsInLinearMeter: event.value,
+        ),
+      );
     });
     on<FourRoomsDressingClosetsInLinearMeterChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!
-              .copyWith(dressingClosetsInLinearMeter: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          dressingClosetsInLinearMeter: event.value,
+        ),
+      );
     });
 
     on<OneRoomBathroomWallAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!
-              .copyWith(bathroomWallAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          bathroomWallAreaPerApartment: event.value,
+        ),
+      );
     });
     on<TwoRoomsBathroomWallAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!
-              .copyWith(bathroomWallAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          bathroomWallAreaPerApartment: event.value,
+        ),
+      );
     });
     on<ThreeRoomsBathroomWallAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!
-              .copyWith(bathroomWallAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          bathroomWallAreaPerApartment: event.value,
+        ),
+      );
     });
     on<FourRoomsBathroomWallAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!
-              .copyWith(bathroomWallAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          bathroomWallAreaPerApartment: event.value,
+        ),
+      );
     });
 
     on<OneRoomBathroomFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!
-              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          bathroomFloorAreaPerApartment: event.value,
+        ),
+      );
     });
     on<TwoRoomsBathroomFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!
-              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          bathroomFloorAreaPerApartment: event.value,
+        ),
+      );
     });
 
     on<ThreeRoomsBathroomFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!
-              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          bathroomFloorAreaPerApartment: event.value,
+        ),
+      );
     });
 
     on<FourRoomsBathroomFloorAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!
-              .copyWith(bathroomFloorAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          bathroomFloorAreaPerApartment: event.value,
+        ),
+      );
     });
 
     on<OneRoomSaunaPanelingAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          oneRoom: state.oneRoom!
-              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.oneRoom!(
+          saunaPanelingAreaPerApartment: event.value,
+        ),
+      );
     });
     on<TwoRoomsSaunaPanelingAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          twoRooms: state.twoRooms!
-              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.twoRooms!(
+          saunaPanelingAreaPerApartment: event.value,
+        ),
+      );
     });
     on<ThreeRoomsSaunaPanelingAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          threeRooms: state.threeRooms!
-              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.threeRooms!(
+          saunaPanelingAreaPerApartment: event.value,
+        ),
+      );
     });
     on<FourRoomsSaunaPanelingAreaPerApartmentChanged>((event, emit) {
-      emit(state.copyWith(
-          fourRooms: state.fourRooms!
-              .copyWith(saunaPanelingAreaPerApartment: event.value)));
+      emit(
+        state.copyWith.fourRooms!(
+          saunaPanelingAreaPerApartment: event.value,
+        ),
+      );
     });
-
-
   }
 }
