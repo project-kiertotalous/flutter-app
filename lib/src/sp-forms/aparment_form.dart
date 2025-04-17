@@ -10,12 +10,10 @@ import 'package:flutter_app/src/sp-bloc/apartment_4room_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_event.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_size_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/apartment_size_event.dart';
 import 'package:flutter_app/src/shared/form_header.dart';
 import 'package:flutter_app/src/shared/input_cell.dart';
 import 'package:flutter_app/src/shared/output_cell.dart';
 import 'package:flutter_app/src/shared/row_cell.dart';
-import 'package:flutter_app/src/sp-bloc/spApartments_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -157,7 +155,7 @@ class SPApartmentForm extends StatelessWidget {
     final twoRoomsBloc = context.read<Apartment2RoomBloc>();
     final threeRoomsBloc = context.read<Apartment3RoomBloc>();
     final fourRoomsBloc = context.read<Apartment4RoomBloc>();
-    return BlocBuilder<SPApartmentsBloc, SPApartmentsState>(
+    return BlocBuilder<ApartmentSizeBloc, ApartmentSize>(
       builder: (context, state) {
         return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           FormHeader(text: 'Huoneistot'),
@@ -205,28 +203,28 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'kpl/talo',
               ),
               InputCell(
-                initialValue: state.apartmentSize.oneRoom?.pcsPerHouse,
+                initialValue: state.oneRoom?.pcsPerHouse,
                 integer: true,
                 setter: (value) => oneRoomBloc.add(
                   PcsPerHouseChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.twoRooms?.pcsPerHouse,
+                initialValue: state.twoRooms?.pcsPerHouse,
                 integer: true,
                 setter: (value) => twoRoomsBloc.add(
                   PcsPerHouseChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.threeRooms?.pcsPerHouse,
+                initialValue: state.threeRooms?.pcsPerHouse,
                 integer: true,
                 setter: (value) => threeRoomsBloc.add(
                   PcsPerHouseChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.fourRooms?.pcsPerHouse,
+                initialValue: state.fourRooms?.pcsPerHouse,
                 integer: true,
                 setter: (value) => fourRoomsBloc.add(
                   PcsPerHouseChanged(value),
@@ -237,61 +235,56 @@ class SPApartmentForm extends StatelessWidget {
               EmptyCell(),
               RowCell(initialValue: 'Lattiapinta-ala/huoneisto (m2)'),
               InputCell(
-                initialValue:
-                    state.apartmentSize.oneRoom?.floorAreaPerApartment,
+                initialValue: state.oneRoom?.floorAreaPerApartment,
                 setter: (value) => oneRoomBloc.add(
                   FloorAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.twoRooms?.floorAreaPerApartment,
+                initialValue: state.twoRooms?.floorAreaPerApartment,
                 setter: (value) => twoRoomsBloc.add(
                   FloorAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.threeRooms?.floorAreaPerApartment,
+                initialValue: state.threeRooms?.floorAreaPerApartment,
                 setter: (value) => threeRoomsBloc.add(
                   FloorAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.fourRooms?.floorAreaPerApartment,
+                initialValue: state.fourRooms?.floorAreaPerApartment,
                 setter: (value) => fourRoomsBloc.add(
                   FloorAreaPerApartmentChanged(value),
                 ),
               ),
-              OutputCell(getter: () => state.apartmentSize.totalFloorArea),
+              OutputCell(getter: () => state.totalFloorArea),
               GreyCell(),
               EmptyCell(),
               RowCell(initialValue: 'Sisäseinät/huoneisto (jm)'),
               InputCell(
-                initialValue: state
-                    .apartmentSize.oneRoom?.innerWallsPerApartmentLinearMeters,
+                initialValue: state.oneRoom?.innerWallsPerApartmentLinearMeters,
                 setter: (value) => oneRoomBloc.add(
                   InnerWallsPerApartmentLinearMetersChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.twoRooms?.innerWallsPerApartmentLinearMeters,
+                initialValue:
+                    state.twoRooms?.innerWallsPerApartmentLinearMeters,
                 setter: (value) => twoRoomsBloc.add(
                   InnerWallsPerApartmentLinearMetersChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.threeRooms
-                    ?.innerWallsPerApartmentLinearMeters,
+                initialValue:
+                    state.threeRooms?.innerWallsPerApartmentLinearMeters,
                 setter: (value) => threeRoomsBloc.add(
                   InnerWallsPerApartmentLinearMetersChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.fourRooms
-                    ?.innerWallsPerApartmentLinearMeters,
+                initialValue:
+                    state.fourRooms?.innerWallsPerApartmentLinearMeters,
                 setter: (value) => fourRoomsBloc.add(
                   InnerWallsPerApartmentLinearMetersChanged(value),
                 ),
@@ -301,25 +294,25 @@ class SPApartmentForm extends StatelessWidget {
               EmptyCell(),
               RowCell(initialValue: 'Seinän korkeus (m)'),
               InputCell(
-                initialValue: state.apartmentSize.oneRoom?.wallHeight,
+                initialValue: state.oneRoom?.wallHeight,
                 setter: (value) => oneRoomBloc.add(
                   WallHeightChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.twoRooms?.wallHeight,
+                initialValue: state.twoRooms?.wallHeight,
                 setter: (value) => twoRoomsBloc.add(
                   WallHeightChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.threeRooms?.wallHeight,
+                initialValue: state.threeRooms?.wallHeight,
                 setter: (value) => threeRoomsBloc.add(
                   WallHeightChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state.apartmentSize.fourRooms?.wallHeight,
+                initialValue: state.fourRooms?.wallHeight,
                 setter: (value) => fourRoomsBloc.add(
                   WallHeightChanged(value),
                 ),
@@ -328,53 +321,37 @@ class SPApartmentForm extends StatelessWidget {
               GreyCell(),
               EmptyCell(),
               RowCell(initialValue: 'Seinäpinta-ala/Huoneisto (m2)'),
-              OutputCell(
-                  getter: () =>
-                      state.apartmentSize.oneRoom?.wallAreaPerApartment),
-              OutputCell(
-                  getter: () =>
-                      state.apartmentSize.twoRooms?.wallAreaPerApartment),
-              OutputCell(
-                  getter: () =>
-                      state.apartmentSize.threeRooms?.wallAreaPerApartment),
-              OutputCell(
-                  getter: () =>
-                      state.apartmentSize.fourRooms?.wallAreaPerApartment),
-              OutputCell(getter: () => state.apartmentSize.totalWallArea),
+              OutputCell(getter: () => state.oneRoom?.wallAreaPerApartment),
+              OutputCell(getter: () => state.twoRooms?.wallAreaPerApartment),
+              OutputCell(getter: () => state.threeRooms?.wallAreaPerApartment),
+              OutputCell(getter: () => state.fourRooms?.wallAreaPerApartment),
+              OutputCell(getter: () => state.totalWallArea),
               GreyCell(),
               EmptyCell(),
               RowCell(initialValue: 'Runkopuuta/huoneisto (tonnia)'),
               OutputCell(
-                  getter: () =>
-                      state.apartmentSize.oneRoom?.trunkWoodPerApartmentTons),
+                  getter: () => state.oneRoom?.trunkWoodPerApartmentTons),
               OutputCell(
-                  getter: () =>
-                      state.apartmentSize.twoRooms?.trunkWoodPerApartmentTons),
+                  getter: () => state.twoRooms?.trunkWoodPerApartmentTons),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.threeRooms?.trunkWoodPerApartmentTons),
+                  getter: () => state.threeRooms?.trunkWoodPerApartmentTons),
               OutputCell(
-                  getter: () =>
-                      state.apartmentSize.fourRooms?.trunkWoodPerApartmentTons),
+                  getter: () => state.fourRooms?.trunkWoodPerApartmentTons),
               GreyCell(),
-              OutputCell(getter: () => state.apartmentSize.totalTrunkWoodTons),
+              OutputCell(getter: () => state.totalTrunkWoodTons),
               EmptyCell(),
               RowCell(initialValue: 'Pintamateriaalia/huoneisto (tonnia)'),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.oneRoomSurfaceMaterialPerApartmentTons),
+                  getter: () => state.oneRoomSurfaceMaterialPerApartmentTons),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.twoRoomsSurfaceMaterialPerApartmentTons),
+                  getter: () => state.twoRoomsSurfaceMaterialPerApartmentTons),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.threeRoomsSurfaceMaterialPerApartmentTons),
+                  getter: () =>
+                      state.threeRoomsSurfaceMaterialPerApartmentTons),
               OutputCell(
-                  getter: () => state
-                      .apartmentSize.fourRoomsSurfaceMaterialPerApartmentTons),
+                  getter: () => state.fourRoomsSurfaceMaterialPerApartmentTons),
               GreyCell(),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalSurfaceMaterialTons),
+              OutputCell(getter: () => state.totalSurfaceMaterialTons),
               MenuCell<SurfaceMaterial?>(
                 setter: (value) {
                   // change applies to all apartments
@@ -383,33 +360,28 @@ class SPApartmentForm extends StatelessWidget {
                   threeRoomsBloc.add(SurfaceMaterialChanged(value));
                   fourRoomsBloc.add(SurfaceMaterialChanged(value));
                 },
-                initialValue: state.apartmentSize.oneRoom?.surfaceMaterial,
+                initialValue: state.oneRoom?.surfaceMaterial,
                 items: surfaceMaterialToList(),
               ),
               RowCell(
                 initialValue: 'Lattiamateriaali/huoneisto (tonnia)',
               ),
               OutputCell(
-                getter: () =>
-                    state.apartmentSize.oneRoomFloorMaterialPerApartmentTons,
+                getter: () => state.oneRoomFloorMaterialPerApartmentTons,
               ),
               OutputCell(
-                getter: () =>
-                    state.apartmentSize.twoRoomsFloorMaterialPerApartmentTons,
+                getter: () => state.twoRoomsFloorMaterialPerApartmentTons,
               ),
               OutputCell(
-                getter: () =>
-                    state.apartmentSize.threeRoomsFloorMaterialPerApartmentTons,
+                getter: () => state.threeRoomsFloorMaterialPerApartmentTons,
               ),
               OutputCell(
-                getter: () =>
-                    state.apartmentSize.fourRoomsFloorMaterialPerApartmentTons,
+                getter: () => state.fourRoomsFloorMaterialPerApartmentTons,
               ),
               GreyCell(),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalFloorMaterialTons),
+              OutputCell(getter: () => state.totalFloorMaterialTons),
               MenuCell<FloorMaterial?>(
-                initialValue: state.apartmentSize.oneRoom?.floorMaterial,
+                initialValue: state.oneRoom?.floorMaterial,
                 items: floorMaterialToList(),
                 setter: (value) {
                   oneRoomBloc.add(FloorMaterialChanged(value));
@@ -422,35 +394,33 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'Keittiön seinämateriaali/huoneisto (m2)',
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.oneRoom?.kitchenWallMaterialAreaPerApartment,
+                initialValue:
+                    state.oneRoom?.kitchenWallMaterialAreaPerApartment,
                 setter: (value) => oneRoomBloc
                     .add(KitchenWallMaterialAreaPerApartmentChanged(value)),
               ),
               InputCell(
-                initialValue: state.apartmentSize.twoRooms
-                    ?.kitchenWallMaterialAreaPerApartment,
+                initialValue:
+                    state.twoRooms?.kitchenWallMaterialAreaPerApartment,
                 setter: (value) => twoRoomsBloc
                     .add(KitchenWallMaterialAreaPerApartmentChanged(value)),
               ),
               InputCell(
-                initialValue: state.apartmentSize.threeRooms
-                    ?.kitchenWallMaterialAreaPerApartment,
+                initialValue:
+                    state.threeRooms?.kitchenWallMaterialAreaPerApartment,
                 setter: (value) => threeRoomsBloc
                     .add(KitchenWallMaterialAreaPerApartmentChanged(value)),
               ),
               InputCell(
-                initialValue: state.apartmentSize.fourRooms
-                    ?.kitchenWallMaterialAreaPerApartment,
+                initialValue:
+                    state.fourRooms?.kitchenWallMaterialAreaPerApartment,
                 setter: (value) => fourRoomsBloc
                     .add(KitchenWallMaterialAreaPerApartmentChanged(value)),
               ),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalkitchenWallArea),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalkitchenWallTons),
+              OutputCell(getter: () => state.totalkitchenWallArea),
+              OutputCell(getter: () => state.totalkitchenWallTons),
               MenuCell<KitchenWallMaterial?>(
-                initialValue: state.apartmentSize.oneRoom?.kitchenWallMaterial,
+                initialValue: state.oneRoom?.kitchenWallMaterial,
                 items: kitchenWallMaterialToList(),
                 setter: (value) {
                   oneRoomBloc.add(KitchenWallMaterialChanged(value));
@@ -463,8 +433,7 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'Keittiön kaapistot (jm)',
                 checkbox: true,
                 checkboxTitle: 'Kierrätettäviä',
-                checkboxValue:
-                    state.apartmentSize.oneRoom?.areKitchenClosetsRecyclable,
+                checkboxValue: state.oneRoom?.areKitchenClosetsRecyclable,
                 checkboxSetter: (value) {
                   oneRoomBloc.add(AreKitchenClosetsRecyclableChanged(value));
                   twoRoomsBloc.add(AreKitchenClosetsRecyclableChanged(value));
@@ -473,36 +442,32 @@ class SPApartmentForm extends StatelessWidget {
                 },
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.oneRoom?.kitchenClosetsInLinearMeter,
+                initialValue: state.oneRoom?.kitchenClosetsInLinearMeter,
                 setter: (value) => oneRoomBloc.add(
                   KitchenClosetsInLinearMeterChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.twoRooms?.kitchenClosetsInLinearMeter,
+                initialValue: state.twoRooms?.kitchenClosetsInLinearMeter,
                 setter: (value) => twoRoomsBloc.add(
                   KitchenClosetsInLinearMeterChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.threeRooms?.kitchenClosetsInLinearMeter,
+                initialValue: state.threeRooms?.kitchenClosetsInLinearMeter,
                 setter: (value) => threeRoomsBloc.add(
                   KitchenClosetsInLinearMeterChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.fourRooms?.kitchenClosetsInLinearMeter,
+                initialValue: state.fourRooms?.kitchenClosetsInLinearMeter,
                 setter: (value) => fourRoomsBloc.add(
                   KitchenClosetsInLinearMeterChanged(value),
                 ),
               ),
               GreyCell(),
               OutputCell(
-                getter: () => state.apartmentSize.totalkitchenClosetTons,
+                getter: () => state.totalkitchenClosetTons,
               ),
               EmptyCell(),
               RowCell(
@@ -516,79 +481,68 @@ class SPApartmentForm extends StatelessWidget {
                       .add(AreDressingClosetsRecyclableChanged(value));
                   fourRoomsBloc.add(AreDressingClosetsRecyclableChanged(value));
                 },
-                checkboxValue:
-                    state.apartmentSize.oneRoom?.areDressingClosetsRecyclable,
+                checkboxValue: state.oneRoom?.areDressingClosetsRecyclable,
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.oneRoom?.dressingClosetsInLinearMeter,
+                initialValue: state.oneRoom?.dressingClosetsInLinearMeter,
                 setter: (value) => oneRoomBloc.add(
                   DressingClosetsInLinearMeterChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.twoRooms?.dressingClosetsInLinearMeter,
+                initialValue: state.twoRooms?.dressingClosetsInLinearMeter,
                 setter: (value) => twoRoomsBloc.add(
                   DressingClosetsInLinearMeterChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.threeRooms?.dressingClosetsInLinearMeter,
+                initialValue: state.threeRooms?.dressingClosetsInLinearMeter,
                 setter: (value) => threeRoomsBloc.add(
                   DressingClosetsInLinearMeterChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.fourRooms?.dressingClosetsInLinearMeter,
+                initialValue: state.fourRooms?.dressingClosetsInLinearMeter,
                 setter: (value) => fourRoomsBloc.add(
                   DressingClosetsInLinearMeterChanged(value),
                 ),
               ),
               GreyCell(),
               OutputCell(
-                getter: () => state.apartmentSize.totaldressingClosetTons,
+                getter: () => state.totaldressingClosetTons,
               ),
               EmptyCell(),
               RowCell(
                 initialValue: 'WC- ja pesutilojen seinät/huoneisto (m2)',
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.oneRoom?.bathroomWallAreaPerApartment,
+                initialValue: state.oneRoom?.bathroomWallAreaPerApartment,
                 setter: (value) => oneRoomBloc.add(
                   BathroomWallAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.twoRooms?.bathroomWallAreaPerApartment,
+                initialValue: state.twoRooms?.bathroomWallAreaPerApartment,
                 setter: (value) => twoRoomsBloc.add(
                   BathroomWallAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.threeRooms?.bathroomWallAreaPerApartment,
+                initialValue: state.threeRooms?.bathroomWallAreaPerApartment,
                 setter: (value) => threeRoomsBloc.add(
                   BathroomWallAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.fourRooms?.bathroomWallAreaPerApartment,
+                initialValue: state.fourRooms?.bathroomWallAreaPerApartment,
                 setter: (value) => fourRoomsBloc.add(
                   BathroomWallAreaPerApartmentChanged(value),
                 ),
               ),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalBathroomWallArea),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalBathroomWallTons),
+              OutputCell(getter: () => state.totalBathroomWallArea),
+              OutputCell(getter: () => state.totalBathroomWallTons),
               MenuCell<BathroomWallMaterial?>(
-                initialValue: state.apartmentSize.oneRoom?.bathroomWallMaterial,
+                initialValue: state.oneRoom?.bathroomWallMaterial,
                 items: bathroomWallMaterialToList(),
                 setter: (value) {
                   oneRoomBloc.add(BathroomWallMaterialChanged(value));
@@ -601,40 +555,33 @@ class SPApartmentForm extends StatelessWidget {
                 initialValue: 'WC- ja pesutilojen lattiat/huoneisto (m2)',
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.oneRoom?.bathroomFloorAreaPerApartment,
+                initialValue: state.oneRoom?.bathroomFloorAreaPerApartment,
                 setter: (value) => oneRoomBloc.add(
                   BathroomFloorAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.twoRooms?.bathroomFloorAreaPerApartment,
+                initialValue: state.twoRooms?.bathroomFloorAreaPerApartment,
                 setter: (value) => twoRoomsBloc.add(
                   BathroomFloorAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.threeRooms?.bathroomFloorAreaPerApartment,
+                initialValue: state.threeRooms?.bathroomFloorAreaPerApartment,
                 setter: (value) => threeRoomsBloc.add(
                   BathroomFloorAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.fourRooms?.bathroomFloorAreaPerApartment,
+                initialValue: state.fourRooms?.bathroomFloorAreaPerApartment,
                 setter: (value) => fourRoomsBloc.add(
                   BathroomFloorAreaPerApartmentChanged(value),
                 ),
               ),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalBathroomFloorArea),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalBathroomFloorTons),
+              OutputCell(getter: () => state.totalBathroomFloorArea),
+              OutputCell(getter: () => state.totalBathroomFloorTons),
               MenuCell<BathroomFloorMaterial?>(
-                initialValue:
-                    state.apartmentSize.oneRoom?.bathroomFloorMaterial,
+                initialValue: state.oneRoom?.bathroomFloorMaterial,
                 items: bathroomFloorMaterialToList(),
                 setter: (value) {
                   oneRoomBloc.add(BathroomFloorMaterialChanged(value));
@@ -645,37 +592,31 @@ class SPApartmentForm extends StatelessWidget {
               ),
               RowCell(initialValue: 'Saunan panelointi/huoneisto (m2)'),
               InputCell(
-                initialValue:
-                    state.apartmentSize.oneRoom?.saunaPanelingAreaPerApartment,
+                initialValue: state.oneRoom?.saunaPanelingAreaPerApartment,
                 setter: (value) => oneRoomBloc.add(
                   SaunaPanelingAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue:
-                    state.apartmentSize.twoRooms?.saunaPanelingAreaPerApartment,
+                initialValue: state.twoRooms?.saunaPanelingAreaPerApartment,
                 setter: (value) => twoRoomsBloc.add(
                   SaunaPanelingAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.threeRooms?.saunaPanelingAreaPerApartment,
+                initialValue: state.threeRooms?.saunaPanelingAreaPerApartment,
                 setter: (value) => threeRoomsBloc.add(
                   SaunaPanelingAreaPerApartmentChanged(value),
                 ),
               ),
               InputCell(
-                initialValue: state
-                    .apartmentSize.fourRooms?.saunaPanelingAreaPerApartment,
+                initialValue: state.fourRooms?.saunaPanelingAreaPerApartment,
                 setter: (value) => fourRoomsBloc.add(
                   SaunaPanelingAreaPerApartmentChanged(value),
                 ),
               ),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalSaunaPanelingArea),
-              OutputCell(
-                  getter: () => state.apartmentSize.totalSaunaPanelingTons),
+              OutputCell(getter: () => state.totalSaunaPanelingArea),
+              OutputCell(getter: () => state.totalSaunaPanelingTons),
               EmptyCell(),
             ],
           ),
@@ -697,7 +638,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'Kierrätettäviä',
-              checkboxValue: state.apartmentSize.oneRoom?.isFurnitureRecyclable,
+              checkboxValue: state.oneRoom?.isFurnitureRecyclable,
               checkboxSetter: (value) {
                 oneRoomBloc.add(IsFurnitureRecyclableChanged(value));
                 twoRoomsBloc.add(IsFurnitureRecyclableChanged(value));
@@ -714,7 +655,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'WC-istuin',
-              checkboxValue: state.apartmentSize.oneRoom?.toiletSeat,
+              checkboxValue: state.oneRoom?.toiletSeat,
               checkboxSetter: (value) {
                 oneRoomBloc.add(ToiletSeatChanged(value));
                 twoRoomsBloc.add(ToiletSeatChanged(value));
@@ -725,7 +666,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'Posliiniallas',
-              checkboxValue: state.apartmentSize.oneRoom?.ceramicSink,
+              checkboxValue: state.oneRoom?.ceramicSink,
               checkboxSetter: (value) {
                 oneRoomBloc.add(CeramicSinkChanged(value));
                 twoRoomsBloc.add(CeramicSinkChanged(value));
@@ -736,7 +677,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'Jääkaappi',
-              checkboxValue: state.apartmentSize.oneRoom?.refrigerator,
+              checkboxValue: state.oneRoom?.refrigerator,
               checkboxSetter: (value) {
                 oneRoomBloc.add(RefrigeratorChanged(value));
                 twoRoomsBloc.add(RefrigeratorChanged(value));
@@ -747,7 +688,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'Sähköliesi',
-              checkboxValue: state.apartmentSize.oneRoom?.electricStove,
+              checkboxValue: state.oneRoom?.electricStove,
               checkboxSetter: (value) {
                 oneRoomBloc.add(ElectricStoveChanged(value));
                 twoRoomsBloc.add(ElectricStoveChanged(value));
@@ -758,7 +699,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'Teräspöytä',
-              checkboxValue: state.apartmentSize.oneRoom?.steelTable,
+              checkboxValue: state.oneRoom?.steelTable,
               checkboxSetter: (value) {
                 oneRoomBloc.add(SteelTableChanged(value));
                 twoRoomsBloc.add(SteelTableChanged(value));
@@ -769,7 +710,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'Vesivaraaja',
-              checkboxValue: state.apartmentSize.oneRoom?.waterHeater,
+              checkboxValue: state.oneRoom?.waterHeater,
               checkboxSetter: (value) {
                 oneRoomBloc.add(WaterHeaterChanged(value));
                 twoRoomsBloc.add(WaterHeaterChanged(value));
@@ -780,7 +721,7 @@ class SPApartmentForm extends StatelessWidget {
             RowCell(
               checkbox: true,
               checkboxTitle: 'Saunankiuas',
-              checkboxValue: state.apartmentSize.oneRoom?.saunaStove,
+              checkboxValue: state.oneRoom?.saunaStove,
               checkboxSetter: (value) {
                 oneRoomBloc.add(SaunaStoveChanged(value));
                 twoRoomsBloc.add(SaunaStoveChanged(value));
@@ -792,8 +733,7 @@ class SPApartmentForm extends StatelessWidget {
               initialValue: 'Tonnia yhteensä',
             ),
             OutputCell(
-                getter: () =>
-                    state.apartmentSize.totalKitchenToiletOrSaunaFurnitureTons),
+                getter: () => state.totalKitchenToiletOrSaunaFurnitureTons),
           ])
         ]);
       },
