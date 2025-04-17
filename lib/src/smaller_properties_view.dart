@@ -13,6 +13,7 @@ import 'package:flutter_app/src/sp-forms/thermal_center_form.dart';
 import 'package:flutter_app/src/sp-forms/walls_form.dart';
 import 'package:flutter_app/src/sp-forms/outer_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/machinery_form.dart';
+import 'package:flutter_app/src/sp-forms/yard_roof_form.dart';
 import 'package:flutter_app/src/tab_view.dart';
 import 'shared/cancel_dialog.dart';
 
@@ -55,6 +56,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
 
   List<Widget> yardBuildingsAndStructures() => [
         CarportOrGarageForm(),
+        YardRoofForm(),
         PassageDoorsForm(),
         ThermalCenterForm(),
         NavigationButtons(),

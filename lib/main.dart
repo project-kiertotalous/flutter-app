@@ -56,6 +56,7 @@ import 'package:flutter_app/src/sp-bloc/sp_windows_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/thermal_center_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/total_thermal_center_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/walls_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/yard_roof_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/concrete_bricks_tiles_ceramics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
@@ -410,6 +411,9 @@ class MyApp extends StatelessWidget {
                         SmallPropertiesElectricalInstallationsAndHvacBloc()),
                 BlocProvider(
                   create: (BuildContext context) => SPMachineryBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => YardRoofBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => ThermalCenterBloc(),
