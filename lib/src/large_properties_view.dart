@@ -34,10 +34,10 @@ import 'package:flutter_app/src/lp-forms/wood_glass_plastics_form.dart';
 import 'package:flutter_app/src/lp-forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:printing/printing.dart';
 import 'shared/cancel_dialog.dart';
+import 'package:flutter_app/src/exporting/large_property_exporter.dart';
+import 'package:flutter_app/src/shared/export_button.dart';
+
 
 /// This view is for estimating large buildings.
 class LargePropertiesView extends StatefulWidget {
@@ -110,79 +110,17 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
         InsulationAndAsbestosContainingMaterialsForm(),
         GypsumBasedBuildingMaterialsForm(),
         OtherMaterialsForm(),
+        ExportButton(
+          onExportPDF: () => LargePropertyExporter.exportPDF(context),
+          onExportExcel: () => LargePropertyExporter.exportExcel(context),
+        ),
         const SizedBox(height: 20),
         NavigationButtons(),
-        const SizedBox(height: 10),
-        ElevatedButton.icon(
-          onPressed: () => _showExportOptions(context),
-          icon: Icon(Icons.download),
-          label: Text('Export the data'),
-        )
+        
+        
       ];
 
-   void _showExportOptions(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListTile(
-              leading: Icon(Icons.picture_as_pdf),
-              title: Text('Export PDF'),
-              onTap: () {
-                Navigator.pop(context);
-                _exportAsPDF();
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.grid_on),
-              title: Text('Export Excel'),
-              onTap: () {
-                Navigator.pop(context);
-                _exportAsExcel();
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.all_inclusive),
-              title: Text('Export Both'),
-              onTap: () {
-                Navigator.pop(context);
-                _exportAsPDF();
-                _exportAsExcel();
-              },
-            ),
-          ],
-        );
-      },
-    );
-  }
-
-  void _exportAsPDF() async {
-    final pdf = pw.Document();
-
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) {
-          return pw.Center(
-            child: pw.Text(
-              'This is a sample demolition report.',
-              style: pw.TextStyle(fontSize: 24),
-            ),
-          );
-        },
-      ),
-    );
-
-    await Printing.layoutPdf(
-      onLayout: (PdfPageFormat format) async => pdf.save(),
-    );
-  }
-
-  void _exportAsExcel() {
-    print('Excel export triggered');
-    // Implementation will be done here!!
-  }
+   
 
   @override
   Widget build(BuildContext context) {

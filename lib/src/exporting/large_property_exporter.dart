@@ -1,0 +1,107 @@
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_metals_and_alloys_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_soil_aggregates_dredging_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_other_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart'; 
+import 'package:bl_demolition_materials/src/exporting/demolition_material_assessment_report_exporter.dart';
+import 'package:bl_demolition_materials/src/exporting/waste_law_report_exporter.dart';
+
+class LargePropertyExporter {
+  static void exportPDF(BuildContext context) async {
+    final total = context.read<TotalDemolitionWasteAndCostsBloc>().state;
+    final info = context.read<LargePropertyBasicInfoBloc>().state;
+    final totalConcrete = context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
+    final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
+    final totalBituminous = context.read<TotalBituminousMixturesCoalTarProductsBloc>().state;
+    final totalMetals = context.read<TotalMetalsAndAlloysBloc>().state;
+    final totalSoil = context.read<TotalSoilAggregatesDredgingMaterialsBloc>().state;
+    final totalInsulation = context.read<InsulationAndAsbestosContainingMaterialsBloc>().state;
+    final totalGypsum = context.read<GypsumBasedBuildingMaterialsBloc>().state;
+    final totalOther = context.read<TotalOtherMaterialsBloc>().state;
+
+    final filePath = await FilePicker.platform.saveFile(
+      dialogTitle: 'Save PDF File',
+      fileName: 'large_property_report.pdf',
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (filePath == null) return;
+
+    final file = File(filePath);
+
+    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
+      totalDemolitionWasteAndCosts: total,
+      largePropertyEvaluationInfo: info,
+    );
+    demolitionExporter.writeAsPdfSync(file);
+
+    final wasteExporter = WasteLawReportExporter(
+      totalConcreteBricksTilesCeramics: totalConcrete,
+      totalWoodGlassPlastics: totalWoodGlass,
+      totalBituminousMixturesCoalTarProducts: totalBituminous,
+      totalMetalsAndAlloys: totalMetals,
+      totalSoilAggregatesDredgingMaterials: totalSoil,
+      insulationAndAsbestosContainingMaterials: totalInsulation,
+      gypsumBasedBuildingMaterials: totalGypsum,
+      totalOtherMaterials: totalOther,
+    );
+
+    final wasteLawFile = File(filePath.replaceAll('.pdf', '_waste_law.pdf'));
+    wasteExporter.writeAsPdfSync(wasteLawFile);
+  }
+
+  static void exportExcel(BuildContext context) async {
+    final total = context.read<TotalDemolitionWasteAndCostsBloc>().state;
+    final info = context.read<LargePropertyBasicInfoBloc>().state;
+
+    final totalConcrete = context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
+    final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
+    final totalBituminous = context.read<TotalBituminousMixturesCoalTarProductsBloc>().state;
+    final totalMetals = context.read<TotalMetalsAndAlloysBloc>().state;
+    final totalSoil = context.read<TotalSoilAggregatesDredgingMaterialsBloc>().state;
+    final totalInsulation = context.read<InsulationAndAsbestosContainingMaterialsBloc>().state;
+    final totalGypsum = context.read<GypsumBasedBuildingMaterialsBloc>().state;
+    final totalOther = context.read<TotalOtherMaterialsBloc>().state;
+
+    final filePath = await FilePicker.platform.saveFile(
+      dialogTitle: 'Save Excel File',
+      fileName: 'large_property_report.xlsx',
+      type: FileType.custom,
+      allowedExtensions: ['xlsx'],
+    );
+
+    if (filePath == null) return;
+
+    final file = File(filePath);
+
+    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
+      totalDemolitionWasteAndCosts: total,
+      largePropertyEvaluationInfo: info,
+    );
+    demolitionExporter.writeAsExcelSync(file);
+
+    final wasteExporter = WasteLawReportExporter(
+      totalConcreteBricksTilesCeramics: totalConcrete,
+      totalWoodGlassPlastics: totalWoodGlass,
+      totalBituminousMixturesCoalTarProducts: totalBituminous,
+      totalMetalsAndAlloys: totalMetals,
+      totalSoilAggregatesDredgingMaterials: totalSoil,
+      insulationAndAsbestosContainingMaterials: totalInsulation,
+      gypsumBasedBuildingMaterials: totalGypsum,
+      totalOtherMaterials: totalOther,
+    );
+
+    final wasteLawFile = File(filePath.replaceAll('.xlsx', '_waste_law.xlsx'));
+    wasteExporter.writeAsExcelSync(wasteLawFile);
+  }
+}
