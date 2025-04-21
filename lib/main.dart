@@ -43,6 +43,7 @@ import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.d
 import 'package:flutter_app/src/sp-bloc/hall_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/passage_doors_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_bloc.dart';
@@ -55,6 +56,7 @@ import 'package:flutter_app/src/large_properties_view.dart';
 import 'package:flutter_app/src/smaller_properties_view.dart';
 import 'package:flutter_app/src/sp-bloc/sp_windows_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/thermal_center_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/total_reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/total_thermal_center_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/walls_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -422,36 +424,18 @@ class MyApp extends StatelessWidget {
                       ReusableAndRecyclableMaterialsBloc(),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) =>
-                      TotalReusableAndRecyclableMaterialsBloc(
-                          foundationsBloc: context.read<FoundationsBloc>(),
-                          totalIntermediateFloorsBloc: context.read<
-                              IntermediateFloorsBloc>(),
-                          totalRoofsBloc: context.read<TotalRoofsBloc>(),
-                          totalBuildingFrameBloc: context.read<
-                              TotalBuildingFrameBloc>(),
-                          outerDoorsBloc: context.read<OuterDoorsBloc>(),
-                          innerDoorsBloc: context.read<InnerDoorsBloc>(),
-                          fixedFurnitureBloc:
-                              context.read<FixedFurnitureBloc>(),
-                          floorStructuresBloc:
-                              context.read<FloorStructuresBloc>(),
-                          cellarBloc: context.read<CellarBloc>(),
-                          internalWallFramesAndSurfaceMaterialBloc: context
-                              .read<InternalWallFramesAndSurfaceMaterialBloc>(),
-                          windowsBloc: context.read<WindowsBloc>(),
-                          hvacAndElectricalInstallationsBloc: context
-                              .read<HvacAndElectricalInstallationsBloc>(),
-                          machinesAndEquipmentsBloc:
-                              context.read<MachinesAndEquipmentsBloc>(),
-                          fixturesAndStructuresBloc:
-                              context.read<FixturesAndStructuresBloc>(),
-                          yardAndProtectiveStructuresBloc:
-                              context.read<YardAndProtectiveStructuresBloc>(),
-                          reusableAndRecyclableMaterialsBloc: context
-                              .read<ReusableAndRecyclableMaterialsBloc>(),
-                          excavationAreaBloc: SBExcavationAreaBloc()),
-                ),
+                    create: (BuildContext context) =>
+                        SmallPropertiesTotalReusableAndRecyclableMaterialsBloc(
+                          excavationAreaBloc:
+                              context.read<SBExcavationAreaBloc>(),
+                          foundationBloc:
+                              context.read<SmallPropertiesFoundationBloc>(),
+                          innerDoorsBloc: context.read<SPInnerDoorsBloc>(),
+                          outerDoorsBloc: context.read<SPOuterDoorsBloc>(),
+                          windowsBloc: context.read<SpWindowsBloc>(),
+                          reusableAndRecyclableMaterialsBloc: context.read<
+                              SmallPropertiesReusableAndRecyclableMaterialsBloc>(),
+                        )),
               ],
               child: SmallerPropertiesView(),
             ),
