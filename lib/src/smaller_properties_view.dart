@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/lp-forms/reusable_and_recyclable_materials_form.dart';
 import 'package:flutter_app/src/sp-forms/carport_or_garage_form.dart';
 import 'package:flutter_app/src/sp-forms/electric_installations_and_HVAC_form.dart';
 import 'package:flutter_app/src/sp-forms/foundation_form.dart';
 import 'package:flutter_app/src/sp-forms/passage_doors_form.dart';
+import 'package:flutter_app/src/sp-forms/reusable_and_recyclable_materials_form.dart';
 import 'package:flutter_app/src/sp-forms/roofs_form.dart';
 import 'package:flutter_app/src/sp-forms/inner_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/small_property_basic_information_form.dart';
@@ -64,7 +64,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
       ];
 
   List<Widget> demolitionMaterials() => [
-        ReusableAndRecyclableMaterialsForm(),
+        SmallPropertiesReusableAndRecyclableMaterialsForm(),
         NavigationButtons(),
       ];
 

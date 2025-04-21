@@ -7,17 +7,17 @@ import 'package:flutter_app/src/sp-bloc/total_reusable_and_recyclable_materials_
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
-class ReusableAndRecyclableMaterialsForm extends StatelessWidget {
-  const ReusableAndRecyclableMaterialsForm({super.key});
+class SmallPropertiesReusableAndRecyclableMaterialsForm
+    extends StatelessWidget {
+  const SmallPropertiesReusableAndRecyclableMaterialsForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final bloc =
-        context.read<SmallPropertiesReusableAndRecyclableMaterialsBloc>();
-
     return BlocBuilder<SmallPropertiesTotalReusableAndRecyclableMaterialsBloc,
             SmallPropertiesTotalReusableAndRecyclableMaterials>(
         builder: (context, state) {
+      final bloc =
+          context.read<SmallPropertiesReusableAndRecyclableMaterialsBloc>();
       return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         LayoutGrid(columnSizes: [
           210.px,
