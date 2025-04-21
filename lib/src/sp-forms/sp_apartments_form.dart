@@ -43,13 +43,13 @@ class SpApartmentsForm extends StatelessWidget {
                 Cell.output(getter: () => state.fourRooms?.pcsPerHouse),
                 Cell.output(getter: () => state.totalRoomCount),
                 Cell.row(initialValue: 'Lattia-ala'),
-                Cell.output(getter: () => state.oneRoom?.wallAreaPerApartment),
-                Cell.output(getter: () => state.twoRooms?.wallAreaPerApartment),
+                Cell.output(getter: () => state.oneRoom?.floorAreaPerApartment),
+                Cell.output(getter: () => state.twoRooms?.floorAreaPerApartment),
                 Cell.output(
-                    getter: () => state.threeRooms?.wallAreaPerApartment),
+                    getter: () => state.threeRooms?.floorAreaPerApartment),
                 Cell.output(
-                    getter: () => state.fourRooms?.wallAreaPerApartment),
-                Cell.output(getter: () => state.totalWallArea),
+                    getter: () => state.fourRooms?.floorAreaPerApartment),
+                Cell.output(getter: () => state.totalFloorArea),
               ],
             ),
           ],
