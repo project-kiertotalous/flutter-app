@@ -37,7 +37,12 @@ import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/windows_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/wood_glass_plastics_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/yard_and_protective_structures_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/apartment_2room_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/apartment_3room_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/apartment_4room_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/carport_or_garage_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/apartment_size_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/apartment_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/hall_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
@@ -421,6 +426,21 @@ class MyApp extends StatelessWidget {
                 BlocProvider(
                   create: (BuildContext context) => TotalThermalCenterBloc(
                     thermalCenterBloc: context.read<ThermalCenterBloc>(),
+                  ),
+                ),
+                BlocProvider(create: (BuildContext context) => ApartmentBloc()),
+                BlocProvider(
+                    create: (BuildContext context) => Apartment2RoomBloc()),
+                BlocProvider(
+                    create: (BuildContext context) => Apartment3RoomBloc()),
+                BlocProvider(
+                    create: (BuildContext context) => Apartment4RoomBloc()),
+                BlocProvider(
+                  create: (BuildContext context) => ApartmentSizeBloc(
+                    oneRoomBloc: context.read<ApartmentBloc>(),
+                    twoRoomsBloc: context.read<Apartment2RoomBloc>(),
+                    threeRoomsBloc: context.read<Apartment3RoomBloc>(),
+                    fourRoomsBloc: context.read<Apartment4RoomBloc>(),
                   ),
                 ),
               ],

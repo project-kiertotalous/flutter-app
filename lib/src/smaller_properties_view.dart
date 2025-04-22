@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/sp-forms/carport_or_garage_form.dart';
+import 'package:flutter_app/src/sp-forms/aparment_form.dart';
 import 'package:flutter_app/src/sp-forms/electric_installations_and_HVAC_form.dart';
 import 'package:flutter_app/src/sp-forms/foundation_form.dart';
 import 'package:flutter_app/src/sp-forms/passage_doors_form.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_app/src/sp-forms/inner_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/small_property_basic_information_form.dart';
 import 'package:flutter_app/src/sp-forms/SB_removable_grounds_form.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
+import 'package:flutter_app/src/sp-forms/sp_apartments_form.dart';
 import 'package:flutter_app/src/sp-forms/sp_windows_form.dart';
 import 'package:flutter_app/src/sp-forms/thermal_center_form.dart';
 import 'package:flutter_app/src/sp-forms/walls_form.dart';
@@ -45,12 +47,14 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
         SPOuterDoorsForm(),
         SPInnerDoorsForm(),
         SpWindowsForm(),
+        SpApartmentsForm(),
         SPElectricalInstallationsAndhvacForm(),
         SPMachineryForm(),
         NavigationButtons(),
       ];
 
   List<Widget> apartmentsForms() => [
+        SPApartmentForm(),
         NavigationButtons(),
       ];
 
