@@ -114,8 +114,20 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
       ];
 
         List<Widget> saveFile() => [
+           Text(
+          'Tallenna kustannukset tiedosto',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
           ExportButton(
-          onExportPDF: () => LargePropertyExporter.exportPDF(context),
+          onExportPDF: () => LargePropertyExporter.exportMaterialAssessmentPDF(context),
+          onExportExcel: () => LargePropertyExporter.exportExcel(context),
+        ),
+        Text(
+          'Tallenna lakisääteiset tiedot tiedosto',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        ExportButton(
+          onExportPDF: () => LargePropertyExporter.exportWasteLawPDF(context),
           onExportExcel: () => LargePropertyExporter.exportExcel(context),
         ),
         NavigationButtons(),

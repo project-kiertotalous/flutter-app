@@ -20,9 +20,31 @@ class LargePropertyExporter {
   static ByteData? fontRegular;
   static ByteData? fontBold;
 
-  static void exportPDF(BuildContext context) async {
+  static void exportMaterialAssessmentPDF(BuildContext context) async {
     final total = context.read<TotalDemolitionWasteAndCostsBloc>().state;
     final info = context.read<LargePropertyBasicInfoBloc>().state;
+
+    await loadFontsIfNeeded();
+
+    final filePath = await FilePicker.platform.saveFile(
+      dialogTitle: 'Save PDF File',
+      fileName: 'large_property_material_assessment_report.pdf',
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (filePath == null) return;
+
+    final file = File(filePath);
+
+    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
+      totalDemolitionWasteAndCosts: total,
+      largePropertyEvaluationInfo: info,
+    );
+    demolitionExporter.writeAsPdfSync(file,
+        fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
+  }
+    static void exportWasteLawPDF(BuildContext context) async {
     final totalConcrete =
         context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
     final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
@@ -40,21 +62,12 @@ class LargePropertyExporter {
 
     final filePath = await FilePicker.platform.saveFile(
       dialogTitle: 'Save PDF File',
-      fileName: 'large_property_report.pdf',
+      fileName: 'large_property_waste_law_report.pdf',
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
 
     if (filePath == null) return;
-
-    final file = File(filePath);
-
-    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
-      totalDemolitionWasteAndCosts: total,
-      largePropertyEvaluationInfo: info,
-    );
-    demolitionExporter.writeAsPdfSync(file,
-        fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
 
     final wasteExporter = WasteLawReportExporter(
       totalConcreteBricksTilesCeramics: totalConcrete,
