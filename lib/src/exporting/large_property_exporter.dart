@@ -15,6 +15,7 @@ import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dar
 import 'package:flutter_app/src/lp-bloc/total_other_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:path/path.dart' as path;
 
 class LargePropertyExporter {
   static ByteData? fontRegular;
@@ -35,7 +36,8 @@ class LargePropertyExporter {
 
     if (filePath == null) return;
 
-    final file = File(filePath);
+    final correctedPath = path.setExtension(filePath, '.pdf');
+    final file = File(correctedPath);
 
     final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
       totalDemolitionWasteAndCosts: total,
@@ -44,7 +46,8 @@ class LargePropertyExporter {
     demolitionExporter.writeAsPdfSync(file,
         fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
   }
-    static void exportWasteLawPDF(BuildContext context) async {
+
+  static void exportWasteLawPDF(BuildContext context) async {
     final totalConcrete =
         context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
     final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
@@ -69,7 +72,8 @@ class LargePropertyExporter {
 
     if (filePath == null) return;
 
-     final file = File(filePath);
+    final correctedPath = path.setExtension(filePath, '.pdf');
+    final file = File(correctedPath);
 
     final wasteExporter = WasteLawReportExporter(
       totalConcreteBricksTilesCeramics: totalConcrete,
@@ -99,7 +103,8 @@ class LargePropertyExporter {
 
     if (filePath == null) return;
 
-    final file = File(filePath);
+    final correctedPath = path.setExtension(filePath, '.xlsx');
+    final file = File(correctedPath);
 
     final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
       totalDemolitionWasteAndCosts: total,
@@ -108,7 +113,7 @@ class LargePropertyExporter {
     demolitionExporter.writeAsExcelSync(file);
   }
 
-    static void exportWasteLawExcel(BuildContext context) async {
+  static void exportWasteLawExcel(BuildContext context) async {
     final totalConcrete =
         context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
     final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
@@ -131,7 +136,8 @@ class LargePropertyExporter {
 
     if (filePath == null) return;
 
-    final file = File(filePath);
+    final correctedPath = path.setExtension(filePath, '.xlsx');
+    final file = File(correctedPath);
 
     final wasteExporter = WasteLawReportExporter(
       totalConcreteBricksTilesCeramics: totalConcrete,
@@ -149,7 +155,8 @@ class LargePropertyExporter {
 
   static Future<dynamic> loadFontsIfNeeded() async {
     if (fontRegular == null) {
-      final regularBytes = await rootBundle.load('assets/fonts/Carlito-Regular.ttf');
+      final regularBytes =
+          await rootBundle.load('assets/fonts/Carlito-Regular.ttf');
       final boldBytes = await rootBundle.load('assets/fonts/Carlito-Bold.ttf');
       fontRegular = regularBytes.buffer.asByteData();
       fontBold = boldBytes.buffer.asByteData();
