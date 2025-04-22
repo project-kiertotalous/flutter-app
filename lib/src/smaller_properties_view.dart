@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/shared/export_button.dart';
 import 'package:flutter_app/src/sp-forms/carport_or_garage_form.dart';
 import 'package:flutter_app/src/sp-forms/aparment_form.dart';
 import 'package:flutter_app/src/sp-forms/electric_installations_and_HVAC_form.dart';
@@ -75,6 +76,10 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
       ];
 
   List<Widget> saveFile() => [
+              ExportButton(  //TODO add smallproperty exporter
+          onExportPDF: () => null, //SmallPropertyExporter.exportPDF(context),
+          onExportExcel: () => null,//SallPropertyExporter.exportExcel(context),
+        ),
         NavigationButtons(),
 
       ];
