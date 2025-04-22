@@ -33,8 +33,10 @@ import 'package:flutter_app/src/lp-forms/wood_glass_plastics_form.dart';
 import 'package:flutter_app/src/lp-forms/yard_and_protective_structures.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/tab_view.dart';
-
 import 'shared/cancel_dialog.dart';
+import 'package:flutter_app/src/exporting/large_property_exporter.dart';
+import 'package:flutter_app/src/shared/export_button.dart';
+
 
 /// This view is for estimating large buildings.
 class LargePropertiesView extends StatefulWidget {
@@ -52,6 +54,7 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
     Tab(text: "LVI, & sähkö & muut varusteet"),
     Tab(text: "Purkumateriaalit"),
     Tab(text: "Taulukko"),
+    Tab(text: "Tallenna tiedosto"),
   ];
 
   List<Widget> outerSheathForms() => [
@@ -107,9 +110,20 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
         InsulationAndAsbestosContainingMaterialsForm(),
         GypsumBasedBuildingMaterialsForm(),
         OtherMaterialsForm(),
-        const SizedBox(height: 20),
         NavigationButtons(),
       ];
+
+        List<Widget> saveFile() => [
+          ExportButton(
+          onExportPDF: () => LargePropertyExporter.exportPDF(context),
+          onExportExcel: () => LargePropertyExporter.exportExcel(context),
+        ),
+        NavigationButtons(),
+
+      ];
+   
+
+   
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +160,7 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
                   width: 1600,
                 ),
                 TabView(forms: wasteLawDemolitionForms),
+                TabView(forms: saveFile,)
               ],
             ),
           ),
