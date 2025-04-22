@@ -54,6 +54,7 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
     Tab(text: "LVI, & sähkö & muut varusteet"),
     Tab(text: "Purkumateriaalit"),
     Tab(text: "Taulukko"),
+    Tab(text: "Tallenna tiedosto"),
   ];
 
   List<Widget> outerSheathForms() => [
@@ -109,15 +110,18 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
         InsulationAndAsbestosContainingMaterialsForm(),
         GypsumBasedBuildingMaterialsForm(),
         OtherMaterialsForm(),
-        ExportButton(
+        NavigationButtons(),
+      ];
+
+        List<Widget> saveFile() => [
+          ExportButton(
           onExportPDF: () => LargePropertyExporter.exportPDF(context),
           onExportExcel: () => LargePropertyExporter.exportExcel(context),
         ),
-        const SizedBox(height: 20),
         NavigationButtons(),
-        
-        
+
       ];
+   
 
    
 
@@ -156,6 +160,7 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
                   width: 1600,
                 ),
                 TabView(forms: wasteLawDemolitionForms),
+                TabView(forms: saveFile,)
               ],
             ),
           ),
