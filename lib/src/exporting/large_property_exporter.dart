@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:typed_data';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,22 +13,30 @@ import 'package:flutter_app/src/lp-bloc/total_soil_aggregates_dredging_materials
 import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_other_materials_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart'; 
-import 'package:bl_demolition_materials/src/exporting/demolition_material_assessment_report_exporter.dart';
-import 'package:bl_demolition_materials/src/exporting/waste_law_report_exporter.dart';
+import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart';
+import 'package:flutter/services.dart' show rootBundle;
 
 class LargePropertyExporter {
+  static ByteData? fontRegular;
+  static ByteData? fontBold;
+
   static void exportPDF(BuildContext context) async {
     final total = context.read<TotalDemolitionWasteAndCostsBloc>().state;
     final info = context.read<LargePropertyBasicInfoBloc>().state;
-    final totalConcrete = context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
+    final totalConcrete =
+        context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
     final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
-    final totalBituminous = context.read<TotalBituminousMixturesCoalTarProductsBloc>().state;
+    final totalBituminous =
+        context.read<TotalBituminousMixturesCoalTarProductsBloc>().state;
     final totalMetals = context.read<TotalMetalsAndAlloysBloc>().state;
-    final totalSoil = context.read<TotalSoilAggregatesDredgingMaterialsBloc>().state;
-    final totalInsulation = context.read<InsulationAndAsbestosContainingMaterialsBloc>().state;
+    final totalSoil =
+        context.read<TotalSoilAggregatesDredgingMaterialsBloc>().state;
+    final totalInsulation =
+        context.read<InsulationAndAsbestosContainingMaterialsBloc>().state;
     final totalGypsum = context.read<GypsumBasedBuildingMaterialsBloc>().state;
     final totalOther = context.read<TotalOtherMaterialsBloc>().state;
+
+    await loadFontsIfNeeded();
 
     final filePath = await FilePicker.platform.saveFile(
       dialogTitle: 'Save PDF File',
@@ -43,7 +53,8 @@ class LargePropertyExporter {
       totalDemolitionWasteAndCosts: total,
       largePropertyEvaluationInfo: info,
     );
-    demolitionExporter.writeAsPdfSync(file);
+    demolitionExporter.writeAsPdfSync(file,
+        fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
 
     final wasteExporter = WasteLawReportExporter(
       totalConcreteBricksTilesCeramics: totalConcrete,
@@ -57,19 +68,24 @@ class LargePropertyExporter {
     );
 
     final wasteLawFile = File(filePath.replaceAll('.pdf', '_waste_law.pdf'));
-    wasteExporter.writeAsPdfSync(wasteLawFile);
+    wasteExporter.writeAsPdfSync(wasteLawFile,
+        fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
   }
 
   static void exportExcel(BuildContext context) async {
     final total = context.read<TotalDemolitionWasteAndCostsBloc>().state;
     final info = context.read<LargePropertyBasicInfoBloc>().state;
 
-    final totalConcrete = context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
+    final totalConcrete =
+        context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
     final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
-    final totalBituminous = context.read<TotalBituminousMixturesCoalTarProductsBloc>().state;
+    final totalBituminous =
+        context.read<TotalBituminousMixturesCoalTarProductsBloc>().state;
     final totalMetals = context.read<TotalMetalsAndAlloysBloc>().state;
-    final totalSoil = context.read<TotalSoilAggregatesDredgingMaterialsBloc>().state;
-    final totalInsulation = context.read<InsulationAndAsbestosContainingMaterialsBloc>().state;
+    final totalSoil =
+        context.read<TotalSoilAggregatesDredgingMaterialsBloc>().state;
+    final totalInsulation =
+        context.read<InsulationAndAsbestosContainingMaterialsBloc>().state;
     final totalGypsum = context.read<GypsumBasedBuildingMaterialsBloc>().state;
     final totalOther = context.read<TotalOtherMaterialsBloc>().state;
 
@@ -103,5 +119,14 @@ class LargePropertyExporter {
 
     final wasteLawFile = File(filePath.replaceAll('.xlsx', '_waste_law.xlsx'));
     wasteExporter.writeAsExcelSync(wasteLawFile);
+  }
+
+  static Future<dynamic> loadFontsIfNeeded() async {
+    if (fontRegular == null) {
+      final regularBytes = await rootBundle.load('assets/fonts/Carlito-Regular.ttf');
+      final boldBytes = await rootBundle.load('assets/fonts/Carlito-Bold.ttf');
+      fontRegular = regularBytes.buffer.asByteData();
+      fontBold = boldBytes.buffer.asByteData();
+    }
   }
 }

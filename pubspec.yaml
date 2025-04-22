@@ -42,3 +42,9 @@ flutter:
   assets:
     # Add assets from the images directory to the application.
     - assets/images/
+
+  fonts:
+      - family: Carlito
+        fonts:
+          - asset: assets/fonts/Carlito-Regular.ttf
+          - asset: assets/fonts/Carlito-Bold.ttf
