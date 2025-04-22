@@ -19,7 +19,7 @@ class ExportButton extends StatelessWidget {
           children: [
             ListTile(
               leading: Icon(Icons.picture_as_pdf),
-              title: Text('Vieda PDF'),
+              title: Text('Tallenna PDF'),
               onTap: () {
                 Navigator.pop(context);
                 onExportPDF();
@@ -27,7 +27,7 @@ class ExportButton extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.grid_on),
-              title: Text('Vieda Excelia'),
+              title: Text('Tallenna Excel'),
               onTap: () {
                 Navigator.pop(context);
                 onExportExcel();
@@ -35,7 +35,7 @@ class ExportButton extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.all_inclusive),
-              title: Text('Vieda Molemmat'),
+              title: Text('Tallenna PDF ja Excel'),
               onTap: () {
                 Navigator.pop(context);
                 onExportPDF();
