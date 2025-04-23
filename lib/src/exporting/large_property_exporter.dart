@@ -15,14 +15,39 @@ import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dar
 import 'package:flutter_app/src/lp-bloc/total_other_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:path/path.dart' as path;
 
 class LargePropertyExporter {
   static ByteData? fontRegular;
   static ByteData? fontBold;
 
-  static void exportPDF(BuildContext context) async {
+  static void exportMaterialAssessmentPDF(BuildContext context) async {
     final total = context.read<TotalDemolitionWasteAndCostsBloc>().state;
     final info = context.read<LargePropertyBasicInfoBloc>().state;
+
+    await loadFontsIfNeeded();
+
+    final filePath = await FilePicker.platform.saveFile(
+      dialogTitle: 'Save PDF File',
+      fileName: 'purkumateriaalien_arviointilaskelma.pdf',
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (filePath == null) return;
+
+    final correctedPath = path.setExtension(filePath, '.pdf');
+    final file = File(correctedPath);
+
+    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
+      totalDemolitionWasteAndCosts: total,
+      largePropertyEvaluationInfo: info,
+    );
+    demolitionExporter.writeAsPdfSync(file,
+        fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
+  }
+
+  static void exportWasteLawPDF(BuildContext context) async {
     final totalConcrete =
         context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
     final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
@@ -40,21 +65,15 @@ class LargePropertyExporter {
 
     final filePath = await FilePicker.platform.saveFile(
       dialogTitle: 'Save PDF File',
-      fileName: 'large_property_report.pdf',
+      fileName: 'jatelain_mukainen_purkumateriaalien_arviointilaskelma.pdf',
       type: FileType.custom,
       allowedExtensions: ['pdf'],
     );
 
     if (filePath == null) return;
 
-    final file = File(filePath);
-
-    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
-      totalDemolitionWasteAndCosts: total,
-      largePropertyEvaluationInfo: info,
-    );
-    demolitionExporter.writeAsPdfSync(file,
-        fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
+    final correctedPath = path.setExtension(filePath, '.pdf');
+    final file = File(correctedPath);
 
     final wasteExporter = WasteLawReportExporter(
       totalConcreteBricksTilesCeramics: totalConcrete,
@@ -67,15 +86,34 @@ class LargePropertyExporter {
       totalOtherMaterials: totalOther,
     );
 
-    final wasteLawFile = File(filePath.replaceAll('.pdf', '_waste_law.pdf'));
-    wasteExporter.writeAsPdfSync(wasteLawFile,
+    wasteExporter.writeAsPdfSync(file,
         fontRegularByteData: fontRegular, fontBoldByteData: fontBold);
   }
 
-  static void exportExcel(BuildContext context) async {
+  static void exportMaterialAssessmentExcel(BuildContext context) async {
     final total = context.read<TotalDemolitionWasteAndCostsBloc>().state;
     final info = context.read<LargePropertyBasicInfoBloc>().state;
 
+    final filePath = await FilePicker.platform.saveFile(
+      dialogTitle: 'Save Excel File',
+      fileName: 'purkumateriaalien_arviointilaskelma.xlsx',
+      type: FileType.custom,
+      allowedExtensions: ['xlsx'],
+    );
+
+    if (filePath == null) return;
+
+    final correctedPath = path.setExtension(filePath, '.xlsx');
+    final file = File(correctedPath);
+
+    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
+      totalDemolitionWasteAndCosts: total,
+      largePropertyEvaluationInfo: info,
+    );
+    demolitionExporter.writeAsExcelSync(file);
+  }
+
+  static void exportWasteLawExcel(BuildContext context) async {
     final totalConcrete =
         context.read<TotalConcreteBricksTilesCeramicsBloc>().state;
     final totalWoodGlass = context.read<TotalWoodGlassPlasticsBloc>().state;
@@ -91,20 +129,15 @@ class LargePropertyExporter {
 
     final filePath = await FilePicker.platform.saveFile(
       dialogTitle: 'Save Excel File',
-      fileName: 'large_property_report.xlsx',
+      fileName: 'jatelain_mukainen_purkumateriaalien_arviointilaskelma.xlsx',
       type: FileType.custom,
       allowedExtensions: ['xlsx'],
     );
 
     if (filePath == null) return;
 
-    final file = File(filePath);
-
-    final demolitionExporter = DemolitionMaterialAssessmentReportExporter(
-      totalDemolitionWasteAndCosts: total,
-      largePropertyEvaluationInfo: info,
-    );
-    demolitionExporter.writeAsExcelSync(file);
+    final correctedPath = path.setExtension(filePath, '.xlsx');
+    final file = File(correctedPath);
 
     final wasteExporter = WasteLawReportExporter(
       totalConcreteBricksTilesCeramics: totalConcrete,
@@ -117,13 +150,13 @@ class LargePropertyExporter {
       totalOtherMaterials: totalOther,
     );
 
-    final wasteLawFile = File(filePath.replaceAll('.xlsx', '_waste_law.xlsx'));
-    wasteExporter.writeAsExcelSync(wasteLawFile);
+    wasteExporter.writeAsExcelSync(file);
   }
 
   static Future<dynamic> loadFontsIfNeeded() async {
     if (fontRegular == null) {
-      final regularBytes = await rootBundle.load('assets/fonts/Carlito-Regular.ttf');
+      final regularBytes =
+          await rootBundle.load('assets/fonts/Carlito-Regular.ttf');
       final boldBytes = await rootBundle.load('assets/fonts/Carlito-Bold.ttf');
       fontRegular = regularBytes.buffer.asByteData();
       fontBold = boldBytes.buffer.asByteData();

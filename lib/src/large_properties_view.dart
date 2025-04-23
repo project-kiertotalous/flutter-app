@@ -114,10 +114,23 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
       ];
 
         List<Widget> saveFile() => [
-          ExportButton(
-          onExportPDF: () => LargePropertyExporter.exportPDF(context),
-          onExportExcel: () => LargePropertyExporter.exportExcel(context),
+           Text(
+          'Tallenna purkumateriaalien arviointilaskelma',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
+          ExportButton(
+          onExportPDF: () => LargePropertyExporter.exportMaterialAssessmentPDF(context),
+          onExportExcel: () => LargePropertyExporter.exportMaterialAssessmentExcel(context),
+        ),
+        Text(
+          'Tallenna jätelain mukainen purkumateriaalien arviointilaskelma',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+        ExportButton(
+          onExportPDF: () => LargePropertyExporter.exportWasteLawPDF(context),
+          onExportExcel: () => LargePropertyExporter.exportWasteLawExcel(context),
+        ),
+        SizedBox(height: 30),
         NavigationButtons(),
 
       ];
