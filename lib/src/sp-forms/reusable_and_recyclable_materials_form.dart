@@ -8,11 +8,7 @@ import 'package:flutter_app/src/sp-bloc/recyclable_materials_material_value_even
 import 'package:flutter_app/src/sp-bloc/recyclable_materials_note_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/recyclable_materials_note_event.dart';
 import 'package:flutter_app/src/shared/cell.dart';
-import 'package:flutter_app/src/sp-bloc/recyclable_materials_note_event.dart';
-import 'package:flutter_app/src/sp-bloc/reusable_and_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/reusable_and_recyclable_materials_event.dart';
 import 'package:flutter_app/src/sp-bloc/total_reusable_and_recyclable_materials_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/total_reusable_and_recyclable_materials_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -25,8 +21,6 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
     return BlocBuilder<SmallPropertiesTotalReusableAndRecyclableMaterialsBloc,
             SmallPropertiesTotalReusableAndRecyclableMaterials>(
         builder: (context, state) {
-      final bloc =
-          context.read<SmallPropertiesReusableAndRecyclableMaterialsBloc>();
       final notesBloc = context.read<RecyclableMaterialsNotesBloc>();
       final valueBloc = context.read<RecyclableMaterialsMaterialValueBloc>();
       final handlingBloc = context.read<RecyclableMaterialsHandlingCostsBloc>();

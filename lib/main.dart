@@ -1,4 +1,3 @@
-import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/building_dimensions_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/building_frame_bloc.dart';
@@ -46,7 +45,6 @@ import 'package:flutter_app/src/sp-bloc/carport_or_garage_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_size_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_event.dart';
 import 'package:flutter_app/src/sp-bloc/hall_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/passage_doors_bloc.dart';
