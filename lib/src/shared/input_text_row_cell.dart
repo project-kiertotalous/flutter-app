@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class InputTextRowCell extends StatefulWidget {
-  // Changed to StatefulWidget
   final String label;
   final String? initialValue;
   final void Function(String) setter;
@@ -48,7 +47,9 @@ class _InputRowCellState extends State<InputTextRowCell> {
             isDense: true,
             contentPadding: EdgeInsets.zero,
           ),
-          textAlign: TextAlign.start, // Changed from left to start
+          textAlign: TextAlign.start,
+          maxLines: null, // Allows the field to grow vertically
+          keyboardType: TextInputType.multiline, // Enables multiline input
           onChanged: widget.setter,
         ),
       ),

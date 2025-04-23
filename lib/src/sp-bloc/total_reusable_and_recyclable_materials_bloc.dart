@@ -1,9 +1,9 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter_app/log.dart';
+import 'package:flutter_app/src/sp-bloc/recyclable_materials_note_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/recyclable_materials_handling_costs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/recyclable_materials_material_value_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/recyclable_materials_note_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/quantities_to_material_form_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/reusable_and_recyclable_materials_bloc.dart';
