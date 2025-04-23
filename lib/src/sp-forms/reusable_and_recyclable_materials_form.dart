@@ -72,7 +72,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.cleanSoil.materialValue),
+          Cell.output(getter: () => state.cleanSoil.quantityEstimate),
           Cell.row(initialValue: "Asfalttijäte"),
           Cell.output(getter: () => state.asphaltWaste.quantityEstimate),
           Cell.input(
@@ -88,7 +88,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.cleanConcrete.materialValue),
+          Cell.output(getter: () => state.cleanConcrete.materialValue),
           Cell.row(initialValue: "Puhdas betoni"),
           Cell.output(getter: () => state.cleanConcrete.quantityEstimate),
           Cell.input(
@@ -97,13 +97,14 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
             setter: (value) => null, //TODO: fix this
           ),
           Cell.input(
-            initialValue: state.cleanConcrete?.cleanSoilDemolitionCost,
+            initialValue: state
+                .reusableAndRecyclableMaterials?.cleanConcreteDemolitionCost,
             setter: (value) =>
                 bloc.add(CleanConcreteDemolitionCostChanged(value)),
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.steel.materialValue),
+          Cell.output(getter: () => state.steel.materialValue),
           Cell.row(initialValue: "Betoniteräkset, peltikatto ja muu teräsromu"),
           Cell.output(getter: () => state.steel.quantityEstimate),
           Cell.input(
@@ -119,7 +120,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.steel.materialValue),
+          Cell.output(getter: () => state.steel.materialValue),
           Cell.row(initialValue: "Seinä- ja kattotiilet"),
           Cell.output(getter: () => state.wallAndRoofTiles.quantityEstimate),
           Cell.input(
@@ -135,7 +136,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.wallAndRoofTiles.materialValue),
+          Cell.output(getter: () => state.wallAndRoofTiles.materialValue),
           Cell.row(initialValue: "Puhdas käyttökelpoinen puu"),
           Cell.output(getter: () => state.cleanUsableWood.quantityEstimate),
           Cell.input(
@@ -151,7 +152,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.cleanUsableWood.materialValue),
+          Cell.output(getter: () => state.cleanUsableWood.materialValue),
           Cell.row(initialValue: "Tuulensuojalevyt (bituliitti tai vastaava)"),
           Cell.output(getter: () => state.windProtectionBoard.quantityEstimate),
           Cell.input(
@@ -168,7 +169,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.windProtectionBoard.materialValue),
+          Cell.output(getter: () => state.windProtectionBoard.materialValue),
           Cell.row(initialValue: "Lasi- ja mineraalieristevilla"),
           Cell.output(getter: () => state.glassAndMineralWool.quantityEstimate),
           Cell.input(
@@ -184,7 +185,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.gypsumBoards.materialValue),
+          Cell.output(getter: () => state.gypsumBoards.materialValue),
           Cell.row(initialValue: "Kipsilevyt (Cyproc)"),
           Cell.output(getter: () => state.gypsumBoards.quantityEstimate),
           Cell.input(
@@ -200,7 +201,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.gypsumBoards.materialValue),
+          Cell.output(getter: () => state.gypsumBoards.materialValue),
           Cell.row(initialValue: "Lastulevy"),
           Cell.output(getter: () => state.chipboard.quantityEstimate),
           Cell.input(
@@ -215,7 +216,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.chipboard.materialValue),
+          Cell.output(getter: () => state.chipboard.materialValue),
           Cell.row(
               initialValue:
                   "Energiajäte, maalattu puu, kattohuopa ja aluskate"),
@@ -234,7 +235,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.energyWaste.materialValue),
+          Cell.output(getter: () => state.energyWaste.materialValue),
           Cell.row(initialValue: "Lasi"),
           Cell.output(getter: () => state.glass.quantityEstimate),
           Cell.input(
@@ -248,7 +249,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.glass.materialValue),
+          Cell.output(getter: () => state.glass.materialValue),
           Cell.row(initialValue: "Alumiini"),
           Cell.output(getter: () => state.aluminium.quantityEstimate),
           Cell.input(
@@ -263,7 +264,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.aluminium.materialValue),
+          Cell.output(getter: () => state.aluminium.materialValue),
           Cell.row(
               initialValue:
                   "Muu metalliromu, sähkökaapit, liedet, jääkaapit ym."),
@@ -281,7 +282,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.rebarAndSteelScrap.materialValue),
+          Cell.output(getter: () => state.rebarAndSteelScrap.materialValue),
           Cell.row(initialValue: "Ruostumaton teräs"),
           Cell.output(getter: () => state.stainlessSteel.quantityEstimate),
           Cell.input(
@@ -297,7 +298,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.stainlessSteel.materialValue),
+          Cell.output(getter: () => state.stainlessSteel.materialValue),
           Cell.row(initialValue: "Kupari"),
           Cell.output(getter: () => state.copper.quantityEstimate),
           Cell.input(
@@ -312,7 +313,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.copper.materialValue),
+          Cell.output(getter: () => state.copper.materialValue),
           Cell.row(initialValue: "Betoniset pihalaatat ja muurikivet"),
           Cell.output(getter: () => state.concreteBlocks.quantityEstimate),
           Cell.input(
@@ -328,7 +329,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           ),
           Cell.output(getter: () => null), //TODO: fix this
           Cell.input(initialValue: null, setter: (value) => null),
-          Cell.output(getter: state.concreteBlocks.materialValue),
+          Cell.output(getter: () => state.concreteBlocks.materialValue),
           Cell.row(initialValue: "Hyödyntämiskelpoiset materiaalit yhteensä"),
           Cell.output(getter: () => state.totalQuantityEstimate),
           Cell.grey(),
@@ -336,7 +337,6 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.totalDemolitionCost), //TODO: fix this
           Cell.grey(),
           Cell.output(getter: () => state.totalMaterialPrice),
-          Cell.grey(),
         ])
       ]);
     });

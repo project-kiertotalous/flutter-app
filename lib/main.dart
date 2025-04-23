@@ -45,9 +45,14 @@ import 'package:flutter_app/src/sp-bloc/carport_or_garage_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_size_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/apartment_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_event.dart';
 import 'package:flutter_app/src/sp-bloc/hall_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/machinery_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/passage_doors_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/quantities_to_material_form_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/recyclable_materials_handling_costs_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/recyclable_materials_material_value_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/recyclable_materials_note_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/roofs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
@@ -444,6 +449,39 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 BlocProvider(
+                    create: (BuildContext context) => QuantitiesToMaterialFormBloc(
+                        apartmentBloc: context.read<ApartmentBloc>(),
+                        apartmentSizeBloc: context.read<ApartmentSizeBloc>(),
+                        hvacBloc: context.read<
+                            SmallPropertiesElectricalInstallationsAndHvacBloc>(),
+                        excavationAreaBloc:
+                            context.read<SBExcavationAreaBloc>(),
+                        foundationBloc:
+                            context.read<SmallPropertiesFoundationBloc>(),
+                        innerDoorsBloc: context.read<SPInnerDoorsBloc>(),
+                        machineryEquipmentBloc: context.read<SPMachineryBloc>(),
+                        outerDoorsBloc: context.read<SPOuterDoorsBloc>(),
+                        roofBloc: context.read<SmallPropertiesRoofsBloc>(),
+                        evaluationInfoBloc:
+                            context.read<SmallPropertyBasicInfoBloc>(),
+                        wallsBloc: context.read<WallsBloc>(),
+                        windowsBloc: context.read<SpWindowsBloc>(),
+                        carportOrGarageBloc:
+                            context.read<CarportOrGarageBloc>(),
+                        hallDoorsBloc: context.read<HallDoorsBloc>(),
+                        passageDoorsBloc: context.read<PassageDoorsBloc>(),
+                        yardRoofBloc: context.read<YardRoofBloc>(),
+                        thermalCenterBloc: context.read<ThermalCenterBloc>())),
+                BlocProvider(
+                    create: (BuildContext context) =>
+                        RecyclableMaterialsNotesBloc()),
+                BlocProvider(
+                    create: (BuildContext context) =>
+                        RecyclableMaterialsMaterialValueBloc()),
+                BlocProvider(
+                    create: (BuildContext context) =>
+                        RecyclableMaterialsHandlingCostsBloc()),
+                BlocProvider(
                   create: (BuildContext context) =>
                       SmallPropertiesReusableAndRecyclableMaterialsBloc(),
                 ),
@@ -459,6 +497,30 @@ class MyApp extends StatelessWidget {
                           windowsBloc: context.read<SpWindowsBloc>(),
                           reusableAndRecyclableMaterialsBloc: context.read<
                               SmallPropertiesReusableAndRecyclableMaterialsBloc>(),
+                          apartmentBloc: context.read<ApartmentBloc>(),
+                          apartmentSizeBloc: context.read<ApartmentSizeBloc>(),
+                          carportOrGarageBloc:
+                              context.read<CarportOrGarageBloc>(),
+                          counterBloc:
+                              context.read<QuantitiesToMaterialFormBloc>(),
+                          hallDoorsBloc: context.read<HallDoorsBloc>(),
+                          hvacBloc: context.read<
+                              SmallPropertiesElectricalInstallationsAndHvacBloc>(),
+                          machineryEquipmentBloc:
+                              context.read<SPMachineryBloc>(),
+                          passageDoorsBloc: context.read<PassageDoorsBloc>(),
+                          recyclableMaterialsNotesBloc:
+                              context.read<RecyclableMaterialsNotesBloc>(),
+                          materialValueBloc: context
+                              .read<RecyclableMaterialsMaterialValueBloc>(),
+                          handlingCostsBloc: context
+                              .read<RecyclableMaterialsHandlingCostsBloc>(),
+                          roofBloc: context.read<SmallPropertiesRoofsBloc>(),
+                          evaluationInfoBloc:
+                              context.read<SmallPropertyBasicInfoBloc>(),
+                          thermalCenterBloc: context.read<ThermalCenterBloc>(),
+                          wallsBloc: context.read<WallsBloc>(),
+                          yardRoofBloc: context.read<YardRoofBloc>(),
                         )),
               ],
               child: SmallerPropertiesView(),
