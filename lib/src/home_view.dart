@@ -19,6 +19,22 @@ class HomeView extends StatelessWidget {
           ),
           child: Stack(
             children: [
+              // Title
+              Positioned(
+                top: 50,
+                left: 0,
+                right: 0,
+                child: Center(
+                  child: Text(
+                  "Rakennusten purkumateriaalien arviointilaskuri",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                ),
+              ),
               // micropolis logo
               Align(
                 alignment: Alignment.topLeft,
