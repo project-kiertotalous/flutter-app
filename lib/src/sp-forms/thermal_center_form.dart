@@ -67,7 +67,7 @@ class ThermalCenterForm extends StatelessWidget {
     return [
       DropdownMenuItem<SmallPropertyRoofType?>(
         value: null,
-        child: Text('Kattomtyyppi'),
+        child: Text('Kattotyyppi'),
       ),
       ...SmallPropertyRoofType.values.map((material) {
         return DropdownMenuItem<SmallPropertyRoofType?>(

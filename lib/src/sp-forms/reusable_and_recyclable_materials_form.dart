@@ -62,10 +62,10 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.column(initialValue: 'Määräarvio (tonnia)'),
           Cell.column(
               initialValue: 'Hyödyntäminen, käsittely tai loppusijoituspaikka'),
-          Cell.column(initialValue: 'Käsittely- ja prukukustannus (€/tonni)'),
+          Cell.column(initialValue: 'Käsittely- ja purkukustannus (€/tonni)'),
           Cell.column(initialValue: 'Purkukustannus/materiaalierä (€)'),
           Cell.column(initialValue: 'Materiaalin arvo (€/tonni)'),
-          Cell.column(initialValue: 'materiaalierän hinta (€)'),
+          Cell.column(initialValue: 'Materiaalierän hinta (€)'),
           Cell.row(initialValue: "Maa-ainekset"),
           Cell.output(getter: () => state.cleanSoil.quantityEstimate),
           InputTextRowCell(
