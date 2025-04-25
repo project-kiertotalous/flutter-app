@@ -1,3 +1,4 @@
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/building_dimensions_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/building_frame_bloc.dart';
@@ -69,14 +70,27 @@ import 'package:flutter_app/src/lp-bloc/bituminous_mixtures_coal_tar_products_bl
 import 'package:flutter_app/src/lp-bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
+import 'package:flutter_app/src/services/lp_data_service.dart';
+import 'dart:async';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-void main() {
-  runApp(MyApp());
+  // Initialize the data service to load data from file
+  final dataService = DataService();
+  final LargePropertiesRepository? repository =
+      await dataService.loadData() ?? LargePropertiesRepository();
+  runApp(MyApp(dataService: dataService, repository: repository ?? LargePropertiesRepository()));
 }
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final DataService dataService;
+  final LargePropertiesRepository repository;
+  
+  const MyApp({super.key,
+    required this.dataService,
+    required this.repository,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -95,69 +109,88 @@ class MyApp extends StatelessWidget {
         '/large_buildings': (context) => MultiBlocProvider(
               providers: [
                 BlocProvider(
-                  create: (BuildContext context) => FoundationsBloc(),
+                  create: (BuildContext context) => FoundationsBloc(repository: repository,
+                    initialState: repository.foundations,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => CellarBloc(),
+                  create: (BuildContext context) => CellarBloc(repository: repository, //MUUTA BLOC filet LISÄÄ CONSTRUCTORIIN ks. FOUNDATIONSBLOC
+                    initialState: repository.cellar,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => BuildingFrameBloc(),
+                  create: (BuildContext context) => BuildingFrameBloc(repository: repository,
+                    initialState: repository.buildingFrame,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => BuildingDimensionsBloc(),
+                  create: (BuildContext context) => BuildingDimensionsBloc(repository: repository,
+                    initialState: repository.buildingDimensions,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => InnerDoorsBloc(),
+                  create: (BuildContext context) => InnerDoorsBloc(repository: repository,
+                    initialState: repository.innerDoors,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => OuterDoorsBloc(),
+                  create: (BuildContext context) => OuterDoorsBloc(repository: repository,
+                    initialState: repository.outerDoors,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
-                      ReusableAndRecyclableMaterialsBloc(),
+                      ReusableAndRecyclableMaterialsBloc(repository: repository,
+                    initialState: repository.reusableAndRecyclableMaterials,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => RecyclableMaterialsBloc(),
+                  create: (BuildContext context) => RecyclableMaterialsBloc(repository: repository,
+                    initialState: repository.reusableAndRecyclableMaterials,),
                 ),
                 BlocProvider(
                     create: (context) =>
-                        DisposalMaterialsAndHazardousWasteBloc()),
+                        DisposalMaterialsAndHazardousWasteBloc(repository: repository,
+                    initialState: repository.disposalMaterialsAndHazardousWaste,)),
                 BlocProvider(
                   create: (BuildContext context) =>
-                      DemolitionWasteAndCostsBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) =>
-                      ConcreteBricksTilesCeramicsBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) => WoodGlassPlasticsBloc(),
+                      DemolitionWasteAndCostsBloc(repository: repository,
+                    initialState: repository.demolitionWasteAndCosts,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
-                      BituminousMixturesCoalTarProductsBloc(),
+                      ConcreteBricksTilesCeramicsBloc(repository: repository,
+                    initialState: repository.concreteBricksTilesCeramics,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => MetalsAndAlloysBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) =>
-                      SoilAggregatesDredgingMaterialsBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) =>
-                      InsulationAndAsbestosContainingMaterialsBloc(),
+                  create: (BuildContext context) => WoodGlassPlasticsBloc(repository: repository,
+                    initialState: repository.woodGlassPlastics,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
-                      GypsumBasedBuildingMaterialsBloc(),
+                      BituminousMixturesCoalTarProductsBloc(repository: repository,
+                    initialState: repository.bituminousMixturesCoalTarProducts,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => OtherMaterialsBloc(),
+                  create: (BuildContext context) => MetalsAndAlloysBloc(repository: repository,
+                    initialState: repository.metalsAndAlloys,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
-                      LargePropertyBasicInfoBloc(),
+                      SoilAggregatesDredgingMaterialsBloc(repository: repository,
+                    initialState: repository.soilAggregatesDredgingMaterials,),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      InsulationAndAsbestosContainingMaterialsBloc(repository: repository,
+                    initialState: repository.insulationAndAsbestosContainingMaterials,),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      GypsumBasedBuildingMaterialsBloc(repository: repository,
+                    initialState: repository.gypsumBasedBuildingMaterials,),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => OtherMaterialsBloc(repository: repository,
+                    initialState: repository.otherMaterials,),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      LargePropertyBasicInfoBloc(repository: repository,
+                    initialState: repository.largePropertyEvaluationInfo,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => TotalBuildingDimensionsBloc(
@@ -169,21 +202,18 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => ExcavationAreaBloc(),
+                  create: (BuildContext context) => ExcavationAreaBloc(repository: repository,
+                    initialState: repository.excavationArea,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => FloorStructuresBloc(),
+                  create: (BuildContext context) => FloorStructuresBloc(repository: repository,
+                    initialState: repository.floorStructures,),
                 ),
-                BlocProvider(
-                    create: (BuildContext context) => ExcavationAreaBloc()),
                 BlocProvider(
                   create: (BuildContext context) => IntermediateFloorsBloc(
                     context.read<TotalBuildingDimensionsBloc>(),
                     context.read<FoundationsBloc>(),
                   ),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) => CellarBloc(),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => TotalBuildingFrameBloc(
@@ -198,7 +228,8 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
-                      InternalWallFramesAndSurfaceMaterialBloc(),
+                      InternalWallFramesAndSurfaceMaterialBloc(repository: repository,
+                    initialState: repository.internalWallFramesAndSurfaceMaterial,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) => DoorBloc(
@@ -207,28 +238,34 @@ class MyApp extends StatelessWidget {
                   ),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => WindowsBloc(),
+                  create: (BuildContext context) => WindowsBloc(repository: repository,
+                    initialState: repository.windows,),
                 ),
                 BlocProvider(
-                  create: (BuildContext context) => FixedFurnitureBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) =>
-                      DoubleLoadBearingBrickWallBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) =>
-                      HvacAndElectricalInstallationsBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) => MachinesAndEquipmentsBloc(),
-                ),
-                BlocProvider(
-                  create: (BuildContext context) => FixturesAndStructuresBloc(),
+                  create: (BuildContext context) => FixedFurnitureBloc(repository: repository,
+                    initialState: repository.fixedFurniture,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>
-                      YardAndProtectiveStructuresBloc(),
+                      DoubleLoadBearingBrickWallBloc(), //TODO check this!! 
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      HvacAndElectricalInstallationsBloc(repository: repository,
+                    initialState: repository.hvacAndElectricalInstallations,),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => MachinesAndEquipmentsBloc(repository: repository,
+                    initialState: repository.machinesAndEquipments,),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) => FixturesAndStructuresBloc(repository: repository,
+                    initialState: repository.fixturesAndStructures,),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      YardAndProtectiveStructuresBloc(repository: repository,
+                    initialState: repository.yardAndProtectiveStructures,),
                 ),
                 BlocProvider(
                   create: (BuildContext context) =>

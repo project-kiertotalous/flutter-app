@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/foundations_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FoundationsBloc extends Bloc<FoundationsEvent, Foundations> {
-  FoundationsBloc() : super(Foundations()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  FoundationsBloc({
+    required this.repository,
+    Foundations? initialState,
+  }) : super(Foundations()) {
     on<BituminousWaterProofingChanged>((event, emit) {
       logger.d("BituminousWaterProofingChanged fired");
       emit(state.copyWith(bituminousWaterProofing: event.value));
