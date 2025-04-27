@@ -29,6 +29,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
         LayoutGrid(columnSizes: [
           210.px,
           120.px,
+          120.px,
           300.px,
           120.px,
           120.px,
@@ -60,6 +61,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
             initialValue: 'Hyödyntämiskelpoiset ja kierrätettävät materiaalit',
           ),
           Cell.column(initialValue: 'Määräarvio (tonnia)'),
+          Cell.column(initialValue: ''),
           Cell.column(
               initialValue: 'Hyödyntäminen, käsittely tai loppusijoituspaikka'),
           Cell.column(initialValue: 'Käsittely- ja purkukustannus (€/tonni)'),
@@ -68,6 +70,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.column(initialValue: 'Materiaalierän hinta (€)'),
           Cell.row(initialValue: "Maa-ainekset"),
           Cell.output(getter: () => state.cleanSoil.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.cleanSoil.exploitingOrProcessingOrFinalDisposalSite,
@@ -88,6 +91,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.cleanSoil.batchPrice),
           Cell.row(initialValue: "Asfalttijäte"),
           Cell.output(getter: () => state.asphaltWaste.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.asphaltWaste.exploitingOrProcessingOrFinalDisposalSite,
@@ -108,6 +112,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.asphaltWaste.batchPrice),
           Cell.row(initialValue: "Puhdas betoni"),
           Cell.output(getter: () => state.cleanConcrete.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.cleanConcrete.exploitingOrProcessingOrFinalDisposalSite,
@@ -128,6 +133,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.cleanConcrete.batchPrice),
           Cell.row(initialValue: "Betoniteräkset, peltikatto ja muu teräsromu"),
           Cell.output(getter: () => state.steel.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue: state.steel.exploitingOrProcessingOrFinalDisposalSite,
             setter: (value) => notesBloc.add(SteelNotesChanged(value)),
@@ -146,6 +152,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.steel.batchPrice),
           Cell.row(initialValue: "Seinä- ja kattotiilet"),
           Cell.output(getter: () => state.wallAndRoofTiles.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue: state
                 .wallAndRoofTiles.exploitingOrProcessingOrFinalDisposalSite,
@@ -168,6 +175,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.wallAndRoofTiles.batchPrice),
           Cell.row(initialValue: "Puhdas käyttökelpoinen puu"),
           Cell.output(getter: () => state.cleanUsableWood.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.cleanUsableWood.exploitingOrProcessingOrFinalDisposalSite,
@@ -191,6 +199,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.row(initialValue: "Polttokelpoinen puujäte"),
           Cell.output(
               getter: () => state.combustibleWoodWaste.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue: state
                 .combustibleWoodWaste.exploitingOrProcessingOrFinalDisposalSite,
@@ -213,6 +222,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.combustibleWoodWaste.batchPrice),
           Cell.row(initialValue: "Tuulensuojalevyt (bituliitti tai vastaava)"),
           Cell.output(getter: () => state.windProtectionBoard.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue: state
                 .windProtectionBoard.exploitingOrProcessingOrFinalDisposalSite,
@@ -235,6 +245,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.windProtectionBoard.batchPrice),
           Cell.row(initialValue: "Lasi- ja mineraalieristevilla"),
           Cell.output(getter: () => state.glassAndMineralWool.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue: state
                 .glassAndMineralWool.exploitingOrProcessingOrFinalDisposalSite,
@@ -257,6 +268,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.glassAndMineralWool.batchPrice),
           Cell.row(initialValue: "Kipsilevyt (Cyproc)"),
           Cell.output(getter: () => state.gypsumBoards.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.gypsumBoards.exploitingOrProcessingOrFinalDisposalSite,
@@ -277,6 +289,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.gypsumBoards.batchPrice),
           Cell.row(initialValue: "Lastulevy"),
           Cell.output(getter: () => state.chipboard.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.chipboard.exploitingOrProcessingOrFinalDisposalSite,
@@ -299,6 +312,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
               initialValue:
                   "Energiajäte, maalattu puu, kattohuopa ja aluskate"),
           Cell.output(getter: () => state.energyWaste.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.energyWaste.exploitingOrProcessingOrFinalDisposalSite,
@@ -319,6 +333,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.energyWaste.batchPrice),
           Cell.row(initialValue: "Lasi"),
           Cell.output(getter: () => state.glass.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue: state.glass.exploitingOrProcessingOrFinalDisposalSite,
             setter: (value) => notesBloc.add(GlassNotesChanged(value)),
@@ -337,6 +352,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.glass.batchPrice),
           Cell.row(initialValue: "Alumiini"),
           Cell.output(getter: () => state.aluminium.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.aluminium.exploitingOrProcessingOrFinalDisposalSite,
@@ -359,6 +375,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
               initialValue:
                   "Muu metalliromu, sähkökaapit, liedet, jääkaapit ym."),
           Cell.output(getter: () => state.rebarAndSteelScrap.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue: state
                 .rebarAndSteelScrap.exploitingOrProcessingOrFinalDisposalSite,
@@ -381,6 +398,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.rebarAndSteelScrap.batchPrice),
           Cell.row(initialValue: "Ruostumaton teräs"),
           Cell.output(getter: () => state.stainlessSteel.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.stainlessSteel.exploitingOrProcessingOrFinalDisposalSite,
@@ -402,6 +420,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.stainlessSteel.batchPrice),
           Cell.row(initialValue: "Kupari"),
           Cell.output(getter: () => state.copper.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.copper.exploitingOrProcessingOrFinalDisposalSite,
@@ -422,6 +441,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.copper.batchPrice),
           Cell.row(initialValue: "Betoniset pihalaatat ja muurikivet"),
           Cell.output(getter: () => state.concreteBlocks.quantityEstimate),
+          Cell.grey(),
           InputTextRowCell(
             initialValue:
                 state.concreteBlocks.exploitingOrProcessingOrFinalDisposalSite,
@@ -443,6 +463,7 @@ class SmallPropertiesReusableAndRecyclableMaterialsForm
           Cell.output(getter: () => state.concreteBlocks.batchPrice),
           Cell.row(initialValue: "Hyödyntämiskelpoiset materiaalit yhteensä"),
           Cell.output(getter: () => state.totalQuantityEstimate),
+          Cell.grey(),
           Cell.grey(),
           Cell.grey(),
           Cell.output(getter: () => state.totalDemolitionCost),

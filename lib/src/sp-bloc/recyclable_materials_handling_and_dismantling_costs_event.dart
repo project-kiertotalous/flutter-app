@@ -1,4 +1,4 @@
-part of 'recyclable_materials_handling_costs_bloc.dart';
+import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
 abstract class RecyclableMaterialsHandlingAndDismantlingCostsEvent {}
 
