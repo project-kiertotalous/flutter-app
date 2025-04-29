@@ -140,6 +140,7 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
 
   @override
   Widget build(BuildContext context) {
+    print('Building LargePropertiesView...');
     return DefaultTabController(
       length: tabs.length,
       child: DefaultTabControllerListener(

@@ -8,21 +8,27 @@ class DataService {
 
   Future<void> saveData(LargePropertiesRepository repository) async {
     final file = await _getFile();
-    await file.writeAsString(jsonEncode(repository.toJson())); // Use jsonEncode here
+    final jsonData = jsonEncode(repository.toJson());
+    print('Saving data: $jsonData'); // Debug log
+    await file.writeAsString(jsonData);
   }
 
   Future<LargePropertiesRepository?> loadData() async {
     final file = await _getFile();
     if (await file.exists()) {
       final content = await file.readAsString();
-      final jsonMap = jsonDecode(content) as Map<String, dynamic>; // Parse the JSON string to Map
-      return LargePropertiesRepository.fromJson(jsonMap); // Pass the Map to fromJson
+      final jsonMap = jsonDecode(content)
+          as Map<String, dynamic>; // Parse the JSON string to Map
+      return LargePropertiesRepository.fromJson(
+          jsonMap); // Pass the Map to fromJson
     }
     return null;
   }
 
   Future<File> _getFile() async {
     final directory = await getApplicationDocumentsDirectory();
-    return File('${directory.path}/$_fileName');
+    final file = File('${directory.path}/$_fileName');
+    print('JSON file path: ${file.path}');
+    return file;
   }
 }
