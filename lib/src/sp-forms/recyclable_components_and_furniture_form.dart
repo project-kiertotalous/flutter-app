@@ -213,7 +213,7 @@ class SmallPropertiesTotalRecyclableComponentsAndFurnitureForm
                 setter: (value) =>
                     valueBloc.add(AluminumFrameWindowsUnitPriceChanged(value))),
             Cell.output(getter: () => state.aluminumFrameWindows.batchPrice),
-            Cell.row(initialValue: "WC-istumet"),
+            Cell.row(initialValue: "WC-istuimet"),
             Cell.output(getter: () => state.porcelainToilets.quantityEstimate),
             Cell.output(getter: () => state.porcelainToilets.pcs),
             InputTextRowCell(
@@ -355,7 +355,7 @@ class SmallPropertiesTotalRecyclableComponentsAndFurnitureForm
                 setter: (value) =>
                     valueBloc.add(ElectricStovesUnitPriceChanged(value))),
             Cell.output(getter: () => state.electricStove.batchPrice),
-            Cell.row(initialValue: "Jääkaappi"),
+            Cell.row(initialValue: "Jääkaapit"),
             Cell.output(getter: () => state.refrigerator.quantityEstimate),
             Cell.output(getter: () => state.refrigerator.pcs),
             InputTextRowCell(
@@ -463,7 +463,7 @@ class SmallPropertiesTotalRecyclableComponentsAndFurnitureForm
             Cell.grey(),
             Cell.grey(),
             Cell.grey(),
-            Cell.row(initialValue: "Kaukolämmön vaihdin"),
+            Cell.row(initialValue: "Kaukolämmönvaihdin"),
             Cell.output(
                 getter: () => state.districtHeatingExchanger.quantityEstimate),
             Cell.output(getter: () => state.districtHeatingExchanger.pcs),
