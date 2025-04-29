@@ -5,7 +5,11 @@ import 'package:flutter_app/log.dart';
 
 class MachinesAndEquipmentsBloc
     extends Bloc<MachinesAndEquipmentsEvent, MachinesAndEquipments> {
-  MachinesAndEquipmentsBloc() : super(const MachinesAndEquipments()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  MachinesAndEquipmentsBloc({
+    required this.repository,
+    MachinesAndEquipments? initialState,
+  }) : super(const MachinesAndEquipments()) {
     on<SmallElectricalWaterAccumulatorsWeightChanged>((event, emit) {
       logger.d("SmallElectricalWaterAccumulatorsChanged fired");
       emit(state.copyWith(

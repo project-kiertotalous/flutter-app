@@ -5,7 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HvacAndElectricalInstallationsBloc extends Bloc<
     HvacAndElectricalInstallationsEvent, HvacAndElectricalInstallations> {
-  HvacAndElectricalInstallationsBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  HvacAndElectricalInstallationsBloc({
+    required this.repository,
+    HvacAndElectricalInstallations? initialState,
+    
+  })
       : super(HvacAndElectricalInstallations(
           copperWaterPipes: null,
           plasticWaterPipes: null,

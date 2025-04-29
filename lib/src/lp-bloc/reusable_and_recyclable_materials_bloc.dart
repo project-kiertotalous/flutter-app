@@ -5,7 +5,11 @@ import 'package:flutter_app/log.dart';
 
 class ReusableAndRecyclableMaterialsBloc extends Bloc<
     ReusableAndRecyclableMaterialsEvent, ReusableAndRecyclableMaterials> {
-  ReusableAndRecyclableMaterialsBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  ReusableAndRecyclableMaterialsBloc({
+    required this.repository,
+    ReusableAndRecyclableMaterials? initialState,
+  })
       : super(ReusableAndRecyclableMaterials()) {
     on<CleanSoilDemolitionCostChanged>((event, emit) {
       emit(

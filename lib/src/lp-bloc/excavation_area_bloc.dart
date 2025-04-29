@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/excavation_area_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExcavationAreaBloc extends Bloc<ExcavationAreaEvent, ExcavationArea> {
-  ExcavationAreaBloc() : super(ExcavationArea()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  ExcavationAreaBloc({
+    required this.repository,
+    ExcavationArea? initialState,
+  }) : super(ExcavationArea()) {
     on<AreaToRemoveSizeChanged>((event, emit) {
       logger.d("AreaToRemoveSizeChanged to ${event.amount}");
       emit(

@@ -4,7 +4,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
 
 class OuterDoorsBloc extends Bloc<OuterDoorsEvent, OuterDoors> {
-  OuterDoorsBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  OuterDoorsBloc({
+    required this.repository,
+    OuterDoors? initialState,
+  })
       : super(
           OuterDoors(
             woodenDoors: DoorsInfo(),

@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_event.da
 
 class GypsumBasedBuildingMaterialsBloc extends Bloc<
     GypsumBasedBuildingMaterialsEvent, GypsumBasedBuildingMaterials> {
-  GypsumBasedBuildingMaterialsBloc() : super(GypsumBasedBuildingMaterials()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  GypsumBasedBuildingMaterialsBloc({
+    required this.repository,
+    GypsumBasedBuildingMaterials? initialState,
+  }) : super(GypsumBasedBuildingMaterials()) {
     on<ContaminatedGypsumBasedMaterialsChanged>((event, emit) {
       emit(state.copyWith(contaminatedGypsumBasedMaterials: event.value));
     });

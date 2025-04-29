@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/building_frame_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuildingFrameBloc extends Bloc<BuildingFrameEvent, BuildingFrame> {
-  BuildingFrameBloc() : super(BuildingFrame()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  BuildingFrameBloc({
+    required this.repository,
+    BuildingFrame? initialState,
+  }) : super(BuildingFrame()) {
     on<UseFoundationCircumferenceChanged>((event, emit) {
       emit(state.copyWith(useFoundationCircumference: event.value));
       logger.d("BuildingFrame.useFoundationCircumference: ${event.value}");

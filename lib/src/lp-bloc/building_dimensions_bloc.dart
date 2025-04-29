@@ -5,7 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BuildingDimensionsBloc
     extends Bloc<BuildingDimensionsEvent, BuildingDimensions> {
-  BuildingDimensionsBloc() : super(BuildingDimensions()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  BuildingDimensionsBloc({
+    required this.repository,
+    BuildingDimensions? initialState,
+  }) : super(BuildingDimensions()) {
     on<GrossFloorAreaChanged>((event, emit) {
       emit(state.copyWith(grossFloorArea: event.value));
       logger.d("BuildingDimensions.grossFloorArea: ${event.value}");

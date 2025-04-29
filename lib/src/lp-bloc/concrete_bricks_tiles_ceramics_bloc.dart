@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/concrete_bricks_tiles_ceramics_event.dar
 
 class ConcreteBricksTilesCeramicsBloc extends Bloc<
     ConcreteBricksTilesCeramicsEvent, ConcreteBricksTilesCeramics> {
-  ConcreteBricksTilesCeramicsBloc() : super(ConcreteBricksTilesCeramics()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  ConcreteBricksTilesCeramicsBloc({
+    required this.repository,
+    ConcreteBricksTilesCeramics? initialState,
+  }) : super(ConcreteBricksTilesCeramics()) {
     on<ConcreteNotesChanged>((event, emit) {
       emit(state.copyWith(concreteNotes: event.value));
     });

@@ -4,7 +4,11 @@ import 'bituminous_mixtures_coal_tar_products_event.dart';
 
 class BituminousMixturesCoalTarProductsBloc extends Bloc<
     BituminousMixturesCoalTarProductsEvent, BituminousMixturesCoalTarProducts> {
-  BituminousMixturesCoalTarProductsBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  BituminousMixturesCoalTarProductsBloc({
+    required this.repository,
+    BituminousMixturesCoalTarProducts? initialState,
+  })
       : super(BituminousMixturesCoalTarProducts()) {
     on<CoalTarContainingBituminousMixturesNotesChanged>((event, emit) {
       emit(state.copyWith(

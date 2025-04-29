@@ -4,7 +4,11 @@ import 'soil_aggregates_dredging_materials_event.dart';
 
 class SoilAggregatesDredgingMaterialsBloc extends Bloc<
     SoilAggregatesDredgingMaterialsEvent, SoilAggregatesDredgingMaterials> {
-  SoilAggregatesDredgingMaterialsBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  SoilAggregatesDredgingMaterialsBloc({
+    required this.repository,
+    SoilAggregatesDredgingMaterials? initialState,
+  })
       : super(SoilAggregatesDredgingMaterials()) {
     on<HazardousSoilAndRockNotesChanged>((event, emit) {
       emit(state.copyWith(hazardousSoilAndRockNotes: event.value));

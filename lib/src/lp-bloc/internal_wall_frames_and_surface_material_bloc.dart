@@ -6,7 +6,11 @@ import 'package:flutter_app/log.dart';
 class InternalWallFramesAndSurfaceMaterialBloc extends Bloc<
     InternalWallFramesAndSurfaceMaterialEvent,
     InternalWallFramesAndSurfaceMaterial> {
-  InternalWallFramesAndSurfaceMaterialBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  InternalWallFramesAndSurfaceMaterialBloc({
+    required this.repository,
+    InternalWallFramesAndSurfaceMaterial? initialState,
+  })
       : super(InternalWallFramesAndSurfaceMaterial(
       overallWallLength: null,
       averageWallHeight: null,

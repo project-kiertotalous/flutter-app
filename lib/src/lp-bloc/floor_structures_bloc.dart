@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/floor_structures_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FloorStructuresBloc extends Bloc<FloorStructuresEvent, FloorStructures> {
-  FloorStructuresBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  FloorStructuresBloc({
+    required this.repository,
+    FloorStructures? initialState,
+  })
       : super(
           FloorStructures(
             officeSpaces: FloorStructure(),

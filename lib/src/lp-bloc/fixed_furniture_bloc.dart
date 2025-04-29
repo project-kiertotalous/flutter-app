@@ -4,7 +4,11 @@ import 'package:flutter_app/log.dart';
 import 'package:flutter_app/src/lp-bloc/fixed_furniture_event.dart';
 
 class FixedFurnitureBloc extends Bloc<FixedFurnitureEvent, FixedFurniture> {
-  FixedFurnitureBloc() : super(const FixedFurniture()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  FixedFurnitureBloc({
+    required this.repository,
+    FixedFurniture? initialState,
+  }) : super(const FixedFurniture()) {
     on<FixedFurnitureRecyclableChanged>((event, emit) {
       logger.d("FixedFurnitureRecyclableChanged fired");
       emit(state.copyWith(isFurnitureRecyclable: event.isRecyclable));

@@ -6,7 +6,11 @@ import 'large_property_basic_info_event.dart';
 
 class LargePropertyBasicInfoBloc
     extends Bloc<LargePropertyBasicInfoEvent, LargePropertyEvaluationInfo> {
-  LargePropertyBasicInfoBloc() : super(LargePropertyEvaluationInfo()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  LargePropertyBasicInfoBloc({
+    required this.repository,
+    LargePropertyEvaluationInfo? initialState,
+  }) : super(LargePropertyEvaluationInfo()) {
     on<LargePropertyCalcAuthorChanged>((event, emit) {
       logger.d("LargePropertyCalcAuthorChanged fired ${event.author}");
       emit(state.copyWith(author: event.author));

@@ -139,7 +139,7 @@ class MyApp extends StatelessWidget {
                 ),
                 BlocProvider(
                   create: (BuildContext context) => RecyclableMaterialsBloc(repository: repository,
-                    initialState: repository.reusableAndRecyclableMaterials,),
+                    initialState: repository.recyclableComponentsAndFurniture,),
                 ),
                 BlocProvider(
                     create: (context) =>

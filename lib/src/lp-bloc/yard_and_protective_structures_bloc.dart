@@ -6,7 +6,11 @@ import 'package:flutter_app/log.dart';
 
 class YardAndProtectiveStructuresBloc extends Bloc<
     YardAndProtectiveStructuresEvent, YardAndProtectiveStructures> {
-  YardAndProtectiveStructuresBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  YardAndProtectiveStructuresBloc({
+    required this.repository,
+    YardAndProtectiveStructures? initialState,
+  })
       : super(YardAndProtectiveStructures(
           dripTraysAndProtectiveMetalSheets: null,
           concretePavingSlabs: null,

@@ -5,7 +5,9 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
 class DemolitionWasteAndCostsBloc
     extends Bloc<DemolitionWasteAndCostsEvent, DemolitionWasteAndCosts> {
-  DemolitionWasteAndCostsBloc() : super(DemolitionWasteAndCosts()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  DemolitionWasteAndCostsBloc({required this.repository,
+    DemolitionWasteAndCosts? initialState}) : super(DemolitionWasteAndCosts()) {
     on<DemolitionCostPerTonChanged>((event, emit) {
       emit(state.copyWith(demolitionCostPerTon: event.value));
       logger.d('demolitionCostPerTon changed to ${event.value}');

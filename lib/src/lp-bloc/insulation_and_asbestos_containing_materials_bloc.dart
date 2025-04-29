@@ -5,7 +5,11 @@ import 'insulation_and_asbestos_containing_materials_event.dart';
 class InsulationAndAsbestosContainingMaterialsBloc extends Bloc<
     InsulationAndAsbestosContainingMaterialsEvent,
     InsulationAndAsbestosContainingMaterials> {
-  InsulationAndAsbestosContainingMaterialsBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  InsulationAndAsbestosContainingMaterialsBloc({
+    required this.repository,
+    InsulationAndAsbestosContainingMaterials? initialState,
+  })
       : super(InsulationAndAsbestosContainingMaterials()) {
     on<AsbestosContainingInsulationMaterialsChanged>((event, emit) {
       emit(state.copyWith(asbestosContainingInsulationMaterials: event.value));

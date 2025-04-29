@@ -6,7 +6,11 @@ import 'package:flutter_app/src/lp-bloc/large_properties_disposal_materials_and_
 class DisposalMaterialsAndHazardousWasteBloc extends Bloc<
     DisposalMaterialsAndHazardousWasteEvent,
     DisposalMaterialsAndHazardousWaste> {
-  DisposalMaterialsAndHazardousWasteBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  DisposalMaterialsAndHazardousWasteBloc({
+    required this.repository,
+    DisposalMaterialsAndHazardousWaste? initialState,
+  })
       : super(DisposalMaterialsAndHazardousWaste()) {
     on<NonRecyclableBrickWasteDemolitionOrProcessingCostChanged>((event, emit) {
       emit(

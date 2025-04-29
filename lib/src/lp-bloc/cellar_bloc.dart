@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/cellar_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CellarBloc extends Bloc<CellarEvent, Cellar> {
-  CellarBloc() : super(Cellar()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  CellarBloc({
+    required this.repository,
+    Cellar? initialState,
+  }) : super(Cellar()) {
     on<CellarMaterialChanged>((event, emit) {
       logger.d("CellarMaterialChanged fired");
       emit(state.copyWith(exteriorWallsMaterial: event.material));

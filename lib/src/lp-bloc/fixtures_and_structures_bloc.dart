@@ -5,7 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FixturesAndStructuresBloc
     extends Bloc<FixturesAndStructuresEvent, FixturesAndStructures> {
-  FixturesAndStructuresBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  FixturesAndStructuresBloc({
+    required this.repository,
+    FixturesAndStructures? initialState,
+  })
       : super(FixturesAndStructures(
           rainGuttersAndDownSpouts: null,
           fireLaddersAndWalkways: null,

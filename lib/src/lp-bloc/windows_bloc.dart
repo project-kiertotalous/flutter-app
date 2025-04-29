@@ -4,7 +4,11 @@ import 'package:flutter_app/src/lp-bloc/windows_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class WindowsBloc extends Bloc<WindowsEvent, Windows> {
-  WindowsBloc()
+  final LargePropertiesRepository repository; //Add repository reference
+  WindowsBloc({
+    required this.repository,
+    Windows? initialState,
+  })
       : super(const Windows(
           windowsPcs: null,
           windowsArea: null,

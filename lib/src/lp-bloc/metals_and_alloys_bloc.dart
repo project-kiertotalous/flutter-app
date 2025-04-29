@@ -3,7 +3,11 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'metals_and_alloys_event.dart';
 
 class MetalsAndAlloysBloc extends Bloc<MetalsAndAlloysEvent, MetalsAndAlloys> {
-  MetalsAndAlloysBloc() : super(MetalsAndAlloys()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  MetalsAndAlloysBloc({
+    required this.repository,
+    MetalsAndAlloys? initialState,
+  }) : super(MetalsAndAlloys()) {
     on<CopperBronzeAndBrassNotesChanged>((event, emit) {
       emit(state.copyWith(copperBronzeAndBrassNotes: event.value));
     });

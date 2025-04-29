@@ -4,7 +4,14 @@ import 'wood_glass_plastics_event.dart';
 
 class WoodGlassPlasticsBloc
     extends Bloc<WoodGlassPlasticsEvent, WoodGlassPlastics> {
-  WoodGlassPlasticsBloc() : super(WoodGlassPlastics()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  WoodGlassPlasticsBloc({
+    required this.repository,
+    WoodGlassPlastics? initialState,
+  }) : super(WoodGlassPlastics()) {
+    on<WoodNotesChanged>((event, emit) {
+      emit(state.copyWith(woodNotes: event.value));
+    });
     on<WoodNotesChanged>((event, emit) {
       emit(state.copyWith(woodNotes: event.value));
     });

@@ -3,7 +3,11 @@ import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'other_materials_event.dart';
 
 class OtherMaterialsBloc extends Bloc<OtherMaterialsEvent, OtherMaterials> {
-  OtherMaterialsBloc() : super(OtherMaterials()) {
+  final LargePropertiesRepository repository; //Add repository reference
+  OtherMaterialsBloc({
+    required this.repository,
+    OtherMaterials? initialState,
+  }) : super(OtherMaterials()) {
     on<MercuryContainingMaterialsChanged>((event, emit) {
       emit(state.copyWith(mercuryContainingMaterials: event.value));
     });
