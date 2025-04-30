@@ -14,7 +14,9 @@ import 'package:flutter_app/src/sp-forms/SB_removable_grounds_form.dart';
 import 'package:flutter_app/src/shared/navigation_buttons.dart';
 import 'package:flutter_app/src/sp-forms/sp_apartments_form.dart';
 import 'package:flutter_app/src/sp-forms/sp_windows_form.dart';
+import 'package:flutter_app/src/sp-forms/sp_disposal_materials_and_hazardous_waste_form.dart';
 import 'package:flutter_app/src/sp-forms/thermal_center_form.dart';
+import 'package:flutter_app/src/sp-forms/total_demolition_waste_and_costs_form.dart';
 import 'package:flutter_app/src/sp-forms/walls_form.dart';
 import 'package:flutter_app/src/sp-forms/outer_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/machinery_form.dart';
@@ -37,7 +39,6 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
     Tab(text: "Huoneistot"),
     Tab(text: "Piharakennukset & rakenteet"),
     Tab(text: "Purkumateriaalit"),
-    Tab(text: "ARA-Taulukko"),
     Tab(text: "Tallenna tiedosto"),
   ];
 
@@ -72,10 +73,8 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
   List<Widget> demolitionMaterials() => [
         SmallPropertiesReusableAndRecyclableMaterialsForm(),
         SmallPropertiesTotalRecyclableComponentsAndFurnitureForm(),
-        NavigationButtons(),
-      ];
-
-  List<Widget> araTable() => [
+        SpDisposalMaterialsForm(),
+        SmallPropertiesTotalDemolitionWasteAndCostsForm(),
         NavigationButtons(),
       ];
 
@@ -121,9 +120,6 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
                 TabView(forms: yardBuildingsAndStructures),
                 TabView(
                   forms: demolitionMaterials,
-                ),
-                TabView(
-                  forms: araTable,
                 ),
                 TabView(
                   forms: saveFile,

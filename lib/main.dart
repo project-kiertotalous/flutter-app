@@ -25,6 +25,8 @@ import 'package:flutter_app/src/lp-bloc/machines_and_equipments_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/metals_and_alloys_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/other_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/outer_doors_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/disposable_and_hazardous_costs_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/disposable_and_hazardous_notes_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/recyclable_components_handling_and_dismantling_costs_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/recyclable_components_notes_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/recyclable_components_unit_price_bloc.dart';
@@ -69,6 +71,8 @@ import 'package:flutter_app/src/large_properties_view.dart';
 import 'package:flutter_app/src/smaller_properties_view.dart';
 import 'package:flutter_app/src/sp-bloc/sp_windows_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/thermal_center_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/total_demolition_waste_and_costs_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/total_disposal_materials_and_hazardous_waste_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/total_recyclable_components_and_furniture_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/total_reusable_and_recyclable_materials_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/total_thermal_center_bloc.dart';
@@ -577,6 +581,60 @@ class MyApp extends StatelessWidget {
                           unitPriceBloc:
                               context.read<RecyclableComponentsUnitPriceBloc>(),
                         )),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      DisposableAndHazardousNotesBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      DisposableAndHazardousCostsBloc(),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SmallPropertiesTotalDisposalMaterialsAndHazardousWasteBloc(
+                    excavationAreaBloc: context.read<SBExcavationAreaBloc>(),
+                    foundationBloc:
+                        context.read<SmallPropertiesFoundationBloc>(),
+                    innerDoorsBloc: context.read<SPInnerDoorsBloc>(),
+                    outerDoorsBloc: context.read<SPOuterDoorsBloc>(),
+                    windowsBloc: context.read<SpWindowsBloc>(),
+                    apartmentBloc: context.read<ApartmentBloc>(),
+                    apartmentSizeBloc: context.read<ApartmentSizeBloc>(),
+                    carportOrGarageBloc: context.read<CarportOrGarageBloc>(),
+                    counterBloc: context.read<QuantitiesToMaterialFormBloc>(),
+                    hallDoorsBloc: context.read<HallDoorsBloc>(),
+                    hvacBloc: context.read<
+                        SmallPropertiesElectricalInstallationsAndHvacBloc>(),
+                    machineryEquipmentBloc: context.read<SPMachineryBloc>(),
+                    passageDoorsBloc: context.read<PassageDoorsBloc>(),
+                    roofBloc: context.read<SmallPropertiesRoofsBloc>(),
+                    evaluationInfoBloc:
+                        context.read<SmallPropertyBasicInfoBloc>(),
+                    thermalCenterBloc: context.read<ThermalCenterBloc>(),
+                    wallsBloc: context.read<WallsBloc>(),
+                    yardRoofBloc: context.read<YardRoofBloc>(),
+                    disposableAndHazardousNotesBloc:
+                        context.read<DisposableAndHazardousNotesBloc>(),
+                    disposableAndHazardousCostsBloc:
+                        context.read<DisposableAndHazardousCostsBloc>(),
+                  ),
+                ),
+                BlocProvider(
+                  create: (BuildContext context) =>
+                      SmallPropertiesTotalDemolitionWasteAndCostsBloc(
+                          reusableMaterialsBloc: context.read<
+                              SmallPropertiesTotalReusableAndRecyclableMaterialsBloc>(),
+                          recyclableComponentsBloc: context.read<
+                              SmallPropertiesTotalRecyclableComponentsAndFurnitureBloc>(),
+                          disposalMaterialsBloc: context.read<
+                              SmallPropertiesTotalDisposalMaterialsAndHazardousWasteBloc>(),
+                          foundationBloc:
+                              context.read<SmallPropertiesFoundationBloc>(),
+                          carportOrGarageBloc:
+                              context.read<CarportOrGarageBloc>(),
+                          thermalCenterBloc: context.read<ThermalCenterBloc>(),
+                          wallsBloc: context.read<WallsBloc>()),
+                ),
               ],
               child: SmallerPropertiesView(),
             ),
