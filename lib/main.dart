@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/building_dimensions_bloc.dart';
@@ -72,29 +74,35 @@ import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_mater
 import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
 import 'package:flutter_app/src/services/lp_data_service.dart';
 import 'dart:async';
-
 import 'package:flutter_window_close/flutter_window_close.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() async {
   print('Starting the app...');
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Initialize the data service and load data from file
-  final dataService = DataService();
-  final LargePropertiesRepository repository =
-      await dataService.loadData() ?? LargePropertiesRepository();
-  runApp(MyApp(dataService: dataService, repository: repository));
+// Load the repository from file or create a new one
+  final directory = await getApplicationDocumentsDirectory();
+  final file = File('${directory.path}/large_properties_data.json');
+  LargePropertiesRepository repository;
+
+  if (await file.exists()) {
+    repository = LargePropertiesRepository.readFromFileSync(file);
+  } else {
+    repository = LargePropertiesRepository();
+  }
+  runApp(MyApp(repository: repository, file: file));
 }
 
 /// The Widget that configures your application.
 class MyApp extends StatefulWidget {
-  final DataService dataService;
   final LargePropertiesRepository repository;
+  final File file; // File to save the repository state
 
   const MyApp({
     super.key,
-    required this.dataService,
-    required this.repository,
+    required this.repository, 
+    required this.file,
   });
 
   @override
@@ -102,15 +110,14 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late final DataService _dataService;
   late final LargePropertiesRepository _repository;
+  late final File _file;
 
   @override
   void initState() {
     super.initState();
-    // Initialize the data service and repository
-    _dataService = widget.dataService;
     _repository = widget.repository;
+    _file = widget.file;
 
     // Listen for window close events
     FlutterWindowClose.setWindowShouldCloseHandler(() async {
