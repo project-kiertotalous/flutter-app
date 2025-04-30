@@ -1,7 +1,5 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/src/lp-bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/other_materials_event.dart';
 import 'package:flutter_app/src/shared/cell.dart';
 import 'package:flutter_app/src/shared/grey_cell.dart';
 import 'package:flutter_app/src/shared/input_text_row_cell.dart';
@@ -19,8 +17,6 @@ class SpDisposalMaterialsForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final disposalBloc = context.read<DisposableAndHazardousCostsBloc>();
-    final bloc = context
-        .read<SmallPropertiesTotalDisposalMaterialsAndHazardousWasteBloc>();
     final notesBloc = context.read<DisposableAndHazardousNotesBloc>();
     return BlocBuilder<
             SmallPropertiesTotalDisposalMaterialsAndHazardousWasteBloc,
