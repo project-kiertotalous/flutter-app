@@ -55,7 +55,7 @@ class SpDisposalMaterialsForm extends StatelessWidget {
                   initialValue: 'Käsittely- ja purkukustannus (€/tonni)'),
               Cell.column(
                   initialValue:
-                      'Purkukustannus ja käsittelukustannus /materiaalierä (€)'),
+                      'Purku- ja käsittelykustannus /materiaalierä (€)'),
               Cell.row(
                 initialValue:
                     'Käyttökelvoton kaakeli ja posliini, sekä lasi- ja mineraalieristysvilla',
@@ -105,7 +105,7 @@ class SpDisposalMaterialsForm extends StatelessWidget {
                   getter: () =>
                       state.nonRecyclableBrickWaste.demolitionBatchPrice),
               Cell.row(
-                initialValue: 'Kierrätyskelvoton kipsilevvy',
+                initialValue: 'Kierrätyskelvoton kipsilevy',
               ),
               Cell.output(
                   getter: () =>
