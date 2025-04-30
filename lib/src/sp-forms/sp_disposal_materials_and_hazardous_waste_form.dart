@@ -1,14 +1,15 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/src/lp-bloc/large_properties_total_disposal_materials_and_hazardous_waste_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/other_materials_event.dart';
 import 'package:flutter_app/src/shared/cell.dart';
 import 'package:flutter_app/src/shared/grey_cell.dart';
 import 'package:flutter_app/src/shared/input_text_row_cell.dart';
 import 'package:flutter_app/src/sp-bloc/disposable_and_hazardous_costs_bloc.dart';
+import 'package:flutter_app/src/sp-bloc/disposable_and_hazardous_costs_event.dart';
 import 'package:flutter_app/src/sp-bloc/disposable_and_hazardous_notes_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/disposable_and_hazardous_notes_event.dart';
-import 'package:flutter_app/src/sp-bloc/sp_disposal_materials_and_hazardous_waste_bloc.dart';
-import 'package:flutter_app/src/sp-bloc/sp_disposal_materials_and_hazardous_waste_event.dart';
+import 'package:flutter_app/src/sp-bloc/total_disposal_materials_and_hazardous_waste_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -17,34 +18,31 @@ class SpDisposalMaterialsForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final disposalBloc =
-        context.read<SpDisposalMaterialsAndHazardousWasteBloc>();
-    final bloc = context.read<TotalDisposalMaterialsAndHazardousWasteBloc>();
+    final disposalBloc = context.read<DisposableAndHazardousCostsBloc>();
+    final bloc = context
+        .read<SmallPropertiesTotalDisposalMaterialsAndHazardousWasteBloc>();
     final notesBloc = context.read<DisposableAndHazardousNotesBloc>();
-    final costBloc = context.read<DisposableAndHazardousCostsBloc>();
-
-// TODO: this class should actually build according to
-// SmallPropertiesTotalDisposalMaterialsAndHazardousWaste,
-// but I dont' think it currently has access to everything that's needed here
-    return BlocBuilder<TotalDisposalMaterialsAndHazardousWasteBloc,
-        TotalDisposalMaterialsAndHazardousWaste>(builder: (context, state) {
+    return BlocBuilder<
+            SmallPropertiesTotalDisposalMaterialsAndHazardousWasteBloc,
+            SmallPropertiesTotalDisposalMaterialsAndHazardousWaste>(
+        builder: (context, state) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LayoutGrid(
             columnSizes: [
-              200.px,
+              230.px,
               120.px,
-              180.px,
+              300.px,
               120.px,
-              180.px,
+              140.px,
             ],
             rowSizes: [
               75.px,
+              50.px,
+              50.px,
+              50.px,
               75.px,
-              50.px,
-              50.px,
-              50.px,
               50.px,
               50.px,
               50.px,
@@ -62,30 +60,33 @@ class SpDisposalMaterialsForm extends StatelessWidget {
               Cell.column(
                   initialValue:
                       'Purkukustannus ja käsittelukustannus /materiaalierä (€)'),
-              //TO-DO fix this later once calculation has been fixed
               Cell.row(
                 initialValue:
                     'Käyttökelvoton kaakeli ja posliini, sekä lasi- ja mineraalieristysvilla',
               ),
               Cell.output(
-                  getter: () =>
-                      state.otherAsbestosContainingMaterial.quantityEstimate),
+                  getter: () => state
+                      .ceramicTilePorcelainAndGlassAndInsulationWool
+                      .quantityEstimate),
               InputTextRowCell(
                   label: 'Kirjoita tähän',
-                  initialValue: state.otherAsbestosContainingMaterial
+                  initialValue: state
+                      .ceramicTilePorcelainAndGlassAndInsulationWool
                       .exploitingOrProcessingOrFinalDisposalSite,
                   setter: (value) =>
                       notesBloc.add(CeramicTileNotesChanged(value))),
               Cell.input(
-                initialValue: 0,
+                initialValue: state
+                    .ceramicTilePorcelainAndGlassAndInsulationWool
+                    .demolitionOrProcessingCost,
                 setter: (value) => disposalBloc.add(
-                  UnusableTilePorcelainGlassAndMineralInsulationProcessingCostChanged(
-                      value),
+                  CeramicTileCostsChanged(value),
                 ),
               ),
               Cell.output(
                   getter: () => state
-                      .otherAsbestosContainingMaterial.demolitionBatchPrice),
+                      .ceramicTilePorcelainAndGlassAndInsulationWool
+                      .demolitionBatchPrice),
               Cell.row(
                 initialValue: 'Kierrätyskelvoton tiilijäte',
               ),
@@ -98,9 +99,10 @@ class SpDisposalMaterialsForm extends StatelessWidget {
                   setter: (value) =>
                       notesBloc.add(BrickWasteNotesChanged(value))),
               Cell.input(
-                initialValue: 0,
+                initialValue:
+                    state.nonRecyclableBrickWaste.demolitionOrProcessingCost,
                 setter: (value) => disposalBloc.add(
-                  NonRecyclableBrickWasteProcessingCostChanged(value),
+                  BrickWasteCostsChanged(value),
                 ),
               ),
               Cell.output(
@@ -109,22 +111,25 @@ class SpDisposalMaterialsForm extends StatelessWidget {
               Cell.row(
                 initialValue: 'Kierrätyskelvoton kipsilevvy',
               ),
-              Cell.output(getter: () => state.bitumen.quantityEstimate),
+              Cell.output(
+                  getter: () =>
+                      state.nonRecyclablePlasterBoard.quantityEstimate),
               InputTextRowCell(
                   label: 'Kirjoita tähän',
-                  initialValue:
-                      state.bitumen.exploitingOrProcessingOrFinalDisposalSite,
+                  initialValue: state.nonRecyclablePlasterBoard
+                      .exploitingOrProcessingOrFinalDisposalSite,
                   setter: (value) =>
                       notesBloc.add(PlasterBoardNotesChanged(value))),
               Cell.input(
-                initialValue: 0,
+                initialValue:
+                    state.nonRecyclablePlasterBoard.demolitionOrProcessingCost,
                 setter: (value) => disposalBloc.add(
-                  NonRecyclablePlasterBoardProcessingCostChanged(value),
+                  PlasterBoardCostsChanged(value),
                 ),
               ),
               Cell.output(
-                  getter: () => state
-                      .otherAsbestosContainingMaterial.demolitionBatchPrice),
+                  getter: () =>
+                      state.nonRecyclablePlasterBoard.demolitionBatchPrice),
               Cell.header(initialValue: 'Ongelmajätteet'),
               Cell.grey(),
               Cell.grey(),
@@ -142,9 +147,9 @@ class SpDisposalMaterialsForm extends StatelessWidget {
                   setter: (value) =>
                       notesBloc.add(ContaminatedSoilNotesChanged(value))),
               Cell.input(
-                initialValue: 0,
+                initialValue: state.contaminatedSoil.demolitionOrProcessingCost,
                 setter: (value) => disposalBloc.add(
-                  ContaminatedSoilProcessingCostChanged(value),
+                  ContaminatedSoilCostsChanged(value),
                 ),
               ),
               Cell.output(
@@ -153,69 +158,75 @@ class SpDisposalMaterialsForm extends StatelessWidget {
                 initialValue: 'Asbestia sisältävä betoni',
               ),
               Cell.output(
-                  getter: () => state.asbestosOrBCPConcrete.quantityEstimate),
+                  getter: () =>
+                      state.concreteContainingAsbestos.quantityEstimate),
               InputTextRowCell(
                   label: 'Kirjoita tähän',
-                  initialValue: state.asbestosOrBCPConcrete
+                  initialValue: state.concreteContainingAsbestos
                       .exploitingOrProcessingOrFinalDisposalSite,
                   setter: (value) =>
                       notesBloc.add(AsbestosConcreteNotesChanged(value))),
               Cell.input(
-                initialValue: 0,
+                initialValue:
+                    state.concreteContainingAsbestos.demolitionOrProcessingCost,
                 setter: (value) => disposalBloc.add(
-                  ConcreteContainingAsbestosProcessingCostChanged(value),
+                  AsbestosConcreteCostsChanged(value),
                 ),
               ),
               Cell.output(
                   getter: () =>
-                      state.asbestosOrBCPConcrete.demolitionBatchPrice),
-              //TO-DO fix this later once calculation has been fixed
+                      state.concreteContainingAsbestos.demolitionBatchPrice),
               Cell.row(
                 initialValue: 'Mineriitti- tai huopakate, sisältää asbestia',
               ),
-              Cell.output(getter: () => state..quantityEstimate),
+              Cell.output(
+                  getter: () =>
+                      state.mineriteOrFeltContainingAsbestos.quantityEstimate),
               InputTextRowCell(
                   label: 'Kirjoita tähän',
-                  initialValue: state.
+                  initialValue: state.mineriteOrFeltContainingAsbestos
                       .exploitingOrProcessingOrFinalDisposalSite,
                   setter: (value) =>
-                      notesBloc.add((value))),
+                      notesBloc.add(MineriteFeltNotesChanged(value))),
               Cell.input(
-                initialValue: 0,
+                initialValue: state.mineriteOrFeltContainingAsbestos
+                    .demolitionOrProcessingCost,
                 setter: (value) => disposalBloc.add(
-                  (
-                      value),
+                  MineriteFeltCostsChanged(value),
                 ),
               ),
               Cell.output(
                   getter: () => state
-                      ..demolitionBatchPrice),
-                                    //TO-DO fix this later once calculation has been fixed
-              Cell.row(initialValue: 'BCP-maalia sisältävä betoni'),
-              Cell.output(getter: () {}),
-              Cell.input(
-                initialValue: 0,
-                setter: () {},
+                      .mineriteOrFeltContainingAsbestos.demolitionBatchPrice),
+              Cell.row(
+                initialValue: 'BCP maalia sisältävä betoni',
               ),
-              Cell.input(
-                initialValue: 0,
-                setter: (value) => disposalBloc.add(
-                  ConcreteContainingPcbPaintProcessingCostChanged(value),
-                ),
-              ),
-              Cell.output(getter: () {}),
-               Cell.row(
-                initialValue: 'Loppusijoitettavat materiaalit yhteensä',
-              ),
-              Cell.output(
-                  getter: () => state.totalTons),
-              GreyCell(),
-              Cell.output(getter: () => state.totalBatchPrice),
-              GreyCell(),
               Cell.output(
                   getter: () =>
-                      state.asbestosOrBCPConcrete.demolitionBatchPrice),
-              
+                      state.concreteContainingPcbPaint.quantityEstimate),
+              InputTextRowCell(
+                  label: 'Kirjoita tähän',
+                  initialValue: state.concreteContainingPcbPaint
+                      .exploitingOrProcessingOrFinalDisposalSite,
+                  setter: (value) =>
+                      notesBloc.add(PcbPaintNotesChanged(value))),
+              Cell.input(
+                initialValue:
+                    state.concreteContainingPcbPaint.demolitionOrProcessingCost,
+                setter: (value) => disposalBloc.add(
+                  PcbPaintCostsChanged(value),
+                ),
+              ),
+              Cell.output(
+                  getter: () =>
+                      state.concreteContainingPcbPaint.demolitionBatchPrice),
+              Cell.row(
+                initialValue: 'Loppusijoitettavat materiaalit yhteensä',
+              ),
+              Cell.output(getter: () => state.totalQuantityEstimate),
+              GreyCell(),
+              GreyCell(),
+              Cell.output(getter: () => state.totalDemolitionBatchPrice),
             ],
           ),
         ],
