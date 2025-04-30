@@ -16,6 +16,7 @@ import 'package:flutter_app/src/sp-forms/sp_apartments_form.dart';
 import 'package:flutter_app/src/sp-forms/sp_windows_form.dart';
 import 'package:flutter_app/src/sp-forms/sp_disposal_materials_and_hazardous_waste_form.dart';
 import 'package:flutter_app/src/sp-forms/thermal_center_form.dart';
+import 'package:flutter_app/src/sp-forms/total_demolition_waste_and_costs_form.dart';
 import 'package:flutter_app/src/sp-forms/walls_form.dart';
 import 'package:flutter_app/src/sp-forms/outer_doors_form.dart';
 import 'package:flutter_app/src/sp-forms/machinery_form.dart';
@@ -73,6 +74,7 @@ class _SmallerBuildingsViewState extends State<SmallerPropertiesView>
         SmallPropertiesReusableAndRecyclableMaterialsForm(),
         SmallPropertiesTotalRecyclableComponentsAndFurnitureForm(),
         SpDisposalMaterialsForm(),
+        SmallPropertiesTotalDemolitionWasteAndCostsForm(),
         NavigationButtons(),
       ];
 
