@@ -72,7 +72,6 @@ import 'package:flutter_app/src/lp-bloc/bituminous_mixtures_coal_tar_products_bl
 import 'package:flutter_app/src/lp-bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_materials_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
-import 'package:flutter_app/src/services/lp_data_service.dart';
 import 'dart:async';
 import 'package:flutter_window_close/flutter_window_close.dart';
 import 'package:path_provider/path_provider.dart';
@@ -101,7 +100,7 @@ class MyApp extends StatefulWidget {
 
   const MyApp({
     super.key,
-    required this.repository, 
+    required this.repository,
     required this.file,
   });
 
@@ -110,26 +109,28 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late final LargePropertiesRepository _repository;
   late final File _file;
+  final _repository = LargePropertiesRepository();
 
   @override
   void initState() {
     super.initState();
-    _repository = widget.repository;
-    _file = widget.file;
 
     // Listen for window close events
     FlutterWindowClose.setWindowShouldCloseHandler(() async {
+      print('Saving the JSON file...');
       // Save the repository state before closing
-      await _saveRepositoryState();
+      _saveRepositoryState();
       return true; // Return true to allow the window to close
     });
   }
 
   Future<void> _saveRepositoryState() async {
+    print('Saving repository state...');
+    final repository = LargePropertiesRepository();
+    repository.writeToFileSync(_file);
     try {
-      await _dataService.saveData(_repository);
+      repository.writeToFileSync(_file);
       print('Repository state saved successfully.');
     } catch (e) {
       print('Failed to save repository state: $e');
