@@ -3,8 +3,7 @@ import 'package:flutter_app/log.dart';
 import 'roofs_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SmallPropertiesRoofsBloc
-    extends Bloc<SmallPropertiesRoofsEvent, Roof> {
+class SmallPropertiesRoofsBloc extends Bloc<SmallPropertiesRoofsEvent, Roof> {
   SmallPropertiesRoofsBloc() : super(Roof()) {
     on<ContainsRecyclableWoodChanged>((event, emit) {
       logger.d("ContainsRecyclableWoodChanged to ${event.value}");

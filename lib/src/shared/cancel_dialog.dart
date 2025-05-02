@@ -9,8 +9,7 @@ class CancelDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) => AlertDialog(
         title: const Text('Haluatko keskeyttää?'),
-        content: const Text(
-            'Jatkamalla hylkäät jo tekemäsi muutokset.'),
+        content: const Text('Jatkamalla hylkäät jo tekemäsi muutokset.'),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Peruuta'),

@@ -1,20 +1,21 @@
 import 'dart:io';
 import 'dart:typed_data';
+
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/total_metals_and_alloys_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/total_soil_aggregates_dredging_materials_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_materials_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/total_other_materials_bloc.dart';
-import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter_app/src/lp-bloc/gypsym_based_building_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/insulation_and_asbestos_containing_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_properties_total_demolition_waste_and_costs_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/large_property_basic_info_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_bituminous_mixtures_coal_tar_products_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_concrete_bricks_tiles_ceramics_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_metals_and_alloys_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_other_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_soil_aggregates_dredging_materials_bloc.dart';
+import 'package:flutter_app/src/lp-bloc/total_wood_glass_plastics_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as path;
 
 class LargePropertyExporter {
@@ -28,7 +29,7 @@ class LargePropertyExporter {
     await loadFontsIfNeeded();
 
     final filePath = await FilePicker.platform.saveFile(
-      dialogTitle: 'Save PDF File',
+      dialogTitle: 'Tallenna PDF tiedosto',
       fileName: 'purkumateriaalien_arviointilaskelma.pdf',
       type: FileType.custom,
       allowedExtensions: ['pdf'],
@@ -64,7 +65,7 @@ class LargePropertyExporter {
     await loadFontsIfNeeded();
 
     final filePath = await FilePicker.platform.saveFile(
-      dialogTitle: 'Save PDF File',
+      dialogTitle: 'Tallenna PDF tiedosto',
       fileName: 'jatelain_mukainen_purkumateriaalien_arviointilaskelma.pdf',
       type: FileType.custom,
       allowedExtensions: ['pdf'],
@@ -95,7 +96,7 @@ class LargePropertyExporter {
     final info = context.read<LargePropertyBasicInfoBloc>().state;
 
     final filePath = await FilePicker.platform.saveFile(
-      dialogTitle: 'Save Excel File',
+      dialogTitle: 'Tallenna Excel tiedosto',
       fileName: 'purkumateriaalien_arviointilaskelma.xlsx',
       type: FileType.custom,
       allowedExtensions: ['xlsx'],
@@ -128,7 +129,7 @@ class LargePropertyExporter {
     final totalOther = context.read<TotalOtherMaterialsBloc>().state;
 
     final filePath = await FilePicker.platform.saveFile(
-      dialogTitle: 'Save Excel File',
+      dialogTitle: 'Tallenna Excel tiedosto',
       fileName: 'jatelain_mukainen_purkumateriaalien_arviointilaskelma.xlsx',
       type: FileType.custom,
       allowedExtensions: ['xlsx'],

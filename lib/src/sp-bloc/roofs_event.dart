@@ -1,4 +1,3 @@
-
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 
 abstract class SmallPropertiesRoofsEvent {}
@@ -33,6 +32,3 @@ class WaterRoofTypeChanged extends SmallPropertiesRoofsEvent {
   final WaterRoofType? waterRoofType;
   WaterRoofTypeChanged(this.waterRoofType);
 }
-
-
-

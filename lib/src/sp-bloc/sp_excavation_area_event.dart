@@ -19,4 +19,3 @@ class CleanSoilPortionPercentageChanged extends SBExcavationAreaEvent {
   final num value;
   CleanSoilPortionPercentageChanged(this.value);
 }
-
