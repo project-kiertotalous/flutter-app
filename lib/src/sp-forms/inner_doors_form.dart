@@ -1,5 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
 import 'package:flutter_app/src/shared/header_cell.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/inner_doors_event.dart';
@@ -38,8 +39,8 @@ class SPInnerDoorsForm extends StatelessWidget {
                 ),
                 checkboxValue: state.areDoorsRecyclable,
               ),
-              HeaderCell(initialValue: 'Puuovet (kpl)'),
-              HeaderCell(initialValue: 'Levyovet (kpl)'),
+              ColumnCell(initialValue: 'Puuovet (kpl)'),
+              ColumnCell(initialValue: 'Levyovet (kpl)'),
               RowCell(
                 initialValue: 'Umpiovia',
               ),

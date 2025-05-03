@@ -16,13 +16,10 @@ import 'package:bl_demolition_materials/src/small_properties/data_types/exports.
 class WallsForm extends StatelessWidget {
   const WallsForm({super.key});
 
-//WallMaterial
+  //WallMaterial
   List<DropdownMenuItem<WallMaterial?>> wallMaterialToList() {
     return [
-      DropdownMenuItem<WallMaterial?>(
-        value: null,
-        child: Text('Valitse'),
-      ),
+      DropdownMenuItem<WallMaterial?>(value: null, child: Text('Valitse')),
       ...WallMaterial.values.map((type) {
         return DropdownMenuItem<WallMaterial?>(
           value: type,
@@ -41,21 +38,18 @@ class WallsForm extends StatelessWidget {
     }
   }
 
-// WoodMaterialType
+  // WoodMaterialType
   List<DropdownMenuItem<WoodMaterialType?>> woodMaterialTypeToList() {
     return [
-      DropdownMenuItem<WoodMaterialType?>(
-        value: null,
-        child: Text('Valitse'),
-      ),
+      DropdownMenuItem<WoodMaterialType?>(value: null, child: Text('Valitse')),
       ...WoodMaterialType.values
           .where((type) => type.toString().contains('trunkWood'))
           .map((type) {
-        return DropdownMenuItem<WoodMaterialType?>(
-          value: type,
-          child: Text(woodMaterialTypeToString(type)),
-        );
-      }),
+            return DropdownMenuItem<WoodMaterialType?>(
+              value: type,
+              child: Text(woodMaterialTypeToString(type)),
+            );
+          }),
     ];
   }
 
@@ -76,9 +70,9 @@ class WallsForm extends StatelessWidget {
     }
   }
 
-//100mm, 200mm, 300mm
+  //100mm, 200mm, 300mm
   List<DropdownMenuItem<InsulationMaterialThickness?>>
-      insulationThicknessToList() {
+  insulationThicknessToList() {
     return [
       DropdownMenuItem<InsulationMaterialThickness?>(
         value: null,
@@ -104,9 +98,9 @@ class WallsForm extends StatelessWidget {
     }
   }
 
-//Lautaverho, Tiili, Mineriittilevy)
+  //Lautaverho, Tiili, Mineriittilevy)
   List<DropdownMenuItem<OuterWallSurfaceMaterial?>>
-      outerWallSurfaceMaterialToList() {
+  outerWallSurfaceMaterialToList() {
     return [
       DropdownMenuItem<OuterWallSurfaceMaterial?>(
         value: null,
@@ -136,120 +130,125 @@ class WallsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = context.read<WallsBloc>();
 
-    return BlocBuilder<WallsBloc, Walls>(builder: (context, state) {
-      return LayoutGrid(
-        columnSizes: [
-          200.px,
-          130.px,
-          130.px,
-          130.px,
-          130.px,
-          130.px,
-          130.px,
-          130.px,
-          130.px,
-          130.px,
-          130.px,
-        ],
-        rowSizes: [
-          50.px,
-          90.px,
-          50.px,
-          50.px,
-        ],
-        children: [
-          FormHeader(
-            text: "Ulko- ja kantavien väliseinien materiaalit",
-          ),
-          EmptyCell(),
-          EmptyCell(),
-          EmptyCell(),
-          EmptyCell(),
-          EmptyCell(),
-          MenuCell<WallMaterial?>(
-            setter: (value) => bloc.add(WallMaterialChanged(value)),
-            initialValue: state.wallMaterial,
-            items: wallMaterialToList(),
-          ),
-          GridPlacement(
-            columnStart: 7,
-            columnSpan: 2,
-            rowStart: 0,
-            child: MenuCell<WoodMaterialType?>(
-              setter: (value) => bloc.add(WoodMaterialTypeChanged(value)),
-              initialValue: state.woodMaterialType,
-              items: woodMaterialTypeToList(),
+    return BlocBuilder<WallsBloc, Walls>(
+      builder: (context, state) {
+        return LayoutGrid(
+          columnSizes: [
+            200.px,
+            130.px,
+            130.px,
+            130.px,
+            130.px,
+            130.px,
+            130.px,
+            130.px,
+            130.px,
+            130.px,
+            130.px,
+          ],
+          rowSizes: [50.px, 90.px, 50.px, 50.px],
+          children: [
+            FormHeader(text: "Ulko- ja kantavien väliseinien materiaalit"),
+            EmptyCell(),
+            EmptyCell(),
+            EmptyCell(),
+            EmptyCell(),
+            EmptyCell(),
+            MenuCell<WallMaterial?>(
+              setter: (value) => bloc.add(WallMaterialChanged(value)),
+              initialValue: state.wallMaterial,
+              items: wallMaterialToList(),
             ),
-          ),
-          MenuCell<InsulationMaterialThickness?>(
-            setter: (value) =>
-                bloc.add(InsulationMaterialThicknessChanged(value)),
-            initialValue: state.insulationMaterialThickness,
-            items: insulationThicknessToList(),
-          ),
-          MenuCell<OuterWallSurfaceMaterial?>(
-            setter: (value) => bloc.add(OuterWallSurfaceMaterialChanged(value)),
-            initialValue: state.outerWallSurfaceMaterial,
-            items: outerWallSurfaceMaterialToList(),
-          ),
-          EmptyCell(),
-          ColumnCell(initialValue: "Seinän pituus (m)"),
-          ColumnCell(initialValue: "Seinän leveys (m)"),
-          ColumnCell(initialValue: "Seinän korkeus (m)"),
-          ColumnCell(initialValue: "Ulkoseinän pinta-ala (m2)"),
-          ColumnCell(initialValue: "Ulkoverhous (kivi tai tiili) (jm)"),
-          ColumnCell(
+            GridPlacement(
+              columnStart: 7,
+              columnSpan: 2,
+              rowStart: 0,
+              child: MenuCell<WoodMaterialType?>(
+                setter: (value) => bloc.add(WoodMaterialTypeChanged(value)),
+                initialValue: state.woodMaterialType,
+                items: woodMaterialTypeToList(),
+              ),
+            ),
+            MenuCell<InsulationMaterialThickness?>(
+              setter:
+                  (value) =>
+                      bloc.add(InsulationMaterialThicknessChanged(value)),
+              initialValue: state.insulationMaterialThickness,
+              items: insulationThicknessToList(),
+            ),
+            MenuCell<OuterWallSurfaceMaterial?>(
+              setter:
+                  (value) => bloc.add(OuterWallSurfaceMaterialChanged(value)),
+              initialValue: state.outerWallSurfaceMaterial,
+              items: outerWallSurfaceMaterialToList(),
+            ),
+            EmptyCell(),
+            ColumnCell(initialValue: "Seinän pituus (m)"),
+            ColumnCell(initialValue: "Seinän leveys (m)"),
+            ColumnCell(initialValue: "Seinän korkeus (m)"),
+            ColumnCell(initialValue: "Ulkoseinän pinta-ala (m2)"),
+            ColumnCell(initialValue: "Ulkoverhous (kivi tai tiili) (jm)"),
+            ColumnCell(
               initialValue:
-                  "Kantavat kiviseinät ja osittainen ulkovuoraus (tonnia)"),
-          ColumnCell(initialValue: "Seinärunko (tonnia)"),
-          ColumnCell(initialValue: "Tuulensuojalevyn määrä (tonnia)"),
-          ColumnCell(initialValue: "Eristemateriaali (tonnia)"),
-          ColumnCell(initialValue: "Ulkoseinän pintamateriaali (tonnia)"),
-          EmptyCell(),
-          InputCell(
+                  "Kantavat kiviseinät ja osittainen ulkovuoraus (tonnia)",
+            ),
+            ColumnCell(initialValue: "Seinärunko (tonnia)"),
+            ColumnCell(initialValue: "Tuulensuojalevyn määrä (tonnia)"),
+            ColumnCell(initialValue: "Eristemateriaali (tonnia)"),
+            ColumnCell(initialValue: "Ulkoseinän pintamateriaali (tonnia)"),
+            EmptyCell(),
+            InputCell(
               initialValue: state.lengthInMeters,
-              setter: (value) => bloc.add(LengthInMetersChanged(value))),
-          InputCell(
+              setter: (value) => bloc.add(LengthInMetersChanged(value)),
+            ),
+            InputCell(
               initialValue: state.widthInMeters,
-              setter: (value) => bloc.add(WidthInMetersChanged(value))),
-          InputCell(
+              setter: (value) => bloc.add(WidthInMetersChanged(value)),
+            ),
+            InputCell(
               initialValue: state.heightInMeters,
-              setter: (value) => bloc.add(HeightInMetersChanged(value))),
-          OutputCell(getter: () => state.outerWallArea),
-          InputCell(
+              setter: (value) => bloc.add(HeightInMetersChanged(value)),
+            ),
+            OutputCell(getter: () => state.outerWallArea),
+            InputCell(
               initialValue: state.stoneOrBrickWallsInLinearMeters,
-              setter: (value) => bloc.add(StoneOrBrickWallsChanged(value))),
-          OutputCell(getter: () => state.partitionWallsTons),
-          OutputCell(getter: () => state.cleanWoodOrBurnableWoodTons),
-          OutputCell(getter: () => state.windProtectionBoardTons),
-          OutputCell(getter: () => state.insulationWoolTons),
-          OutputCell(getter: () => state.outerWallBoardCurtainTons),
-          RowCell(initialValue: "Kierrätyskelpoiset materiaalit"),
-          RowCell(
+              setter: (value) => bloc.add(StoneOrBrickWallsChanged(value)),
+            ),
+            OutputCell(getter: () => state.partitionWallsTons),
+            OutputCell(getter: () => state.cleanWoodOrBurnableWoodTons),
+            OutputCell(getter: () => state.windProtectionBoardTons),
+            OutputCell(getter: () => state.insulationWoolTons),
+            OutputCell(getter: () => state.outerWallBoardCurtainTons),
+            RowCell(initialValue: "Uudelleenkäytettävät materiaalit"),
+            RowCell(
               checkbox: true,
-              checkboxSetter: (value) =>
-                  bloc.add(TrunkWoodRecyclableChanged(value)),
+              checkboxSetter:
+                  (value) => bloc.add(TrunkWoodRecyclableChanged(value)),
               checkboxTitle: "Runkopuu",
-              checkboxValue: state.isTrunkWoodRecyclable),
-          RowCell(
+              checkboxValue: state.isTrunkWoodRecyclable,
+            ),
+            RowCell(
               checkbox: true,
-              checkboxSetter: (value) =>
-                  bloc.add(InsulationWoolRecyclableChanged(value)),
+              checkboxSetter:
+                  (value) => bloc.add(InsulationWoolRecyclableChanged(value)),
               checkboxTitle: "Eristevilla",
-              checkboxValue: state.isInsulationWoolRecyclable),
-          GridPlacement(
-            columnStart: 3,
-            columnSpan: 2,
-            rowStart: 3,
-            child: RowCell(
+              checkboxValue: state.isInsulationWoolRecyclable,
+            ),
+            GridPlacement(
+              columnStart: 3,
+              columnSpan: 2,
+              rowStart: 3,
+              child: RowCell(
                 checkbox: true,
-                checkboxSetter: (value) =>
-                    bloc.add(AggregateRecyclableChanged(value)),
+                checkboxSetter:
+                    (value) => bloc.add(AggregateRecyclableChanged(value)),
                 checkboxTitle: "Kiviaines (tiili ja betoni)",
-                checkboxValue: state.isAggregateRecyclable),
-          ),
-        ],
-      );
-    });
+                checkboxValue: state.isAggregateRecyclable,
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

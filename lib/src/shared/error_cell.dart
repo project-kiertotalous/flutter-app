@@ -39,43 +39,43 @@ class ErrorCell extends StatelessWidget implements Cell {
     // Scenario 1: Null values
     if (hasNullError) {
       if (nullCount == 1) {
-        errorMessage = "Virhe! Prosenttien kokonaissumma on alle 100%";
+        errorMessage = "Varoitus! Prosenttien kokonaissumma on alle 100%";
       } else {
         errorMessage =
-            "Virhe! $nullCount prosenttien kokonaissumma on alle 100%";
+            "Varoitus! $nullCount prosenttien kokonaissumma on alle 100%";
       }
     }
 
     // Scenario 2: Under 100 errors (but no nulls)
     if (hasUnderError && !hasNullError) {
       errorMessage = (under100Count == 1)
-          ? "Virhe! Prosenttien kokonaissumma on alle 100%"
-          : "Virhe! $under100Count prosenttien kokonaissumma on alle 100%";
+          ? "Varoitus! Prosenttien kokonaissumma on alle 100%"
+          : "Varoitus! $under100Count prosenttien kokonaissumma on alle 100%";
     }
 
     // Scenario 3: Over 100 errors (but no nulls)
     if (hasOverError && !hasNullError) {
       errorMessage = (over100Count == 1)
-          ? "Virhe! Prosenttien kokonaissumma on yli 100%!"
-          : "Virhe! $over100Count prosenttien kokonaissumma on yli 100%!";
+          ? "Varoitus! Prosenttien kokonaissumma on yli 100%!"
+          : "Varoitus! $over100Count prosenttien kokonaissumma on yli 100%!";
     }
 
     // Scenario 4: Both null and under 100 errors
     if (hasNullError && hasUnderError) {
       errorMessage =
-          "Virhe! ${under100Count + nullCount} prosenttien kokonaissumma on alle 100%.";
+          "Varoitus! ${under100Count + nullCount} prosenttien kokonaissumma on alle 100%.";
     }
 
     // Scenario 5: Both null and over 100 errors
     if (hasNullError && hasOverError) {
       errorMessage =
-          "Virhe! $nullCount prosenttien kokonaissumma on alle 100% ja $over100Count kokonaissummaa on yli 100%.";
+          "Varoitus! $nullCount prosenttien kokonaissumma on alle 100% ja $over100Count kokonaissummaa on yli 100%.";
     }
 
     // Scenario 6: Null, under 100, and over 100 errors
     if (hasNullError && hasUnderError && hasOverError) {
       errorMessage =
-          "Virhe! ${under100Count + nullCount} prosenttien kokonaissumma on alle 100% ja $over100Count kokonaissummaa on yli 100%.";
+          "Varoitus! ${under100Count + nullCount} prosenttien kokonaissumma on alle 100% ja $over100Count kokonaissummaa on yli 100%.";
     }
 
     // Scenario 7: Both under 100 and over 100 errors (but no nulls)

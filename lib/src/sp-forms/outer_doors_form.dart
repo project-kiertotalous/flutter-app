@@ -1,5 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
 import 'package:flutter_app/src/shared/header_cell.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_bloc.dart';
 import 'package:flutter_app/src/sp-bloc/outer_doors_event.dart';
@@ -46,13 +47,13 @@ class SPOuterDoorsForm extends StatelessWidget {
                 ),
                 checkboxValue: state.areDoorsRecyclable,
               ),
-              HeaderCell(
+              ColumnCell(
                 initialValue: 'Puuovet (kpl)',
               ),
-              HeaderCell(
+              ColumnCell(
                 initialValue: 'Alumiiniovet (kpl)',
               ),
-              HeaderCell(
+              ColumnCell(
                 initialValue: 'Teräsovet (kpl)',
               ),
               RowCell(
