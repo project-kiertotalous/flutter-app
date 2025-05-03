@@ -85,7 +85,7 @@ final class _FoundationAndFloorsTooltipTexts {
       ' Jos taas koko kiinteistön perustus on samanlainen, valitaan vain yksi perustusmalli.';
 
   final bitumenCoating =
-      'Jos kosteussuojana on käyetty betonissa bitumisivelyä, kirjautuu se purkumateriaalimäärä raportiin ongelmajätteenä.';
+      'Jos vedeneristyksessä on käyetty betonissa bitumisivelyä, kirjautuu se purkumateriaalimäärä raportiin ongelmajätteenä.';
 }
 
 final class _FloorStructuresTooltipTexts {
@@ -95,7 +95,8 @@ final class _FloorStructuresTooltipTexts {
 }
 
 final class _RoofTooltipTexts {
-  final area = 'Jos katon todellinen pinta-ala on tiedossa, kirjataan se tähän.'
+  final area =
+      'Jos katon todellinen pinta-ala on tiedossa, kirjataan se tähän.'
       ' Jos tietoa ei ole, voidaan käyttää laskennallista oletus pinta-alaa.';
 
   final areaDefault =
@@ -103,7 +104,8 @@ final class _RoofTooltipTexts {
       ' siten, että harja ja aumakaton korjauskerroinoletus on 25 %. Kertoimessa on huomioitu myös'
       ' räystäsylitykset. Tavanomaisen 1/3 kaltevuuden kulma on n. 18o mikä vastaa 20% kaltevuutta.';
 
-  final ridgeOrGableRoofPortion = 'Kattotyypin % osuutta muuttamalla korjataan'
+  final ridgeOrGableRoofPortion =
+      'Kattotyypin % osuutta muuttamalla korjataan'
       ' kattotyyppi pinta-ala vastaamaan todellista kattopinta-alaa jos se on tiedossa';
 
   final demolitionMaterialCount =
@@ -112,7 +114,8 @@ final class _RoofTooltipTexts {
 }
 
 final class _FrameTooltipTexts {
-  final perimeter = 'Ulkoseinien kehämitta, eli seinien yhteispituus'
+  final perimeter =
+      'Ulkoseinien kehämitta, eli seinien yhteispituus'
       'Jos kehämittaa ei tiedetä, valitaan pikavalinnalla: käytä perusrtuksen kehämittaa.'
       ' Tällöin oletetaan, että ulkoseinien kehämitan on saman kuin perustuksen kehämitta.';
 

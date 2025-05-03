@@ -22,89 +22,97 @@ class WindowsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final windowsBloc = context.read<WindowsBloc>();
 
-    return BlocBuilder<WindowsBloc, Windows>(builder: (context, state) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FormHeader(
-            text: 'Ikkunoiden ja lasiseinien määrät',
-          ),
-          LayoutGrid(
-            columnSizes: [
-              400.px, // Column 1
-              150.px, // Column 2
-              150.px, // Column 3
-              150.px, // Column 4
-            ],
-            rowSizes: [
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px
-            ], // 7 rows
-            children: [
-              // Row 1
-              RowCell(
-                initialValue: "Ikkunat",
-                checkbox: true,
-                checkboxTitle: "Ikkunat ja lasiseinät ovat kierrätyskelpoisia",
-                checkboxValue: state.areWindowsRecyclable,
-                checkboxSetter: (value) =>
-                    windowsBloc.add(WindowsRecyclabilityChanged(value)),
-              ),
-              ColumnCell(initialValue: "Kappale"),
-              ColumnCell(
+    return BlocBuilder<WindowsBloc, Windows>(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FormHeader(text: 'Ikkunoiden ja lasiseinien määrät'),
+            LayoutGrid(
+              columnSizes: [
+                400.px, // Column 1
+                150.px, // Column 2
+                150.px, // Column 3
+                150.px, // Column 4
+              ],
+              rowSizes: [
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+              ], // 7 rows
+              children: [
+                // Row 1
+                RowCell(
+                  initialValue: "Ikkunat",
+                  checkbox: true,
+                  checkboxTitle:
+                      "Ikkunat ja lasiseinät ovat uudelleenkäytettäviä",
+                  checkboxValue: state.areWindowsRecyclable,
+                  checkboxSetter:
+                      (value) =>
+                          windowsBloc.add(WindowsRecyclabilityChanged(value)),
+                ),
+                ColumnCell(initialValue: "Kappale"),
+                ColumnCell(
                   initialValue: "m2",
                   iconButton: InfoButton(
-                      text: TooltipTexts.partitionWallsDoorsAndWindows.windows
-                          .defaultWindowOpeningSize)),
-              ColumnCell(initialValue: "Lasipinta-ala yhteensä (m2)"),
-              // Row 2
-              RowCell(initialValue: "Pinta-ala ja määrä"),
-              InputCell(
-                initialValue: state.windowsPcs,
-                setter: (value) => windowsBloc.add(WindowsPcsChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.windowsArea,
-                setter: (value) => windowsBloc.add(WindowsAreaChanged(value)),
-              ),
-              OutputCell(getter: () => state.totalGlassArea),
-              // Row 3
-              RowCell(initialValue: "Lasiseinät"),
-              GreyCell(),
-              InputCell(
-                initialValue: state.glassWallArea,
-                setter: (value) => windowsBloc.add(GlassWallAreaChanged(value)),
-              ),
-              EmptyCell(),
-              // Row 4
-              FormHeader(text: "Ikkunoiden materiaalimäärät"),
-              FormHeader(text: "Materiaalimäärä yhteensä (m3)"),
-              FormHeader(text: "Materiaalimäärä yhteensä (tonnia)"),
-              EmptyCell(),
-              // Row 5
-              RowCell(initialValue: "Puu"),
-              OutputCell(getter: () => state.totalWoodenVolume),
-              OutputCell(getter: () => state.totalWoodTons),
-              EmptyCell(),
-              // Row 6
-              RowCell(initialValue: "Lasi"),
-              OutputCell(getter: () => state.totalGlassVolume),
-              OutputCell(getter: () => state.totalGlassTons),
-              EmptyCell(),
-              // Row 7
-              RowCell(initialValue: "Alumiini"),
-              GreyCell(),
-              OutputCell(getter: () => state.totalAluminiumTons),
-              EmptyCell(),
-            ],
-          ),
-        ],
-      );
-    });
+                    text:
+                        TooltipTexts
+                            .partitionWallsDoorsAndWindows
+                            .windows
+                            .defaultWindowOpeningSize,
+                  ),
+                ),
+                ColumnCell(initialValue: "Lasipinta-ala yhteensä (m2)"),
+                // Row 2
+                RowCell(initialValue: "Pinta-ala ja määrä"),
+                InputCell(
+                  initialValue: state.windowsPcs,
+                  setter: (value) => windowsBloc.add(WindowsPcsChanged(value)),
+                ),
+                InputCell(
+                  initialValue: state.windowsArea,
+                  setter: (value) => windowsBloc.add(WindowsAreaChanged(value)),
+                ),
+                OutputCell(getter: () => state.totalGlassArea),
+                // Row 3
+                RowCell(initialValue: "Lasiseinät"),
+                GreyCell(),
+                InputCell(
+                  initialValue: state.glassWallArea,
+                  setter:
+                      (value) => windowsBloc.add(GlassWallAreaChanged(value)),
+                ),
+                EmptyCell(),
+                // Row 4
+                FormHeader(text: "Ikkunoiden materiaalimäärät"),
+                FormHeader(text: "Materiaalimäärä yhteensä (m3)"),
+                FormHeader(text: "Materiaalimäärä yhteensä (tonnia)"),
+                EmptyCell(),
+                // Row 5
+                RowCell(initialValue: "Puu"),
+                OutputCell(getter: () => state.totalWoodenVolume),
+                OutputCell(getter: () => state.totalWoodTons),
+                EmptyCell(),
+                // Row 6
+                RowCell(initialValue: "Lasi"),
+                OutputCell(getter: () => state.totalGlassVolume),
+                OutputCell(getter: () => state.totalGlassTons),
+                EmptyCell(),
+                // Row 7
+                RowCell(initialValue: "Alumiini"),
+                GreyCell(),
+                OutputCell(getter: () => state.totalAluminiumTons),
+                EmptyCell(),
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }

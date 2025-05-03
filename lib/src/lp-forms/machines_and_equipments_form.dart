@@ -21,170 +21,221 @@ class MachinesAndEquipmentsForm extends StatelessWidget {
     final machinesAndEquipmentsBloc = context.read<MachinesAndEquipmentsBloc>();
 
     return BlocBuilder<MachinesAndEquipmentsBloc, MachinesAndEquipments>(
-        builder: (context, state) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          FormHeader(text: "Koneet ja laitteet"),
-          //Grid: 5 columns, 9 rows
-          LayoutGrid(
-            columnSizes: [300.px, 150.px, 150.px, 150.px, 150.px],
-            rowSizes: [
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px,
-              50.px
-            ],
-            children: [
-              RowCell(
-                checkbox: true,
-                checkboxTitle: "Laitteet ovat kierrätyskelpoisia",
-                checkboxValue: state.machinesRecyclable,
-                checkboxSetter: (value) => machinesAndEquipmentsBloc
-                    .add(MachinesRecyclableChanged(value)),
-              ),
-              ColumnCell(initialValue: "Oletuspaino (kg/kpl)"),
-              ColumnCell(
-                initialValue: "kg/kpl",
-                iconButton: InfoButton(
-                    text: TooltipTexts
-                        .hvacAndElectricalInstallations.machineDetailedWeight),
-              ),
-              ColumnCell(initialValue: "Määrä (kpl)"),
-              ColumnCell(initialValue: "Tonnia"),
-              RowCell(initialValue: "Vesivaraajat (sähkö, pienet)"),
-              ColumnCell(initialValue: "100"),
-              InputCell(
-                initialValue:
-                    state.smallElectricalAccumulators?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(SmallElectricalWaterAccumulatorsWeightChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.smallElectricalAccumulators?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc.add(
-                    SmallElectricalWaterAccumulatorsQuantityChanged(value)),
-                integer: true,
-              ),
-              OutputCell(getter: () => state.smallElectricalAccumulators?.tons),
-              RowCell(
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            FormHeader(text: "Koneet ja laitteet"),
+            //Grid: 5 columns, 9 rows
+            LayoutGrid(
+              columnSizes: [300.px, 150.px, 150.px, 150.px, 150.px],
+              rowSizes: [
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+                50.px,
+              ],
+              children: [
+                RowCell(
+                  checkbox: true,
+                  checkboxTitle: "Laitteet ovat uudelleenkäytettäviä",
+                  checkboxValue: state.machinesRecyclable,
+                  checkboxSetter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        MachinesRecyclableChanged(value),
+                      ),
+                ),
+                ColumnCell(initialValue: "Oletuspaino (kg/kpl)"),
+                ColumnCell(
+                  initialValue: "kg/kpl",
+                  iconButton: InfoButton(
+                    text:
+                        TooltipTexts
+                            .hvacAndElectricalInstallations
+                            .machineDetailedWeight,
+                  ),
+                ),
+                ColumnCell(initialValue: "Määrä (kpl)"),
+                ColumnCell(initialValue: "Tonnia"),
+                RowCell(initialValue: "Vesivaraajat (sähkö, pienet)"),
+                ColumnCell(initialValue: "100"),
+                InputCell(
                   initialValue:
-                      "Vesivaraajat, suuret (sähkö, kaukolämpö 500-100L)"),
-              ColumnCell(initialValue: "400"),
-              InputCell(
-                initialValue:
-                    state.largeElectricalAccumulators?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(LargeElectricalWaterAccumulatorsWeightChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.largeElectricalAccumulators?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc.add(
-                    LargeElectricalWaterAccumulatorsQuantityChanged(value)),
-                integer: true,
-              ),
-              OutputCell(getter: () => state.largeElectricalAccumulators?.tons),
-              RowCell(initialValue: "Lämpöpatterit (sähkö)"),
-              ColumnCell(initialValue: "8"),
-              InputCell(
-                initialValue: state.electricRadiators?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(ElectricRadiatorsWeightChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.electricRadiators?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(ElectricRadiatorsQuantityChanged(value)),
-                integer: true,
-              ),
-              OutputCell(getter: () => state.electricRadiators?.tons),
-              RowCell(initialValue: "Lämpöpatterit (vesikiertoinen)"),
-              ColumnCell(initialValue: "15"),
-              InputCell(
-                initialValue: state.waterCirculatedRadiators?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(WaterCirculatedRadiatorsWeightChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.waterCirculatedRadiators?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(WaterCirculatedRadiatorsQuantityChanged(value)),
-                integer: true,
-              ),
-              OutputCell(getter: () => state.waterCirculatedRadiators?.tons),
-              RowCell(initialValue: "Ilmanvaihtokoneet"),
-              ColumnCell(initialValue: "100"),
-              InputCell(
-                initialValue: state.ventilationUnits?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(VentilationUnitsWeightChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.ventilationUnits?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(VentilationUnitsQuantityChanged(value)),
-                integer: true,
-              ),
-              OutputCell(getter: () => state.ventilationUnits?.tons),
-              RowCell(initialValue: "Sähkönjakokaapit ja mittarit"),
-              ColumnCell(initialValue: "20"),
-              InputCell(
-                initialValue: state
-                    .electricalDistributionCabinetsAndMeters?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc.add(
-                    ElectricalDistributionCabinetsAndMetersWeightChanged(
-                        value)),
-              ),
-              InputCell(
-                initialValue:
-                    state.electricalDistributionCabinetsAndMeters?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc.add(
-                    ElectricalDistributionCabinetsAndMetersQuantityChanged(
-                        value)),
-                integer: true,
-              ),
-              OutputCell(
-                  getter: () =>
-                      state.electricalDistributionCabinetsAndMeters?.tons),
-              RowCell(initialValue: "Sähkömoottorit ja kiertovesipumput"),
-              ColumnCell(initialValue: "25"),
-              InputCell(
-                initialValue:
-                    state.electricMotorsAndCirculationPumps?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(ElectricMotorsAndCirculationPumpsWeightChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.electricMotorsAndCirculationPumps?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc.add(
-                    ElectricMotorsAndCirculationPumpsQuantityChanged(value)),
-                integer: true,
-              ),
-              OutputCell(
-                  getter: () => state.electricMotorsAndCirculationPumps?.tons),
-              RowCell(initialValue: "Huippuimurit"),
-              ColumnCell(initialValue: "15"),
-              InputCell(
-                initialValue: state.roofExhaustFans?.weightKgPerPiece,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(RoofExhaustFansWeightChanged(value)),
-              ),
-              InputCell(
-                initialValue: state.roofExhaustFans?.quantity,
-                setter: (value) => machinesAndEquipmentsBloc
-                    .add(RoofExhaustFansQuantityChanged(value)),
-                integer: true,
-              ),
-              OutputCell(getter: () => state.roofExhaustFans?.tons),
-            ],
-          ),
-        ],
-      );
-    });
+                      state.smallElectricalAccumulators?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        SmallElectricalWaterAccumulatorsWeightChanged(value),
+                      ),
+                ),
+                InputCell(
+                  initialValue: state.smallElectricalAccumulators?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        SmallElectricalWaterAccumulatorsQuantityChanged(value),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(
+                  getter: () => state.smallElectricalAccumulators?.tons,
+                ),
+                RowCell(
+                  initialValue:
+                      "Vesivaraajat, suuret (sähkö, kaukolämpö 500-100L)",
+                ),
+                ColumnCell(initialValue: "400"),
+                InputCell(
+                  initialValue:
+                      state.largeElectricalAccumulators?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        LargeElectricalWaterAccumulatorsWeightChanged(value),
+                      ),
+                ),
+                InputCell(
+                  initialValue: state.largeElectricalAccumulators?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        LargeElectricalWaterAccumulatorsQuantityChanged(value),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(
+                  getter: () => state.largeElectricalAccumulators?.tons,
+                ),
+                RowCell(initialValue: "Lämpöpatterit (sähkö)"),
+                ColumnCell(initialValue: "8"),
+                InputCell(
+                  initialValue: state.electricRadiators?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        ElectricRadiatorsWeightChanged(value),
+                      ),
+                ),
+                InputCell(
+                  initialValue: state.electricRadiators?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        ElectricRadiatorsQuantityChanged(value),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(getter: () => state.electricRadiators?.tons),
+                RowCell(initialValue: "Lämpöpatterit (vesikiertoinen)"),
+                ColumnCell(initialValue: "15"),
+                InputCell(
+                  initialValue:
+                      state.waterCirculatedRadiators?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        WaterCirculatedRadiatorsWeightChanged(value),
+                      ),
+                ),
+                InputCell(
+                  initialValue: state.waterCirculatedRadiators?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        WaterCirculatedRadiatorsQuantityChanged(value),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(getter: () => state.waterCirculatedRadiators?.tons),
+                RowCell(initialValue: "Ilmanvaihtokoneet"),
+                ColumnCell(initialValue: "100"),
+                InputCell(
+                  initialValue: state.ventilationUnits?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        VentilationUnitsWeightChanged(value),
+                      ),
+                ),
+                InputCell(
+                  initialValue: state.ventilationUnits?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        VentilationUnitsQuantityChanged(value),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(getter: () => state.ventilationUnits?.tons),
+                RowCell(initialValue: "Sähkönjakokaapit ja mittarit"),
+                ColumnCell(initialValue: "20"),
+                InputCell(
+                  initialValue:
+                      state
+                          .electricalDistributionCabinetsAndMeters
+                          ?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        ElectricalDistributionCabinetsAndMetersWeightChanged(
+                          value,
+                        ),
+                      ),
+                ),
+                InputCell(
+                  initialValue:
+                      state.electricalDistributionCabinetsAndMeters?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        ElectricalDistributionCabinetsAndMetersQuantityChanged(
+                          value,
+                        ),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(
+                  getter:
+                      () => state.electricalDistributionCabinetsAndMeters?.tons,
+                ),
+                RowCell(initialValue: "Sähkömoottorit ja kiertovesipumput"),
+                ColumnCell(initialValue: "25"),
+                InputCell(
+                  initialValue:
+                      state.electricMotorsAndCirculationPumps?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        ElectricMotorsAndCirculationPumpsWeightChanged(value),
+                      ),
+                ),
+                InputCell(
+                  initialValue:
+                      state.electricMotorsAndCirculationPumps?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        ElectricMotorsAndCirculationPumpsQuantityChanged(value),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(
+                  getter: () => state.electricMotorsAndCirculationPumps?.tons,
+                ),
+                RowCell(initialValue: "Huippuimurit"),
+                ColumnCell(initialValue: "15"),
+                InputCell(
+                  initialValue: state.roofExhaustFans?.weightKgPerPiece,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        RoofExhaustFansWeightChanged(value),
+                      ),
+                ),
+                InputCell(
+                  initialValue: state.roofExhaustFans?.quantity,
+                  setter:
+                      (value) => machinesAndEquipmentsBloc.add(
+                        RoofExhaustFansQuantityChanged(value),
+                      ),
+                  integer: true,
+                ),
+                OutputCell(getter: () => state.roofExhaustFans?.tons),
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }
