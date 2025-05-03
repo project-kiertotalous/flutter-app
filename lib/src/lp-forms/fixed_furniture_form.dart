@@ -30,7 +30,7 @@ class FixedFurnitureForm extends StatelessWidget {
 
             // First grid: 2 columns, 14 rows
             LayoutGrid(
-              columnSizes: [374.px, 150.px],
+              columnSizes: [400.px, 150.px],
               rowSizes: List.filled(14, 50.px),
               children: [
                 RowCell(
@@ -38,10 +38,9 @@ class FixedFurnitureForm extends StatelessWidget {
                   checkbox: true,
                   checkboxTitle: "Kalusteet ovat uudelleenkäytettäviä",
                   checkboxValue: state.isFurnitureRecyclable,
-                  checkboxSetter:
-                      (value) => fixedFurnitureBloc.add(
-                        FixedFurnitureRecyclableChanged(value),
-                      ),
+                  checkboxSetter: (value) => fixedFurnitureBloc.add(
+                    FixedFurnitureRecyclableChanged(value),
+                  ),
                 ),
                 ColumnCell(initialValue: "Määrä (kpl/jm/m2)"),
                 //2
@@ -49,28 +48,25 @@ class FixedFurnitureForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.porcelainToilets,
                   integer: true,
-                  setter:
-                      (value) => fixedFurnitureBloc.add(
-                        PorcelainToiletsChanged(value),
-                      ),
+                  setter: (value) => fixedFurnitureBloc.add(
+                    PorcelainToiletsChanged(value),
+                  ),
                 ),
                 //3
                 RowCell(initialValue: "Posliinialtaat"),
                 InputCell(
                   initialValue: state.porcelainSinks,
                   integer: true,
-                  setter:
-                      (value) =>
-                          fixedFurnitureBloc.add(PorcelainSinksChanged(value)),
+                  setter: (value) =>
+                      fixedFurnitureBloc.add(PorcelainSinksChanged(value)),
                 ),
                 //4
                 RowCell(initialValue: "Teräspöydät"),
                 InputCell(
                   initialValue: state.steelTables,
                   integer: true,
-                  setter:
-                      (value) =>
-                          fixedFurnitureBloc.add(SteelTablesChanged(value)),
+                  setter: (value) =>
+                      fixedFurnitureBloc.add(SteelTablesChanged(value)),
                 ),
                 //5
                 RowCell(initialValue: "Kaapistot ja säilytystilat"),
@@ -79,47 +75,40 @@ class FixedFurnitureForm extends StatelessWidget {
                 RowCell(
                   initialValue: "Keittiökaapistot (lastulevy/puu)",
                   iconButton: InfoButton(
-                    text:
-                        TooltipTexts
-                            .partitionWallsDoorsAndWindows
-                            .fixedFurnitureTooltipTexts
-                            .chipboardOrWoodenKitchenCabinets,
+                    text: TooltipTexts
+                        .partitionWallsDoorsAndWindows
+                        .fixedFurnitureTooltipTexts
+                        .chipboardOrWoodenKitchenCabinets,
                   ),
                 ),
                 InputCell(
                   initialValue: state.kitchenClosetsWoodOrChipboard,
                   integer: true,
-                  setter:
-                      (value) =>
-                          fixedFurnitureBloc.add(KitchenClosetsChanged(value)),
+                  setter: (value) =>
+                      fixedFurnitureBloc.add(KitchenClosetsChanged(value)),
                 ),
                 //7
                 RowCell(initialValue: "Pukukaapit (teräs)"),
                 InputCell(
                   initialValue: state.steelLockerCabinets,
                   integer: true,
-                  setter:
-                      (value) => fixedFurnitureBloc.add(
-                        SteelLockerCabinetsChanged(value),
-                      ),
+                  setter: (value) => fixedFurnitureBloc.add(
+                    SteelLockerCabinetsChanged(value),
+                  ),
                 ),
                 //8
                 RowCell(
                   initialValue: "Vaatekaapit, ym. (puulevy)",
                   iconButton: InfoButton(
-                    text:
-                        TooltipTexts
-                            .partitionWallsDoorsAndWindows
-                            .fixedFurnitureTooltipTexts
-                            .woodPanelClosets,
+                    text: TooltipTexts.partitionWallsDoorsAndWindows
+                        .fixedFurnitureTooltipTexts.woodPanelClosets,
                   ),
                 ),
                 InputCell(
                   initialValue: state.clothingOrOtherClosetsWood,
                   integer: true,
-                  setter:
-                      (value) =>
-                          fixedFurnitureBloc.add(ClothingClosetsChanged(value)),
+                  setter: (value) =>
+                      fixedFurnitureBloc.add(ClothingClosetsChanged(value)),
                 ),
                 //9
                 RowCell(initialValue: "Sähkölaitteet"),
@@ -129,47 +118,42 @@ class FixedFurnitureForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.electricStoves,
                   integer: true,
-                  setter:
-                      (value) =>
-                          fixedFurnitureBloc.add(ElectricStovesChanged(value)),
+                  setter: (value) =>
+                      fixedFurnitureBloc.add(ElectricStovesChanged(value)),
                 ),
                 //11
                 RowCell(initialValue: "Suurtalous sähköliedet"),
                 InputCell(
                   initialValue: state.industrialElectricStoves,
                   integer: true,
-                  setter:
-                      (value) => fixedFurnitureBloc.add(
-                        IndustrialElectricStovesChanged(value),
-                      ),
+                  setter: (value) => fixedFurnitureBloc.add(
+                    IndustrialElectricStovesChanged(value),
+                  ),
                 ),
                 //12
                 RowCell(initialValue: "Kylmiökaapit"),
                 InputCell(
                   initialValue: state.coldRoomCabinets,
                   integer: true,
-                  setter:
-                      (value) => fixedFurnitureBloc.add(
-                        ColdRoomCabinetsChanged(value),
-                      ),
+                  setter: (value) => fixedFurnitureBloc.add(
+                    ColdRoomCabinetsChanged(value),
+                  ),
                 ),
                 //13
                 RowCell(initialValue: "Jääkaapit"),
                 InputCell(
                   initialValue: state.refrigerators,
                   integer: true,
-                  setter:
-                      (value) =>
-                          fixedFurnitureBloc.add(RefrigeratorsChanged(value)),
+                  setter: (value) =>
+                      fixedFurnitureBloc.add(RefrigeratorsChanged(value)),
                 ),
                 //14
                 RowCell(initialValue: "Saunakiukaat"),
                 InputCell(
                   initialValue: state.saunaStoves,
                   integer: true,
-                  setter:
-                      (value) =>
-                          fixedFurnitureBloc.add(SaunaStovesChanged(value)),
+                  setter: (value) =>
+                      fixedFurnitureBloc.add(SaunaStovesChanged(value)),
                 ),
               ],
             ),

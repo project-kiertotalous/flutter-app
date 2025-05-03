@@ -1,5 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
 import 'package:flutter_app/src/shared/empty_cell.dart';
 import 'package:flutter_app/src/shared/header_cell.dart';
 import 'package:flutter_app/src/shared/menu_cell.dart';
@@ -51,31 +52,28 @@ class SmallPropertiesRoofsForm extends StatelessWidget {
                 ),
                 EmptyCell(),
                 MenuCell<SmallPropertyRoofType?>(
-                  setter:
-                      (value) =>
-                          roofsBloc.add(SmallPropertyRoofTypeChanged(value)),
+                  setter: (value) =>
+                      roofsBloc.add(SmallPropertyRoofTypeChanged(value)),
                   initialValue: state.roofType,
                   items: roofTypeToList(),
                 ),
-                HeaderCell(initialValue: 'Katon lappeen pituus (m)'),
-                HeaderCell(initialValue: 'Katon lappeen leveys (m)'),
-                HeaderCell(initialValue: 'Katon pinta-ala (m2)'),
-                HeaderCell(initialValue: 'Puinen ristikkorakenne (tonnia)'),
-                HeaderCell(initialValue: 'Aluslaudoituksen paino (tonnia)'),
-                HeaderCell(initialValue: 'Vesikatteen paino (tonnia)'),
-                HeaderCell(initialValue: 'Aluskate (tonnia)'),
+                ColumnCell(initialValue: 'Katon lappeen pituus (m)'),
+                ColumnCell(initialValue: 'Katon lappeen leveys (m)'),
+                ColumnCell(initialValue: 'Katon pinta-ala (m2)'),
+                ColumnCell(initialValue: 'Puinen ristikkorakenne (tonnia)'),
+                ColumnCell(initialValue: 'Aluslaudoituksen paino (tonnia)'),
+                ColumnCell(initialValue: 'Vesikatteen paino (tonnia)'),
+                ColumnCell(initialValue: 'Aluskate (tonnia)'),
                 RowCell(initialValue: ''),
                 InputCell(
                   initialValue: state.slopeLengthInMeters,
-                  setter:
-                      (value) =>
-                          roofsBloc.add(SlopeLengthInMetersChanged(value)),
+                  setter: (value) =>
+                      roofsBloc.add(SlopeLengthInMetersChanged(value)),
                 ),
                 InputCell(
                   initialValue: state.slopeWidthInMeters,
-                  setter:
-                      (value) =>
-                          roofsBloc.add(SlopeWidhthInMetersChanged(value)),
+                  setter: (value) =>
+                      roofsBloc.add(SlopeWidhthInMetersChanged(value)),
                 ),
                 OutputCell(getter: () => state.roofArea),
                 OutputCell(getter: () => state.woodenRoofLatticeWeightTons),
@@ -86,18 +84,16 @@ class SmallPropertiesRoofsForm extends StatelessWidget {
                 RowCell(
                   checkbox: true,
                   checkboxTitle: 'Puu                 ',
-                  checkboxSetter:
-                      (value) =>
-                          roofsBloc.add(ContainsRecyclableWoodChanged(value)),
+                  checkboxSetter: (value) =>
+                      roofsBloc.add(ContainsRecyclableWoodChanged(value)),
                   checkboxValue: state.containsRecyclableWood,
                 ),
                 RowCell(
                   checkbox: true,
                   checkboxTitle: 'Katemateriaali\nsisältää asbestia',
-                  checkboxSetter:
-                      (value) => roofsBloc.add(
-                        CoveringMaterialContainsAsbestosChanged(value),
-                      ),
+                  checkboxSetter: (value) => roofsBloc.add(
+                    CoveringMaterialContainsAsbestosChanged(value),
+                  ),
                   checkboxValue: state.coveringMaterialContainsAsbestos,
                 ),
               ],

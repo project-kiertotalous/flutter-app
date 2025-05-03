@@ -31,7 +31,7 @@ class FixturesAndStructuresForm extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             LayoutGrid(
-              columnSizes: [280.px, 140.px, 140.px, 140.px, 140.px],
+              columnSizes: [300.px, 140.px, 140.px, 140.px, 140.px],
               rowSizes: [50.px, 50.px, 50.px, 50.px, 50.px],
               children: [
                 RowCell(
@@ -39,18 +39,15 @@ class FixturesAndStructuresForm extends StatelessWidget {
                   checkbox: true,
                   checkboxTitle: "Kalusteet ovat uudelleenkäytettäviä",
                   checkboxValue: state.fixturesRecyclable,
-                  checkboxSetter:
-                      (value) =>
-                          fixturesBloc.add(FixturesRecyclableChanged(value)),
+                  checkboxSetter: (value) =>
+                      fixturesBloc.add(FixturesRecyclableChanged(value)),
                 ),
                 ColumnCell(initialValue: "Oletuspaino (kg/m)"),
                 ColumnCell(
                   initialValue: "kg/m",
                   iconButton: InfoButton(
-                    text:
-                        TooltipTexts
-                            .hvacAndElectricalInstallations
-                            .detailedWeightPerMeters,
+                    text: TooltipTexts
+                        .hvacAndElectricalInstallations.detailedWeightPerMeters,
                   ),
                 ),
                 ColumnCell(initialValue: "Metriä (m)"),
@@ -60,30 +57,26 @@ class FixturesAndStructuresForm extends StatelessWidget {
                 InputCell(
                   initialValue:
                       state.rainGuttersAndDownSpouts?.weightKgPerMeter,
-                  setter:
-                      (value) =>
-                          fixturesBloc.add(RainGuttersWeightChanged(value)),
+                  setter: (value) =>
+                      fixturesBloc.add(RainGuttersWeightChanged(value)),
                 ),
                 InputCell(
                   initialValue: state.rainGuttersAndDownSpouts?.meters,
-                  setter:
-                      (value) =>
-                          fixturesBloc.add(RainGuttersMetersChanged(value)),
+                  setter: (value) =>
+                      fixturesBloc.add(RainGuttersMetersChanged(value)),
                 ),
                 OutputCell(getter: () => state.rainGuttersAndDownSpouts?.tons),
                 RowCell(initialValue: "Palotikkaat ja kulkusillat"),
                 ColumnCell(initialValue: "10"),
                 InputCell(
                   initialValue: state.fireLaddersAndWalkways?.weightKgPerMeter,
-                  setter:
-                      (value) =>
-                          fixturesBloc.add(FireLaddersWeightChanged(value)),
+                  setter: (value) =>
+                      fixturesBloc.add(FireLaddersWeightChanged(value)),
                 ),
                 InputCell(
                   initialValue: state.fireLaddersAndWalkways?.meters,
-                  setter:
-                      (value) =>
-                          fixturesBloc.add(FireLaddersMetersChanged(value)),
+                  setter: (value) =>
+                      fixturesBloc.add(FireLaddersMetersChanged(value)),
                 ),
                 OutputCell(getter: () => state.fireLaddersAndWalkways?.tons),
                 RowCell(
@@ -93,34 +86,30 @@ class FixturesAndStructuresForm extends StatelessWidget {
                 InputCell(
                   initialValue:
                       state.aluminiumChainLinkFences?.weightKgPerMeter,
-                  setter:
-                      (value) => fixturesBloc.add(
-                        AluminiumChainLinkFencesWeightChanged(value),
-                      ),
+                  setter: (value) => fixturesBloc.add(
+                    AluminiumChainLinkFencesWeightChanged(value),
+                  ),
                 ),
                 InputCell(
                   initialValue: state.aluminiumChainLinkFences?.meters,
-                  setter:
-                      (value) => fixturesBloc.add(
-                        AluminiumChainLinkFencesMetersChanged(value),
-                      ),
+                  setter: (value) => fixturesBloc.add(
+                    AluminiumChainLinkFencesMetersChanged(value),
+                  ),
                 ),
                 OutputCell(getter: () => state.aluminiumChainLinkFences?.tons),
                 RowCell(initialValue: "Panssariverkkoaita teräs korkeus 2 m"),
                 ColumnCell(initialValue: "5"),
                 InputCell(
                   initialValue: state.steelChainLinkFences?.weightKgPerMeter,
-                  setter:
-                      (value) => fixturesBloc.add(
-                        SteelChainLinkFencesWeightChanged(value),
-                      ),
+                  setter: (value) => fixturesBloc.add(
+                    SteelChainLinkFencesWeightChanged(value),
+                  ),
                 ),
                 InputCell(
                   initialValue: state.steelChainLinkFences?.meters,
-                  setter:
-                      (value) => fixturesBloc.add(
-                        SteelChainLinkFencesMetersChanged(value),
-                      ),
+                  setter: (value) => fixturesBloc.add(
+                    SteelChainLinkFencesMetersChanged(value),
+                  ),
                 ),
                 OutputCell(getter: () => state.steelChainLinkFences?.tons),
               ],

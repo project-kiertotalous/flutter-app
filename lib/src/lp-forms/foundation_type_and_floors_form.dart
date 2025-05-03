@@ -6,6 +6,7 @@ import 'package:flutter_app/src/shared/cell.dart';
 import 'package:flutter_app/src/shared/column_cell.dart';
 import 'package:flutter_app/src/shared/empty_cell.dart';
 import 'package:flutter_app/src/shared/form_header.dart';
+import 'package:flutter_app/src/shared/grey_cell.dart';
 import 'package:flutter_app/src/shared/info_button.dart';
 import 'package:flutter_app/src/shared/input_cell.dart';
 import 'package:flutter_app/src/shared/menu_cell.dart';
@@ -82,11 +83,8 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
             Cell.header(
               initialValue: 'Perustustyyppi ja lattiat',
               iconButton: InfoButton(
-                text:
-                    TooltipTexts
-                        .outerSheath
-                        .foundationAndFloors
-                        .foundationAndFloors,
+                text: TooltipTexts
+                    .outerSheath.foundationAndFloors.foundationAndFloors,
               ),
             ),
             ColumnCell(initialValue: 'Valesokkeli'),
@@ -97,45 +95,45 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
             ColumnCell(initialValue: 'Koko rakennus yht.'),
             ColumnCell(initialValue: 'Monivalinta'),
             MenuCell<FoundationMaterial>(
-              setter:
-                  (FoundationMaterial? value) =>
-                      foundationsBloc.add(FalsePlinthMaterialChanged(value)),
+              setter: (FoundationMaterial? value) =>
+                  foundationsBloc.add(FalsePlinthMaterialChanged(value)),
               initialValue: state.falsePlinth?.material,
               items: toList(),
             ),
             MenuCell<FoundationMaterial>(
-              setter:
-                  (FoundationMaterial? value) =>
-                      foundationsBloc.add(CrawlSpaceMaterialChanged(value)),
+              setter: (FoundationMaterial? value) =>
+                  foundationsBloc.add(CrawlSpaceMaterialChanged(value)),
               initialValue: state.crawlSpace?.material,
               items: toList(),
             ),
-            EmptyCell(),
+            ColumnCell(
+              initialValue: '',
+            ),
             MenuCell<FoundationMaterial?>(
-              setter:
-                  (FoundationMaterial? value) =>
-                      foundationsBloc.add(PillarMaterialChanged(value)),
+              setter: (FoundationMaterial? value) =>
+                  foundationsBloc.add(PillarMaterialChanged(value)),
               initialValue: state.pillar?.material,
               items: toList(),
             ),
             MenuCell<FoundationMaterial?>(
-              setter:
-                  (FoundationMaterial? value) =>
-                      foundationsBloc.add(HollowCoreSlabMaterialChanged(value)),
+              setter: (FoundationMaterial? value) =>
+                  foundationsBloc.add(HollowCoreSlabMaterialChanged(value)),
               initialValue: state.hollowCoreSlab?.material,
               items: toList(),
             ),
-            EmptyCell(),
+            ColumnCell(
+              initialValue: '',
+            ),
             RowCell(initialValue: 'Perustuksen pinta-ala (m2)'),
             InputCell(
               initialValue: state.falsePlinth?.area,
-              setter:
-                  (value) => foundationsBloc.add(FalsePlinthAreaChanged(value)),
+              setter: (value) =>
+                  foundationsBloc.add(FalsePlinthAreaChanged(value)),
             ),
             InputCell(
               initialValue: state.crawlSpace?.area,
-              setter:
-                  (value) => foundationsBloc.add(CrawlSpaceAreaChanged(value)),
+              setter: (value) =>
+                  foundationsBloc.add(CrawlSpaceAreaChanged(value)),
             ),
             InputCell(
               initialValue: state.shallow?.area,
@@ -147,44 +145,38 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
             ),
             InputCell(
               initialValue: state.hollowCoreSlab?.area,
-              setter:
-                  (value) =>
-                      foundationsBloc.add(HollowCoreSlabAreaChanged(value)),
+              setter: (value) =>
+                  foundationsBloc.add(HollowCoreSlabAreaChanged(value)),
             ),
             OutputCell(getter: () => state.area),
             RowCell(initialValue: 'Perustuksen kehämitta (jm)'),
             InputCell(
               initialValue: state.falsePlinth?.circumference,
-              setter:
-                  (value) => foundationsBloc.add(
-                    FalsePlinthCircumferenceChanged(value),
-                  ),
+              setter: (value) => foundationsBloc.add(
+                FalsePlinthCircumferenceChanged(value),
+              ),
             ),
             InputCell(
               initialValue: state.crawlSpace?.circumference,
-              setter:
-                  (value) => foundationsBloc.add(
-                    CrawlSpaceCircumferenceChanged(value),
-                  ),
+              setter: (value) => foundationsBloc.add(
+                CrawlSpaceCircumferenceChanged(value),
+              ),
             ),
             InputCell(
               initialValue: state.shallow?.circumference,
-              setter:
-                  (value) =>
-                      foundationsBloc.add(ShallowCircumferenceChanged(value)),
+              setter: (value) =>
+                  foundationsBloc.add(ShallowCircumferenceChanged(value)),
             ),
             InputCell(
               initialValue: state.pillar?.circumference,
-              setter:
-                  (value) =>
-                      foundationsBloc.add(PillarCircumferenceChanged(value)),
+              setter: (value) =>
+                  foundationsBloc.add(PillarCircumferenceChanged(value)),
             ),
             InputCell(
               initialValue: state.hollowCoreSlab?.circumference,
-              setter:
-                  (value) => foundationsBloc.add(
-                    HollowCoreSlabCircumferenceChanged(value),
-                  ),
+              setter: (value) => foundationsBloc.add(
+                HollowCoreSlabCircumferenceChanged(value),
+              ),
             ),
             OutputCell(getter: () => state.circumference),
             FormHeader(text: "Perustusten purkumateriaalimäärät"),
@@ -200,10 +192,9 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
               checkbox: true,
               checkboxValue: state.bituminousWaterProofing,
               checkboxTitle: "Vedeneristys bitumisively",
-              checkboxSetter:
-                  (value) => foundationsBloc.add(
-                    BituminousWaterProofingChanged(value),
-                  ),
+              checkboxSetter: (value) => foundationsBloc.add(
+                BituminousWaterProofingChanged(value),
+              ),
             ),
             OutputCell(getter: () => state.falsePlinth?.concreteVolume),
             OutputCell(getter: () => state.crawlSpace?.concreteVolume),
@@ -302,8 +293,8 @@ class FoundationTypeAndFloorsForm extends StatelessWidget {
               getter: () => state.pillar?.solidBoardingAndWoodFrameVolume,
             ),
             OutputCell(
-              getter:
-                  () => state.hollowCoreSlab?.solidBoardingAndWoodFrameVolume,
+              getter: () =>
+                  state.hollowCoreSlab?.solidBoardingAndWoodFrameVolume,
             ),
             OutputCell(getter: () => state.solidBoardingAndWoodFrameVolume),
             RowCell(initialValue: "Runkopuu ja umpilaudoitus (tonnia)"),

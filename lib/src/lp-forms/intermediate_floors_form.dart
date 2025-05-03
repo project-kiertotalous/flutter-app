@@ -42,22 +42,19 @@ class IntermediateFloorsForm extends StatelessWidget {
                     ColumnCell(initialValue: "Kerroksia (kpl)"),
                     EmptyCell(),
                     OutputCell(
-                      getter:
-                          () => state.totalBuildingDimensions?.grossFloorArea,
+                      getter: () =>
+                          state.totalBuildingDimensions?.grossFloorArea,
                     ),
                     OutputCell(
-                      getter:
-                          () =>
-                              state
-                                  .totalBuildingDimensions
-                                  ?.floorCountExcludingBasements,
+                      getter: () => state.totalBuildingDimensions
+                          ?.floorCountExcludingBasements,
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
                 FormHeader(text: 'Välipohjien pinta-alat ja runkorakenteet'),
                 LayoutGrid(
-                  columnSizes: [363.px, 150.px, 150.px],
+                  columnSizes: [425.px, 150.px, 150.px],
                   rowSizes: [60.px, 50.px, 50.px, 50.px, 50.px, 50.px, 50.px],
                   children: [
                     RowCell(
@@ -67,12 +64,11 @@ class IntermediateFloorsForm extends StatelessWidget {
                           state.hollowCoreSlabsAndGlulamBeamRecyclable,
                       checkboxTitle:
                           "Ontelolaatat ja liimapuupalkit ovat uudelleenkäytettäviä",
-                      checkboxSetter:
-                          (value) => intermediateFloorsBloc.add(
-                            HollowCoreSlabsAndGlulamBeamRecyclableChanged(
-                              value,
-                            ),
-                          ),
+                      checkboxSetter: (value) => intermediateFloorsBloc.add(
+                        HollowCoreSlabsAndGlulamBeamRecyclableChanged(
+                          value,
+                        ),
+                      ),
                     ),
                     ColumnCell(
                       initialValue: "Rakenteen osuus koko kerrosalasta (%)",
@@ -82,10 +78,9 @@ class IntermediateFloorsForm extends StatelessWidget {
                     InputCell(
                       initialValue: state.woodFramePercentage,
                       percentage: true,
-                      setter:
-                          (value) => intermediateFloorsBloc.add(
-                            WoodFramePercentageChanged(value),
-                          ),
+                      setter: (value) => intermediateFloorsBloc.add(
+                        WoodFramePercentageChanged(value),
+                      ),
                     ),
                     OutputCell(getter: () => state.woodFrameFloorArea),
                     RowCell(
@@ -94,20 +89,18 @@ class IntermediateFloorsForm extends StatelessWidget {
                     InputCell(
                       initialValue: state.concreteCastingPercentage,
                       percentage: true,
-                      setter:
-                          (value) => intermediateFloorsBloc.add(
-                            ConcreteCastingPercentageChanged(value),
-                          ),
+                      setter: (value) => intermediateFloorsBloc.add(
+                        ConcreteCastingPercentageChanged(value),
+                      ),
                     ),
                     OutputCell(getter: () => state.concreteCastingFloorArea),
                     RowCell(initialValue: "Ontelolaatta (m²)"),
                     InputCell(
                       initialValue: state.hollowCoreSlabPercentage,
                       percentage: true,
-                      setter:
-                          (value) => intermediateFloorsBloc.add(
-                            HollowCoreSlabPercentageChanged(value),
-                          ),
+                      setter: (value) => intermediateFloorsBloc.add(
+                        HollowCoreSlabPercentageChanged(value),
+                      ),
                     ),
                     OutputCell(getter: () => state.hollowCoreSlabFloorArea),
                     RowCell(
@@ -116,10 +109,9 @@ class IntermediateFloorsForm extends StatelessWidget {
                     InputCell(
                       initialValue: state.glulamBeamPercentage,
                       percentage: true,
-                      setter:
-                          (value) => intermediateFloorsBloc.add(
-                            GlulamBeamPercentageChanged(value),
-                          ),
+                      setter: (value) => intermediateFloorsBloc.add(
+                        GlulamBeamPercentageChanged(value),
+                      ),
                     ),
                     OutputCell(getter: () => state.glulamBeamFloorArea),
                     RowCell(

@@ -1,6 +1,8 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
 import 'package:flutter_app/src/shared/empty_cell.dart';
+import 'package:flutter_app/src/shared/form_header.dart';
 import 'package:flutter_app/src/shared/grey_cell.dart';
 import 'package:flutter_app/src/shared/header_cell.dart';
 import 'package:flutter_app/src/shared/menu_cell.dart';
@@ -42,12 +44,11 @@ class SPMachineryForm extends StatelessWidget {
               50.px,
             ],
             children: [
-              HeaderCell(
-                  initialValue: 'Koneet, laitteet ja kiinteät rakenteet'),
-              HeaderCell(
+              FormHeader(text: 'Koneet, laitteet ja kiinteät rakenteet'),
+              ColumnCell(
                 initialValue: 'Kpl',
               ),
-              HeaderCell(
+              ColumnCell(
                 initialValue: 'Kg',
               ),
               EmptyCell(),
@@ -119,7 +120,7 @@ class SPMachineryForm extends StatelessWidget {
               GreyCell(),
               GreyCell(),
               GreyCell(),
-              HeaderCell(initialValue: 'Tonnia'),
+              ColumnCell(initialValue: 'Tonnia'),
               RowCell(
                 initialValue: 'Betoniset pihalaatoitukset ja muurikivet (m2)',
               ),
@@ -151,8 +152,8 @@ class SPMachineryForm extends StatelessWidget {
                 ),
               ),
               MenuCell<FencesBetweenApartments?>(
-                setter: (value) => machineryBloc.add(
-                  SPFencesBetweenApartmentsChanged(value)),
+                setter: (value) =>
+                    machineryBloc.add(SPFencesBetweenApartmentsChanged(value)),
                 initialValue: state.fencesBetweenApartments,
                 items: fenceTypeToList(),
               ),

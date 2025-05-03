@@ -22,7 +22,7 @@ class PassageDoorsForm extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             LayoutGrid(
-              columnSizes: [260.px, 140.px, 140.px, 140.px],
+              columnSizes: [270.px, 140.px, 140.px, 140.px],
               rowSizes: [
                 50.px,
                 50.px,
@@ -35,15 +35,13 @@ class PassageDoorsForm extends StatelessWidget {
               ],
               children: [
                 Cell.row(
-                  // TODO: this could use header text style - slightly bolded text
                   initialValue: 'Kulkuovet',
                   checkbox: true,
                   checkboxTitle: 'Uudelleenkäytettäviä',
                   checkboxValue: state.passageDoors.doorsRecyclable,
-                  checkboxSetter:
-                      (value) => passageBloc.add(
-                        PassageAreDoorsRecyclableChanged(value),
-                      ),
+                  checkboxSetter: (value) => passageBloc.add(
+                    PassageAreDoorsRecyclableChanged(value),
+                  ),
                 ),
                 Cell.column(initialValue: 'Puuovet (kpl)'),
                 Cell.column(initialValue: 'Alumiiniovet (kpl)'),
@@ -52,48 +50,42 @@ class PassageDoorsForm extends StatelessWidget {
                 Cell.input(
                   initialValue: state.passageDoors.woodenDoor!.shutDoors,
                   integer: true,
-                  setter:
-                      (value) =>
-                          passageBloc.add(PassageShutWoodenDoorsChanged(value)),
+                  setter: (value) =>
+                      passageBloc.add(PassageShutWoodenDoorsChanged(value)),
                 ),
                 Cell.input(
                   initialValue: state.passageDoors.aluminiumDoor!.shutDoors,
                   integer: true,
-                  setter:
-                      (value) => passageBloc.add(
-                        PassageShutAluminiumDoorsChanged(value),
-                      ),
+                  setter: (value) => passageBloc.add(
+                    PassageShutAluminiumDoorsChanged(value),
+                  ),
                 ),
                 Cell.input(
                   initialValue: state.passageDoors.steelDoor!.shutDoors,
                   integer: true,
-                  setter:
-                      (value) =>
-                          passageBloc.add(PassageShutSteelDoorsChanged(value)),
+                  setter: (value) =>
+                      passageBloc.add(PassageShutSteelDoorsChanged(value)),
                 ),
                 Cell.row(initialValue: 'Lasiovia'),
                 Cell.input(
                   initialValue: state.passageDoors.woodenDoor!.glassDoors,
                   integer: true,
-                  setter:
-                      (value) => passageBloc.add(
-                        PassageGlassWoodenDoorsChanged(value),
-                      ),
+                  setter: (value) => passageBloc.add(
+                    PassageGlassWoodenDoorsChanged(value),
+                  ),
                 ),
                 Cell.input(
                   initialValue: state.passageDoors.aluminiumDoor!.glassDoors,
                   integer: true,
-                  setter:
-                      (value) => passageBloc.add(
-                        PassageGlassAluminiumDoorsChanged(value),
-                      ),
+                  setter: (value) => passageBloc.add(
+                    PassageGlassAluminiumDoorsChanged(value),
+                  ),
                 ),
                 Cell.input(
                   initialValue: state.passageDoors.steelDoor!.glassDoors,
                   integer: true,
-                  setter:
-                      (value) =>
-                          passageBloc.add(PassageGlassSteelDoorsChanged(value)),
+                  setter: (value) =>
+                      passageBloc.add(PassageGlassSteelDoorsChanged(value)),
                 ),
                 Cell.row(initialValue: 'Materiaalimäärä (tonnia)'),
                 Cell.output(getter: () => state.passageDoors.woodenDoorTons),

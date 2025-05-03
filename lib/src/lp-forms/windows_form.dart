@@ -30,7 +30,7 @@ class WindowsForm extends StatelessWidget {
             FormHeader(text: 'Ikkunoiden ja lasiseinien määrät'),
             LayoutGrid(
               columnSizes: [
-                400.px, // Column 1
+                420.px, // Column 1
                 150.px, // Column 2
                 150.px, // Column 3
                 150.px, // Column 4
@@ -52,19 +52,15 @@ class WindowsForm extends StatelessWidget {
                   checkboxTitle:
                       "Ikkunat ja lasiseinät ovat uudelleenkäytettäviä",
                   checkboxValue: state.areWindowsRecyclable,
-                  checkboxSetter:
-                      (value) =>
-                          windowsBloc.add(WindowsRecyclabilityChanged(value)),
+                  checkboxSetter: (value) =>
+                      windowsBloc.add(WindowsRecyclabilityChanged(value)),
                 ),
                 ColumnCell(initialValue: "Kappale"),
                 ColumnCell(
                   initialValue: "m2",
                   iconButton: InfoButton(
-                    text:
-                        TooltipTexts
-                            .partitionWallsDoorsAndWindows
-                            .windows
-                            .defaultWindowOpeningSize,
+                    text: TooltipTexts.partitionWallsDoorsAndWindows.windows
+                        .defaultWindowOpeningSize,
                   ),
                 ),
                 ColumnCell(initialValue: "Lasipinta-ala yhteensä (m2)"),
@@ -84,14 +80,14 @@ class WindowsForm extends StatelessWidget {
                 GreyCell(),
                 InputCell(
                   initialValue: state.glassWallArea,
-                  setter:
-                      (value) => windowsBloc.add(GlassWallAreaChanged(value)),
+                  setter: (value) =>
+                      windowsBloc.add(GlassWallAreaChanged(value)),
                 ),
                 EmptyCell(),
                 // Row 4
                 FormHeader(text: "Ikkunoiden materiaalimäärät"),
-                FormHeader(text: "Materiaalimäärä yhteensä (m3)"),
-                FormHeader(text: "Materiaalimäärä yhteensä (tonnia)"),
+                ColumnCell(initialValue: "Materiaalimäärä yhteensä (m3)"),
+                ColumnCell(initialValue: "Materiaalimäärä yhteensä (tonnia)"),
                 EmptyCell(),
                 // Row 5
                 RowCell(initialValue: "Puu"),

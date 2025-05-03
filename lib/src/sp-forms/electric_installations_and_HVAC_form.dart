@@ -1,5 +1,6 @@
 import 'package:bl_demolition_materials/bl_demolition_materials.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/src/shared/column_cell.dart';
 import 'package:flutter_app/src/shared/empty_cell.dart';
 import 'package:flutter_app/src/shared/header_cell.dart';
 import 'package:flutter_app/src/sp-bloc/electrical_installations_and_hvac_bloc.dart';
@@ -40,8 +41,8 @@ class SPElectricalInstallationsAndhvacForm extends StatelessWidget {
               ],
               children: [
                 EmptyCell(),
-                HeaderCell(initialValue: 'Metriä'),
-                HeaderCell(initialValue: 'KG'),
+                ColumnCell(initialValue: 'Metriä'),
+                ColumnCell(initialValue: 'KG'),
                 RowCell(initialValue: 'Sähköjohdot, kupari'),
                 InputCell(
                   initialValue: state.electricalWiresCopper,
