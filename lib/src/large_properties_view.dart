@@ -37,7 +37,6 @@ import 'shared/cancel_dialog.dart';
 import 'package:flutter_app/src/exporting/large_property_exporter.dart';
 import 'package:flutter_app/src/shared/export_button.dart';
 
-
 /// This view is for estimating large buildings.
 class LargePropertiesView extends StatefulWidget {
   const LargePropertiesView({super.key});
@@ -113,14 +112,16 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
         NavigationButtons(),
       ];
 
-        List<Widget> saveFile() => [
-           Text(
+  List<Widget> saveFile() => [
+        Text(
           'Tallenna purkumateriaalien arviointilaskelma',
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-          ExportButton(
-          onExportPDF: () => LargePropertyExporter.exportMaterialAssessmentPDF(context),
-          onExportExcel: () => LargePropertyExporter.exportMaterialAssessmentExcel(context),
+        ExportButton(
+          onExportPDF: () =>
+              LargePropertyExporter.exportMaterialAssessmentPDF(context),
+          onExportExcel: () =>
+              LargePropertyExporter.exportMaterialAssessmentExcel(context),
         ),
         Text(
           'Tallenna jätelain mukainen purkumateriaalien arviointilaskelma',
@@ -128,15 +129,12 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
         ),
         ExportButton(
           onExportPDF: () => LargePropertyExporter.exportWasteLawPDF(context),
-          onExportExcel: () => LargePropertyExporter.exportWasteLawExcel(context),
+          onExportExcel: () =>
+              LargePropertyExporter.exportWasteLawExcel(context),
         ),
         SizedBox(height: 30),
         NavigationButtons(),
-
       ];
-   
-
-   
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +171,9 @@ class _LargeBuildingsViewState extends State<LargePropertiesView>
                   width: 1600,
                 ),
                 TabView(forms: wasteLawDemolitionForms),
-                TabView(forms: saveFile,)
+                TabView(
+                  forms: saveFile,
+                )
               ],
             ),
           ),

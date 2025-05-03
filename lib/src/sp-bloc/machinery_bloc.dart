@@ -3,9 +3,9 @@ import 'machinery_event.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_app/log.dart';
 
-class SPMachineryBloc extends Bloc<SPMachineryEvent, MachineryEquipmentAndFixedStructures> {
+class SPMachineryBloc
+    extends Bloc<SPMachineryEvent, MachineryEquipmentAndFixedStructures> {
   SPMachineryBloc() : super(MachineryEquipmentAndFixedStructures()) {
-
     on<SPAreElectricMotorsRecyclableChanged>((event, emit) {
       emit(state.copyWith(areElectricMotorsRecyclable: event.value));
       logger.d("SPAreElectricMotorsRecyclableChanged: ${event.value}");
@@ -27,8 +27,10 @@ class SPMachineryBloc extends Bloc<SPMachineryEvent, MachineryEquipmentAndFixedS
     });
 
     on<SPElectricalDistributionMachinesAndMetersChanged>((event, emit) {
-      emit(state.copyWith(electricalDistributionMachinesAndMeters: event.value));
-      logger.d("SPElectricalDistributionMachinesAndMetersChanged: ${event.value}");
+      emit(
+          state.copyWith(electricalDistributionMachinesAndMeters: event.value));
+      logger.d(
+          "SPElectricalDistributionMachinesAndMetersChanged: ${event.value}");
     });
 
     on<SPWaterCirculationRadiatorsChanged>((event, emit) {
@@ -37,24 +39,29 @@ class SPMachineryBloc extends Bloc<SPMachineryEvent, MachineryEquipmentAndFixedS
     });
 
     on<SPAreConcreteYardTilesAndWallStonesRecyclableChanged>((event, emit) {
-      emit(state.copyWith(areConcreteYardTilesAndWallStonesRecyclable: event.value));
-      logger.d("SPAreConcreteYardTilesAndWallStonesRecyclableChanged: ${event.value}");
+      emit(state.copyWith(
+          areConcreteYardTilesAndWallStonesRecyclable: event.value));
+      logger.d(
+          "SPAreConcreteYardTilesAndWallStonesRecyclableChanged: ${event.value}");
     });
 
     on<SPFencesBetweenApartmentsChanged>((event, emit) {
-      emit(state.copyWith(fencesBetweenApartments: event.value,));
+      emit(state.copyWith(
+        fencesBetweenApartments: event.value,
+      ));
       logger.d("SPFencesBetweenApartmentsChanged: ${event.value}");
     });
 
     on<SPConcreteYardTilesAndStonesInSquareMetersChanged>((event, emit) {
-      emit(state.copyWith(concreteYardTilesAndStonesInSquareMeters: event.value));
-      logger.d("SPConcreteYardTilesAndStonesInSquareMetersChanged: ${event.value}");
+      emit(state.copyWith(
+          concreteYardTilesAndStonesInSquareMeters: event.value));
+      logger.d(
+          "SPConcreteYardTilesAndStonesInSquareMetersChanged: ${event.value}");
     });
 
     on<SPFencesBetweenApartmentsInMetersChanged>((event, emit) {
       emit(state.copyWith(fencesBetweenApartmentsInMeters: event.value));
       logger.d("SPFencesBetweenApartmentsInMetersChanged: ${event.value}");
     });
-
   }
 }

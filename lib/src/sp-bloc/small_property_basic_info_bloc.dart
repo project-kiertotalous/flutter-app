@@ -6,7 +6,6 @@ import 'small_property_basic_info_event.dart';
 class SmallPropertyBasicInfoBloc
     extends Bloc<SmallPropertyBasicInfoEvent, SmallPropertyEvaluationInfo> {
   SmallPropertyBasicInfoBloc() : super(SmallPropertyEvaluationInfo()) {
-
     on<SmallPropertyNameChanged>((event, emit) {
       logger.d("SmallPropertyNameChanged fired ${event.propertyName}");
       emit(state.copyWith(propertyName: event.propertyName));
@@ -30,6 +29,5 @@ class SmallPropertyBasicInfoBloc
       emit(state.copyWith(isHazardousSubstanceSurveyDone: event.value));
       logger.d(state);
     });
-
   }
 }

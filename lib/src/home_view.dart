@@ -26,13 +26,13 @@ class HomeView extends StatelessWidget {
                 right: 0,
                 child: Center(
                   child: Text(
-                  "Rakennusten purkumateriaalien arviointilaskuri",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+                    "Rakennusten purkumateriaalien arviointilaskuri",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
-                ),
                 ),
               ),
               // micropolis logo

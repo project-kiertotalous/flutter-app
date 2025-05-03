@@ -14,14 +14,12 @@ class AverageHeightOfInternalWallsChanged
   AverageHeightOfInternalWallsChanged(this.amount);
 }
 
-class RoomSpaceChanged
-    extends InternalWallFramesAndSurfaceMaterialEvent {
+class RoomSpaceChanged extends InternalWallFramesAndSurfaceMaterialEvent {
   final RoomSpace roomSpace;
   RoomSpaceChanged(this.roomSpace);
 }
 
-class OfficeSpacesChanged
-    extends InternalWallFramesAndSurfaceMaterialEvent {
+class OfficeSpacesChanged extends InternalWallFramesAndSurfaceMaterialEvent {
   final RoomSpace value;
   OfficeSpacesChanged(this.value);
 }
@@ -38,8 +36,7 @@ class RestroomsAndWashingFacilitiesChanged
   RestroomsAndWashingFacilitiesChanged(this.value);
 }
 
-class KitchensChanged
-    extends InternalWallFramesAndSurfaceMaterialEvent {
+class KitchensChanged extends InternalWallFramesAndSurfaceMaterialEvent {
   final RoomSpace value;
   KitchensChanged(this.value);
 }
@@ -55,9 +52,8 @@ class StorageAndWorkSpacesChanged
   final RoomSpace value;
   StorageAndWorkSpacesChanged(this.value);
 }
- 
-class OtherSpacesChanged
-    extends InternalWallFramesAndSurfaceMaterialEvent {
+
+class OtherSpacesChanged extends InternalWallFramesAndSurfaceMaterialEvent {
   final RoomSpace value;
   OtherSpacesChanged(this.value);
 }

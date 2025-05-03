@@ -1,6 +1,7 @@
 abstract class SPElectricalInstallationsAndHVACEvent {}
 
-class SPElectricalWiresCopperChanged extends SPElectricalInstallationsAndHVACEvent {
+class SPElectricalWiresCopperChanged
+    extends SPElectricalInstallationsAndHVACEvent {
   final num? value;
   SPElectricalWiresCopperChanged(this.value);
 }
@@ -15,12 +16,14 @@ class SPPlasticPipesWaterChanged extends SPElectricalInstallationsAndHVACEvent {
   SPPlasticPipesWaterChanged(this.value);
 }
 
-class SPVentilationPipesD200Changed extends SPElectricalInstallationsAndHVACEvent {
+class SPVentilationPipesD200Changed
+    extends SPElectricalInstallationsAndHVACEvent {
   final num? value;
   SPVentilationPipesD200Changed(this.value);
 }
 
-class SPCentralHeatingPipesChanged extends SPElectricalInstallationsAndHVACEvent {
+class SPCentralHeatingPipesChanged
+    extends SPElectricalInstallationsAndHVACEvent {
   final num? value;
   SPCentralHeatingPipesChanged(this.value);
 }
@@ -30,7 +33,8 @@ class SPCastIronPipesChanged extends SPElectricalInstallationsAndHVACEvent {
   SPCastIronPipesChanged(this.value);
 }
 
-class SPSewagePipesPlasticChanged extends SPElectricalInstallationsAndHVACEvent {
+class SPSewagePipesPlasticChanged
+    extends SPElectricalInstallationsAndHVACEvent {
   final num? value;
   SPSewagePipesPlasticChanged(this.value);
 }

@@ -54,12 +54,11 @@ class ExportButton extends StatelessWidget {
       alignment: Alignment.bottomLeft,
       child: Padding(
         padding: const EdgeInsets.only(left: 16.0, top: 16.0),
-
-      child: ElevatedButton.icon(
-        icon: Icon(Icons.download),
-        label: Text('Tallenna'), 
-        onPressed: () => _showExportOptions(context),
-      ),
+        child: ElevatedButton.icon(
+          icon: Icon(Icons.download),
+          label: Text('Tallenna'),
+          onPressed: () => _showExportOptions(context),
+        ),
       ),
     );
   }

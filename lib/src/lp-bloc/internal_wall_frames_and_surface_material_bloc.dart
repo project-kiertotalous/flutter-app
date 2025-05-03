@@ -8,20 +8,17 @@ class InternalWallFramesAndSurfaceMaterialBloc extends Bloc<
     InternalWallFramesAndSurfaceMaterial> {
   InternalWallFramesAndSurfaceMaterialBloc()
       : super(InternalWallFramesAndSurfaceMaterial(
-      overallWallLength: null,
-      averageWallHeight: null,
-      officeSpaces: RoomSpace(),
-      lobbiesAndOtherCommonAreas: RoomSpace(),
-      restroomsAndWashingFacilities: RoomSpace(),
-      kitchens: RoomSpace(),
-      teachingAndTreatmentSpaces: RoomSpace(),
-      storageAndWorkspaces: RoomSpace(),
-      otherSpaces: RoomSpace(),
-      surfaceMaterialCoatingContainsAsbestos: false,
-        ) 
-      ){
-
-
+          overallWallLength: null,
+          averageWallHeight: null,
+          officeSpaces: RoomSpace(),
+          lobbiesAndOtherCommonAreas: RoomSpace(),
+          restroomsAndWashingFacilities: RoomSpace(),
+          kitchens: RoomSpace(),
+          teachingAndTreatmentSpaces: RoomSpace(),
+          storageAndWorkspaces: RoomSpace(),
+          otherSpaces: RoomSpace(),
+          surfaceMaterialCoatingContainsAsbestos: false,
+        )) {
     on<OverallLengthOfInternalWallsAllFloorsChanged>((event, emit) {
       logger
           .d("OverallLengthOfInternalWallsAllFloorsChanged to ${event.amount}");
