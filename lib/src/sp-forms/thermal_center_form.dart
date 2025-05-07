@@ -181,9 +181,8 @@ class ThermalCenterForm extends StatelessWidget {
                     checkboxTitle:
                         "Kiinteistö on kaukolämmössä tai suora sähkölämmitys",
                     checkboxValue: state.onDisctrictOrDirectHeating,
-                    checkboxSetter:
-                        (value) =>
-                            bloc.add(OnDistrictOrDirectHeatingChanged(value)),
+                    checkboxSetter: (value) =>
+                        bloc.add(OnDistrictOrDirectHeatingChanged(value)),
                   ),
                 ),
                 EmptyCell(),
@@ -347,11 +346,13 @@ class ThermalCenterForm extends StatelessWidget {
                 InputCell(
                   initialValue: state.heatingMachinesPcs,
                   setter: (value) => bloc.add(HeatingMachinesChanged(value)),
+                  integer: true,
                 ),
                 OutputCell(getter: () => state.boilerOrHeatExchangerWeightTons),
                 InputCell(
                   initialValue: state.waterHeatersPcs,
                   setter: (value) => bloc.add(WaterHeatersChanged(value)),
+                  integer: true,
                 ),
                 OutputCell(getter: () => state.waterHeaterWeightTons),
                 EmptyCell(),
@@ -359,8 +360,8 @@ class ThermalCenterForm extends StatelessWidget {
                   checkbox: true,
                   checkboxTitle: "Uudelleenkäytettäviä",
                   checkboxValue: state.areRecyclable,
-                  checkboxSetter:
-                      (value) => bloc.add(AreRecyclableChanged(value)),
+                  checkboxSetter: (value) =>
+                      bloc.add(AreRecyclableChanged(value)),
                 ),
               ],
             ),

@@ -66,6 +66,7 @@ class SPMachineryForm extends StatelessWidget {
                 setter: (value) => machineryBloc.add(
                   SPElectricMotorsChanged(value),
                 ),
+                integer: true,
               ),
               OutputCell(
                 getter: () => state.electricMotorsWeightKg,
@@ -85,6 +86,7 @@ class SPMachineryForm extends StatelessWidget {
                 setter: (value) => machineryBloc.add(
                   SPVentilationMachinesChanged(value),
                 ),
+                integer: true,
               ),
               OutputCell(
                 getter: () => state.ventilationMachinesWeightKg,
@@ -98,6 +100,7 @@ class SPMachineryForm extends StatelessWidget {
                 setter: (value) => machineryBloc.add(
                   SPElectricalDistributionMachinesAndMetersChanged(value),
                 ),
+                integer: true,
               ),
               OutputCell(
                 getter: () =>
@@ -112,6 +115,7 @@ class SPMachineryForm extends StatelessWidget {
                 setter: (value) => machineryBloc.add(
                   SPWaterCirculationRadiatorsChanged(value),
                 ),
+                integer: true,
               ),
               OutputCell(
                 getter: () => state.waterCirculationRadiatorsWeightKg,
