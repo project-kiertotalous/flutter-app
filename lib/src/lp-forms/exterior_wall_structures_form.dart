@@ -4,6 +4,7 @@ import 'package:flutter_app/src/lp-bloc/total_building_frame_bloc.dart';
 import 'package:flutter_app/src/lp-bloc/total_building_frame_event.dart';
 import 'package:flutter_app/src/shared/cell.dart';
 import 'package:flutter_app/src/shared/form_header.dart';
+import 'package:flutter_app/src/shared/light_grey_cell.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 
@@ -166,13 +167,13 @@ class OuterWallsForm extends StatelessWidget {
 
               // second part of the form
               Cell.header(initialValue: 'Purkumateriaalien määrä'),
-              Cell.empty(),
-              Cell.empty(),
-              Cell.empty(),
-              Cell.empty(),
-              Cell.empty(),
-              Cell.empty(),
-              Cell.empty(),
+              LightGreyCell(),
+              LightGreyCell(),
+              LightGreyCell(),
+              LightGreyCell(),
+              LightGreyCell(),
+              LightGreyCell(),
+              LightGreyCell(),
               Cell.column(initialValue: 'Yhteensä (m3)'),
               Cell.column(initialValue: 'Yhteensä (tonnia)'),
               Cell.row(initialValue: 'Tuulensuojalevy (bituliitti, tms.)'),

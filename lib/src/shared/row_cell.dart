@@ -9,7 +9,7 @@ class RowCell extends StatelessWidget implements Cell {
     this.checkboxTitle,
     this.checkboxSetter,
     this.checkboxValue,
-    this.iconButton, // Change type to Widget?
+    this.iconButton,
     this.centerText = false,
   });
 
@@ -23,60 +23,79 @@ class RowCell extends StatelessWidget implements Cell {
 
   @override
   Widget build(BuildContext context) {
+    final bool hasText =
+        initialValue != null && initialValue.toString().isNotEmpty;
+
     return Container(
-      width: double.infinity, // Expands to fill available width
-      height: double.infinity, // Expands to fill available height
-      decoration: BoxDecoration(border: Border.all(width: 1)), // Main border
+      width: double.infinity,
+      height: double.infinity,
+      decoration: hasText ? BoxDecoration(border: Border.all(width: 1)) : null,
       child: Padding(
-        padding: const EdgeInsets.only(left: 4.0),
+        // Remove left padding when there's no text
+        padding: EdgeInsets.only(left: hasText ? 4.0 : 0.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch, // Ensures full height is used
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
-              child: Align(
-                alignment: centerText ? Alignment.center : Alignment.centerLeft,
-                child: Text(initialValue?.toString() ?? ""),
-              ),
-            ),
-            if (iconButton != null) iconButton!,
-            if (checkbox)
-              // Wrap the checkbox container in IntrinsicHeight to make it match the row's height
-              IntrinsicHeight(
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFFEAEAEA),
-                    border: Border.all(width: 1, color: Colors.black),
-                    borderRadius: BorderRadius.circular(4),
-                  ),
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Row(
-                    mainAxisSize:
-                        MainAxisSize.min, // Prevent the Row from expanding
-                    crossAxisAlignment:
-                        CrossAxisAlignment.center, // Center vertically
-                    children: [
-                      if (checkboxTitle != null)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Text(checkboxTitle!),
-                        ),
-                      Checkbox(
-                        value: checkboxValue ?? false,
-                        onChanged: (bool? newValue) {
-                          checkboxSetter?.call(newValue);
-                        },
-                        checkColor: Colors.white, // Checkmark color
-                        activeColor: Colors.green, // Color when checked
-                      ),
-                    ],
-                  ),
+            if (hasText)
+              Expanded(
+                child: Align(
+                  alignment:
+                      centerText ? Alignment.center : Alignment.centerLeft,
+                  child: Text(initialValue?.toString() ?? ""),
                 ),
               ),
+            if (checkbox)
+              hasText
+                  ? _buildCheckboxWidget()
+                  : Expanded(
+                      child: Container(
+                        margin: EdgeInsets.zero, // Ensure no extra margin
+                        decoration: BoxDecoration(
+                          color: const Color(0xFFEAEAEA),
+                          border: Border.all(width: 1, color: Colors.black),
+                        ),
+                        child: Center(
+                          // Center checkbox horizontally
+                          child: _buildCheckboxContent(),
+                        ),
+                      ),
+                    ),
+            if (iconButton != null) iconButton!,
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildCheckboxWidget() {
+    return IntrinsicHeight(
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFFEAEAEA),
+          border: Border.all(width: 1, color: Colors.black),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: _buildCheckboxContent(),
+      ),
+    );
+  }
+
+  Widget _buildCheckboxContent() {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        if (checkboxTitle != null)
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Text(checkboxTitle!),
+          ),
+        Checkbox(
+          value: checkboxValue ?? false,
+          onChanged: (bool? newValue) => checkboxSetter?.call(newValue),
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        ),
+      ],
     );
   }
 }
